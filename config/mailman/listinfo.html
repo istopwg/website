@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><MM-List-Name> Info Page - msweet.org</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-responsive.css">
+  <link rel="stylesheet" type="text/css" href="/css/site.css">
+  <link rel="alternate" title="msweet.org RSS" type="application/rss+xml" href="/rss/index.rss">
+  <link rel="shortcut icon" href="/images/mike.png" type="image/png">
+  <meta name="keywords" content="linux,mac os x,software,unix,windows">
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+	  <div class="container-fluid">
+		<a class="brand active" href="/index.php">msweet.org</a>
+	<ul class="nav">
+	  <li><a href="/mailman/listinfo">Mailing Lists</a></li>
+	  <li><form class="navbar-search visible-phone" method="GET" action="/search.php">
+	    <input type="search" name="Q" value="" placeholder="Search Site" autosave="org.msweet.search" results="5">
+	  </form></li>
+	</ul>
+	<form class="navbar-search pull-right hidden-phone" method="GET" action="/search.php">
+	  <input class="span4" type="search" name="Q" value="" placeholder="Search Site" autosave="org.msweet.search" results="5">
+	</form>
+	  </div>
+	</div>
+  </div>
+  <div class="container-fluid container-top">
+	<div class="page-header"><h1>msweet.org <small><MM-List-Name> Info Page</small></h1></div>
+    <h2><MM-List-Name> <small><MM-List-Description></small></h2>
+	<MM-lang-form-start><MM-displang-box> <MM-list-langs>
+	<MM-form-end> <MM-Subscribe-Form-Start>
+	<p><MM-List-Info></p>
+	<p>To see the collection of prior postings to the list, visit the <MM-Archive><MM-List-Name> Archives</MM-Archive>. <MM-Restricted-List-Message></p>
+	<h2>Using <MM-List-Name></h2>
+	<p>To post a message to all the list members, send email to <A HREF="mailto:<MM-Posting-Addr>"><MM-Posting-Addr></A>. You can subscribe to the list, or change your existing subscription, in the sections below.</p>
+	<h2>Subscribing to <MM-List-Name></h2>
+	<p>Subscribe to <MM-List-Name> by filling out the following form. <MM-List-Subscription-Msg></p>
+	<dl class="dl-horizontal">
+	  <dt>Your email address:</dt>
+	  <dd><MM-Subscribe-Box></dd>
+      <dt>Your name (optional):</dt>
+      <dd><mm-fullname-box></dd>
+      <dd>You may enter a privacy password below. This provides only mild security, but should prevent others from messing with your subscription. <b>Do not use a valuable password</b> as it will occasionally be emailed back to you in cleartext.</dd>
+      <dd>If you choose not to enter a password, one will be automatically generated for you, and it will be sent to you once you've confirmed your subscription.  You can always request a mail-back of your password when you edit your personal options. <MM-Reminder></dd>
+	  <dt>Pick a password:</dt>
+	  <dd><MM-New-Password-Box></dd>
+	  <dt>Confirm password:</dt>
+	  <dd><MM-Confirm-Password></dd>
+	  <dt>Language preference:</dt>
+	  <dd><MM-list-langs></dd>
+	  <dd><mm-digest-question-start></dd>
+	  <dt>Message delivery:</dt>
+	  <dd><MM-Undigest-Radio-Button> Individual <MM-Digest-Radio-Button> Daily Digest</dd>
+	  <dd><mm-digest-question-end></dd>
+	  <dd><MM-Subscribe-Button></dd>
+    </dl>
+    <MM-Form-End>
+    <h2><MM-List-Name> Subscribers</h2>
+	<MM-Roster-Form-Start>
+	<MM-Roster-Option>
+	<MM-Form-End>
+
+	<MM-Options-Form-Start>
+	<MM-Editing-Options>
+	<MM-Form-End>
+  </div>
+</div>
+<div class="footer">Copyright &copy; 1991-2013 by Michael R Sweet. All rights reserved.</div>
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
