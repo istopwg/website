@@ -1,0 +1,10 @@
+http://www.pwg.org/archives/ipp/2013/?????.html
+
+Attributes (attribute syntax)
+  Keyword Attribute Value                       Reference
+  -----------------------                       ---------
+identify-actions (1setOf type2 keyword)		[PWG5100.13]
+  cancel
+
+printer-state-reasons (1setOf type2 keyword)    [RFC2911]
+  identify-printer-active
