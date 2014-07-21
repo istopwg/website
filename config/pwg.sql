@@ -9,13 +9,13 @@
 -- Site Features:
 --
 --   - Users
---   - Blog articles and user-editable content/workgroup pages
---   - Calendar
+-- !!   - Blog articles and user-editable content/workgroup pages
+-- !!   - Calendar
 --   - Issues
 --   - Certified printers
 --   - Pending certifications (submissions)
---   - Comments (attached to pretty much anything)
---   - RSS feed for blog and certified printers
+-- !!   - Comments (attached to pretty much anything)
+-- !!   - RSS feed for blog and certified printers
 --
 
 
@@ -58,7 +58,7 @@ CREATE TABLE user (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
--- INSERT INTO user VALUES(1, 2, 'michael.r.sweet@gmail.com','Michael Sweet','$6$b1963065bac3a508$uli/BFat3xp8FNEQ6ZGmvCW3KVMseVkabOFHLMIRAFjNVXmJa.z36LX.pYJPqty4aczuD1hxtLP6AM.O8L2.61',TRUE,999999,'America/Toronto',50,'','','','','','','1969-11-20 12:00:00',1,'1969-11-20 12:00:00',1);
+-- INSERT INTO user VALUES(1, 2, 'michael.r.sweet@gmail.com','Michael Sweet','$6$b1963065bac3a508$uli/BFat3xp8FNEQ6ZGmvCW3KVMseVkabOFHLMIRAFjNVXmJa.z36LX.pYJPqty4aczuD1hxtLP6AM.O8L2.61',TRUE,999999,'America/Toronto',50,'','','','','','','2014-07-20 12:00:00',1,'2014-07-20 12:00:00',1);
 
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE workgroup (
   is_published BOOLEAN DEFAULT FALSE,	-- Show as active?
   name VARCHAR(255) NOT NULL,		-- Workgroup name
   dirname VARCHAR(255) NOT NULL,	-- Directory name
+  list VARCHAR(255) NOT NULL,		-- Mailing list address
   chair_id INTEGER,			-- Chair of WG
   vicechair_id INTEGER,			-- Vice/co chair of WG
   secretary_id INTEGER,			-- Secretary of WG
@@ -84,11 +85,11 @@ CREATE TABLE workgroup (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO workgroup VALUES(1, 1, 'Internet Printing Protocol (IPP)', 'ipp', '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(2, 1, 'Semantic Model (SM)', 'sm3', '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(3, 1, 'Imaging Device Security (IDS)', 'ids', '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(4, 1, 'Cloud Imaging Model', 'cloud', '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(5, 0, 'Workgroup for Imaging Management Solutions (WIMS)', 'wims', '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(1, 1, 'Internet Printing Protocol (IPP)', 'ipp', 'ipp@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(2, 1, 'Semantic Model (SM)', 'sm3', 'sm3@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(3, 1, 'Imaging Device Security (IDS)', 'ids', 'ids@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(4, 1, 'Cloud Imaging Model', 'cloud', 'cloud@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(5, 0, 'Workgroup for Imaging Management Solutions (WIMS)', 'wims', 'wims@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
 
 
 --
@@ -98,27 +99,27 @@ INSERT INTO workgroup VALUES(5, 0, 'Workgroup for Imaging Management Solutions (
 --
 
 DROP TABLE IF EXISTS page;
-CREATE TABLE page (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
-  is_published BOOLEAN DEFAULT FALSE,	-- FALSE/0 = private, TRUE/1 = public
-  workgroup_id INTEGER,			-- Workgroup, if any
-  type INTEGER,				-- 0 = long-term content, 1 = blog article
-  title VARCHAR(255) NOT NULL,		-- Title of page
-  contents TEXT NOT NULL,		-- Contents of page
-  filename VARCHAR(255) UNIQUE NOT NULL,-- Filename link
-  altname VARCHAR(255) NOT NULL,	-- Alternate filename, if any
-  create_date DATETIME NOT NULL,	-- Time/date of creation
-  create_id INTEGER NOT NULL,		-- User that created the article
-  modify_date DATETIME NOT NULL,	-- Time/date of last change
-  modify_id INTEGER NOT NULL,		-- User that made the last change
-
-  INDEX(workgroup_id),
-  INDEX(type),
-  INDEX(filename),
-  INDEX(altname),
-  INDEX(create_id),
-  INDEX(modify_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE page (
+--  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
+--  is_published BOOLEAN DEFAULT FALSE,	-- FALSE/0 = private, TRUE/1 = public
+--  workgroup_id INTEGER,			-- Workgroup, if any
+--  type INTEGER,				-- 0 = long-term content, 1 = blog article
+--  title VARCHAR(255) NOT NULL,		-- Title of page
+--  contents TEXT NOT NULL,		-- Contents of page
+--  filename VARCHAR(255) UNIQUE NOT NULL,-- Filename link
+--  altname VARCHAR(255) NOT NULL,	-- Alternate filename, if any
+--  create_date DATETIME NOT NULL,	-- Time/date of creation
+--  create_id INTEGER NOT NULL,		-- User that created the article
+--  modify_date DATETIME NOT NULL,	-- Time/date of last change
+--  modify_id INTEGER NOT NULL,		-- User that made the last change
+--
+--  INDEX(workgroup_id),
+--  INDEX(type),
+--  INDEX(filename),
+--  INDEX(altname),
+--  INDEX(create_id),
+--  INDEX(modify_id)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -193,22 +194,22 @@ CREATE TABLE issue (
 --
 
 DROP TABLE IF EXISTS comment;
-CREATE TABLE comment (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Comment ID
-  parent_id INTEGER,			-- Parent comment or 0
-  ref_id VARCHAR(255),			-- Reference ("table_id")
-  is_published BOOLEAN DEFAULT FALSE,	-- FALSE/0 = private, TRUE/1 = public
-  contents TEXT NOT NULL,		-- Text message
-  create_date DATETIME NOT NULL,	-- Time/date of creation
-  create_id INTEGER NOT NULL,		-- User that posted the text
-  modify_date DATETIME NOT NULL,	-- Time/date of last change
-  modify_id INTEGER NOT NULL,		-- User that made the last change
-
-  INDEX(parent_id),
-  INDEX(ref_id),
-  INDEX(create_id),
-  INDEX(modify_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE comment (
+--  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Comment ID
+--  parent_id INTEGER,			-- Parent comment or 0
+--  ref_id VARCHAR(255),			-- Reference ("table_id")
+--  is_published BOOLEAN DEFAULT FALSE,	-- FALSE/0 = private, TRUE/1 = public
+--  contents TEXT NOT NULL,		-- Text message
+--  create_date DATETIME NOT NULL,	-- Time/date of creation
+--  create_id INTEGER NOT NULL,		-- User that posted the text
+--  modify_date DATETIME NOT NULL,	-- Time/date of last change
+--  modify_id INTEGER NOT NULL,		-- User that made the last change
+--
+--  INDEX(parent_id),
+--  INDEX(ref_id),
+--  INDEX(create_id),
+--  INDEX(modify_id)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -302,23 +303,23 @@ CREATE TABLE exception (
 --
 
 DROP TABLE IF EXISTS calendar;
-CREATE TABLE calendar (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Printer ID
-  status INTEGER NOT NULL,		-- 0 = tentative, 1 = confirmed, 2 = canceled
-  workgroup_id INTEGER,			-- Workgroup, if any
-  date DATETIME NOT NULL,		-- Date of event
-  duration INTEGER NOT NULL,		-- Duration of event in minutes
-  title VARCHAR(255) NOT NULL,		-- Title/summary of event
-  contents TEXT NOT NULL,		-- Text/description of event
-  create_date DATETIME NOT NULL,	-- Time/date of creation
-  create_id INTEGER NOT NULL,		-- User that submitted the printer
-  modify_date DATETIME NOT NULL,	-- Time/date of last change
-  modify_id INTEGER NOT NULL,		-- User that made the last change
-
-  INDEX(workgroup_id),
-  INDEX(create_id),
-  INDEX(modify_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- CREATE TABLE calendar (
+--  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Printer ID
+--  status INTEGER NOT NULL,		-- 0 = tentative, 1 = confirmed, 2 = canceled
+--  workgroup_id INTEGER,			-- Workgroup, if any
+--  date DATETIME NOT NULL,		-- Date of event
+--  duration INTEGER NOT NULL,		-- Duration of event in minutes
+--  title VARCHAR(255) NOT NULL,		-- Title/summary of event
+--  contents TEXT NOT NULL,		-- Text/description of event
+--  create_date DATETIME NOT NULL,	-- Time/date of creation
+--  create_id INTEGER NOT NULL,		-- User that submitted the printer
+--  modify_date DATETIME NOT NULL,	-- Time/date of last change
+--  modify_id INTEGER NOT NULL,		-- User that made the last change
+--
+--  INDEX(workgroup_id),
+--  INDEX(create_id),
+--  INDEX(modify_id)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
