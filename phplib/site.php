@@ -46,7 +46,7 @@ $html_path = dirname($PHP_SELF);
 if (array_key_exists("PATH_INFO", $_SERVER))
 {
   // PHP script is prefixed on path...
-  $html_path = dirname(dirname(substr($PHP_SELF, 0, -strlen($PATH_INFO))));
+  $html_path = dirname(substr($PHP_SELF, 0, -strlen($PATH_INFO)));
 }
 
 if ($html_path != "/")

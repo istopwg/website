@@ -1,4 +1,1 @@
 Order allow,deny
-<Files "wrap.php">
-Order deny,allow
-</Files>

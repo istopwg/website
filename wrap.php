@@ -11,18 +11,7 @@
 // "footer".
 //
 
-include_once "site.php";
-
-/*
-if (array_key_exists("PHP_SELF", $_SERVER))
-{
-  $path = dirname(dirname(substr($_SERVER["PHP_SELF"], 0, -strlen($info)))) . "/";
-  if ($path == "//")
-    $path = "/";
-}
-else
-  $path = "";
-*/
+include_once "phplib/site.php";
 
 // Get the contents and metadata from the base HTML file...
 $title    = htmlspecialchars(basename($info, ".html"), ENT_QUOTES);
