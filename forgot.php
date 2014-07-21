@@ -42,7 +42,7 @@ if (html_form_validate())
 
       db_free($result);
 
-      html_header("Forgot Password");
+      site_header("Forgot Password");
       html_title("msweet.org", "Forgot Password");
 
       if ($row["status"] == USER_STATUS_BANNED)
@@ -72,7 +72,7 @@ if (html_form_validate())
         print("<p>Code = $register</p>\n");
       }
 
-      html_footer();
+      site_footer();
       exit();
     }
 
@@ -88,7 +88,7 @@ else
 }
 
 // Forgot username or password form...
-html_header("Forgot Password");
+site_header("Forgot Password");
 html_title("msweet.org", "Forgot Password");
 
 if ($usererror != "")
@@ -104,7 +104,7 @@ html_form_email("+email", "name@example.com", $email);
 html_form_field_end();
 html_form_end(array("SUBMIT" => "+Send Password Reset Instructions"));
 
-html_footer();
+site_footer();
 
 //
 // End of "$Id: forgot.php 351 2012-07-20 05:58:28Z msweet $".

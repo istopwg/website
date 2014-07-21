@@ -21,7 +21,7 @@ if ($LOGIN_ID == 0)
   exit(0);
 }
 
-html_header("$LOGIN_NAME");
+site_header("$LOGIN_NAME");
 print("<div class=\"page-header\"><h1>Settings <small>$LOGIN_NAME</small></h1>"
      ."</div>\n");
 
@@ -36,7 +36,7 @@ if ($REQUEST_METHOD == "POST")
 }
 $user->form();
 
-html_footer();
+site_footer();
 
 //
 // End of "$Id: account.php 350 2012-09-10 05:33:20Z mike $".

@@ -56,8 +56,7 @@ if ($LOGIN_ID > 0)
 }
 
 // Header + start of table...
-html_header("Login");
-html_title("msweet.org", "Login");
+site_header("Login");
 
 if ($usererror != "")
   html_show_error($usererror);
@@ -75,7 +74,7 @@ html_form_end(array("SUBMIT" => "+Login"));
 print("<p><a href=\"newaccount.php\">New Account</a><br>\n"
      ."<a href=\"forgot.php\">Forgot Password</a></p>\n");
 
-html_footer();
+site_footer();
 
 
 //

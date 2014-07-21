@@ -104,7 +104,7 @@ if ($LOGIN_ID != 0)
   exit();
 }
 
-html_header("Enable Account");
+site_header("Enable Account");
 html_title("msweet.org", "Enable Account");
 
 if ($usererror != "")
@@ -128,7 +128,7 @@ html_form_password("+password2");
 html_form_field_end();
 html_form_end(array("SUBMIT" => "+Enable Account"));
 
-html_footer();
+site_footer();
 
 
 //

@@ -167,7 +167,7 @@ function bug_header($title)
 {
   global $html_path, $project, $LOGIN_IS_ADMIN;
 
-  html_header($title);
+  site_header($title);
 
   if ($project && $project->id > 0)
     html_title($project->name, $title);
@@ -182,7 +182,7 @@ function bug_header($title)
 function bug_footer()
 {
   print("</div></div>\n");
-  html_footer();
+  site_footer();
 }
 
 

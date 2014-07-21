@@ -66,14 +66,14 @@ if (html_form_validate())
 	mail($email, "$SITE_NAME User Registration", $msg,
 	     "From: $SITE_EMAIL\r\n");
 
-	html_header("New Account");
+	site_header("New Account");
 	html_title("msweet.org", "New Account");
 
 	print("<p>Thank you for requesting an account. You should receive an "
 	     ."email from $SITE_EMAIL shortly with instructions on "
 	     ."completing your registration.</p>\n");
 
-	html_footer();
+	site_footer();
 	exit();
       }
       else
@@ -102,7 +102,7 @@ else
 }
 
 // New user...
-html_header("New Account");
+site_header("New Account");
 html_title("msweet.org", "New Account");
 
 if ($usererror != "")
@@ -122,7 +122,7 @@ html_form_email("email2", "name@example.com", $email);
 html_form_field_end();
 html_form_end(array("SUBMIT" => "+Request Account"));
 
-html_footer();
+site_footer();
 
 //
 // End of "$Id: newaccount.php 351 2012-07-20 05:58:28Z msweet $".

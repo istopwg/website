@@ -11,20 +11,9 @@
 // "footer".
 //
 
-global $_SERVER;
+include_once "site.php";
 
-date_default_timezone_set("America/New_York");
-
-if (array_key_exists("PATH_TRANSLATED", $_SERVER))
-  $translated = $_SERVER["PATH_TRANSLATED"];
-else
-  $translated = "";
-
-if (array_key_exists("PATH_INFO", $_SERVER))
-  $info = $_SERVER["PATH_INFO"];
-else
-  $info = "";
-
+/*
 if (array_key_exists("PHP_SELF", $_SERVER))
 {
   $path = dirname(dirname(substr($_SERVER["PHP_SELF"], 0, -strlen($info)))) . "/";
@@ -33,15 +22,17 @@ if (array_key_exists("PHP_SELF", $_SERVER))
 }
 else
   $path = "";
+*/
 
+// Get the contents and metadata from the base HTML file...
 $title    = htmlspecialchars(basename($info, ".html"), ENT_QUOTES);
 $content  = "";
 $subtitle = "";
 $css      = "";
 
-if (file_exists($translated))
+if (file_exists($PATH_TRANSLATED))
 {
-  $contents = file_get_contents($translated);
+  $contents = file_get_contents($PATH_TRANSLATED);
 
   if (($start = strpos($contents, "<style type=\"text/css\">")) !== FALSE)
   {
@@ -57,7 +48,7 @@ if (file_exists($translated))
   if (($start = strpos($contents, "<title>")) !== FALSE)
   {
     $end   = strpos($contents, "</title>", $start);
-    $title = trim(substr($contents, $start + 7, $end - $start - 7));
+    $title = trim(str_replace("- Printer Working Group", "", substr($contents, $start + 7, $end - $start - 7)));
   }
 
   if (($start = strpos($contents, "<!--subtitle ")) !== FALSE)
@@ -80,59 +71,14 @@ if (file_exists($translated))
 }
 else
 {
+  // File does not exist, show a standard error page.
   $title    = "Not Found";
   $contents = "The file you requested cannot be found.";
 }
 
-if ($subtitle != "")
-  $htitle = "$title<br><small>$subtitle</small>";
-else
-  $htitle = $title;
+// Wrap the contents of the HTML file with the standard header/footer for the site.
+site_header($title, $subtitle);
+print("$contents\n");
+site_footer();
 
-if (strpos($title, "Printer Working Group") === FALSE)
-  $ptitle = "$title - Printer Working Group";
-else
-  $ptitle = $title;
-
-print("<!DOCTYPE html>\n"
-     ."<html>\n"
-     ."  <head>\n"
-     ."    <!-- path=\"$path\" -->\n"
-     ."    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=9\">\n"
-     ."    <title>$ptitle</title>\n"
-     ."    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n"
-     ."    <meta name=\"viewport\" content=\"width=device-width\">\n"
-     ."    <link rel=\"stylesheet\" href=\"http://www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
-     ."    <link rel=\"stylesheet\" type=\"text/css\" href=\"${path}pwg.css\">\n"
-     ."    $css\n"
-     ."    <link rel=\"shortcut icon\" href=\"${path}pwg.png\" type=\"image/png\">\n"
-     ."    <script type=\"text/javascript\" src=\"http://www.google.com/jsapi\"></script>\n"
-     ."    <script type=\"text/javascript\" src=\"${path}pwg.js\"></script>\n"
-     ."  </head>\n"
-     ."  <body onload=\"load_sidebar('$path');\">\n"
-     ."    <div id=\"PWGPage\">\n"
-     ."      <div id=\"PWGHeader\">\n"
-     ."        <div id=\"PWGHeaderBody\">\n"
-     ."          <div id=\"PWGLogo\"><img src=\"${path}pwg.png\" alt=\"PWG Logo\" height=\"78\" width=\"75\"></div>\n"
-     ."          <div id=\"PWGSearchForm\">Google Custom Search</div>\n"
-     ."          <div id=\"PWGTitle\">$htitle</div>\n"
-     ."        </div>\n"
-     ."      </div>\n"
-     ."      <div id=\"PWGBody\">\n"
-     ."        <div id=\"PWGSearchResults\"></div>\n"
-     ."        <div id=\"PWGSideBar\">\n"
-     ."          <div id=\"PWGSideBody\">Loading...</div>\n"
-     ."        </div>\n"
-     ."        <div id=\"PWGContent\">\n"
-     ."          <div id=\"PWGContentBody\">\n"
-     ."$contents\n"
-     ."          </div>\n"
-     ."        </div>\n"
-     ."      </div>\n"
-     ."      <div id=\"PWGFooter\">\n"
-     ."        <div id=\"PWGFooterBody\">Comments are owned by the poster. All other material is Copyright &copy; 2001-" . date("Y") . ". The Printer Working Group. All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the PWG logo are trademarks of the IEEE-ISTO. Please contact the <a href=\"mailto:webmaster@pwg.org\">PWG Webmaster</a> to report problems with this site.</div>\n"
-     ."      </div>\n"
-     ."    </div>\n"
-     ."  </body>\n"
-     ."</html>\n");
 ?>

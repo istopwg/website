@@ -12,7 +12,7 @@
 // Include site configuration...
 //
 
-include_once "site.cfg";
+include_once "../config/site.cfg";
 
 
 //
@@ -21,8 +21,7 @@ include_once "site.cfg";
 
 global $_COOKIE, $_FILES, $_GET, $_POST, $_SERVER;
 
-foreach (array("argc", "argv", "PATH_INFO", "REQUEST_METHOD", "SERVER_NAME",
-               "SERVER_PORT", "REMOTE_ADDR") as $var)
+foreach (array("argc", "argv", "PATH_INFO", "PATH_TRANSLATED", "REQUEST_METHOD", "SERVER_NAME", "SERVER_PORT", "REMOTE_ADDR") as $var)
 {
   if (array_key_exists($var, $_SERVER))
     $$var = $_SERVER[$var];
@@ -46,9 +45,8 @@ $html_path = dirname($PHP_SELF);
 
 if (array_key_exists("PATH_INFO", $_SERVER))
 {
-  $i = -1;
-  while (($i = strpos($_SERVER["PATH_INFO"], "/", $i + 1)) !== FALSE)
-    $html_path = dirname($html_path);
+  // PHP script is prefixed on path...
+  $html_path = dirname(dirname(substr($PHP_SELF, 0, -strlen($PATH_INFO))));
 }
 
 if ($html_path != "/")
@@ -79,11 +77,11 @@ db_free($results);
 
 
 //
-// 'html_header()' - Show the standard page header and navbar.
+// 'site_header()' - Show the standard page header and navbar.
 //
 
 function				// O - User information
-html_header($title = "",		// I - Additional document title
+site_header($title = "",		// I - Additional document title
 	    $subtitle = "",		// I - Subtitle
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
@@ -252,11 +250,11 @@ html_header($title = "",		// I - Additional document title
 
 
 //
-// 'html_footer()' - Show the standard footer for a page.
+// 'site_footer()' - Show the standard footer for a page.
 //
 
 function
-html_footer()
+site_footer()
 {
   global $html_path, $SITE_EMAIL;
 

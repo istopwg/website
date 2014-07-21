@@ -41,7 +41,7 @@ accounts_header($title, $id = 0)
   else
     $name = "";
 
-  html_header($title);
+  site_header($title);
   print("<div class=\"row-fluid\"><div class=\"span12\">\n"
        ."<div class=\"page-header\"><h1>$title$name</h1></div>\n");
 }
@@ -55,7 +55,7 @@ function
 accounts_footer()
 {
   print("</div></div>\n");
-  html_footer();
+  site_footer();
 }
 
 
@@ -85,7 +85,7 @@ if ($argc)
 
   if ($op != 'B' && $op != 'L' && $op != 'U' && $op != 'X')
   {
-    html_header("Manage Accounts");
+    site_header("Manage Accounts");
     print("<p>Bad command '$op'.</p>\n");
     accounts_footer();
     exit();
@@ -97,7 +97,7 @@ if ($argc)
 
     if ($user->id != $id)
     {
-      html_header("Manage Accounts");
+      site_header("Manage Accounts");
       print("<p>Account #$id does not exist.</p>\n");
       accounts_footer();
       exit();
@@ -125,7 +125,7 @@ if ($argc)
 	  }
 	  break;
       default :
-	  html_header("Manage Accounts");
+	  site_header("Manage Accounts");
 	  print("<p>Bad option '$argv[$i]'.</p>\n");
 	  accounts_footer();
 	  exit();
@@ -273,7 +273,7 @@ switch ($op)
 
       if ($user->id != $id)
       {
-	html_header("Manage Accounts");
+	site_header("Manage Accounts");
 	print("<p>Account #$id does not exist.\n");
 	accounts_footer();
 	exit();
