@@ -14,7 +14,7 @@
 include_once "phplib/site.php";
 
 // Get the contents and metadata from the base HTML file...
-$title    = htmlspecialchars(basename($info, ".html"), ENT_QUOTES);
+$title    = htmlspecialchars(basename($PATH_INFO, ".html"), ENT_QUOTES);
 $content  = "";
 $subtitle = "";
 $css      = "";

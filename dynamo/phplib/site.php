@@ -12,7 +12,7 @@
 // Include site configuration...
 //
 
-include_once "../config/site.cfg";
+include_once "config/site.cfg";
 
 
 //
@@ -46,13 +46,18 @@ $html_path = dirname($PHP_SELF);
 if (array_key_exists("PATH_INFO", $_SERVER))
 {
   // PHP script is prefixed on path...
-  $html_path = dirname(substr($PHP_SELF, 0, -strlen($PATH_INFO)));
+  $html_path = dirname(dirname(substr($PHP_SELF, 0, -strlen($PATH_INFO))));
+}
+else
+{
+  // Determine from the URL...
+  $html_path = dirname(dirname($PHP_SELF));
 }
 
 if ($html_path != "/")
   $html_path = "$html_path/";
 
-$html_login_url = "https://$_SERVER[SERVER_NAME]$html_path/login.php";
+$html_login_url = "https://$_SERVER[SERVER_NAME]$html_path/dynamo/login.php";
 
 // Include necessary headers...
 include_once "auth.php";
