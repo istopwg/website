@@ -1,29 +1,18 @@
 <?php
 //
-// "$Id: db-user.php 122 2013-10-17 12:45:58Z msweet $"
-//
 // Class for the user table.
 //
-// Contents:
-//
-//   user::user()     - Create a user object.
-//   user::clear()    - Initialize a new a user object.
-//   user::delete()   - Delete (set status to deleted) a user object.
-//   user::form()     - Display a form for a user object.
-//   user::load()     - Load a user object.
-//   user::loadform() - Load a user object from form data.
-//   user::password() - Set the hash field using a password.
-//   user::save()     - Save a user object.
-//   user::validate() - Validate the current user object values.
-//   user_email()     - Return the email address of a user.
-//   user_name()      - Return the (HTML safe) display name of a user.
-//   user_search()    - Get a list of user objects.
-//   user_select()    - Show the user/developer selection control.
-//
 
-include_once "db.php";
+include_once "db-organization.php";
 include_once "site.php";
 
+// Type of user to select...
+define("USER_SELECT_ANY", 0);
+define("USER_SELECT_ADMIN", 1);
+define("USER_SELECT_EDITOR", 2);
+define("USER_SELECT_MEMBER", 4);
+define("USER_SELECT_OFFICER", 8);
+define("USER_SELECT_REVIEWER", 16);
 
 // Status values in user table...
 define("USER_STATUS_BANNED", 0);
@@ -33,9 +22,9 @@ define("USER_STATUS_DELETED", 3);
 
 
 // Cache of emails and names
-$USER_EMAILS = array("u0" => "webmaster@msweet.org");
+$USER_EMAILS = array("u0" => "webmaster@pwg.org");
 $USER_NAMES = array("u0" => "Webmaster");
-
+$USER_ORGS = array("u0" => "Printer Working Group");
 
 class user
 {
@@ -47,18 +36,12 @@ class user
   var $status;
   var $email, $email_valid;
   var $name, $name_valid;
+  var $organization_id, $organization_id_valid;
   var $oldhash, $oldhash_valid;
   var $hash, $hash_valid;
-  var $is_admin;
-  var $karma;
+  var $is_admin, $is_editor, $is_member, $is_reviewer, $is_submitter;
   var $timezone, $timezone_valid;
   var $itemsperpage, $itemsperpage_valid;
-  var $question1, $question1_valid;
-  var $answer1, $answer1_valid;
-  var $question2, $question2_valid;
-  var $answer2, $answer2_valid;
-  var $question3, $question3_valid;
-  var $answer3, $answer3_valid;
   var $create_date;
   var $create_id;
   var $modify_date;
@@ -88,20 +71,24 @@ class user
   {
     global $SITE_TIMEZONE;
 
-    $this->id           = 0;
-    $this->status       = USER_STATUS_PENDING;
-    $this->email        = "";
-    $this->name         = "";
-    $this->oldhash      = "";
-    $this->hash         = "";
-    $this->is_admin     = 0;
-    $this->karma        = 0;
-    $this->timezone     = $SITE_TIMEZONE;
-    $this->itemsperpage = 10;
-    $this->create_date  = "";
-    $this->create_id    = 0;
-    $this->modify_date  = "";
-    $this->modify_id    = 0;
+    $this->id              = 0;
+    $this->status          = USER_STATUS_PENDING;
+    $this->email           = "";
+    $this->name            = "";
+    $this->organization_id = 0;
+    $this->oldhash         = "";
+    $this->hash            = "";
+    $this->is_admin        = 0;
+    $this->is_editor       = 0;
+    $this->is_member       = 0;
+    $this->is_reviewer     = 0;
+    $this->is_submitter    = 0;
+    $this->timezone        = $SITE_TIMEZONE;
+    $this->itemsperpage    = 10;
+    $this->create_date     = "";
+    $this->create_id       = 0;
+    $this->modify_date     = "";
+    $this->modify_id       = 0;
   }
 
 
@@ -137,6 +124,10 @@ class user
     html_form_text("name", "John Doe", $this->name);
     html_form_field_end();
 
+    html_form_field_start("organization_id", "Organization Name", $this->organization_id_valid);
+    organization_select("organization_id", $this->organization_id);
+    html_form_field_end();
+
     html_form_field_start("email", "EMail", $this->email_valid);
     html_form_email("email", "name@example.com", $this->email);
     html_form_field_end();
@@ -159,47 +150,37 @@ class user
     html_form_password("newpassword2");
     html_form_field_end();
 
-/*
-    // questionN, answerN
-    html_form_field_start("", "Security Questions",
-                          $this->question1_valid && $this->answer1_valid &&
-			  $this->question2_valid && $this->answer2_valid &&
-			  $this->question3_valid && $this->answer3_valid);
-    print("Question 1: ");
-    html_form_text("question1", "", $this->question1);
-    print("<br>&nbsp;&nbsp;&nbsp;&nbsp;Answer: ");
-    html_form_text("answer1", "", $this->answer1);
-
-    print("<br>Question 2: ");
-    html_form_text("question2", "", $this->question2);
-    print("<br>&nbsp;&nbsp;&nbsp;&nbsp;Answer: ");
-    html_form_text("answer2", "", $this->answer2);
-
-    print("<br>Question 3: ");
-    html_form_text("question3", "", $this->question3);
-    print("<br>&nbsp;&nbsp;&nbsp;&nbsp;Answer: ");
-    html_form_text("answer3", "", $this->answer3);
-    html_form_field_end();
-*/
-
-    // is_admin, karma, itemsperpage
+    // is_xxx, itemsperpage
     html_form_field_start("", "Miscellaneous");
 
     if ($LOGIN_IS_ADMIN)
     {
       html_form_checkbox("is_admin", "Admin User", $this->is_admin);
-      print("<br>\nKarma: ");
-      html_form_number("karma", "", $this->karma);
+      print("<br>\n");
+      html_form_checkbox("is_editorn", "Editor", $this->is_editor);
+      print("<br>\n");
+      html_form_checkbox("is_member", "PWG Member", $this->is_member);
+      print("<br>\n");
+      html_form_checkbox("is_reviewer", "IPP Everywhere Reviewer", $this->is_reviewer);
+      print("<br>\n");
+      html_form_checkbox("is_submitter", "IPP Everywhere Submitter", $this->is_submitter);
+      print("<br>\n");
     }
     else
     {
       if ($this->is_admin)
         print("Admin User<br>\n");
-
-      print("Karma: " . htmlspecialchars($this->karma));
+      if ($this->is_editor)
+        print("Editor<br>\n");
+      if ($this->is_member)
+        print("PWG Member<br>\n");
+      if ($this->is_reviewer)
+        print("IPP Everywhere Reviewer<br>\n");
+      if ($this->is_submitter)
+        print("IPP Everywhere Submitter<br>\n");
     }
 
-    print("<br>Items/Page:&nbsp;");
+    print("Items/Page:&nbsp;");
     html_form_select("itemsperpage", array(10, 20, 50, 100, 1000), "",
                      $this->itemsperpage, "", "value");
     html_form_field_end();
@@ -259,26 +240,24 @@ class user
       return (FALSE);
 
     $row = db_next($result);
-    $this->id           = $row["id"];
-    $this->status       = $row["status"];
-    $this->email        = $row["email"];
-    $this->name         = $row["name"];
-    $this->oldhash      = $row["hash"];
-    $this->hash         = $row["hash"];
-    $this->is_admin     = $row["is_admin"];
-    $this->karma        = $row["karma"];
-    $this->timezone     = $row["timezone"];
-    $this->itemsperpage = $row["itemsperpage"];
-    $this->question1    = $row["question1"];
-    $this->answer1      = $row["answer1"];
-    $this->question2    = $row["question2"];
-    $this->answer2      = $row["answer2"];
-    $this->question3    = $row["question3"];
-    $this->answer3      = $row["answer3"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
+    $this->id              = $row["id"];
+    $this->status          = $row["status"];
+    $this->email           = $row["email"];
+    $this->name            = $row["name"];
+    $this->organization_id = $row["organization_id"];
+    $this->oldhash         = $row["hash"];
+    $this->hash            = $row["hash"];
+    $this->is_admin        = $row["is_admin"];
+    $this->is_editor       = $row["is_editor"];
+    $this->is_member       = $row["is_member"];
+    $this->is_reviewer     = $row["is_reviewer"];
+    $this->is_submitter    = $row["is_submitter"];
+    $this->timezone        = $row["timezone"];
+    $this->itemsperpage    = $row["itemsperpage"];
+    $this->create_date     = $row["create_date"];
+    $this->create_id       = $row["create_id"];
+    $this->modify_date     = $row["modify_date"];
+    $this->modify_id       = $row["modify_id"];
 
     db_free($result);
 
@@ -309,12 +288,32 @@ class user
       else
         $this->is_admin = 0;
 
-      if (array_key_exists("karma", $_POST))
-	$this->karma = (int)$_POST["karma"];
+      if (array_key_exists("is_editor", $_POST))
+        $this->is_editor = 1;
+      else
+        $this->is_editor= 0;
+
+      if (array_key_exists("is_member", $_POST))
+        $this->is_member = 1;
+      else
+        $this->is_member= 0;
+
+      if (array_key_exists("is_reviewer", $_POST))
+        $this->is_reviewer = 1;
+      else
+        $this->is_reviewer = 0;
+
+      if (array_key_exists("is_submitter", $_POST))
+        $this->is_submitter = 1;
+      else
+        $this->is_submitter = 0;
     }
 
     if (array_key_exists("name", $_POST))
       $this->name = trim($_POST["name"]);
+
+    if (array_key_exists("organization_id", $_POST))
+      $this->organization_id = (int)$_POST["organization_id"];
 
     if (array_key_exists("email", $_POST))
       $this->email = trim($_POST["email"]);
@@ -339,24 +338,6 @@ class user
 
     if (array_key_exists("itemsperpage", $_POST))
       $this->itemsperpage = (int)$_POST["itemsperpage"];
-
-    if (array_key_exists("question1", $_POST))
-      $this->question1 = trim($_POST["question1"]);
-
-    if (array_key_exists("answer1", $_POST))
-      $this->answer1 = trim($_POST["answer1"]);
-
-    if (array_key_exists("question2", $_POST))
-      $this->question2 = trim($_POST["question2"]);
-
-    if (array_key_exists("answer2", $_POST))
-      $this->answer2 = trim($_POST["answer2"]);
-
-    if (array_key_exists("question3", $_POST))
-      $this->question3 = trim($_POST["question3"]);
-
-    if (array_key_exists("answer3", $_POST))
-      $this->answer3 = trim($_POST["answer3"]);
 
     $valid = $this->validate();
 
@@ -430,17 +411,15 @@ class user
                   ." SET status = $this->status"
                   .", email = '" . db_escape($this->email) . "'"
                   .", name = '" . db_escape($this->name) . "'"
+                  .", organization_id = $this->organization_id"
                   .", hash = '" . db_escape($this->hash) . "'"
                   .", is_admin = $this->is_admin"
-                  .", karma = $this->karma"
+                  .", is_editor = $this->is_editor"
+                  .", is_member = $this->is_member"
+                  .", is_reviewer = $this->is_reviewer"
+                  .", is_submitter = $this->is_submitter"
                   .", timezone = '" . db_escape($this->timezone) . "'"
                   .", itemsperpage = $this->itemsperpage"
-                  .", question1 = '" . db_escape($this->question1) . "'"
-                  .", answer1 = '" . db_escape($this->answer1) . "'"
-                  .", question2 = '" . db_escape($this->question2) . "'"
-                  .", answer2 = '" . db_escape($this->answer2) . "'"
-                  .", question3 = '" . db_escape($this->question3) . "'"
-                  .", answer3 = '" . db_escape($this->answer3) . "'"
                   .", modify_date = '" . db_escape($this->modify_date) . "'"
                   .", modify_id = $this->modify_id"
                   ." WHERE id = $this->id") === FALSE)
@@ -456,17 +435,15 @@ class user
                   .", $this->status"
                   .", '" . db_escape($this->email) . "'"
                   .", '" . db_escape($this->name) . "'"
+                  .", $this->organization_id"
                   .", '" . db_escape($this->hash) . "'"
                   .", $this->is_admin"
-                  .", $this->karma"
+                  .", $this->is_editor"
+                  .", $this->is_member"
+                  .", $this->is_reviewer"
+                  .", $this->is_submitter"
                   .", '" . db_escape($this->timezone) . "'"
                   .", $this->itemsperpage"
-                  .", '" . db_escape($this->question1) . "'"
-                  .", '" . db_escape($this->answer1) . "'"
-                  .", '" . db_escape($this->question2) . "'"
-                  .", '" . db_escape($this->answer2) . "'"
-                  .", '" . db_escape($this->question3) . "'"
-                  .", '" . db_escape($this->answer3) . "'"
                   .", '" . db_escape($this->create_date) . "'"
                   .", $this->create_id"
                   .", '" . db_escape($this->modify_date) . "'"
@@ -508,6 +485,8 @@ class user
     else
       $this->name_valid = TRUE;
 
+    $this->organization_id_valid = TRUE;
+
     if ($this->hash == "")
     {
       $this->hash_valid = FALSE;
@@ -531,42 +510,6 @@ class user
     }
     else
       $this->timezone_valid = TRUE;
-
-    if (($this->question1 != "") != ($this->answer1 != ""))
-    {
-      $this->question1_valid = FALSE;
-      $this->answer1_valid   = FALSE;
-      $valid = FALSE;
-    }
-    else
-    {
-      $this->question1_valid = TRUE;
-      $this->answer1_valid   = TRUE;
-    }
-
-    if (($this->question2 != "") != ($this->answer2 != ""))
-    {
-      $this->question2_valid = FALSE;
-      $this->answer2_valid   = FALSE;
-      $valid = FALSE;
-    }
-    else
-    {
-      $this->question2_valid = TRUE;
-      $this->answer2_valid   = TRUE;
-    }
-
-    if (($this->question3 != "") != ($this->answer3 != ""))
-    {
-      $this->question3_valid = FALSE;
-      $this->answer3_valid   = FALSE;
-      $valid = FALSE;
-    }
-    else
-    {
-      $this->question3_valid = TRUE;
-      $this->answer3_valid   = TRUE;
-    }
 
     return ($valid);
   }
@@ -637,11 +580,44 @@ user_name($id)				// I - User ID
 
 
 //
+// 'user_organization()' - Return the (HTML safe) organization of a user.
+//
+
+function				// O - Organization name
+user_organization($id)			// I - User ID
+{
+  global $USER_ORGS;
+
+
+  $id = (int)$id;
+
+  if (!array_key_exists("u$id", $USER_ORGS))
+  {
+    $result = db_query("SELECT organization_id FROM user WHERE id=$id;");
+    if (db_count($result) == 1)
+    {
+      $row             = db_next($result);
+      $organization_id = (int)$row["organization_id"];
+    }
+    else
+      $organization = 0;
+
+    db_free($result);
+
+    $USER_ORGS["u$id"] = organization_name($organization_id);
+  }
+
+  return ($USER_ORGS["u$id"]);
+}
+
+
+//
 // 'user_search()' - Get a list of user objects.
 //
 
 function				// O - Array of user objects
 user_search($search = "",		// I - Search string
+            $organization_id = 0,	// I - Organization
             $order = "")		// I - Order fields
 {
   if ($search != "")
@@ -698,6 +674,14 @@ user_search($search = "",		// I - Search string
   else
     $query = "";
 
+  if ($organization_id != 0)
+  {
+    if ($query == "")
+      $query = " WHERE organization_id = $organization_id";
+    else
+      $query .= " AND organization_id = $organization_id";
+  }
+
   if ($order != "")
   {
     // Separate order into array...
@@ -738,13 +722,13 @@ user_search($search = "",		// I - Search string
 
 function
 user_select(
-    $formname = "developer_id",		// I - Form name to use
+    $formname = "assigned_id",		// I - Form name to use
     $id = 0,				// I - Currently selected user, if any
-    $is_admin = TRUE,			// I - Require admin user?
+    $which = USER_SELECT_MEMBER,	// I - Which kind of user to select?
     $any_id = "",			// I - Allow "any user"?
     $prefix = "")			// I - Prefix on values
 {
-  global $USER_NAMES;
+  global $USER_NAMES, $USER_ORGS;
 
 
   print("<select name=\"$formname\">");
@@ -752,33 +736,55 @@ user_select(
   if ($any_id)
     print("<option value=\"0\">$prefix$any_id</option>");
 
-  if ($is_admin)
-    $where = "WHERE is_admin = 1 AND";
-  else
-    $where = "WHERE";
+  $where  = "WHERE";
+  $prefix = " (";
+  if ($which & USER_SELECT_ADMIN)
+  {
+    $where  .= "$prefix is_admin = 1";
+    $prefix = " OR";
+  }
+  if ($which & USER_SELECT_EDITOR)
+  {
+    $where  .= "$prefix is_editor = 1";
+    $prefix = " OR";
+  }
+  if ($which & USER_SELECT_MEMBER)
+  {
+    $where  .= "$prefix is_member = 1";
+    $prefix = " OR";
+  }
+  if ($which & USER_SELECT_REVIEWER)
+  {
+    $where  .= "$prefix is_reviewer = 1";
+    $prefix = " OR";
+  }
+  if ($where != "WHERE")
+    $where .= ") AND";
 
-  $results = db_query("SELECT id, name FROM user $where status = 2 "
-		     ."ORDER BY name");
+  $results = db_query("SELECT id, name, organization_id FROM user $where status = 2 "
+		     ."ORDER BY name, organization_id");
   while ($row = db_next($results))
   {
-    $uid  = $row["id"];
-    $name = htmlspecialchars($row["name"]);
+    $uid          = $row["id"];
+    $name         = htmlspecialchars($row["name"]);
+    $organization = htmlspecialchars(organization_name($row["organization_id"]));
+
+    if ($organization != "")
+      $label = "$name ($organization)";
+    else
+      $label = $name;
 
     if ($uid == $id)
-      print("<option value=\"$uid\" selected>$prefix$name</option>");
+      print("<option value=\"$uid\" selected>$prefix$label</option>");
     else
-      print("<option value=\"$uid\">$prefix$name</option>");
+      print("<option value=\"$uid\">$prefix$label</option>");
 
     $USER_NAMES["u$row[id]"] = $name;
+    $USER_ORGS["u$row[id]"]  = $organization;
   }
 
   db_free($results);
 
   print("</select>");
 }
-
-
-//
-// End of "$Id: db-user.php 122 2013-10-17 12:45:58Z msweet $".
-//
 ?>

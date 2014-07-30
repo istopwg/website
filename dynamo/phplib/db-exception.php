@@ -1,22 +1,6 @@
 <?php
 //
-// "$Id: db-article.php 101 2013-08-22 14:03:34Z msweet $"
-//
-// Class for the article table.
-//
-// Contents:
-//
-//   article::article()      - Create an Article object.
-//   article::clear()	     - Initialize a new an Article object.
-//   article::delete()	     - Delete an Article object.
-//   article::form()	     - Display a form for an Article object.
-//   article::load()	     - Load an Article object.
-//   article::loadform()     - Load an Article object from form data.
-//   article::save()	     - Save an Article object.
-//   article::validate()     - Validate the current Article object values./
-//   article::view()         - View an article.
-//   article::view_summary() - View a summary of the article.
-//   article_search()	     - Get a list of Article IDs.
+// Class for the exception table.
 //
 
 include_once "site.php";
@@ -647,9 +631,4 @@ article_search($search = "",		// I - Search string
 
   return ($matches);
 }
-
-
-//
-// End of "$Id: db-article.php 101 2013-08-22 14:03:34Z msweet $".
-//
 ?>

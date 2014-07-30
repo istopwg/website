@@ -1,24 +1,6 @@
 <?php
 //
-// "$Id: db.php 112 2013-09-23 14:08:25Z msweet $"
-//
 // Common database include file for PHP web pages.
-//
-// This file should be included using "include_once"...
-//
-// Contents:
-//
-//   db_close()     - Close the database.
-//   db_count()     - Return the number of rows in a query result.
-//   db_datetime()  - Convert a UNIX timestamp to a DATETIME value.
-//   db_escape()    - Escape special chars in string for query.
-//   db_free()      - Free a database query result...
-//   db_insert_id() - Return the ID of the last inserted record.
-//   db_next()      - Fetch the next row of a result set and return it as
-//                    an object.
-//   db_query()     - Run a SQL query and return the result or 0 on error.
-//   db_seconds()   - Convert a DATETIME value to a UNIX timestamp.
-//   db_seek()      - Seek to a specific row within a result.
 //
 
 //
@@ -183,9 +165,4 @@ db_seek($result,			// I - Result of query
   else
     return (FALSE);
 }
-
-
-//
-// End of "$Id: db.php 112 2013-09-23 14:08:25Z msweet $".
-//
 ?>

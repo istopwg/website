@@ -1,16 +1,6 @@
 <?
 //
-// "$Id: auth.php 112 2013-09-23 14:08:25Z msweet $"
-//
-// Authentication functions for PHP pages...
-//
-// Contents:
-//
-//   auth_current()	- Return the currently logged in user.
-//   auth_hash()	- Hash a password.
-//   auth_login()	- Log a user into the system.
-//   auth_logout()	- Logout of the current user by clearing the session
-//			  ID.
+// Authentication functions...
 //
 
 //
@@ -22,13 +12,16 @@ include_once "db-user.php";
 
 
 // Current user information in the global LOGIN_xxx variables...
-$LOGIN_EMAIL    = "";
-$LOGIN_ID       = 0;
-$LOGIN_IS_ADMIN = 0;
-$LOGIN_KARMA    = 0;
-$LOGIN_NAME     = "";
-$LOGIN_PAGEMAX  = 10;
-$LOGIN_TIMEZONE = "UTC";
+$LOGIN_EMAIL        = "";
+$LOGIN_ID           = 0;
+$LOGIN_IS_ADMIN     = 0;
+$LOGIN_IS_EDITOR    = 0;
+$LOGIN_IS_MEMBER    = 0;
+$LOGIN_IS_REVIEWER  = 0;
+$LOGIN_IS_SUBMITTER = 0;
+$LOGIN_NAME         = "";
+$LOGIN_PAGEMAX      = 10;
+$LOGIN_TIMEZONE     = "UTC";
 
 auth_current();
 
@@ -40,17 +33,17 @@ auth_current();
 function				// O - Current user ID or ""
 auth_current()
 {
-  global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN,
-         $LOGIN_KARMA, $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE,
-         $SITE_SECRET;
+  global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
   // See if the SID cookie is set; if not, the user is not logged in...
-  if (!array_key_exists("MSWEETSID", $_COOKIE))
+  if (!array_key_exists("PWGSID", $_COOKIE))
     return ("");
 
   // Extract the "username:hash" from the SID string...
-  $cookie = explode(':', $_COOKIE["MSWEETSID"]);
+  $cookie = explode(':', $_COOKIE["PWGSID"]);
 
   // Don't allow invalid values...
   if (count($cookie) != 3)
@@ -78,13 +71,16 @@ auth_current()
     if ($cookie[2] == $sid)
     {
       // Set globals...
-      $LOGIN_EMAIL     = $row["email"];
-      $LOGIN_ID        = $row["id"];
-      $LOGIN_IS_ADMIN  = $row["is_admin"];
-      $LOGIN_KARMA     = $row["karma"];
-      $LOGIN_NAME      = $row["name"];
-      $LOGIN_PAGEMAX   = $row["itemsperpage"];
-      $LOGIN_TIMEZONE  = $row["timezone"];
+      $LOGIN_EMAIL        = $row["email"];
+      $LOGIN_ID           = $row["id"];
+      $LOGIN_IS_ADMIN     = $row["is_admin"];
+      $LOGIN_IS_EDITOR    = $row["is_editor"];
+      $LOGIN_IS_MEMBER    = $row["is_member"];
+      $LOGIN_IS_REVIEWER  = $row["is_reviewer"];
+      $LOGIN_IS_SUBMITTER = $row["is_submitter"];
+      $LOGIN_NAME         = $row["name"];
+      $LOGIN_PAGEMAX      = $row["itemsperpage"];
+      $LOGIN_TIMEZONE     = $row["timezone"];
 
       // Return the current user...
       return ($cookie[0]);
@@ -119,19 +115,22 @@ auth_login($email,			// I - Email
            $password,			// I - Password
            $remember = FALSE)		// I - Remember after browser quit?
 {
-  global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN,
-         $LOGIN_KARMA, $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE,
-         $SITE_SECRET;
+  global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
   // Reset the user...
-  $LOGIN_EMAIL    = "";
-  $LOGIN_ID       = 0;
-  $LOGIN_IS_ADMIN = 0;
-  $LOGIN_KARMA    = 0;
-  $LOGIN_NAME     = "";
-  $LOGIN_PAGEMAX  = 10;
-  $LOGIN_TIMEZONE = "UTC";
+  $LOGIN_EMAIL        = "";
+  $LOGIN_ID           = 0;
+  $LOGIN_IS_ADMIN     = 0;
+  $LOGIN_IS_EDITOR    = 0;
+  $LOGIN_IS_MEMBER    = 0;
+  $LOGIN_IS_REVIEWER  = 0;
+  $LOGIN_IS_SUBMITTER = 0;
+  $LOGIN_NAME         = "";
+  $LOGIN_PAGEMAX      = 10;
+  $LOGIN_TIMEZONE     = "UTC";
 
   // Lookup the username in the database...
   $result = db_query("SELECT * FROM user WHERE "
@@ -146,13 +145,16 @@ auth_login($email,			// I - Email
     if ($row["hash"] == $hash)
     {
       // Update the username and email...
-      $LOGIN_EMAIL     = $row["email"];
-      $LOGIN_ID        = $row["id"];
-      $LOGIN_IS_ADMIN  = $row["is_admin"];
-      $LOGIN_KARMA     = $row["karma"];
-      $LOGIN_NAME      = $row["name"];
-      $LOGIN_PAGEMAX   = $row["itemsperpage"];
-      $LOGIN_TIMEZONE  = $row["timezone"];
+      $LOGIN_EMAIL        = $row["email"];
+      $LOGIN_ID           = $row["id"];
+      $LOGIN_IS_ADMIN     = $row["is_admin"];
+      $LOGIN_IS_EDITOR    = $row["is_editor"];
+      $LOGIN_IS_MEMBER    = $row["is_member"];
+      $LOGIN_IS_REVIEWER  = $row["is_reviewer"];
+      $LOGIN_IS_SUBMITTER = $row["is_submitter"];
+      $LOGIN_NAME         = $row["name"];
+      $LOGIN_PAGEMAX      = $row["itemsperpage"];
+      $LOGIN_TIMEZONE     = $row["timezone"];
 
       // Compute the session ID...
       $date = time();
@@ -161,7 +163,7 @@ auth_login($email,			// I - Email
                             ."$SITE_SECRET:$hash:$_SERVER[HTTP_USER_AGENT]");
 
       // Save the SID and email address cookies...
-      setcookie("MSWEETSID", $sid, 0, "/", $_SERVER["SERVER_NAME"], TRUE, TRUE);
+      setcookie("PWGSID", $sid, 0, "/", $_SERVER["SERVER_NAME"], TRUE, TRUE);
     }
   }
 
@@ -176,24 +178,23 @@ auth_login($email,			// I - Email
 function
 auth_logout()
 {
-  global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN,
-         $LOGIN_KARMA, $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE;
+  global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE;
 
 
   // Reset the user...
-  $LOGIN_EMAIL    = "";
-  $LOGIN_ID       = 0;
-  $LOGIN_IS_ADMIN = 0;
-  $LOGIN_KARMA    = 0;
-  $LOGIN_NAME     = "";
-  $LOGIN_PAGEMAX  = 10;
-  $LOGIN_TIMEZONE = "UTC";
+  $LOGIN_EMAIL        = "";
+  $LOGIN_ID           = 0;
+  $LOGIN_IS_ADMIN     = 0;
+  $LOGIN_IS_EDITOR    = 0;
+  $LOGIN_IS_MEMBER    = 0;
+  $LOGIN_IS_REVIEWER  = 0;
+  $LOGIN_IS_SUBMITTER = 0;
+  $LOGIN_NAME         = "";
+  $LOGIN_PAGEMAX      = 10;
+  $LOGIN_TIMEZONE     = "UTC";
 
-  setcookie("MSWEETSID", "", 0, "/", $_SERVER["SERVER_NAME"], TRUE, TRUE);
+  setcookie("PWGSID", "", 0, "/", $_SERVER["SERVER_NAME"], TRUE, TRUE);
 }
-
-
-//
-// End of "$Id: auth.php 112 2013-09-23 14:08:25Z msweet $".
-//
 ?>

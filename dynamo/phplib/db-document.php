@@ -1,16 +1,6 @@
 <?php
 //
-// "$Id: db-comment.php 5 2012-12-29 02:22:54Z msweet $"
-//
-// Class for the comment table.
-//
-// Contents:
-//
-//   comment::comment()	- Create a comment object.
-//   comment::clear()	- Initialize a new a comment object.
-//   comment::delete()	- Delete a comment object.
-//   comment::load()	- Load a comment object.
-//   comment::save()	- Save a comment object.
+// Class for the document table.
 //
 
 include_once "site.php";
@@ -158,9 +148,4 @@ class comment
     return (TRUE);
   }
 }
-
-
-//
-// End of "$Id: db-comment.php 5 2012-12-29 02:22:54Z msweet $".
-//
 ?>

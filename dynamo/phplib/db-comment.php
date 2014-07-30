@@ -1,16 +1,6 @@
 <?php
 //
-// "$Id: db-comment.php 5 2012-12-29 02:22:54Z msweet $"
-//
 // Class for the comment table.
-//
-// Contents:
-//
-//   comment::comment()	- Create a comment object.
-//   comment::clear()	- Initialize a new a comment object.
-//   comment::delete()	- Delete a comment object.
-//   comment::load()	- Load a comment object.
-//   comment::save()	- Save a comment object.
 //
 
 include_once "site.php";
@@ -23,9 +13,7 @@ class comment
   //
 
   var $id;
-  var $parent_id;
   var $ref_id;
-  var $is_published;
   var $contents;
   var $create_date;
   var $create_id;
@@ -56,15 +44,13 @@ class comment
   {
     global $LOGIN_ID;
 
-    $this->id           = 0;
-    $this->parent_id    = 0;
-    $this->ref_id       = "";
-    $this->is_published = 1;
-    $this->contents     = "";
-    $this->create_date  = "";
-    $this->create_id    = $LOGIN_ID;
-    $this->modify_date  = "";
-    $this->modify_id    = $LOGIN_ID;
+    $this->id          = 0;
+    $this->ref_id      = "";
+    $this->contents    = "";
+    $this->create_date = "";
+    $this->create_id   = $LOGIN_ID;
+    $this->modify_date = "";
+    $this->modify_id   = $LOGIN_ID;
   }
 
 
@@ -94,15 +80,13 @@ class comment
       return (FALSE);
 
     $row = db_next($result);
-    $this->id           = $row["id"];
-    $this->parent_id    = $row["parent_id"];
-    $this->ref_id       = $row["ref_id"];
-    $this->is_published = $row["is_published"];
-    $this->contents     = $row["contents"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
+    $this->id          = $row["id"];
+    $this->ref_id      = $row["ref_id"];
+    $this->contents    = $row["contents"];
+    $this->create_date = $row["create_date"];
+    $this->create_id   = $row["create_id"];
+    $this->modify_date = $row["modify_date"];
+    $this->modify_id   = $row["modify_id"];
 
     db_free($result);
 
@@ -126,9 +110,7 @@ class comment
     if ($this->id > 0)
     {
       return (db_query("UPDATE comment "
-                      ." SET parent_id = $this->parent_id"
-                      .", ref_id = '" . db_escape($this->ref_id) . "'"
-                      .", is_published = $this->is_published"
+                      ." SET ref_id = '" . db_escape($this->ref_id) . "'"
                       .", contents = '" . db_escape($this->contents) . "'"
                       .", modify_date = '" . db_escape($this->modify_date) . "'"
                       .", modify_id = $this->modify_id"
@@ -141,9 +123,7 @@ class comment
 
       if (db_query("INSERT INTO comment VALUES"
                   ."(NULL"
-                  .", $this->parent_id"
                   .", '" . db_escape($this->ref_id) . "'"
-                  .", $this->is_published"
                   .", '" . db_escape($this->contents) . "'"
                   .", '" . db_escape($this->create_date) . "'"
                   .", $this->create_id"
@@ -161,6 +141,20 @@ class comment
 
 
 //
-// End of "$Id: db-comment.php 5 2012-12-29 02:22:54Z msweet $".
+// 'comment_search()' - Return an array of comment IDs for the given reference.
 //
+
+function				// O - Array of comment objects
+comment_search($ref_id,			// I - Reference ID
+               $search = "")		// I - Search text
+{
+  $comments = array();
+  $dref_id  = db_escape($ref_id);
+  $results  = db_query("SELECT id FROM comment WHERE ref_id='$dref_id' ORDER BY id");
+  while ($row = db_next($results))
+    $comments[sizeof($comments)] = $row["id"];
+  db_free($results);
+
+  return ($comments);
+}
 ?>
