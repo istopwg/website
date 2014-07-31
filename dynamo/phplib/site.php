@@ -149,13 +149,14 @@ site_header($title = "",		// I - Additional document title
        ."type=\"image/png\">\n"
        ."</head>\n"
        ."<body>\n"
-       ."<nav class=\"navbar navbar-default\" role=\"navigation\">\n"
+       ."<nav class=\"navbar navbar-inverse pwg-navbar\" role=\"navigation\">\n"
        ."  <div class=\"container-fluid\">\n"
        ."    <div class=\"navbar-header\">\n"
        ."      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#pwg-nav-collapsible\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n"
        ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg.png\" alt=\"PWG Logo\" "
-       ."height=\"26\" width=\"25\"></a>\n"
+       ."height=\"78\" width=\"75\"></a>\n"
        ."    </div>\n"
+       ."    <div class=\"pwg-navbar-title\">$title$html_subtitle</div>\n"
        ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
        ."      <ul class=\"nav navbar-nav\">\n"
        ."        $userlogin\n"
@@ -203,102 +204,8 @@ site_header($title = "",		// I - Additional document title
        ."    </div>\n"
        ."  </div>\n"
        ."</nav>\n"
-       ."<div id=\"pwg-search-results\"></div>\n"
-       ."<h1>$title$html_subtitle</h1>\n");
-
-/*
-
-  // Show login/logout link which redirects back to the current page...
-  $url    = urlencode($PHP_SELF);
-  $prefix = "?";
-  for ($i = 0; $i < $argc; $i ++)
-  {
-    $url    .= $prefix . urlencode($argv[$i]);
-    $prefix = "+";
-  }
-
-  if (preg_match("/(index|account|accounts|enable|forgot|login|logout|"
-                ."newaccount)\\.php\$/", $PHP_SELF))
-    $active = " active";
-  else
-    $active = "";
-
-  if ($LOGIN_NAME)
-  {
-    $html = str_replace(" ", "&nbsp;", $LOGIN_NAME);
-    print("<li class=\"dropdown\">"
-         ."<a href=\"#\" class=\"dropdown-toggle$active\" "
-         ."data-toggle=\"dropdown\">"
-         ."<i class=\"icon-user icon-white\"></i> $html "
-         ."<b class=\"caret\"></b></a>"
-         ."<ul class=\"dropdown-menu\">\n");
-    if ($LOGIN_IS_ADMIN)
-      print("<li><a href=\"$html_path/accounts.php\">Manage Accounts</a></li>\n"
-           ."<li><a href=\"$html_path/mailman/admin\">Manage Lists</a></li>\n"
-           ."<li><a href=\"$html_path/usage\">Server Usage</a></li>\n"
-           ."<li class=\"divider\"></li>\n");
-    print("<li><a href=\"$html_path/account.php\">Settings</a></li>\n"
-         ."<li><a href=\"$html_path/logout.php\">Logout</a></li>\n"
-         ."</ul></li>\n");
-  }
-  else if ($active != "")
-  {
-    print("<li><a href=\"$html_login_url?PAGE=$url\" class=\"active\">"
-         ."<i class=\"icon-user icon-white\"></i> Login</a></li>\n");
-  }
-  else
-  {
-    print("<li><a href=\"$html_login_url?PAGE=$url\">"
-         ."<i class=\"icon-user icon-white\"></i> Login</a></li>\n");
-  }
-
-  if (preg_match("/blog\\.php\$/", $PHP_SELF))
-    $blog = " class=\"active\"";
-  else
-    $blog = "";
-
-  if (preg_match("/photos\\.php\$/", $PHP_SELF))
-    $photos = " class=\"active\"";
-  else
-    $photos = "";
-
-  if (preg_match("/(bugs|documentation|projects|software)\\.php\$/", $PHP_SELF))
-    $active = " active";
-  else
-    $active = "";
-
-  print("<li><a$blog href=\"$html_path/blog.php\">Blog</a></li>\n"
-       ."<li><a$photos href=\"photos.php\">Photos</a></li>\n"
-       ."<li class=\"dropdown\">"
-       ."<a href=\"#\" class=\"dropdown-toggle$active\" "
-       ."data-toggle=\"dropdown\">Projects <b class=\"caret\"></b></a>"
-       ."<ul class=\"dropdown-menu\">\n");
-  if ($LOGIN_IS_ADMIN)
-    print("<li><a href=\"$html_path/projects.php?U0\">New Project</a></li>\n"
-         ."<li class=\"divider\"></li>\n");
-  foreach ($PROJECT_NAMES as $pid => $name)
-  {
-    $pid = (int)substr($pid, 1);
-    if ($pid > 0)
-      print("<li><a href=\"$html_path/projects.php?Z$pid\">$name</a></li>\n");
-  }
-  print("</ul></li>\n"
-       ."<li><form class=\"navbar-search visible-phone\" "
-       ."method=\"GET\" action=\"$html_path/search.php\">"
-       ."<input type=\"search\" name=\"Q\" value=\"$q\" "
-       ."placeholder=\"Search Site\" autosave=\"org.msweet.search\" "
-       ."results=\"5\"></form></li>\n"
-       ."</ul>\n"
-       ."<form class=\"navbar-search pull-right hidden-phone\" method=\"GET\" "
-       ."action=\"$html_path/search.php\">"
-       ."<input class=\"span4\" type=\"search\" name=\"Q\" value=\"$q\" "
-       ."placeholder=\"Search Site\" autosave=\"org.msweet.search\" "
-       ."results=\"5\"></form>\n"
-       ."</div>\n"
-       ."</div>\n"
-       ."</div>\n"
-       ."<div class=\"container-fluid container-top\">\n");
-*/
+       ."<div id=\"pwg-body\">\n"
+       ."<div id=\"pwg-search-results\"></div>\n");
 }
 
 
@@ -314,14 +221,15 @@ site_footer()
 
   $year = date("Y");
 
-  print("<div id=\"PWGFooter\">\n"
-       ."<div id=\"PWGFooterBody\">Comments are owned by the poster. All other "
+  print("</div>\n"
+       ."</div>\n"
+       ."<div id=\"pwg-footer\">\n"
+       ."  <div id=\"pwg-footer-body\">Comments are owned by the poster. All other "
        ."material is Copyright &copy; 2001-$year The Printer Working Group. "
        ."All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the "
        ."PWG logo are trademarks of the IEEE-ISTO. Please contact the "
        ."<a href=\"mailto:$SITE_EMAIL\">PWG Webmaster</a> to report problems "
        ."with this site.</div>\n"
-       ."</div>\n"
        ."</div>\n"
        ."<script src=\"${html_path}dynamo/resources/jquery-1.11.1.min.js\"></script>\n"
        ."<script src=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.js\"></script>\n"

@@ -1,15 +1,243 @@
 /* Standard fonts and colors */
-BODY {
-/*  background: #f0f0e8;*/
+/* PWG logo color is #4b5aa8, highlight is #b8c3ff, lowlight is #262d54 */
+
+body {
+  background: #f0f0e8;
   color: black;
   font-family: lucida grande, geneva, helvetica, arial, sans-serif;
-/*  margin: 0;*/
+  font-size: 16px;
+  margin: 0px;
 }
 
-H1, H2, H3, H4, H5, H6, P, TD, TH {
+h1, h2, h3, h4, h5, h6, p, td, th {
   font-family: lucida grande, geneva, helvetica, arial, sans-serif;
 }
 
-SUB, SUP {
+h1 {
+  font-size: 200%;
+  font-weight: bold;
+}
+
+h2 {
+  border-bottom: 1px solid #ccccc0;
+  font-size: 125%;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+h2 small {
+  color: #666;
+  font-size: 75%;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.pwg-notice {
+  background: #38382f;
+  border-radius: 8px;
+  color: #fff;
+  padding: 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+blockquote a {
+  font-style: normal;
+}
+
+hr {
+  border: none;
+  border-bottom: solid thin #303028;
+}
+
+sub, sup {
   font-size: 50%;
+}
+
+/* Appearance tweaks for navigation bar */
+.pwg-navbar {
+  background: #303028;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  height: 145px;
+  margin: 0px 10px;
+  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 0px;
+}
+
+.pwg-navbar-title {
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 22px;
+  margin-left: 100px;
+  margin-top: 30px;
+}
+
+.pwg-navbar-title small {
+  color: #ccccc0;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.pwg-navbar .navbar-nav > li > a, .pwg-navbar .navbar-nav > li > a:visited {
+  color: #ccccc0;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+#pwg-nav-collapsible {
+  margin-top: 20px;
+  padding-left: 0px;
+}
+
+/* Search content */
+#pwg-search-results {
+  background: inherit;
+  margin: 10px 10px 0px;
+}
+
+.cse .gsc-control-cse,
+.gsc-control-cse {
+  background: inherit;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+.cse .gsc-tabsArea,
+.gsc-tabsArea {
+  display: none;
+}
+input.gsc-input {
+  border-color: #BCCDF0;
+}
+input.gsc-search-button {
+  border-color: #666666;
+  background-color: #CECECE;
+}
+.gsc-tabHeader.gsc-tabhInactive {
+  border: none;
+  background-color: #E9E9E9;
+}
+.gsc-tabHeader.gsc-tabhActive {
+  border: none;
+  background-color: inherit;
+}
+.gsc-tabsArea {
+  border: none;
+  margin-top: 0px;
+}
+.gsc-webResult.gsc-results {
+  margin: 0px;
+  padding: 0px;
+}
+.gsc-webResult.gsc-result {
+  background-color: inherit;
+  border: none;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+.gsc-webResult.gsc-result:hover {
+  background-color: inherit;
+  border: none;
+}
+.gs-webResult.gs-result a.gs-title:link,
+.gs-webResult.gs-result a.gs-title:link b,
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b,
+a.gsc-trailing-more-results:link {
+  color: #000099;
+}
+.gs-webResult.gs-result a.gs-title:hover,
+.gs-webResult.gs-result a.gs-title:hover b,
+.gs-webResult.gs-result a.gs-title:active,
+.gs-webResult.gs-result a.gs-title:active b {
+  color: #990099;
+}
+.gsc-cursor-box {
+  border: none;
+  margin: 10px 0px 0px;
+}
+.gsc-cursor-page {
+  background: inherit;
+  border: none;
+  color: #000099;
+}
+.gs-webResult.gs-result .gs-snippet {
+  color: #000000;
+}
+.gs-webResult.gs-result .gs-visibleUrl,
+.gs-webResult.gs-result .gs-visibleUrl-short {
+  color: #008000;
+}
+.gs-webResult.gs-result .gs-visibleUrl-long {
+  display: block;
+}
+.cse .gs-promotion.gs-result,
+.gs-promotion.gs-result {
+  border-color: #f0f0e8 important;
+  background-color: #f0f0e8 important;
+}
+.gs-promotion.gs-result a.gs-title:link,
+.gs-promotion.gs-result a.gs-title:visited {
+  color: #000088;
+}
+.gs-promotion.gs-result a.gs-title:hover,
+.gs-promotion.gs-result a.gs-title:active {
+  color: #880088;
+}
+.gs-promotion.gs-result .gs-snippet {
+  color: #000000;
+}
+.gs-promotion.gs-result .gs-visibleUrl,
+.gs-promotion.gs-result .gs-visibleUrl-short {
+  color: #007000;
+}
+
+/* Body content */
+#pwg-body {
+  background-color: #fff;
+  border: solid thin #fff;
+  border-radius: 8px;
+  color: #000;
+  margin: 10px;
+  padding: 0px 10px 10px; /* top right+left bottom */
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+#pwg-content {
+}
+
+/* Footer */
+#pwg-footer {
+  background-color: #303028;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  clear: both;
+  color: #cccccc;
+  font-size: 10px;
+  margin: 10px 10px 0px; /* top right+left bottom */
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+}
+
+#pwg-footer-body {
+  padding: 10px;
+}
+
+#pwg-footer-body a {
+  color: #ccccc0;
+  text-decoration: underline;
 }

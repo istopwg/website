@@ -87,6 +87,24 @@ TH A:link, TH A:link:visited, H1 A:link, H1 A:link:visited, H2 A:link, H2 A:link
   font-weight: bold;
 }
 
+.pwg-notice {
+  background: #38382f;
+  border-radius: 8px;
+  color: #fff;
+  margin: 10px 0px;
+  padding: 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+}
+
+.pwg-notice a.btn, .pwg-notice a.btn:visited {
+  background: #4b5aa8;
+}
+
+.pwg-notice a.btn:hover, .pwg-notice a.btn:active {
+  background: #b8c3ff;
+}
+
 BLOCKQUOTE {
   background: #e0e0d8;
   border: dotted thin black;
