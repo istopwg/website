@@ -95,7 +95,7 @@ site_header($title = "",		// I - Additional document title
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
-  $title = htmlspecialchars($title);
+  $title = str_replace(array("(tm)", "(r)"), array("<sup>TM</sup>", "&reg;"), htmlspecialchars($title));
 
   if ($LOGIN_ID != "")
     header("Cache-Control: no-cache");
@@ -137,7 +137,7 @@ site_header($title = "",		// I - Additional document title
     $userlogin = "<li><a href=\"$html_login_url\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
 
   print("<title>$html_title Printer Working Group</title>\n"
-       ."<link rel=\"stylesheet\" href=\"https://www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
+       ."<link rel=\"stylesheet\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
        ."<link rel=\"stylesheet\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/pwg.css\">\n"
@@ -146,7 +146,7 @@ site_header($title = "",		// I - Additional document title
        ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg.png\" "
        ."type=\"image/png\">\n"
        ."</head>\n"
-       ."<body>\n"
+       ."<body onLoad=\"load_toc('$html_path');\">\n"
        ."<nav class=\"navbar navbar-inverse pwg-navbar\" role=\"navigation\">\n"
        ."  <div class=\"container-fluid\">\n"
        ."    <div class=\"navbar-header\">\n"
@@ -154,6 +154,7 @@ site_header($title = "",		// I - Additional document title
        ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg.png\" alt=\"PWG Logo\" "
        ."height=\"78\" width=\"75\"></a>\n"
        ."    </div>\n"
+       ."    <div id=\"pwg-search-form\">Google Custom Search</div>\n"
        ."    <div class=\"pwg-navbar-title\">$title<br><small>$subtitle</small></div>\n"
        ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
        ."      <ul class=\"nav navbar-nav\">\n"
@@ -191,19 +192,18 @@ site_header($title = "",		// I - Additional document title
        ."            <li><a href=\"${html_path}sm/.html\">Semantic Model</a></li>\n"
        ."          </ul>\n"
        ."        </li>\n"
-       ."        <li class=\"dropdown\" id=\"pwg-toc-button\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">This Page <span class=\"caret\"></span></a>\n"
-       ."          <ul class=\"dropdown-menu\" role=\"menu\" id=\"pwg-toc-menu\">\n"
-       ."          </ul>\n"
-       ."        </li>\n"
-       ."      </ul>\n"
-       ."      <ul class=\"nav navbar-nav navbar-right\">\n"
-       ."        <li><div id=\"pwg-search-form\">Google Custom Search</div></li>\n"
        ."      </ul>\n"
        ."    </div>\n"
        ."  </div>\n"
        ."</nav>\n"
        ."<div id=\"pwg-body\">\n"
-       ."<div id=\"pwg-search-results\"></div>\n");
+       ."  <div class=\"dropdown\" id=\"pwg-toc-button\" style=\"display: none;\">\n"
+       ."    <button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\">Jump To... <span class=\"caret\"></span></button>\n"
+       ."    <ul class=\"dropdown-menu\" role=\"menu\" id=\"pwg-toc-menu\">\n"
+       ."    </ul>\n"
+       ."  </div>\n"
+       ."  <div id=\"pwg-search-results\"></div>\n"
+       ."  <div id=\"pwg-content\">\n");
 }
 
 
@@ -219,7 +219,7 @@ site_footer()
 
   $year = date("Y");
 
-  print("</div>\n"
+  print("  </div>\n"
        ."</div>\n"
        ."<div id=\"pwg-footer\">\n"
        ."  <div id=\"pwg-footer-body\">Comments are owned by the poster. All other "
@@ -232,9 +232,9 @@ site_footer()
        ."<script src=\"${html_path}dynamo/resources/jquery-1.11.1.min.js\"></script>\n"
        ."<script src=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.js\"></script>\n"
        ."<script type=\"text/javascript\" "
-       ."src=\"https://www.google.com/jsapi\"></script>\n"
-       ."<script type=\"text/javascript\" src=\"${html_path}pwg.js\">"
-       ."load_toc('$html_path');</script>\n"
+       ."src=\"//www.google.com/jsapi\"></script>\n"
+       ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
+       ."</script>\n"
        ."</body>\n"
        ."</html>\n");
 }

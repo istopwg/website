@@ -105,7 +105,6 @@ if ($LOGIN_ID != 0)
 }
 
 site_header("Enable Account");
-html_title("msweet.org", "Enable Account");
 
 if ($usererror != "")
   html_show_error($usererror);
@@ -118,7 +117,7 @@ html_form_email("+email", "name@example.com", $email);
 html_form_field_end();
 html_form_field_start("register", "Registration Code");
 html_form_text("+register", "xxxxxxxx", $register, "", 1, "", 8);
-print(" <a href=\"forgot.php\" class=\"btn btn-mini\">Request New Code</a>");
+print(" <a href=\"forgot.php\" class=\"btn btn-sm\">Request New Code</a>");
 html_form_field_end();
 html_form_field_start("password", "Password");
 html_form_password("+password");

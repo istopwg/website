@@ -500,6 +500,18 @@ TABLE.standard TD {
   vertical-align: top;
 }
 
+table.grid {
+  border-collapse: collapse;
+  width: 100%;
+}
+table.grid td {
+  border: thin solid #d0d0c8;
+  padding: 20px;
+  text-align: center;
+  vertical-align: bottom;
+  width: 50%;
+}
+
 TABLE.columns {
   border: none;
   border-collapse: collapse;

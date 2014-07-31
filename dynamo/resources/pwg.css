@@ -73,6 +73,59 @@ a.btn:hover {
   text-decoration: none;
 }
 
+table.grid {
+  border-collapse: collapse;
+  width: 100%;
+}
+table.grid td {
+  border: thin solid #d0d0c8;
+  padding: 20px;
+  text-align: center;
+  vertical-align: bottom;
+  width: 50%;
+}
+
+# Collapsible panel support
+.panel, .panelcollapsed {
+}
+
+.panel h2::after, .panelcollapsed h2::after {
+  background: #303028;
+  border-radius: 8px;
+  color: white;
+  padding: 4px 8px;
+  font-size: 50%;
+  margin-left: 1em;
+  text-decoration: none;
+}
+
+.panel h2::after:hover, .panelcollapsed h2::after:hover {
+  background: #606050;
+  color: white;
+}
+
+.panel h2::after:active, .panelcollapsed h2::after:active {
+  background: #c0c0a0;
+  color: black;
+}
+
+.panel h2::after {
+  content: "Hide";
+}
+
+.panelcollapsed h2::after {
+  content: "Show";
+}
+
+.panelcontent {
+  margin: 0px 2em;
+  overflow: hidden;
+}
+
+.panelcollapsed .panelcontent {
+  display: none;
+}
+
 /* Appearance tweaks for navigation bar */
 .pwg-navbar {
   background: #303028;
@@ -96,6 +149,7 @@ a.btn:hover {
   color: #fff;
   font-size: 28px;
   font-weight: bold;
+  height: 50px;
   line-height: 22px;
   margin-left: 100px;
   margin-top: 30px;
@@ -106,6 +160,12 @@ a.btn:hover {
   font-size: 14px;
   font-style: italic;
   font-weight: normal;
+}
+
+#pwg-search-form {
+  float: right;
+  margin-top: 15px;
+  width: 25%;
 }
 
 .pwg-navbar .navbar-nav > li > a, .pwg-navbar .navbar-nav > li > a:visited {
@@ -232,6 +292,10 @@ a.gsc-trailing-more-results:link {
   padding: 0px 10px 10px; /* top right+left bottom */
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+}
+
+#pwg-toc-button {
+  margin-top: 10px;
 }
 
 #pwg-content {

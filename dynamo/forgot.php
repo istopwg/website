@@ -43,7 +43,6 @@ if (html_form_validate())
       db_free($result);
 
       site_header("Forgot Password");
-      html_title("msweet.org", "Forgot Password");
 
       if ($row["status"] == USER_STATUS_BANNED)
 	print("<p>Your account is locked. Please contact $SITE_EMAIL for "
@@ -87,7 +86,6 @@ else
 
 // Forgot username or password form...
 site_header("Forgot Password");
-//html_title("msweet.org", "Forgot Password");
 
 if ($usererror != "")
   html_show_error($usererror);

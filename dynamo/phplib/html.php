@@ -689,7 +689,7 @@ html_start_table($headings)		// I - Array of heading strings
   global $html_row;
 
 
-  print("<table class='table' summary=''>\n"
+  print("<table class='table table-striped' summary=''>\n"
        ."<thead><tr>");
 
   $html_row = 0;

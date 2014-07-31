@@ -207,7 +207,6 @@ function load_toc(path) {
       contents = contents + '<li><a href="#' + document.anchors[i].name +
                  '">' + document.anchors[i].innerHTML + '</a></li>\n';
     document.getElementById('pwg-toc-menu').innerHTML = contents;
+    document.getElementById('pwg-toc-button').style.display = 'inherit';
   }
-  else
-    document.getElementById('pwg-toc-button').style = 'display: none;';
 }

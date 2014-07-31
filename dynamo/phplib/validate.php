@@ -16,10 +16,10 @@ function				// O - TRUE if OK, FALSE otherwise
 validate_email($email)			// I - Email address
 {
   // Check for both "name@example.com" and "Full Name <name@example.com>"
-  return (preg_match("/^[a-zA-Z0-9_\\.+-]+@[a-zA-Z0-9\\.-]+\\.[a-zA-Z]{2,4}\$/",
+  return (preg_match("/^[a-zA-Z0-9_\\.+-]+@[a-zA-Z0-9\\.-]+\\.[a-zA-Z]{2,}\$/",
                 $email) ||
           preg_match("/^[^<]*<[a-zA-Z0-9_\\.+-]+@[a-zA-Z0-9\\.-]+\\."
-                    ."[a-zA-Z]{2,4}>\$/", $email));
+                    ."[a-zA-Z]{2,}>\$/", $email));
 }
 
 

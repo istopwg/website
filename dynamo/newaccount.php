@@ -67,7 +67,6 @@ if (html_form_validate())
 	     "From: $SITE_EMAIL\r\n");
 
 	site_header("New Account");
-	html_title("msweet.org", "New Account");
 
 	print("<p>Thank you for requesting an account. You should receive an "
 	     ."email from $SITE_EMAIL shortly with instructions on "
@@ -103,7 +102,6 @@ else
 
 // New user...
 site_header("New Account");
-html_title("msweet.org", "New Account");
 
 if ($usererror != "")
   html_show_error($usererror);
