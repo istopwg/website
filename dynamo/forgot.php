@@ -52,7 +52,7 @@ if (html_form_validate())
       {
 	db_query("UPDATE user SET modify_date = '$date' WHERE id = $row[id]");
 
-	$url = "https://$_SERVER[SERVER_NAME]$html_path/enable.php?email=" .
+	$url = "https://$_SERVER[SERVER_NAME]$html_path/dynamo/enable.php?email=" .
 	       urlencode($email) . "&register=$register";
         $msg = wordwrap("Someone, possibly you, requested that your password "
 		       ."be reset on the $SITE_NAME web site.  To enter "
@@ -68,8 +68,6 @@ if (html_form_validate())
 
 	print("<p>You should receive an email from $SITE_EMAIL shortly "
 	     ."with instructions on resetting your password.</p>\n");
-
-        print("<p>Code = $register</p>\n");
       }
 
       site_footer();
@@ -89,7 +87,7 @@ else
 
 // Forgot username or password form...
 site_header("Forgot Password");
-html_title("msweet.org", "Forgot Password");
+//html_title("msweet.org", "Forgot Password");
 
 if ($usererror != "")
   html_show_error($usererror);

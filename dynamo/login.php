@@ -19,10 +19,10 @@ if (array_key_exists("PAGE", $_GET))
 else if (array_key_exists("PAGE", $_POST))
   $page = $_POST["PAGE"];
 else
-  $page = "index.php";
+  $page = "${html_path}index.html";
 
-if (!preg_match("/^(\\/[a-z]+|[a-z]+)\\.php(|\\?.*)\$/", $page))
-  $page = "index.php";
+if (!preg_match("/^(\\/dynamo\\/[a-z]+|dynamo\\/[a-z]+)\\.php(|\\?.*)\$/", $page) && !preg_match("/\\.html\$/", $page))
+  $page = "{$html_path}index.html";
 
 if (html_form_validate())
 {

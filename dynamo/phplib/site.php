@@ -91,13 +91,13 @@ site_header($title = "",		// I - Additional document title
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
-  global $LOGIN_IS_ADMIN, $LOGIN_NAME, $PHP_SELF, $_SERVER;
+  global $LOGIN_IS_ADMIN, $LOGIN_ID, $LOGIN_NAME, $PHP_SELF, $_SERVER;
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
   $title = htmlspecialchars($title);
 
-  if ($LOGIN_EMAIL != "")
+  if ($LOGIN_ID != "")
     header("Cache-Control: no-cache");
 
   header("X-UA-Compatible: IE=9");
@@ -125,38 +125,86 @@ site_header($title = "",		// I - Additional document title
   else
     $q = "";
 
+  if ($LOGIN_ID != 0)
+  {
+    $hname     = htmlspecialchars($LOGIN_NAME);
+    $userlogin = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\"></span> $hname <span class=\"caret\"></span></a>\n"
+       ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
+       ."            <li><a href=\"${html_path}dynamo/account.php\">Profile</a></li>\n"
+       ."            <li><a href=\"${html_path}dynamo/logout.php\">Logout</a></li>\n"
+       ."          </ul>\n"
+       ."        </li>";
+  }
+  else
+    $userlogin = "<li><a href=\"${html_path}dynamo/login.php\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
+
   print("<title>$html_title Printer Working Group</title>\n"
-       ."<link rel=\"stylesheet\" "
-       ."href=\"http://www.google.com/cse/style/look/default.css\" "
-       ."type=\"text/css\">\n"
-       ."<link rel=\"stylesheet\" type=\"text/css\" "
-       ."href=\"${html_path}pwg.css\">\n"
+       ."<link rel=\"stylesheet\" href=\"https://www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
+       ."<link rel=\"stylesheet\" href=\"${html_path}/dynamo/resources/bootstrap-3.2.0.min.css\">\n"
+       ."<link rel=\"stylesheet\" href=\"${html_path}/dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
+       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/pwg.css\">\n"
        ."<link rel=\"alternate\" title=\"Printer Working Group RSS\" "
        ."type=\"application/rss+xml\" href=\"${html_path}rss/index.rss\">\n"
        ."<link rel=\"shortcut icon\" href=\"${html_path}pwg.png\" "
        ."type=\"image/png\">\n"
-       ."<script type=\"text/javascript\" "
-       ."src=\"http://www.google.com/jsapi\"></script>\n"
-       ."<script type=\"text/javascript\" src=\"${html_path}pwg.js\">"
-       ."</script>\n"
        ."</head>\n"
-       ."<body onload=\"load_sidebar('$html_path');\">\n"
-       ."<div id=\"PWGPage\">\n"
-       ."<div id=\"PWGHeader\">\n"
-       ."<div id=\"PWGHeaderBody\">\n"
-       ."<div id=\"PWGLogo\"><img src=\"${html_path}pwg.png\" alt=\"PWG Logo\" "
-       ."height=\"78\" width=\"75\"></div>\n"
-       ."<div id=\"PWGSearchForm\">Google Custom Search</div>\n"
-       ."<div id=\"PWGTitle\">$title$html_subtitle</div>\n"
-       ."</div>\n"
-       ."</div>\n"
-       ."<div id=\"PWGBody\">\n"
-       ."<div id=\"PWGSearchResults\"></div>\n"
-       ."<div id=\"PWGSideBar\">\n"
-       ."<div id=\"PWGSideBody\">Loading...</div>\n"
-       ."</div>\n"
-       ."<div id=\"PWGContent\">\n"
-       ."<div id=\"PWGContentBody\">\n");
+       ."<body>\n"
+       ."<nav class=\"navbar navbar-default\" role=\"navigation\">\n"
+       ."  <div class=\"container-fluid\">\n"
+       ."    <div class=\"navbar-header\">\n"
+       ."      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#pwg-nav-collapsible\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n"
+       ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg.png\" alt=\"PWG Logo\" "
+       ."height=\"26\" width=\"25\"></a>\n"
+       ."    </div>\n"
+       ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
+       ."      <ul class=\"nav navbar-nav\">\n"
+       ."        $userlogin\n"
+       ."        <li><a href=\"${html_path}index.html\">Home</a></li>\n"
+       ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">About <span class=\"caret\"></span></a>\n"
+       ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
+       ."            <li><a href=\"${html_path}about.html\">About the PWG</a></li>\n"
+       ."            <li><a href=\"${html_path}pwg-logos/members.html#JOINING\">Joining</a></li>\n"
+       ."            <li><a href=\"${html_path}pwg-logos/members.html\">Members</a></li>\n"
+       ."            <li><a href=\"${html_path}chair/index.html\">Officers</a></li>\n"
+       ."            <li class=\"divider\"></li>\n"
+       ."            <li><a href=\"http://www.google.com/calendar/embed?src=istopwg%40gmail.com\">Calendar</a></li>\n"
+       ."            <li><a href=\"${html_path}chair/meeting-info/meetings.html\">Meetings</a></li>\n"
+       ."            <li><a href=\"${html_path}chair/participating.html\">Participating</a></li>\n"
+       ."          </ul>\n"
+       ."        </li>\n"
+       ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Publications <span class=\"caret\"></span></a>\n"
+       ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
+       ."            <li><a href=\"${html_path}informational.html\">Informational</a></li>\n"
+       ."            <li><a href=\"${html_path}namespaces.html\">Namespaces</a></li>\n"
+       ."            <li><a href=\"${html_path}standards.html\">Standards</a></li>\n"
+       ."          </ul>\n"
+       ."        </li>\n"
+       ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Technologies <span class=\"caret\"></span></a>\n"
+       ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
+       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>TM</sup></a></li>\n"
+       ."          </ul>\n"
+       ."        </li>\n"
+       ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Workgroups <span class=\"caret\"></span></a>\n"
+       ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
+       ."            <li><a href=\"${html_path}cloud/\">Cloud Imaging Model</a></li>\n"
+       ."            <li><a href=\"${html_path}ids/\">Imaging Device Security</a></li>\n"
+       ."            <li><a href=\"${html_path}ipp/\">Internet Printing Protocol</a></li>\n"
+       ."            <li><a href=\"${html_path}sm/.html\">Semantic Model</a></li>\n"
+       ."          </ul>\n"
+       ."        </li>\n"
+       ."        <li class=\"dropdown\" id=\"pwg-toc-button\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">This Page <span class=\"caret\"></span></a>\n"
+       ."          <ul class=\"dropdown-menu\" role=\"menu\" id=\"pwg-toc-menu\">\n"
+       ."          </ul>\n"
+       ."        </li>\n"
+       ."      </ul>\n"
+       ."      <ul class=\"nav navbar-nav navbar-right\">\n"
+       ."        <li><div id=\"pwg-search-form\">Google Custom Search</div></li>\n"
+       ."      </ul>\n"
+       ."    </div>\n"
+       ."  </div>\n"
+       ."</nav>\n"
+       ."<div id=\"pwg-search-results\"></div>\n"
+       ."<h1>$title$html_subtitle</h1>\n");
 
 /*
 
@@ -266,10 +314,7 @@ site_footer()
 
   $year = date("Y");
 
-  print("</div>\n"
-       ."</div>\n"
-       ."</div>\n"
-       ."<div id=\"PWGFooter\">\n"
+  print("<div id=\"PWGFooter\">\n"
        ."<div id=\"PWGFooterBody\">Comments are owned by the poster. All other "
        ."material is Copyright &copy; 2001-$year The Printer Working Group. "
        ."All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the "
@@ -278,6 +323,12 @@ site_footer()
        ."with this site.</div>\n"
        ."</div>\n"
        ."</div>\n"
+       ."<script src=\"${html_path}/dynamo/resources/jquery-1.11.1.min.js\"></script>\n"
+       ."<script src=\"${html_path}/dynamo/resources/bootstrap-3.2.0.min.js\"></script>\n"
+       ."<script type=\"text/javascript\" "
+       ."src=\"https://www.google.com/jsapi\"></script>\n"
+       ."<script type=\"text/javascript\" src=\"${html_path}pwg.js\">"
+       ."load_toc('$html_path');</script>\n"
        ."</body>\n"
        ."</html>\n");
 }

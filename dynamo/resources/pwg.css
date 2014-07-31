@@ -1,0 +1,15 @@
+/* Standard fonts and colors */
+BODY {
+/*  background: #f0f0e8;*/
+  color: black;
+  font-family: lucida grande, geneva, helvetica, arial, sans-serif;
+/*  margin: 0;*/
+}
+
+H1, H2, H3, H4, H5, H6, P, TD, TH {
+  font-family: lucida grande, geneva, helvetica, arial, sans-serif;
+}
+
+SUB, SUP {
+  font-size: 50%;
+}
