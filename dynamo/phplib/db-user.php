@@ -118,6 +118,7 @@ class user
     else
       $action = "Save Changes";
 
+    print("<div class=\"container\">\n");
     html_form_start("$PHP_SELF?U$this->id$options");
 
     html_form_field_start("name", "Display Name", $this->name_valid);
@@ -125,7 +126,7 @@ class user
     html_form_field_end();
 
     html_form_field_start("organization_id", "Organization Name", $this->organization_id_valid);
-    organization_select("organization_id", $this->organization_id);
+    organization_select("organization_id", $this->organization_id, "", "", "Other...", "other_organization");
     html_form_field_end();
 
     html_form_field_start("email", "EMail", $this->email_valid);
@@ -150,21 +151,15 @@ class user
     html_form_password("newpassword2");
     html_form_field_end();
 
-    // is_xxx, itemsperpage
-    html_form_field_start("", "Miscellaneous");
-
+    // is_xxx
+    html_form_field_start("", "Permissions");
     if ($LOGIN_IS_ADMIN)
     {
       html_form_checkbox("is_admin", "Admin User", $this->is_admin);
-      print("<br>\n");
-      html_form_checkbox("is_editorn", "Editor", $this->is_editor);
-      print("<br>\n");
+      html_form_checkbox("is_editor", "Editor", $this->is_editor);
       html_form_checkbox("is_member", "PWG Member", $this->is_member);
-      print("<br>\n");
       html_form_checkbox("is_reviewer", "IPP Everywhere Reviewer", $this->is_reviewer);
-      print("<br>\n");
       html_form_checkbox("is_submitter", "IPP Everywhere Submitter", $this->is_submitter);
-      print("<br>\n");
     }
     else
     {
@@ -179,10 +174,11 @@ class user
       if ($this->is_submitter)
         print("IPP Everywhere Submitter<br>\n");
     }
+    html_form_field_end();
 
-    print("Items/Page:&nbsp;");
-    html_form_select("itemsperpage", array(10, 20, 50, 100, 1000), "",
-                     $this->itemsperpage, "", "value");
+    // itemsperpage
+    html_form_field_start("", "Items per Page");
+    html_form_select("itemsperpage", array(10, 20, 50, 100, 1000), "", $this->itemsperpage, "", "value");
     html_form_field_end();
 
     // timezone
@@ -222,7 +218,8 @@ class user
     html_form_field_end();
 
     // Submit
-    html_form_end(array("SUBMIT" => $action));
+    html_form_end(array("SUBMIT" => "+$action"));
+    print("</div>\n");
   }
 
 

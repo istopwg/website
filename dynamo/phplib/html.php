@@ -954,17 +954,16 @@ html_form_button($name, $label)
   }
   else if ($label[0] == "-")
   {
-    $bclass = "btn btn-mini";
+    $bclass = "btn btn-default btn-sm";
     $label  = htmlspecialchars(substr($label, 1));
   }
   else
   {
-    $bclass = "btn";
+    $bclass = "btn btn-default";
     $label  = htmlspecialchars($label);
   }
 
-  print("<button type=\"submit\" class=\"$bclass\" name=\"$name\">$label"
-       ."</button>");
+  print("<button type=\"submit\" class=\"$bclass\" name=\"$name\">$label</button>");
 }
 
 
@@ -987,7 +986,7 @@ html_form_buttons($buttons)		// I - Array of buttons
 
 
   if (!$html_inline_form)
-    print("<div class=\"form-actions\">");
+    print("<div class=\"form-group\">");
 
   foreach ($buttons as $name => $label)
     html_form_button($name, $label);
@@ -1065,7 +1064,7 @@ html_form_field_start($name,		// I - Field (form) name
   global $REQUEST_METHOD;
 
 
-  $hclass = "control-group";
+  $hclass = "form-group";
   if (!$valid && $REQUEST_METHOD != "GET")
     $hclass .= " error";
   if ($desktop)
@@ -1075,8 +1074,8 @@ html_form_field_start($name,		// I - Field (form) name
   $label = htmlspecialchars($label);
 
   print("<div class=\"$hclass\">"
-       ."<label class=\"control-label\" for=\"$name\">$label</label>"
-       ."<div class=\"controls\">");
+       ."<label for=\"$name\" class=\"control-label col-sm-2\">$label</label>"
+       ."<div class=\"col-sm-10\">");
 }
 
 
@@ -1102,10 +1101,10 @@ html_form_start($action,		// I - URL for submission
 
   if ($attachments)
     print("<form action=\"$action\" method=\"POST\" class=\"$hclass\" "
-         ."enctype=\"multipart/form-data\">"
+         ."enctype=\"multipart/form-data\" role=\"form\">"
 	 ."<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"33554432\">");
   else
-    print("<form action=\"$action\" method=\"POST\" class=\"$hclass\">");
+    print("<form action=\"$action\" method=\"POST\" class=\"$hclass\" role=\"form\">");
 
   $csrf = html_form_csrf();
   print("<input type=\"hidden\" name=\"validation\" value=\"$csrf\">");
@@ -1140,10 +1139,9 @@ html_form_checkbox($name,	// I - Field name
   else
     $value = " checked";
 
+  print("<div class=\"checkbox\">");
   if ($label != "")
-    print("<label class=\"checkbox\">"
-	 ."<input type=\"checkbox\" name=\"$name\"$value$required>"
-	 ." $label</label>");
+    print("<label><input type=\"checkbox\" name=\"$name\"$value$required> $label</label>");
   else
     print("<input type=\"checkbox\" name=\"$name\"$value$required>");
 
@@ -1152,6 +1150,7 @@ html_form_checkbox($name,	// I - Field name
     $help = str_replace("\n", "<br>\n", htmlspecialchars($help));
     print("<span class=\"help-block\">$help</span>");
   }
+  print("</div>");
 }
 
 

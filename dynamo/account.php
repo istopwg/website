@@ -9,9 +9,6 @@
 // Include necessary headers...
 //
 
-include_once "phplib/site.php";
-include_once "phplib/db-article.php";
-include_once "phplib/db-bug.php";
 include_once "phplib/db-user.php";
 
 
@@ -21,9 +18,7 @@ if ($LOGIN_ID == 0)
   exit(0);
 }
 
-site_header("$LOGIN_NAME");
-print("<div class=\"page-header\"><h1>Settings <small>$LOGIN_NAME</small></h1>"
-     ."</div>\n");
+site_header("Profile", $LOGIN_NAME);
 
 $user = new user($LOGIN_ID);
 if ($REQUEST_METHOD == "POST")

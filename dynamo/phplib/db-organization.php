@@ -174,4 +174,64 @@ organization_name($id)			// I - Organization ID
 
   return ($name);
 }
+
+
+//
+// 'organization_select()' - Show the organization selection control.
+//
+
+function
+organization_select(
+    $formname = "organization_id",	// I - Form name to use
+    $id = 0,				// I - Currently selected organization, if any
+    $any_id = "",			// I - Allow "any organization"?
+    $prefix = "",			// I - Prefix on values
+    $other_id = "",			// I - Allow "other organization"?
+    $other_name = "")			// I - Form name for other field
+{
+  global $ORGANIZATION_NAMES, $_POST;
+
+
+  print("<select name=\"$formname\">");
+
+  if ($any_id != "")
+    print("<option value=\"0\">$prefix$any_id</option>");
+
+  $results = db_query("SELECT id, name FROM organization ORDER BY name");
+  while ($row = db_next($results))
+  {
+    $oid          = $row["id"];
+    $name         = htmlspecialchars($row["name"]);
+
+    if ($oid == $id)
+      print("<option value=\"$oid\" selected>$prefix$name</option>");
+    else
+      print("<option value=\"$oid\">$prefix$name</option>");
+
+    $ORGANIZATION_NAMES["o$row[id]"] = $name;
+  }
+
+  if ($other_id != "")
+  {
+    if ($id == -1)
+      print("<option value=\"-1\" selected>$prefix$other_id</option>");
+    else
+      print("<option value=\"-1\">$prefix$other_id</option>");
+  }
+
+  db_free($results);
+
+  print("</select>");
+  if ($other_name != "")
+  {
+    if (array_key_exists($other_name, $_POST))
+      $other_val = trim($_POST[$other_name]);
+    else
+      $other_val = "";
+
+    print("<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+    html_form_text($other_name, "Organization Name", $other_val, "", 1, "", $html_input_width - 5);
+  }
+}
+
 ?>
