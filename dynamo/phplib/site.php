@@ -57,7 +57,7 @@ else
 if ($html_path != "/")
   $html_path = "$html_path/";
 
-$html_login_url = "https://$_SERVER[SERVER_NAME]$html_path/dynamo/login.php";
+$html_login_url = "https://$SERVER_NAME${html_path}dynamo/login.php";
 
 // Include necessary headers...
 include_once "auth.php";
@@ -91,7 +91,7 @@ site_header($title = "",		// I - Additional document title
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
-  global $LOGIN_IS_ADMIN, $LOGIN_ID, $LOGIN_NAME, $PHP_SELF, $_SERVER;
+  global $LOGIN_IS_ADMIN, $LOGIN_ID, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME;
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
@@ -136,7 +136,7 @@ site_header($title = "",		// I - Additional document title
        ."        </li>";
   }
   else
-    $userlogin = "<li><a href=\"${html_path}dynamo/login.php\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
+    $userlogin = "<li><a href=\"$html_login_url\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
 
   print("<title>$html_title Printer Working Group</title>\n"
        ."<link rel=\"stylesheet\" href=\"https://www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
