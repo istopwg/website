@@ -87,7 +87,7 @@ db_free($results);
 
 function				// O - User information
 site_header($title = "",		// I - Additional document title
-	    $subtitle = "",		// I - Subtitle
+	    $subtitle = "&nbsp;",	// I - Subtitle
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
@@ -115,10 +115,8 @@ site_header($title = "",		// I - Additional document title
   else
     $html_title = "";
 
-  if ($subtitle != "")
-    $html_subtitle = "<br><small>$subtitle</small>";
-  else
-    $html_subtitle = "";
+  if ($subtitle == "")
+    $subtitle = "&nbsp;";
 
   if (array_key_exists("Q", $_GET))
     $q = htmlspecialchars($_GET["Q"], ENT_QUOTES);
@@ -156,7 +154,7 @@ site_header($title = "",		// I - Additional document title
        ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg.png\" alt=\"PWG Logo\" "
        ."height=\"78\" width=\"75\"></a>\n"
        ."    </div>\n"
-       ."    <div class=\"pwg-navbar-title\">$title$html_subtitle</div>\n"
+       ."    <div class=\"pwg-navbar-title\">$title<br><small>$subtitle</small></div>\n"
        ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
        ."      <ul class=\"nav navbar-nav\">\n"
        ."        $userlogin\n"

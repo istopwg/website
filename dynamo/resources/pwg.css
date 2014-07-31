@@ -32,11 +32,26 @@ h2 small {
   white-space: nowrap;
 }
 
-.pwg-notice {
-  background: #38382f;
+h3 {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 115%;
+  font-weight: bold;
+}
+
+blockquote {
+  background: #e0e0d8;
+  border: dotted thin black;
   border-radius: 8px;
-  color: #fff;
+  color: black;
+  font-size: 100%;
+  font-style: italic;
+  margin-left: 20px;
   padding: 10px;
+  width: 90%;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
 }
@@ -52,6 +67,10 @@ hr {
 
 sub, sup {
   font-size: 50%;
+}
+
+a.btn:hover {
+  text-decoration: none;
 }
 
 /* Appearance tweaks for navigation bar */
