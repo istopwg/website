@@ -32,17 +32,10 @@ if (!$LOGIN_IS_ADMIN)
 function
 accounts_header($title, $id = 0)
 {
-  global $PHP_SELF, $LOGIN_ID, $LOGIN_EMAIL, $options;
-
-
   if ($id)
-    $name = " <small>" . user_name($id) . "</small>";
+    site_header($title, user_name($id));
   else
-    $name = "";
-
-  site_header($title);
-  print("<div class=\"row-fluid\"><div class=\"span12\">\n"
-       ."<div class=\"page-header\"><h1>$title$name</h1></div>\n");
+    site_header($title);
 }
 
 
@@ -53,7 +46,6 @@ accounts_header($title, $id = 0)
 function
 accounts_footer()
 {
-  print("</div></div>\n");
   site_footer();
 }
 
@@ -190,7 +182,7 @@ switch ($op)
       html_form_end(array("SUBMIT" => "-Search"));
 
       $user    = new user();
-      $matches = $user->search($search, "name");
+      $matches = user_search($search, 0, "name");
       $count   = sizeof($matches);
 
       if ($count == 0)
@@ -228,7 +220,7 @@ switch ($op)
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      html_start_table(array("Name", "EMail", "Status"));
+      html_start_table(array("Name", "Organization", "EMail", "Roles", "Status"));
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
@@ -238,24 +230,38 @@ switch ($op)
 	  continue;
 
 	$name   = htmlspecialchars($user->name, ENT_QUOTES);
+	$org    = htmlspecialchars(organization_name($user->organization_id), ENT_QUOTES);
 	$email  = htmlspecialchars($user->email, ENT_QUOTES);
-	$status = $user->status == 0 ? "Banned" :
-		  $user->status == 1 ? "Pending" :
-		  $user->status == 2 ? "Enabled" : "Deleted";
+	$roles = "";
 	if ($user->is_admin)
-	  $status .= ", Admin";
+	  $roles .= ", Admin";
+	if ($user->is_editor)
+	  $roles .= ", Editor";
+	if ($user->is_member)
+	  $roles .= ", Member";
+	if ($user->is_reviewer)
+	  $roles .= ", Reviewer";
+	if ($user->is_submitter)
+	  $roles .= ", Submitter";
+	if ($roles == "")
+	  $roles = "None";
+	else
+	  $roles = substr($roles, 2);
+	$status = $USER_STATUSES[$user->status];
 
 	print("<tr><td nowrap>");
 	html_form_checkbox("ID_$user->id");
 	print("<a href=\"$PHP_SELF?U$user->id$options\">$name</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$user->id$options\">$org</a></td>"
 	     ."<td><a href=\"$PHP_SELF?U$user->id$options\">$email</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$user->id$options\">$roles</a></td>"
 	     ."<td><a href=\"$PHP_SELF?U$user->id$options\">$status</a></td>"
 	     ."</tr>\n");
       }
 
       html_end_table();
 
-      print("<div class=\"form-actions\">");
+      print("<div class=\"form-group\">");
       html_form_select("OP", array("ban" => "Ban", "delete" => "Delete",
                                    "enable" => "Enable"), "-- Choose --");
       html_form_end(array("SUBMIT" => "-Checked Accounts"));
@@ -286,6 +292,8 @@ switch ($op)
       else
       {
         accounts_header("Modify User", $id);
+
+        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
 	$user->form($options);
 

@@ -20,6 +20,12 @@ define("USER_STATUS_PENDING", 1);
 define("USER_STATUS_ENABLED", 2);
 define("USER_STATUS_DELETED", 3);
 
+$USER_STATUSES = array(
+  USER_STATUS_BANNED => "Banned",
+  USER_STATUS_PENDING => "Pending",
+  USER_STATUS_ENABLED => "Enabled",
+  USER_STATUS_DELETED => "Deleted"
+);
 
 // Cache of emails and names
 $USER_EMAILS = array("u0" => "webmaster@pwg.org");

@@ -68,7 +68,7 @@ if (html_form_validate())
 	print("<p>You should receive an email from $SITE_EMAIL shortly "
 	     ."with instructions on resetting your password.</p>\n");
 
-        print("<p>code = $register</p>\n");
+//        print("<p>code = $register</p>\n");
       }
 
       site_footer();

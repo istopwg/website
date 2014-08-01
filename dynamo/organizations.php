@@ -26,41 +26,33 @@ if (!$LOGIN_IS_ADMIN)
 
 
 //
-// 'accounts_header()' - Show standard account page header...
+// 'organizations_header()' - Show standard organization page header...
 //
 
 function
-accounts_header($title, $id = 0)
+organizations_header($title, $id = 0)
 {
-  global $PHP_SELF, $LOGIN_ID, $LOGIN_EMAIL, $options;
-
-
   if ($id)
-    $name = " <small>" . user_name($id) . "</small>";
+    site_header($title, organization_name($id));
   else
-    $name = "";
-
-  site_header($title);
-  print("<div class=\"row-fluid\"><div class=\"span12\">\n"
-       ."<div class=\"page-header\"><h1>$title$name</h1></div>\n");
+    site_header($title);
 }
 
 
 //
-// 'accounts_footer()' - Show standard account page footer...
+// 'organizations_footer()' - Show standard account page footer...
 //
 
 function
-accounts_footer()
+organizations_footer()
 {
-  print("</div></div>\n");
   site_footer();
 }
 
 
 // Get command-line options...
 //
-// Usage: accounts.php [operation] [options]
+// Usage: organizations.php [operation] [options]
 //
 // Operations:
 //
@@ -84,21 +76,21 @@ if ($argc)
 
   if ($op != 'B' && $op != 'L' && $op != 'U' && $op != 'X')
   {
-    site_header("Manage Accounts");
+    site_header("Manage Organizations");
     print("<p>Bad command '$op'.</p>\n");
-    accounts_footer();
+    organizations_footer();
     exit();
   }
 
   if ($op == 'U' && $id)
   {
-    $user = new user($id);
+    $organization = new user($id);
 
-    if ($user->id != $id)
+    if ($organization->id != $id)
     {
-      site_header("Manage Accounts");
+      site_header("Manage Organizations");
       print("<p>Account #$id does not exist.</p>\n");
-      accounts_footer();
+      organizations_footer();
       exit();
     }
   }
@@ -124,9 +116,9 @@ if ($argc)
 	  }
 	  break;
       default :
-	  site_header("Manage Accounts");
+	  site_header("Manage Organizations");
 	  print("<p>Bad option '$argv[$i]'.</p>\n");
-	  accounts_footer();
+	  organizations_footer();
 	  exit();
 	  break;
     }
@@ -149,7 +141,7 @@ $options = "+I$index+Q" . urlencode($search);
 switch ($op)
 {
   case 'B' : // Batch update
-      // Disable/enable/expire/etc. accounts...
+      // Disable/enable/expire/etc. organizations...
       if (html_form_validate() && array_key_exists("OP", $_POST))
       {
 	$op = $_POST["OP"];
@@ -176,28 +168,28 @@ switch ($op)
       header("Location: $PHP_SELF?L$options");
       break;
 
-  case 'X' : // Purge dead accounts...
+  case 'X' : // Purge dead organizations...
       db_query("DELETE FROM user WHERE status = 1");
       header("Location: $PHP_SELF?L$options");
       break;
 
   case 'L' : // View/list
-      // List accounts...
-      accounts_header("Manage Accounts");
+      // List organizations...
+      organizations_header("Manage Organizations");
 
       html_form_start("$PHP_SELF?L", TRUE);
-      html_form_search("search", "Search Accounts", $search);
+      html_form_search("search", "Search Organizations", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
-      $user    = new user();
-      $matches = $user->search($search, "name");
+      $organization    = new user();
+      $matches = organization_search($search, 0, "name");
       $count   = sizeof($matches);
 
       if ($count == 0)
       {
-	print("<p>No accounts found.</p>\n");
+	print("<p>No organizations found.</p>\n");
 
-	accounts_footer();
+	organizations_footer();
 	exit();
       }
 
@@ -228,68 +220,84 @@ switch ($op)
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      html_start_table(array("Name", "EMail", "Status"));
+      html_start_table(array("Name", "Organization", "EMail", "Roles", "Status"));
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
-	$user->load($matches[$i]);
+	$organization->load($matches[$i]);
 
-	if ($user->id != $matches[$i])
+	if ($organization->id != $matches[$i])
 	  continue;
 
-	$name   = htmlspecialchars($user->name, ENT_QUOTES);
-	$email  = htmlspecialchars($user->email, ENT_QUOTES);
-	$status = $user->status == 0 ? "Banned" :
-		  $user->status == 1 ? "Pending" :
-		  $user->status == 2 ? "Enabled" : "Deleted";
-	if ($user->is_admin)
-	  $status .= ", Admin";
+	$name   = htmlspecialchars($organization->name, ENT_QUOTES);
+	$org    = htmlspecialchars(organization_name($organization->organization_id), ENT_QUOTES);
+	$email  = htmlspecialchars($organization->email, ENT_QUOTES);
+	$roles = "";
+	if ($organization->is_admin)
+	  $roles .= ", Admin";
+	if ($organization->is_editor)
+	  $roles .= ", Editor";
+	if ($organization->is_member)
+	  $roles .= ", Member";
+	if ($organization->is_reviewer)
+	  $roles .= ", Reviewer";
+	if ($organization->is_submitter)
+	  $roles .= ", Submitter";
+	if ($roles == "")
+	  $roles = "None";
+	else
+	  $roles = substr($roles, 2);
+	$status = $USER_STATUSES[$organization->status];
 
 	print("<tr><td nowrap>");
-	html_form_checkbox("ID_$user->id");
-	print("<a href=\"$PHP_SELF?U$user->id$options\">$name</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$user->id$options\">$email</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$user->id$options\">$status</a></td>"
+	html_form_checkbox("ID_$organization->id");
+	print("<a href=\"$PHP_SELF?U$organization->id$options\">$name</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$org</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$email</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$roles</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$status</a></td>"
 	     ."</tr>\n");
       }
 
       html_end_table();
 
-      print("<div class=\"form-actions\">");
+      print("<div class=\"form-group\">");
       html_form_select("OP", array("ban" => "Ban", "delete" => "Delete",
                                    "enable" => "Enable"), "-- Choose --");
-      html_form_end(array("SUBMIT" => "-Checked Accounts"));
+      html_form_end(array("SUBMIT" => "-Checked Organizations"));
       print("</div>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      accounts_footer();
+      organizations_footer();
       break;
 
   case 'U' : // Update/create
-      $user = new user($id);
+      $organization = new user($id);
 
-      if ($user->id != $id)
+      if ($organization->id != $id)
       {
-	site_header("Manage Accounts");
+	site_header("Manage Organizations");
 	print("<p>Account #$id does not exist.\n");
-	accounts_footer();
+	organizations_footer();
 	exit();
       }
 
-      if ($user->loadform())
+      if ($organization->loadform())
       {
-        $user->save();
+        $organization->save();
         header("Location: $PHP_SELF?L$options");
       }
       else
       {
-        accounts_header("Modify User", $id);
+        organizations_header("Modify User", $id);
 
-	$user->form($options);
+        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
-        accounts_footer();
+	$organization->form($options);
+
+        organizations_footer();
       }
       break;
 }
