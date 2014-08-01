@@ -21,6 +21,29 @@ if (html_form_validate())
   else
     $name = "";
 
+  if (array_key_exists("organization_id", $_POST))
+    $organization_id = (int)$_POST["organization_id"];
+  else
+    $organization_id = 0;
+
+  if (array_key_exists("other_organization", $_POST))
+    $other_organization = trim($_POST["other_organization"]);
+  else
+    $other_organization = "";
+
+  if ($organization_id < 0 && $other_organization != "")
+  {
+    if ($org_id = organization_lookup($other_organization))
+      $organization_id = $org_id;
+    else
+    {
+      $org = new organization();
+      $org->name = $other_organization;
+      if ($org->save())
+	$organization_id = $org->id;
+    }
+  }
+
   if (array_key_exists("email", $_POST))
     $email = trim($_POST["email"]);
   else
@@ -47,9 +70,10 @@ if (html_form_validate())
       // Nope, add unpublished user account and send registration email.
       db_free($result);
 
-      $user = new user();
-      $user->name = $name;
-      $user->email = $email;
+      $user                  = new user();
+      $user->name            = $name;
+      $user->organization_id = $organization_id;
+      $user->email           = $email;
       $user->password();
 
       if ($user->save())
@@ -92,9 +116,11 @@ if (html_form_validate())
 }
 else
 {
-  $name   = "";
-  $email  = "";
-  $email2 = "";
+  $name               = "";
+  $organization_id    = 0;
+  $other_organization = "";
+  $email              = "";
+  $email2             = "";
 
   if ($REQUEST_METHOD == "POST")
     $usererror = "Bad form submission.";
@@ -111,6 +137,9 @@ print("<p>Please fill in the form below to register. An email will be sent "
 html_form_start($PHP_SELF);
 html_form_field_start("name", "Real Name");
 html_form_text("name", "John Doe", $name);
+html_form_field_end();
+html_form_field_start("organization_id", "Organization Name");
+organization_select("organization_id", $organization_id, "None", "", "Other...", "other_organization");
 html_form_field_end();
 html_form_field_start("email", "EMail");
 html_form_email("email", "name@example.com", $email);

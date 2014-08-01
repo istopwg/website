@@ -118,7 +118,6 @@ class user
     else
       $action = "Save Changes";
 
-    print("<div class=\"container\">\n");
     html_form_start("$PHP_SELF?U$this->id$options");
 
     html_form_field_start("name", "Display Name", $this->name_valid);
@@ -126,7 +125,7 @@ class user
     html_form_field_end();
 
     html_form_field_start("organization_id", "Organization Name", $this->organization_id_valid);
-    organization_select("organization_id", $this->organization_id, "", "", "Other...", "other_organization");
+    organization_select("organization_id", $this->organization_id, "None", "", "Other...", "other_organization");
     html_form_field_end();
 
     html_form_field_start("email", "EMail", $this->email_valid);
@@ -152,11 +151,11 @@ class user
     html_form_field_end();
 
     // is_xxx
-    html_form_field_start("", "Permissions");
+    html_form_field_start("", "Roles");
     if ($LOGIN_IS_ADMIN)
     {
-      html_form_checkbox("is_admin", "Admin User", $this->is_admin);
-      html_form_checkbox("is_editor", "Editor", $this->is_editor);
+      html_form_checkbox("is_admin", "Administrator", $this->is_admin);
+      html_form_checkbox("is_editor", "Document Editor", $this->is_editor);
       html_form_checkbox("is_member", "PWG Member", $this->is_member);
       html_form_checkbox("is_reviewer", "IPP Everywhere Reviewer", $this->is_reviewer);
       html_form_checkbox("is_submitter", "IPP Everywhere Submitter", $this->is_submitter);
@@ -164,15 +163,18 @@ class user
     else
     {
       if ($this->is_admin)
-        print("Admin User<br>\n");
+        print("Administrator<br>\n");
       if ($this->is_editor)
-        print("Editor<br>\n");
+        print("Document Editor<br>\n");
       if ($this->is_member)
         print("PWG Member<br>\n");
       if ($this->is_reviewer)
         print("IPP Everywhere Reviewer<br>\n");
       if ($this->is_submitter)
         print("IPP Everywhere Submitter<br>\n");
+
+      if (!$this->is_admin && !$this->is_editor && !$this->is_member && !$this->is_reviewer && !$this->is_submitter)
+        print("None");
     }
     html_form_field_end();
 
@@ -219,7 +221,6 @@ class user
 
     // Submit
     html_form_end(array("SUBMIT" => "+$action"));
-    print("</div>\n");
   }
 
 
@@ -311,6 +312,24 @@ class user
 
     if (array_key_exists("organization_id", $_POST))
       $this->organization_id = (int)$_POST["organization_id"];
+
+    if (array_key_exists("other_organization", $_POST))
+      $other_organization = trim($_POST["other_organization"]);
+    else
+      $other_organization = "";
+
+    if ($this->organization_id < 0 && $other_organization != "")
+    {
+      if ($org_id = organization_lookup($other_organization))
+	$this->organization_id = $org_id;
+      else
+      {
+	$org = new organization();
+	$org->name = $other_organization;
+	if ($org->save())
+	  $this->organization_id = $org->id;
+      }
+    }
 
     if (array_key_exists("email", $_POST))
       $this->email = trim($_POST["email"]);

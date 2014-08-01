@@ -145,6 +145,29 @@ class organization
 
 
 //
+// 'organization_lookup()' - Lookup an organization by name or domain.
+//
+
+function				// O - ID or 0 if not found
+organization_lookup($name)		// I - Organization or domain name
+{
+  $dname  = db_escape($name);
+  $result = db_query("SELECT id FROM organization WHERE name LIKE '$dname' OR domain LIKE '$dname';");
+  if (db_count($result) == 1)
+  {
+    $row = db_next($result);
+    $id  = $row["id"];
+  }
+  else
+    $id = 0;
+
+  db_free($result);
+
+  return ($id);
+}
+
+
+//
 // 'organization_name()' - Return the name of an organization.
 //
 
@@ -225,12 +248,11 @@ organization_select(
   if ($other_name != "")
   {
     if (array_key_exists($other_name, $_POST))
-      $other_val = trim($_POST[$other_name]);
+      $other_val = htmlspecialchars(trim($_POST[$other_name]), ENT_QUOTES);
     else
       $other_val = "";
 
-    print("<br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-    html_form_text($other_name, "Organization Name", $other_val, "", 1, "", $html_input_width - 5);
+    print(" <input type=\"text\" name=\"$other_name\" value=\"$other_val\" maxlength=\"255\" placeholder=\"Other Organization\" size=\"20\">");
   }
 }
 

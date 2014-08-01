@@ -1033,10 +1033,23 @@ html_form_csrf($provided = "")
 function
 html_form_end($buttons = FALSE)		// I - Array of buttons
 {
-  if ($buttons !== FALSE)
-    html_form_buttons($buttons);
+  global $html_inline_form;
 
-  print("</form>\n");
+  if ($buttons !== FALSE)
+  {
+    if ($html_inline_form)
+    {
+      html_form_buttons($buttons);
+    }
+    else
+    {
+      print("<div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\">");
+      html_form_buttons($buttons);
+      print("</div></div>\n");
+    }
+  }
+
+  print("</form></div>\n");
 }
 
 
@@ -1095,10 +1108,15 @@ html_form_start($action,		// I - URL for submission
   $action = htmlspecialchars($action, ENT_QUOTES);
 
   if ($inline)
+  {
     $hclass = "form-inline";
+    print("<div style=\"display: block-inline;\">\n");
+  }
   else
+  {
     $hclass = "form-horizontal";
-
+    print("<div class=\"container\">\n");
+  }
   if ($attachments)
     print("<form action=\"$action\" method=\"POST\" class=\"$hclass\" "
          ."enctype=\"multipart/form-data\" role=\"form\">"

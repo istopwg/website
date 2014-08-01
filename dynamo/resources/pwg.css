@@ -85,6 +85,18 @@ table.grid td {
   width: 50%;
 }
 
+.col-sm-10 {
+  padding-left: 0px;
+}
+
+a:link.btn-default {
+  color: #000;
+}
+
+a:link.btn-primary {
+  color: #fff;
+}
+
 # Collapsible panel support
 .panel, .panelcollapsed {
 }
