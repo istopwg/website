@@ -637,7 +637,7 @@ user_organization($id)			// I - User ID
 // 'user_search()' - Get a list of user objects.
 //
 
-function				// O - Array of user objects
+function				// O - Array of user IDs
 user_search($search = "",		// I - Search string
             $organization_id = 0,	// I - Organization
             $order = "")		// I - Order fields

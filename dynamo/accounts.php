@@ -181,7 +181,6 @@ switch ($op)
       html_form_search("search", "Search Accounts", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
-      $user    = new user();
       $matches = user_search($search, 0, "name");
       $count   = sizeof($matches);
 
@@ -224,7 +223,7 @@ switch ($op)
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
-	$user->load($matches[$i]);
+	$user = new user($matches[$i]);
 
 	if ($user->id != $matches[$i])
 	  continue;

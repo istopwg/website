@@ -2,7 +2,7 @@
 //
 // "$Id$"
 //
-// Account management page...
+// Organization management page...
 //
 
 //
@@ -84,12 +84,12 @@ if ($argc)
 
   if ($op == 'U' && $id)
   {
-    $organization = new user($id);
+    $organization = new organization($id);
 
     if ($organization->id != $id)
     {
       site_header("Manage Organizations");
-      print("<p>Account #$id does not exist.</p>\n");
+      print("<p>Organization #$id does not exist.</p>\n");
       organizations_footer();
       exit();
     }
@@ -141,10 +141,10 @@ $options = "+I$index+Q" . urlencode($search);
 switch ($op)
 {
   case 'B' : // Batch update
-      // Disable/enable/expire/etc. organizations...
-      if (html_form_validate() && array_key_exists("OP", $_POST))
+      // Batch update status of organizations...
+      if (html_form_validate() && array_key_exists("STATUS", $_POST))
       {
-	$op = $_POST["OP"];
+	$status = (int)$_POST["STATUS"];
 
         db_query("BEGIN TRANSACTION");
 
@@ -153,23 +153,17 @@ switch ($op)
           if (substr($key, 0, 3) == "ID_")
 	  {
 	    $id = (int)substr($key, 3);
-
-            if ($op == "ban")
-              db_query("UPDATE user SET status = 0 WHERE id = $id");
-            else if ($op == "enable")
-              db_query("UPDATE user SET status = 2 WHERE id = $id");
-            else if ($op == "delete")
-              db_query("UPDATE user SET status = 3 WHERE id = $id");
+	    $organization = new organization($id);
+	    if ($organization->id == $id)
+	    {
+	      $organization->status = $status;
+	      $organization->save();
+	    }
 	  }
 
         db_query("COMMIT TRANSACTION");
       }
 
-      header("Location: $PHP_SELF?L$options");
-      break;
-
-  case 'X' : // Purge dead organizations...
-      db_query("DELETE FROM user WHERE status = 1");
       header("Location: $PHP_SELF?L$options");
       break;
 
@@ -181,8 +175,7 @@ switch ($op)
       html_form_search("search", "Search Organizations", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
-      $organization    = new user();
-      $matches = organization_search($search, 0, "name");
+      $matches = organization_search($search, "name");
       $count   = sizeof($matches);
 
       if ($count == 0)
@@ -209,52 +202,34 @@ switch ($op)
       $next = $index + $LOGIN_PAGEMAX;
 
       if ($count == 1)
-	print("<p>1 user found:</p>\n");
+	print("<p>1 organization found:</p>\n");
       else if ($count <= $LOGIN_PAGEMAX)
-	print("<p>$count users found:</p>\n");
+	print("<p>$count organizations found:</p>\n");
       else
-	print("<p>$count users found, showing $start to $end:</p>\n");
+	print("<p>$count organizations found, showing $start to $end:</p>\n");
 
       html_form_start("$PHP_SELF?B$options", TRUE);
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      html_start_table(array("Name", "Organization", "EMail", "Roles", "Status"));
+      html_start_table(array("Name", "Domain", "Status"));
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
-	$organization->load($matches[$i]);
+	$organization = new organization($matches[$i]);
 
 	if ($organization->id != $matches[$i])
 	  continue;
 
 	$name   = htmlspecialchars($organization->name, ENT_QUOTES);
-	$org    = htmlspecialchars(organization_name($organization->organization_id), ENT_QUOTES);
-	$email  = htmlspecialchars($organization->email, ENT_QUOTES);
-	$roles = "";
-	if ($organization->is_admin)
-	  $roles .= ", Admin";
-	if ($organization->is_editor)
-	  $roles .= ", Editor";
-	if ($organization->is_member)
-	  $roles .= ", Member";
-	if ($organization->is_reviewer)
-	  $roles .= ", Reviewer";
-	if ($organization->is_submitter)
-	  $roles .= ", Submitter";
-	if ($roles == "")
-	  $roles = "None";
-	else
-	  $roles = substr($roles, 2);
-	$status = $USER_STATUSES[$organization->status];
+	$domain = htmlspecialchars($organization->domain, ENT_QUOTES);
+	$status = $ORGANIZATION_STATUSES[$organization->status];
 
 	print("<tr><td nowrap>");
 	html_form_checkbox("ID_$organization->id");
 	print("<a href=\"$PHP_SELF?U$organization->id$options\">$name</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$org</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$email</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$roles</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$domain</a></td>"
 	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$status</a></td>"
 	     ."</tr>\n");
       }
@@ -262,9 +237,8 @@ switch ($op)
       html_end_table();
 
       print("<div class=\"form-group\">");
-      html_form_select("OP", array("ban" => "Ban", "delete" => "Delete",
-                                   "enable" => "Enable"), "-- Choose --");
-      html_form_end(array("SUBMIT" => "-Checked Organizations"));
+      html_form_select("STATUS", $ORGANIZATION_STATUSES, "-- Choose --");
+      html_form_end(array("SUBMIT" => "-Set Status of Checked Organizations"));
       print("</div>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
@@ -274,12 +248,12 @@ switch ($op)
       break;
 
   case 'U' : // Update/create
-      $organization = new user($id);
+      $organization = new organization($id);
 
       if ($organization->id != $id)
       {
 	site_header("Manage Organizations");
-	print("<p>Account #$id does not exist.\n");
+	print("<p>Organization #$id does not exist.\n");
 	organizations_footer();
 	exit();
       }
@@ -291,7 +265,7 @@ switch ($op)
       }
       else
       {
-        organizations_header("Modify User", $id);
+        organizations_header("Modify Organization", $id);
 
         print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
