@@ -67,19 +67,6 @@ include_once "validate.php";
 // Set the timezone...
 date_default_timezone_set($LOGIN_TIMEZONE);
 
-// Load projects...
-$PROJECT_NAMES = array("p0" => "Web Site");
-$results       = db_query("SELECT id, name FROM project WHERE is_published = 1 "
-                         ."ORDER BY name");
-while ($row = db_next($results))
-{
-  $pid  = $row["id"];
-  $name = htmlspecialchars($row["name"]);
-
-  $PROJECT_NAMES["p$pid"] = $name;
-}
-db_free($results);
-
 
 //
 // 'site_header()' - Show the standard page header and navbar.
@@ -91,7 +78,7 @@ site_header($title = "",		// I - Additional document title
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
-  global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME;
+  global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME;
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
@@ -129,9 +116,13 @@ site_header($title = "",		// I - Additional document title
     $userlogin = "<li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\"></span> $hname <span class=\"caret\"></span></a>\n"
 		."          <ul class=\"dropdown-menu\" role=\"menu\">\n";
 
+    if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
+      $userlogin .= "            <li><a href=\"${html_path}dynamo/articles.php\">Manage Articles</a></li>\n";
+
     if ($LOGIN_IS_ADMIN)
       $userlogin .= "            <li><a href=\"${html_path}dynamo/organizations.php\">Manage Organizations</a></li>\n"
-                   ."            <li><a href=\"${html_path}dynamo/accounts.php\">Manage Users</a></li>\n";
+                   ."            <li><a href=\"${html_path}dynamo/accounts.php\">Manage Users</a></li>\n"
+                   ."            <li><a href=\"${html_path}dynamo/workgroups.php\">Manage Workgroups</a></li>\n";
 
     if ($LOGIN_IS_EDITOR)
       $userlogin .= "            <li><a href=\"${html_path}dynamo/issues.php\">Review Issues</a></li>\n";

@@ -136,25 +136,25 @@ html_end_table()
 // 1. Numbered list
 // " Blockquote
 // SPACE preformatted
-// [[link||text label]]
+// [[link||text label]] or [[link]]
 //
 
 function				// O - Quoted string
 html_format($text,			// I - Original string
-            $abstract = FALSE)		// I - Generate an abstract
+            $abstract = FALSE,		// I - Generate an abstract
+            $baseheading = 1)		// I - Base heading level?
 {
   global $html_path;
 
 
-  if ($text[0] == "<")
-    return ($text);
-
+  $text  = str_replace(array("\r\n", "\r"), array("\n", ""), $text);
   $block = "";
   $col   = 0;
   $html  = "";
   $len   = strlen($text);
   $list  = "";
   $table = FALSE;
+  $sq = $dq = 0;
 
   for ($i = 0; $i < $len; $i ++)
   {
@@ -227,9 +227,30 @@ html_format($text,			// I - Original string
             $html .= "<blockquote>";
             $i ++;
           }
+          else if ($block == "pre")
+            $html .= "&quot;";
           else
           {
-            $html .= "&quot;";
+            $dq = 1 - $dq;
+            if ($dq)
+              $html .= "&ldquo;";
+            else
+              $html .= "&rdquo;";
+          }
+
+          $col ++;
+          break;
+
+      case "'" : /* 'single quotes' */
+          if ($block == "pre")
+            $html .= "'";
+          else
+          {
+            $sq = 1 - $sq;
+            if ($sq)
+              $html .= "&lsquo;";
+            else
+              $html .= "&rsquo;";
           }
 
           $col ++;
@@ -327,7 +348,7 @@ html_format($text,			// I - Original string
 	    if ($abstract && $i > 100)
 	      return ($html . "&hellip;\n");
 
-            $block = sprintf("h%d", strlen($matches[1]));
+            $block = sprintf("h%d", $baseheading + strlen($matches[1]) - 3);
             $html .= "<$block>";
             $i += strlen($matches[1]) - 1;
           }
@@ -340,20 +361,24 @@ html_format($text,			// I - Original string
           break;
 
       case "\n" :
-          if ($block == "pre" && ($i + 1) < $len && $text[$i] != " ")
+          if ($block == "pre" && ($i + 1) < $len && $text[$i + 1] != " ")
           {
-            $html .= "</pre>";
+            $html .= "</pre>\n";
             $block = "";
           }
+          else if (($i + 1) < $len && $text[$i + 1] == "\n")
+          {
+            $html .= "</$block>\n";
+            $block = "p";
+            $html .= "<p>";
+          }
+          else
+            $html .= "\n";
 
-          $html .= "\n";
           $col = 0;
 
 	  if ($abstract && $i > 100)
 	    return ($html . "</$block>\n&hellip;\n");
-	  break;
-
-      case "\r" :
 	  break;
 
       case "\t" :
@@ -366,10 +391,13 @@ html_format($text,			// I - Original string
       case '[' : // [[link|text]]
           if (preg_match("/^\\[\\[([^|]+)\\|([^\\]]+)\\]\\]/", substr($text, $i, 1024), $matches))
           {
-            $link  = htmlspecialchars($matches[1], ENT_QUOTES);
+            if (!validate_url($matches[1]))
+              $link = $html_path . htmlspecialchars($matches[1], ENT_QUOTES);
+            else
+              $link = htmlspecialchars($matches[1], ENT_QUOTES);
             $ltext = htmlspecialchars($matches[2], ENT_QUOTES);
             if (preg_match("/^(http:|https:|ftp:)/", $matches[1]) &&
-                strpos($matches[1], "//msweet\\.org/") === FALSE)
+                strpos($matches[1], "//pwg\\.org/") === FALSE)
               $target = " target=\"_blank\"";
             else
               $target = "";
@@ -379,12 +407,15 @@ html_format($text,			// I - Original string
           }
           else if (preg_match("/^\\[\\[([^\\]]+)\\]\\]/", substr($text, $i, 1024), $matches))
           {
-            $link  = htmlspecialchars($matches[1], ENT_QUOTES);
+            if (!validate_url($matches[1]))
+              $link = $html_path . htmlspecialchars($matches[1], ENT_QUOTES);
+            else
+              $link = htmlspecialchars($matches[1], ENT_QUOTES);
             $ltext = str_replace(array("/", "&amp;"),
 				 array("/<wbr>", "&amp;<wbr>"),
 				 htmlspecialchars($matches[1], ENT_QUOTES));
             if (preg_match("/^(http:|https:|ftp:)/", $matches[1]) &&
-                strpos($matches[1], "//msweet\\.org/") === FALSE)
+                strpos($matches[1], "//pwg\\.org/") === FALSE)
               $target = " target=\"_blank\"";
             else
               $target = "";
@@ -394,9 +425,11 @@ html_format($text,			// I - Original string
           }
           else
             $html .= "[";
+
+	  $col ++;
           break;
 
-      case 'B' :
+      case 'I' :
           if ($col == 0)
           {
 	    if ($block != "")
@@ -412,18 +445,17 @@ html_format($text,			// I - Original string
             $html .= "<p>";
           }
 
-	  if (preg_match("/^Bug #([0-9]+)/",
+	  if (preg_match("/^Issue #([0-9]+)/",
 			 substr($text, $i, 10), $matches))
 	  {
-	    $html .= "<a href=\"$html_path/bugs.php?U$matches[1]\">Bug "
-	             ."#$matches[1]</a>";
+	    $html .= "<a href=\"$html_path/dynamo/issues.php?U$matches[1]\">Issue #$matches[1]</a>";
             $i   += 4 + strlen($matches[1]);
 	    $col += 5 + strlen($matches[1]);
 	    break;
 	  }
 	  else
 	  {
-	    $html .= "B";
+	    $html .= "I";
 	    $col ++;
 	  }
 	  break;
@@ -554,7 +586,7 @@ html_paginate($current, $count, $perpage, $linkprefix, $linksuffix)
   if ($nextindex >= $count && $startpage > 0)
     $startpage --;
 
-  print("<div class=\"pagination\"><ul>");
+  print("<ul class=\"pagination\">");
 
   if ($previndex >= 0)
     print("<li><a href=\"$linkprefix$previndex$linksuffix\">&laquo;</a></li>");
@@ -585,7 +617,7 @@ html_paginate($current, $count, $perpage, $linkprefix, $linksuffix)
   if ($nextindex < $count)
     print("<li><a href=\"$linkprefix$nextindex$linksuffix\">&raquo;</a></li>");
 
-  print("</ul></div>\n");
+  print("</ul>\n");
 }
 
 
@@ -898,7 +930,7 @@ function
 html_show_error($message,		// I - Error message
 		$dismiss = FALSE)	// I - Dismissable?
 {
-  print("<div class=\"alert alert-error\">");
+  print("<div class=\"alert alert-danger\">");
   if ($dismiss)
     print("<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n");
   print("$message</div>\n");
@@ -963,7 +995,7 @@ html_form_button($name, $label)
     $label  = htmlspecialchars($label);
   }
 
-  print("<button type=\"submit\" class=\"$bclass\" name=\"$name\">$label</button>");
+  print("<button type=\"submit\" class=\"$bclass\" name=\"$name\">$label</button>\n");
 }
 
 
@@ -1079,7 +1111,7 @@ html_form_field_start($name,		// I - Field (form) name
 
   $hclass = "form-group";
   if (!$valid && $REQUEST_METHOD != "GET")
-    $hclass .= " error";
+    $hclass .= " has-error";
   if ($desktop)
     $hclass .= " visible-desktop";
 
@@ -1159,9 +1191,9 @@ html_form_checkbox($name,	// I - Field name
 
   print("<div class=\"checkbox\">");
   if ($label != "")
-    print("<label><input type=\"checkbox\" name=\"$name\"$value$required> $label</label>");
+    print("<label><input class=\"form-control\" type=\"checkbox\" name=\"$name\"$value$required> $label</label>");
   else
-    print("<input type=\"checkbox\" name=\"$name\"$value$required>");
+    print("<input class=\"form-control\" type=\"checkbox\" name=\"$name\"$value$required>");
 
   if ($help != "")
   {
@@ -1204,7 +1236,7 @@ html_form_email($name,			// I - Field name
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
   $value       = htmlspecialchars($value, ENT_QUOTES);
 
-  print("<input type=\"email\" name=\"$name\" size=\"$email_width\" "
+  print("<input class=\"form-control\" type=\"email\" name=\"$name\" size=\"$email_width\" "
        ."placeholder=\"$placeholder\" maxlength=\"255\"$required "
        ."value=\"$value\">");
 
@@ -1238,7 +1270,7 @@ html_form_file($name,			// I - Field name
   $name        = htmlspecialchars($name, ENT_QUOTES);
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
 
-  print("<input type=\"file\" name=\"$name\" placeholder=\"$placeholder\""
+  print("<input class=\"form-control\" type=\"file\" name=\"$name\" placeholder=\"$placeholder\""
        ."$required>");
 
   if ($help != "")
@@ -1293,7 +1325,7 @@ html_form_number($name,		// I - Field name
 
   $max = (int)pow(10, $digits) - 1;
 
-  print("<input type=\"number\" name=\"$name\" size=\"$digits\" "
+  print("<input class=\"form-control\" type=\"number\" name=\"$name\" size=\"$digits\" "
        ."placeholder=\"$placeholder\" min=\"0\" max=\"$max\" "
        ."value=\"$value\"$required>");
 
@@ -1333,7 +1365,7 @@ html_form_password($name,		// I - Field name
   $name        = htmlspecialchars($name, ENT_QUOTES);
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
 
-  print("<input type=\"password\" name=\"$name\" size=\"20\" "
+  print("<input class=\"form-control\" type=\"password\" name=\"$name\" size=\"20\" "
        ."placeholder=\"$placeholder\" maxlength=\"255\""
        ."$autocomplete$required>");
 
@@ -1372,7 +1404,7 @@ html_form_search($name,		// I - Field name
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
   $value       = htmlspecialchars($value, ENT_QUOTES);
 
-  print("<input type=\"search\" name=\"$name\" size=\"$html_search_width\" "
+  print("<input class=\"form-control\" type=\"search\" name=\"$name\" size=\"$html_search_width\" "
        ."placeholder=\"$placeholder\" autosave=\"org.msweet.search\" "
        ."results=\"20\" value=\"$value\"$required>");
 
@@ -1516,11 +1548,11 @@ html_form_text($name,			// I - Field name
     $pattern = " pattern=\"" . htmlspecialchars($pattern, ENT_QUOTES) . "\"";
 
   if ($rows <= 1)
-    print("<input type=\"text\" name=\"$name\" size=\"$width\" "
+    print("<input class=\"form-control\" type=\"text\" name=\"$name\" size=\"$width\" "
          ."placeholder=\"$placeholder\" maxlength=\"255\"$required$pattern "
          ."value=\"$value\">");
   else
-    print("<textarea name=\"$name\" cols=\"$width\" rows=\"$rows\" "
+    print("<textarea class=\"form-control\" name=\"$name\" cols=\"$width\" rows=\"$rows\" "
          ."wrap=\"virtual\" placeholder=\"$placeholder\""
          ."$required$pattern>$value</textarea>");
 
@@ -1564,7 +1596,7 @@ html_form_url($name,			// I - Field name
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
   $value       = htmlspecialchars($value, ENT_QUOTES);
 
-  print("<input type=\"url\" name=\"$name\" size=\"$url_width\" "
+  print("<input class=\"form-control\" type=\"url\" name=\"$name\" size=\"$url_width\" "
        ."placeholder=\"$placeholder\" maxlength=\"255\"$required "
        ."value=\"$value\">");
 

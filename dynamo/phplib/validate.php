@@ -76,8 +76,7 @@ $URL_REQUIREMENTS = "URLs must be valid absolute http:, https:, or ftp: URIs "
 function				// O - TRUE if OK, FALSE otherwise
 validate_url($url)			// I - URL string
 {
-  return (preg_match("/^(http:|https:|ftp:)\\/\\/[-_.%@:;a-zA-Z0-9]+\\//",
-                     $url));
+  return (preg_match("/^(http:|https:|ftp:)\\/\\/[-_.%@:;a-zA-Z0-9]+(\\/.*|)\$/", $url));
 }
 
 

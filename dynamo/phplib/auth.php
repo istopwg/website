@@ -17,6 +17,7 @@ $LOGIN_ID           = 0;
 $LOGIN_IS_ADMIN     = 0;
 $LOGIN_IS_EDITOR    = 0;
 $LOGIN_IS_MEMBER    = 0;
+$LOGIN_IS_OFFICER   = 0;
 $LOGIN_IS_REVIEWER  = 0;
 $LOGIN_IS_SUBMITTER = 0;
 $LOGIN_NAME         = "";
@@ -34,7 +35,7 @@ function				// O - Current user ID or ""
 auth_current()
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
-         $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
          $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
@@ -82,6 +83,12 @@ auth_current()
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
       $LOGIN_TIMEZONE     = $row["timezone"];
 
+      $result = db_query("SELECT id FROM workgroup WHERE chair_id = $LOGIN_ID OR vicechair_id = $LOGIN_ID OR secretary_id = $LOGIN_ID");
+      if (db_count($result) > 0)
+        $LOGIN_IS_OFFICER = 1;
+      else
+        $LOGIN_IS_OFFICER = 0;
+
       // Return the current user...
       return ($cookie[0]);
     }
@@ -116,7 +123,7 @@ auth_login($email,			// I - Email
            $remember = FALSE)		// I - Remember after browser quit?
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
-         $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
          $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
@@ -126,6 +133,7 @@ auth_login($email,			// I - Email
   $LOGIN_IS_ADMIN     = 0;
   $LOGIN_IS_EDITOR    = 0;
   $LOGIN_IS_MEMBER    = 0;
+  $LOGIN_IS_OFFICER   = 0;
   $LOGIN_IS_REVIEWER  = 0;
   $LOGIN_IS_SUBMITTER = 0;
   $LOGIN_NAME         = "";
@@ -156,6 +164,12 @@ auth_login($email,			// I - Email
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
       $LOGIN_TIMEZONE     = $row["timezone"];
 
+      $result = db_query("SELECT id FROM workgroup WHERE chair_id = $LOGIN_ID OR vicechair_id = $LOGIN_ID OR secretary_id = $LOGIN_ID");
+      if (db_count($result) > 0)
+        $LOGIN_IS_OFFICER = 1;
+      else
+        $LOGIN_IS_OFFICER = 0;
+
       // Compute the session ID...
       $date = time();
       $sid  = "$LOGIN_ID:$date:" .
@@ -179,7 +193,7 @@ function
 auth_logout()
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
-         $LOGIN_IS_MEMBER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
          $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE;
 
 
@@ -189,6 +203,7 @@ auth_logout()
   $LOGIN_IS_ADMIN     = 0;
   $LOGIN_IS_EDITOR    = 0;
   $LOGIN_IS_MEMBER    = 0;
+  $LOGIN_IS_OFFICER   = 0;
   $LOGIN_IS_REVIEWER  = 0;
   $LOGIN_IS_SUBMITTER = 0;
   $LOGIN_NAME         = "";

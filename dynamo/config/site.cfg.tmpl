@@ -1,8 +1,10 @@
 <?php
 //
-// "$Id$"
+// Site configuration file for pwg.org...
 //
-// Site configuration...
+// Copy this file to "site.cfg" and update as needed.  NEVER add the "site.cfg"
+// file to the Git repository, as this configuration file needs to be local to
+// the system.
 //
 
 // Site defaults...
@@ -12,7 +14,7 @@ $SITE_NAME     = "PWG.org";
 $SITE_REGISTER = "registration@pwg.org";
 $SITE_SECRET   = "";		// Additional random string for SID - run "openssl rand -hex 32"
 $SITE_TIMEZONE = "America/New_York";
-$SITE_URL      = "http://$SITE_HOSTNAME/";
+$SITE_URL      = "http://$SITE_HOSTNAME/pwg.org";
 
 // Some static database access info.
 $DB_ADMIN    = "$SITE_EMAIL";
