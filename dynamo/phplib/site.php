@@ -142,7 +142,18 @@ site_header($title = "",		// I - Additional document title
 		 ."        </li>";
   }
   else
-    $userlogin = "<li><a href=\"$html_login_url\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
+  {
+    // Show login/logout link which redirects back to the current page...
+    $url    = urlencode($PHP_SELF);
+    $prefix = "?";
+    for ($i = 0; $i < $argc; $i ++)
+    {
+      $url    .= $prefix . urlencode($argv[$i]);
+      $prefix = "+";
+    }
+
+    $userlogin = "<li><a href=\"$html_login_url?PAGE=$url\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
+  }
 
   print("<title>$html_title Printer Working Group</title>\n"
        ."<link rel=\"stylesheet\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
@@ -220,7 +231,7 @@ site_header($title = "",		// I - Additional document title
 //
 
 function
-site_footer()
+site_footer($javascript = "")
 {
   global $html_path, $SITE_EMAIL;
 
@@ -242,8 +253,10 @@ site_footer()
        ."<script type=\"text/javascript\" "
        ."src=\"//www.google.com/jsapi\"></script>\n"
        ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
-       ."</script>\n"
-       ."</body>\n"
+       ."</script>\n");
+  if ($javascript != "")
+    print("<script>$javascript</script>\n");
+  print("</body>\n"
        ."</html>\n");
 }
 

@@ -348,7 +348,7 @@ html_format($text,			// I - Original string
 	    if ($abstract && $i > 100)
 	      return ($html . "&hellip;\n");
 
-            $block = sprintf("h%d", $baseheading + strlen($matches[1]) - 3);
+            $block = sprintf("h%d", $baseheading + strlen($matches[1]) - 2);
             $html .= "<$block>";
             $i += strlen($matches[1]) - 1;
           }

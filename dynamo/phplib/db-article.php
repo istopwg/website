@@ -18,6 +18,7 @@ class article
   var $title, $title_valid;
   var $contents, $contents_valid;
   var $url, $url_valid;
+  var $display_until, $display_until_valid;
   var $create_date;
   var $create_id;
   var $modify_date;
@@ -47,15 +48,16 @@ class article
   {
     global $LOGIN_ID;
 
-    $this->id           = 0;
-    $this->workgroup_id = 0;
-    $this->title        = "";
-    $this->contents     = "";
-    $this->url          = "";
-    $this->create_date  = "";
-    $this->create_id    = $LOGIN_ID;
-    $this->modify_date  = "";
-    $this->modify_id    = $LOGIN_ID;
+    $this->id            = 0;
+    $this->workgroup_id  = 0;
+    $this->title         = "";
+    $this->contents      = "";
+    $this->url           = "";
+    $this->display_until = "";
+    $this->create_date   = "";
+    $this->create_id     = $LOGIN_ID;
+    $this->modify_date   = "";
+    $this->modify_id     = $LOGIN_ID;
   }
 
 
@@ -87,6 +89,10 @@ class article
       $action = "Save Changes";
 
     html_form_start("$PHP_SELF?U$this->id$options");
+
+    html_form_field_start("display_until", "Display Until", $this->display_until_valid);
+    html_form_text("display_until", "YYYY-MM-DD", $this->display_until);
+    html_form_field_end();
 
     html_form_field_start("title", "Title", $this->title_valid);
     html_form_text("title", "The title/summary of the article.", $this->title);
@@ -132,15 +138,16 @@ class article
       return (FALSE);
 
     $row = db_next($result);
-    $this->id           = $row["id"];
-    $this->workgroup_id = $row["workgroup_id"];
-    $this->title        = $row["title"];
-    $this->contents     = $row["contents"];
-    $this->url          = $row["url"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
+    $this->id            = $row["id"];
+    $this->workgroup_id  = $row["workgroup_id"];
+    $this->title         = $row["title"];
+    $this->contents      = $row["contents"];
+    $this->url           = $row["url"];
+    $this->display_until = $row["display_until"];
+    $this->create_date   = $row["create_date"];
+    $this->create_id     = $row["create_id"];
+    $this->modify_date   = $row["modify_date"];
+    $this->modify_id     = $row["modify_id"];
 
     db_free($result);
 
@@ -170,6 +177,9 @@ class article
     if (array_key_exists("url", $_POST))
       $this->url = trim($_POST["url"]);
 
+    if (array_key_exists("display_until", $_POST))
+      $this->display_until = trim($_POST["display_until"]);
+
     if (array_key_exists("workgroup_id", $_POST))
       $this->workgroup_id = (int)$_POST["workgroup_id"];
 
@@ -197,6 +207,7 @@ class article
                       .", title = '" . db_escape($this->title) . "'"
                       .", contents = '" . db_escape($this->contents) . "'"
                       .", url = '" . db_escape($this->url) . "'"
+                      .", display_until = '" . db_escape($this->display_until) . "'"
                       .", modify_date = '" . db_escape($this->modify_date) . "'"
                       .", modify_id = $this->modify_id"
                       ." WHERE id = $this->id") !== FALSE);
@@ -212,6 +223,7 @@ class article
                   .", '" . db_escape($this->title) . "'"
                   .", '" . db_escape($this->contents) . "'"
                   .", '" . db_escape($this->url) . "'"
+                  .", '" . db_escape($this->display_until) . "'"
                   .", '" . db_escape($this->create_date) . "'"
                   .", $this->create_id"
                   .", '" . db_escape($this->modify_date) . "'"
@@ -258,6 +270,14 @@ class article
     if (!$this->url_valid)
       $valid = FALSE;
 
+    if ($this->display_until != "" && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])\$/", $this->display_until))
+    {
+      $this->display_until_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->display_until_valid = TRUE;
+
     return ($valid);
   }
 
@@ -266,7 +286,7 @@ class article
   //
 
   function
-  view($options = "", $level = 2, $links = TRUE)
+  view($options = "", $level = 2, $links = TRUE, $btnclass = "btn-xs")
   {
     global $html_path, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_OFFICER;
 
@@ -275,23 +295,26 @@ class article
     $contents = html_format($this->contents, FALSE, $level + 1);
     $date     = html_date($this->modify_date);
 
+    if ($this->display_until != "" && $this->display_until < date("Y-m-d"))
+      $title .= " (concluded)";
+
     if (validate_url($this->url))
       $url = htmlspecialchars($this->url, ENT_QUOTES);
     else
       $url = $html_path . htmlspecialchars($this->url, ENT_QUOTES);
 
-    print("<h2>$title <small>$date</small></h2>\n"
+    print("<h$level>$title <small>$date</small></h$level>\n"
 	 ."$contents\n");
     if ($url != "" || ($links && ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID)))
     {
       print("<p>");
       if ($links && ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID))
       {
-	print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/articles.php?U$this->id$options\">Edit</a>\n");
-	print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/articles.php?D$this->id$options\">Delete</a>\n");
+	print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/articles.php?U$this->id$options\">Edit</a>\n");
+	print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/articles.php?D$this->id$options\">Delete</a>\n");
       }
       if ($url != "")
-	print("<a class=\"btn btn-default btn-xs\" href=\"$url\">View</a>\n");
+	print("<a class=\"btn btn-primary $btnclass\" href=\"$url\">View</a>\n");
       print("</p>\n");
     }
   }

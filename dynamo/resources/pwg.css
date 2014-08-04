@@ -13,7 +13,30 @@ h1, h2, h3, h4, h5, h6, p, td, th {
   font-family: lucida grande, geneva, helvetica, arial, sans-serif;
 }
 
-h1 {
+.jumbotron {
+  border-radius: 8px;
+  padding: 20px;
+  padding-bottom: 20px;
+  padding-top: 1px;
+}
+
+.jumbotron, #pwg-rolling, #pwg-rolling .carousel-inner {
+  height: 300px;
+}
+
+#pwg-rolling ol.carousel-indicators {
+  bottom: 10px;
+}
+
+#pwg-rolling ol.carousel-indicators li {
+  border-color: #909078;
+}
+
+#pwg-rolling ol.carousel-indicators li.active {
+  background: #d0d0c8;
+}
+
+h1, .jumbotron h1 {
   font-size: 200%;
   font-weight: bold;
 }
