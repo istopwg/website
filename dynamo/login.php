@@ -21,8 +21,10 @@ else if (array_key_exists("PAGE", $_POST))
 else
   $page = "${html_path}index.html";
 
-if (!preg_match("/^(\\/dynamo\\/[a-z]+|dynamo\\/[a-z]+)\\.php(|\\?.*)\$/", $page) && !preg_match("/\\.html\$/", $page))
+if (!preg_match("/\\/dynamo\\/[a-z]+\\.php(|\\?.*)\$/", $page) && !preg_match("/\\.html\$/", $page))
   $page = "{$html_path}index.html";
+
+print("<p>PAGE=\"$page\"</p>\n");
 
 if (html_form_validate())
 {

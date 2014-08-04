@@ -244,6 +244,19 @@ class issue
     html_form_text("title", "Short description of issue.", $this->title);
     html_form_field_end();
 
+    if ($this->id == 0)
+    {
+      // contents
+      if (array_key_exists("contents", $_POST))
+	$contents = trim($_POST["contents"]);
+      else
+	$contents = "";
+
+      html_form_field_start("comments", "Description", $this->contents_valid);
+      html_form_text("contents", "Detailed description of issue.", $contents, "", 12);
+      html_form_field_end();
+    }
+
     // assigned_id
     html_form_field_start("assigned_id", "Assigned To");
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
@@ -258,9 +271,10 @@ class issue
     html_form_buttons(array("SUBMIT" => "+$action"));
 
     // Attachements and discussion...
-    print("<h2>Discussion</h2>\n");
     if ($this->id > 0)
     {
+      print("<h2>Discussion</h2>\n");
+
       $matches = comment_search("issue_$this->id");
       foreach ($matches as $id)
       {
@@ -272,27 +286,27 @@ class issue
 	print("<h3><a name=\"C$id\">$name <small>$date</small></a></h3>\n"
 	     ."<p>$contents</p>\n");
       }
-    }
 
-    if ($LOGIN_ID != 0)
-    {
-      if (array_key_exists("contents", $_POST))
-	$contents = trim($_POST["contents"]);
+      if ($LOGIN_ID != 0)
+      {
+	if (array_key_exists("contents", $_POST))
+	  $contents = trim($_POST["contents"]);
+	else
+	  $contents = "";
+
+	print("<h3><a name=\"POST\">$LOGIN_NAME <small>Today</small></a></h3>\n"
+	     ."<p>");
+
+	html_form_text("contents", "Comment text.", $contents, "", 12);
+	print("<br>\n");
+	html_form_button("SUBMIT", "Post Comment");
+	print("</p>\n");
+	html_form_end();
+      }
       else
-	$contents = "";
-
-      print("<h3><a name=\"POST\">$LOGIN_NAME <small>Today</small></a></h3>\n"
-	   ."<p>");
-
-      html_form_text("contents", "Comment text.", $contents, "", 12);
-      print("<br>\n");
-      html_form_button("SUBMIT", "Post Comment");
-      print("</p>\n");
-      html_form_end();
+	print("<p><a class=\"btn btn-default\" href=\"$html_login_url\">Login to Post Comment</a></p>\n"
+	     ."</div>\n");
     }
-    else
-      print("<p><a class=\"btn btn-default\" href=\"$html_login_url\">Login to Post Comment</a></p>\n"
-           ."</div>\n");
   }
 
 

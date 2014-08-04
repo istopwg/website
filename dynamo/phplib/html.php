@@ -986,8 +986,16 @@ html_form_button($name, $label)
   }
   else if ($label[0] == "-")
   {
-    $bclass = "btn btn-default btn-sm";
-    $label  = htmlspecialchars(substr($label, 1));
+    if ($label[1] == "-")
+    {
+      $bclass = "btn btn-default btn-xs";
+      $label  = htmlspecialchars(substr($label, 2));
+    }
+    else
+    {
+      $bclass = "btn btn-default btn-sm";
+      $label  = htmlspecialchars(substr($label, 1));
+    }
   }
   else
   {

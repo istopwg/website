@@ -182,10 +182,10 @@ switch ($op)
       site_header("Issues");
 
       if ($LOGIN_ID != 0)
-        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
+        print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
       else
-	print("<p><a class=\"btn btn-default btn-xs\" href=\"$html_login_url?PAGE=" .
-	      urlencode("issues.php?U$options") . "\">Login to Create Issue</a></p>\n");
+	print("<p><a class=\"btn btn-primary\" href=\"$html_login_url?PAGE=" .
+	      urlencode("$PHP_SELF?U$options") . "\">Login to Create Issue</a></p>\n");
 
       html_form_start("$PHP_SELF?L$options");
       print("<p align=\"center\">");
@@ -298,7 +298,7 @@ switch ($op)
 
       if ($LOGIN_IS_ADMIN)
       {
-	print("<div class=\"form-actions\">");
+	print("<p align=\"center\">");
         html_form_select("status",
                          array(ISSUE_STATUS_PENDING => "Status: Pending",
                                ISSUE_STATUS_ACTIVE => "Status: Active",
@@ -313,8 +313,8 @@ switch ($op)
                                ISSUE_PRIORITY_RFE => "Priority: Enhancement"),
                          "Priority: No Change", 0);
 	user_select("assigned_id", 0, USER_SELECT_MEMBER | USER_SELECT_EDITOR, "No Change", "Assigned To: ");
-        html_form_end(array("SUBMIT" => "-Modify Selected Issues"));
-        print("</div>");
+        html_form_end(array("SUBMIT" => "--Modify Selected Issues"));
+        print("</p>");
       }
 
       html_paginate($index, $count, $LOGIN_PAGEMAX,
@@ -348,7 +348,7 @@ switch ($op)
       {
         site_header($action);
 
-	print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+	print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	html_show_error("Issue #$id was not found.");
 
@@ -376,7 +376,7 @@ switch ($op)
 	{
 	  site_header($title);
 
-	  print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+	  print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	  html_show_error("Unable to save issue.");
 
@@ -391,7 +391,7 @@ switch ($op)
 	  {
 	    site_header($title);
 
-	    print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+	    print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	    html_show_error("Unable to save comment to issue.");
 
@@ -413,7 +413,7 @@ switch ($op)
       {
         site_header($title);
 
-	print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+	print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	if ($REQUEST_METHOD == "POST")
 	  html_show_error("Please correct the highlighted fields.");
