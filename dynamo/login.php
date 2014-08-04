@@ -24,8 +24,6 @@ else
 if (!preg_match("/\\/dynamo\\/[a-z]+\\.php(|\\?.*)\$/", $page) && !preg_match("/\\.html\$/", $page))
   $page = "{$html_path}index.html";
 
-print("<p>PAGE=\"$page\"</p>\n");
-
 if (html_form_validate())
 {
   if (array_key_exists("email", $_POST))
