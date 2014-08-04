@@ -62,6 +62,7 @@ class workgroup
     $this->name         = "";
     $this->dirname      = "";
     $this->list         = "";
+    $this->contents     = "";
     $this->chair_id     = 0;
     $this->vicechair_id = 0;
     $this->secretary_id = 0;
@@ -155,6 +156,7 @@ class workgroup
     $this->name         = $row["name"];
     $this->dirname      = $row["dirname"];
     $this->list         = $row["list"];
+    $this->contents     = $row["contents"];
     $this->chair_id     = $row["chair_id"];
     $this->vicechair_id = $row["vicechair_id"];
     $this->secretary_id = $row["secretary_id"];
@@ -194,6 +196,19 @@ class workgroup
     if (array_key_exists("list", $_POST))
       $this->list = trim($_POST["list"]);
 
+    html_form_field_start("contents", "Description", $this->contents_valid);
+    html_form_text("contents", "A short description of the workgroup's activities.", $this->contents,
+                   "Formatting/markup rules:\n\n"
+                  ."! Header\n"
+                  ."!! Sub-header\n"
+                  ."- Unordered list\n"
+                  ."* Unordered list\n"
+                  ."1. Numbered list\n"
+                  ."\" Blockquote\n"
+                  ."SPACE preformatted text\n"
+                  ."[[link||text label]]\n", 10);
+    html_form_field_end();
+
     if (array_key_exists("chair_id", $_POST))
       $this->chair_id = (int)$_POST["chair_id"];
 
@@ -227,6 +242,7 @@ class workgroup
                       .", name = '" . db_escape($this->name) . "'"
                       .", dirname = '" . db_escape($this->dirname) . "'"
                       .", list = '" . db_escape($this->list) . "'"
+                      .", contents = '" . db_escape($this->contents) . "'"
                       .", chair_id = $this->chair_id"
                       .", vicechair_id = $this->vicechair_id"
                       .", secretary_id = $this->secretary_id"
@@ -245,6 +261,7 @@ class workgroup
                   .", '" . db_escape($this->name) . "'"
                   .", '" . db_escape($this->dirname) . "'"
                   .", '" . db_escape($this->list) . "'"
+                  .", '" . db_escape($this->contents) . "'"
                   .", $this->chair_id"
                   .", $this->vicechair_id"
                   .", $this->secretary_id"

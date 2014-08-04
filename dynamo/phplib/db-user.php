@@ -759,26 +759,26 @@ user_select(
     print("<option value=\"0\">$prefix$any_id</option>");
 
   $where  = "WHERE";
-  $prefix = " (";
+  $qprefix = " (";
   if ($which & USER_SELECT_ADMIN)
   {
-    $where  .= "$prefix is_admin = 1";
-    $prefix = " OR";
+    $where  .= "$qprefix is_admin = 1";
+    $qprefix = " OR";
   }
   if ($which & USER_SELECT_EDITOR)
   {
-    $where  .= "$prefix is_editor = 1";
-    $prefix = " OR";
+    $where  .= "$qprefix is_editor = 1";
+    $qprefix = " OR";
   }
   if ($which & USER_SELECT_MEMBER)
   {
-    $where  .= "$prefix is_member = 1";
-    $prefix = " OR";
+    $where  .= "$qprefix is_member = 1";
+    $qprefix = " OR";
   }
   if ($which & USER_SELECT_REVIEWER)
   {
-    $where  .= "$prefix is_reviewer = 1";
-    $prefix = " OR";
+    $where  .= "$qprefix is_reviewer = 1";
+    $qprefix = " OR";
   }
   if ($where != "WHERE")
     $where .= ") AND";

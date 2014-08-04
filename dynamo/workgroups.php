@@ -2,14 +2,14 @@
 //
 // "$Id$"
 //
-// Organization management page...
+// Workgroup management page...
 //
 
 //
 // Include necessary headers...
 //
 
-include_once "phplib/db-organization.php";
+include_once "phplib/db-workgroup.php";
 
 
 if ($LOGIN_ID == 0)
@@ -26,25 +26,25 @@ if (!$LOGIN_IS_ADMIN)
 
 
 //
-// 'organizations_header()' - Show standard organization page header...
+// 'workgroups_header()' - Show standard workgroup page header...
 //
 
 function
-organizations_header($title, $id = 0)
+workgroups_header($title, $id = 0)
 {
   if ($id)
-    site_header($title, organization_name($id));
+    site_header($title, workgroup_name($id));
   else
     site_header($title);
 }
 
 
 //
-// 'organizations_footer()' - Show standard account page footer...
+// 'workgroups_footer()' - Show standard account page footer...
 //
 
 function
-organizations_footer()
+workgroups_footer()
 {
   site_footer();
 }
@@ -52,18 +52,17 @@ organizations_footer()
 
 // Get command-line options...
 //
-// Usage: organizations.php [operation] [options]
+// Usage: workgroups.php [operation] [options]
 //
 // Operations:
 //
-// B         = Batch update selected organizations
+// B         = Batch update selected workgroups
 // L         = List
-// U#        = Modify organization #
-// X         = Purge disabled organizations
+// U#        = Modify workgroup #
 //
 // Options:
 //
-// I#        = Set first organization
+// I#        = Set first workgroup
 // Qtext     = Set search text
 
 $search = "";
@@ -74,23 +73,23 @@ if ($argc)
   $op = $argv[0][0];
   $id = (int)substr($argv[0], 1);
 
-  if ($op != 'B' && $op != 'L' && $op != 'U' && $op != 'X')
+  if ($op != 'B' && $op != 'L' && $op != 'U')
   {
-    site_header("Manage Organizations");
+    site_header("Manage Workgroups");
     print("<p>Bad command '$op'.</p>\n");
-    organizations_footer();
+    workgroups_footer();
     exit();
   }
 
   if ($op == 'U' && $id)
   {
-    $organization = new organization($id);
+    $workgroup = new workgroup($id);
 
-    if ($organization->id != $id)
+    if ($workgroup->id != $id)
     {
-      site_header("Manage Organizations");
-      print("<p>Organization #$id does not exist.</p>\n");
-      organizations_footer();
+      site_header("Manage Workgroups");
+      print("<p>Workgroup #$id does not exist.</p>\n");
+      workgroups_footer();
       exit();
     }
   }
@@ -101,7 +100,7 @@ if ($argc)
 
     switch ($argv[$i][0])
     {
-      case 'I' : // Set first organization
+      case 'I' : // Set first workgroup
           $index = (int)$option;
 	  if ($index < 0)
 	    $index = 0;
@@ -116,9 +115,9 @@ if ($argc)
 	  }
 	  break;
       default :
-	  site_header("Manage Organizations");
+	  site_header("Manage Workgroups");
 	  print("<p>Bad option '$argv[$i]'.</p>\n");
-	  organizations_footer();
+	  workgroups_footer();
 	  exit();
 	  break;
     }
@@ -141,7 +140,7 @@ $options = "+I$index+Q" . urlencode($search);
 switch ($op)
 {
   case 'B' : // Batch update
-      // Batch update status of organizations...
+      // Batch update status of workgroups...
       if (html_form_validate() && array_key_exists("STATUS", $_POST))
       {
 	$status = (int)$_POST["STATUS"];
@@ -153,11 +152,11 @@ switch ($op)
           if (substr($key, 0, 3) == "ID_")
 	  {
 	    $id = (int)substr($key, 3);
-	    $organization = new organization($id);
-	    if ($organization->id == $id)
+	    $workgroup = new workgroup($id);
+	    if ($workgroup->id == $id)
 	    {
-	      $organization->status = $status;
-	      $organization->save();
+	      $workgroup->status = $status;
+	      $workgroup->save();
 	    }
 	  }
 
@@ -168,21 +167,21 @@ switch ($op)
       break;
 
   case 'L' : // View/list
-      // List organizations...
-      organizations_header("Manage Organizations");
+      // List workgroups...
+      workgroups_header("Manage Workgroups");
 
       html_form_start("$PHP_SELF?L", TRUE);
-      html_form_search("search", "Search Organizations", $search);
+      html_form_search("search", "Search Workgroups", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
-      $matches = organization_search($search, "name");
+      $matches = workgroup_search($search, "name");
       $count   = sizeof($matches);
 
       if ($count == 0)
       {
-	print("<p>No organizations found.</p>\n");
+	print("<p>No workgroups found.</p>\n");
 
-	organizations_footer();
+	workgroups_footer();
 	exit();
       }
 
@@ -202,78 +201,77 @@ switch ($op)
       $next = $index + $LOGIN_PAGEMAX;
 
       if ($count == 1)
-	print("<p>1 organization found:</p>\n");
+	print("<p>1 workgroup found:</p>\n");
       else if ($count <= $LOGIN_PAGEMAX)
-	print("<p>$count organizations found:</p>\n");
+	print("<p>$count workgroups found:</p>\n");
       else
-	print("<p>$count organizations found, showing $start to $end:</p>\n");
+	print("<p>$count workgroups found, showing $start to $end:</p>\n");
 
       html_form_start("$PHP_SELF?B$options", TRUE);
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      html_start_table(array("Name", "Domain", "Status"));
+      html_start_table(array("Name", "Home Page", "Status"));
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
-	$organization = new organization($matches[$i]);
+	$workgroup = new workgroup($matches[$i]);
 
-	if ($organization->id != $matches[$i])
+	if ($workgroup->id != $matches[$i])
 	  continue;
 
-	$name   = htmlspecialchars($organization->name, ENT_QUOTES);
-	$domain = htmlspecialchars($organization->domain, ENT_QUOTES);
-	$status = $ORGANIZATION_STATUSES[$organization->status];
+	$name    = htmlspecialchars($workgroup->name, ENT_QUOTES);
+	$dirname = htmlspecialchars($workgroup->dirname, ENT_QUOTES);
+	$status  = $WORKGROUP_STATUSES[$workgroup->status];
 
 	print("<tr><td nowrap>");
-	html_form_checkbox("ID_$organization->id");
-	print("<a href=\"$PHP_SELF?U$organization->id$options\">$name</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$domain</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$organization->id$options\">$status</a></td>"
+	html_form_checkbox("ID_$workgroup->id");
+	print("<a href=\"$PHP_SELF?U$workgroup->id$options\">$name</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$workgroup->id$options\">$SITE_URL/$dirname</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$workgroup->id$options\">$status</a></td>"
 	     ."</tr>\n");
       }
 
       html_end_table();
 
       print("<div class=\"form-group\">");
-      html_form_select("STATUS", $ORGANIZATION_STATUSES, "-- Choose --");
-      html_form_end(array("SUBMIT" => "-Set Status of Checked Organizations"));
+      html_form_select("STATUS", $WORKGROUP_STATUSES, "-- Choose --");
+      html_form_end(array("SUBMIT" => "-Set Status of Checked Workgroups"));
       print("</div>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      organizations_footer();
+      workgroups_footer();
       break;
 
   case 'U' : // Update/create
-      $organization = new organization($id);
+      $workgroup = new workgroup($id);
 
-      if ($organization->id != $id)
+      if ($workgroup->id != $id)
       {
-	site_header("Manage Organizations");
-	print("<p>Organization #$id does not exist.\n");
-	organizations_footer();
+	site_header("Manage Workgroups");
+	print("<p>Workgroup #$id does not exist.\n");
+	workgroups_footer();
 	exit();
       }
 
-      if ($organization->loadform())
+      if ($workgroup->loadform())
       {
-        $organization->save();
+        $workgroup->save();
         header("Location: $PHP_SELF?L$options");
       }
       else
       {
-        organizations_header("Modify Organization", $id);
+        workgroups_header("Modify Workgroup", $id);
 
         print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
-	$organization->form($options);
+	$workgroup->form($options);
 
-        organizations_footer();
+        workgroups_footer();
       }
       break;
 }
-
 ?>

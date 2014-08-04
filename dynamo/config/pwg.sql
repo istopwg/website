@@ -128,6 +128,7 @@ CREATE TABLE workgroup (
   name VARCHAR(255) NOT NULL,		-- Workgroup name
   dirname VARCHAR(255) NOT NULL,	-- Directory name
   list VARCHAR(255) NOT NULL,		-- Mailing list address
+  contents TEXT NOT NULL,		-- Description of workgroup
   chair_id INTEGER,			-- Chair of WG
   vicechair_id INTEGER,			-- Vice/co chair of WG
   secretary_id INTEGER,			-- Secretary of WG
@@ -139,12 +140,12 @@ CREATE TABLE workgroup (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO workgroup VALUES(1, 1, 'Printer Working Group', 'chair', 'chair@pwg.org', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(2, 1, 'Internet Printing Protocol (IPP)', 'ipp', 'ipp@pwg.org', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(3, 1, 'Semantic Model (SM)', 'sm3', 'sm3@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(4, 1, 'Imaging Device Security (IDS)', 'ids', 'ids@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(5, 1, 'Cloud Imaging Model', 'cloud', 'cloud@pwg.org', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(6, 0, 'Workgroup for Imaging Management Solutions (WIMS)', 'wims', 'wims@pwg.org', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(1, 1, 'Printer Working Group', 'chair', 'chair@pwg.org', '', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(2, 1, 'Internet Printing Protocol (IPP)', 'ipp', 'ipp@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(3, 1, 'Semantic Model (SM)', 'sm3', 'sm3@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(4, 1, 'Imaging Device Security (IDS)', 'ids', 'ids@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(5, 1, 'Cloud Imaging Model', 'cloud', 'cloud@pwg.org', '', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(6, 0, 'Workgroup for Imaging Management Solutions (WIMS)', 'wims', 'wims@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
 
 
 --
