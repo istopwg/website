@@ -172,9 +172,10 @@ site_header($title = "",		// I - Additional document title
        ."      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#pwg-nav-collapsible\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n"
        ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg.png\" alt=\"PWG Logo\" "
        ."height=\"78\" width=\"75\"></a>\n"
-       ."    </div>\n"
-       ."    <div id=\"pwg-search-form\">Google Custom Search</div>\n"
-       ."    <div class=\"pwg-navbar-title\">$title<br><small>$subtitle</small></div>\n"
+       ."    </div>\n");
+  if (!$html_is_phone)
+    print("    <div id=\"pwg-search-form\">Google Custom Search</div>\n");
+  print("    <div class=\"pwg-navbar-title\">$title<br><p>$subtitle</p></div>\n"
        ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
        ."      <ul class=\"nav navbar-nav\">\n"
        ."        $userlogin\n"
@@ -220,9 +221,10 @@ site_header($title = "",		// I - Additional document title
        ."    <button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\">Jump To... <span class=\"caret\"></span></button>\n"
        ."    <ul class=\"dropdown-menu\" role=\"menu\" id=\"pwg-toc-menu\">\n"
        ."    </ul>\n"
-       ."  </div>\n"
-       ."  <div id=\"pwg-search-results\"></div>\n"
-       ."  <div id=\"pwg-content\">\n");
+       ."  </div>\n");
+  if (!$html_is_phone)
+    print("  <div id=\"pwg-search-results\"></div>\n");
+  print("  <div id=\"pwg-content\">\n");
 }
 
 
@@ -233,7 +235,7 @@ site_header($title = "",		// I - Additional document title
 function
 site_footer($javascript = "")
 {
-  global $html_path, $SITE_EMAIL;
+  global $html_is_phone, $html_path, $SITE_EMAIL;
 
 
   $year = date("Y");
@@ -249,10 +251,11 @@ site_footer($javascript = "")
        ."with this site.</div>\n"
        ."</div>\n"
        ."<script src=\"${html_path}dynamo/resources/jquery-1.11.1.min.js\"></script>\n"
-       ."<script src=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.js\"></script>\n"
-       ."<script type=\"text/javascript\" "
-       ."src=\"//www.google.com/jsapi\"></script>\n"
-       ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
+       ."<script src=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.js\"></script>\n");
+  if (!$html_is_phone)
+    print("<script type=\"text/javascript\" src=\"//www.google.com/jsapi\"></script>\n"
+         ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-search.js\"></script>\n");
+  print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
        ."</script>\n");
   if ($javascript != "")
     print("<script>$javascript</script>\n");

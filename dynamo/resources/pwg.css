@@ -185,16 +185,17 @@ a:link.btn-primary {
   font-size: 28px;
   font-weight: bold;
   height: 50px;
-  line-height: 22px;
+  line-height: 30px;
   margin-left: 100px;
   margin-top: 30px;
 }
 
-.pwg-navbar-title small {
+.pwg-navbar-title p {
   color: #ccccc0;
   font-size: 14px;
   font-style: italic;
   font-weight: normal;
+  line-height: 14px;
 }
 
 #pwg-search-form {
@@ -358,4 +359,52 @@ a.gsc-trailing-more-results:link {
 #pwg-footer-body a {
   color: #ccccc0;
   text-decoration: underline;
+}
+
+
+/* iPhone/iPod touch overrides */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px),
+       only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .navbar-brand {
+    display: none !important;
+  }
+
+  .pwg-navbar {
+    height: auto;
+  }
+
+  .pwg-navbar-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    height: auto;
+    line-height: 24px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  .jumbotron h1 {
+    font-size: 18px;
+  }
+
+  .jumbotron p {
+    font-size: 12px;
+  }
+}
+
+/* iPad overrides */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+}
+
+/* Print overrides */
+@media print {
+  /* Bootstrap adds URLs after every link, stop doing that... */
+  a[href]:after {
+    content: none !important;
+  }
+
+  /* and don't print any form controls, either */
+  input {
+    display: none;
+  }
 }
