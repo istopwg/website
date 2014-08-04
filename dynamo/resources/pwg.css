@@ -120,6 +120,53 @@ a:link.btn-primary {
   color: #fff;
 }
 
+/* Some old site styles we are keeping around for now... */
+#PWGInfo TD {
+  padding-right: 10px;
+  padding-bottom: 20px;
+}
+
+#PWGInfo H2 {
+  margin: 0 0;
+  padding: 0 0;
+}
+
+#PWGInfo P {
+  margin: 0 0;
+  padding: 5px 0;
+}
+
+TABLE.PWGList {
+  border-bottom: solid thin #909078;
+  border-collapse: collapse;
+  border-top: solid thin #909078;
+  margin: 0px;
+  padding: 0px;
+}
+
+TABLE.PWGList TR:nth-child(even) {
+  background: #f0f0e8;
+}
+
+TABLE.PWGList TR:nth-child(odd) {
+  background: #e0e0d8;
+}
+
+TABLE.PWGList TD {
+  margin: 0px;
+  padding: 5px;
+  vertical-align: top;
+}
+
+P.PWGHanging {
+  text-indent: -2em;
+  margin-left: 2em;
+}
+
+P.PWGList A {
+  white-space: nowrap;
+}
+
 # Collapsible panel support
 .panel, .panelcollapsed {
 }
