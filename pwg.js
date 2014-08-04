@@ -225,7 +225,7 @@ function load_sidebar(path) {
   <li><a href="' + path + 'cloud/index.html"><span class="PWGNoMobile">Cloud Imaging Model</span><span class="PWGMobile">Cloud</span></a></li>\
   <li><a href="' + path + 'ids/index.html"><span class="PWGNoMobile">Imaging Device Security</span><span class="PWGMobile">IDS</span></a></li>\
   <li><a href="' + path + 'ipp/index.html"><span class="PWGNoMobile">Internet Printing Protocol</span><span class="PWGMobile">IPP</span></a></li>\
-  <li><a href="' + path + 'mfd/index.html"><span class="PWGNoMobile">Semantic Model</span><span class="PWGMobile">SM</span></a></li>\
+  <li><a href="' + path + 'sm/index.html"><span class="PWGNoMobile">Semantic Model</span><span class="PWGMobile">SM</span></a></li>\
 </ul>';
 
   if (document.anchors.length > 0)
