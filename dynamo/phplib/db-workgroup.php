@@ -114,6 +114,19 @@ class workgroup
     html_form_email("list", "example@pwg.org", $this->list);
     html_form_field_end();
 
+    html_form_field_start("contents", "Description", $this->contents_valid);
+    html_form_text("contents", "A short description of the workgroup's activities.", $this->contents,
+                   "Formatting/markup rules:\n\n"
+                  ."! Header\n"
+                  ."!! Sub-header\n"
+                  ."- Unordered list\n"
+                  ."* Unordered list\n"
+                  ."1. Numbered list\n"
+                  ."\" Blockquote\n"
+                  ."SPACE preformatted text\n"
+                  ."[[link||text label]]\n", 10);
+    html_form_field_end();
+
     // status
     html_form_field_start("status", "Status");
     html_form_select("status", $WORKGROUP_STATUSES, "", $this->status);
@@ -196,18 +209,8 @@ class workgroup
     if (array_key_exists("list", $_POST))
       $this->list = trim($_POST["list"]);
 
-    html_form_field_start("contents", "Description", $this->contents_valid);
-    html_form_text("contents", "A short description of the workgroup's activities.", $this->contents,
-                   "Formatting/markup rules:\n\n"
-                  ."! Header\n"
-                  ."!! Sub-header\n"
-                  ."- Unordered list\n"
-                  ."* Unordered list\n"
-                  ."1. Numbered list\n"
-                  ."\" Blockquote\n"
-                  ."SPACE preformatted text\n"
-                  ."[[link||text label]]\n", 10);
-    html_form_field_end();
+    if (array_key_exists("contents", $_POST))
+      $this->contents = trim($_POST["contents"]);
 
     if (array_key_exists("chair_id", $_POST))
       $this->chair_id = (int)$_POST["chair_id"];
