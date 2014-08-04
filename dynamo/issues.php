@@ -16,9 +16,9 @@ include_once "phplib/db-issue.php";
 // Operations:
 //
 // B         = Batch update selected Issues
-// L         = List all bugs
-// U         = Post new bug
-// U#        = Modify/view bug #
+// L         = List all issues
+// U         = Post new issue
+// U#        = Modify/view issue #
 //
 // Options:
 //
@@ -28,7 +28,7 @@ include_once "phplib/db-issue.php";
 // E#        = Set user filter
 // M#        = Set maximum Issues per page
 // Qtext     = Set search text
-// Z#        = Set project ID
+// Z#        = Set document ID
 
 $femail     = 0;
 $index      = 0;
@@ -43,17 +43,17 @@ if ($argc)
 
   if ($op != 'B' && $op != 'L' && $op != 'U')
   {
-    issue_header("Issues Error");
+    site_header("Issues Error");
     print("<p>Bad command '$op'.</p>\n");
-    issue_footer();
+    site_footer();
     exit();
   }
 
   if ($op == 'B' && !$LOGIN_IS_ADMIN)
   {
-    issue_header("Issues Error");
+    site_header("Issues Error");
     print("<p>The '$op' command is not available to you.</p>\n");
-    issue_footer();
+    site_footer();
     exit();
   }
 
@@ -66,7 +66,7 @@ if ($argc)
 
     switch ($argv[$i][0])
     {
-      case 'E' : // Show only problem reports matching the current user
+      case 'E' : // Show only issues matching the current user
 	  $femail = (int)$option;
 	  break;
 
@@ -94,10 +94,14 @@ if ($argc)
 	  $status = (int)$option;
 	  break;
 
+      case 'Z' : // Set document filter
+	  $document_id = (int)$option;
+	  break;
+
       default :
-	  issue_header("Issues Error");
+	  site_header("Issues Error");
 	  print("<p>Bad option '$argv[$i]'.</p>\n");
-	  issue_footer();
+	  site_footer();
 	  exit();
 	  break;
     }
@@ -121,61 +125,7 @@ if (html_form_validate())
     $search = $_POST["SEARCH"];
 }
 
-function issue_header($title)
-{
-  site_header($title);
-  html_title($title);
-}
-
-function issue_footer()
-{
-  print("</div></div>\n");
-  site_footer();
-}
-
-
-$options = "+P$priority+S$status+I$index+E$femail+Q" . urlencode($search);
-
-if ($op == "L" || ($op == "U" && $id != 0))
-{
-  // Set $issuelinks to point to the previous and next bugs in the
-  // current search, respectively...
-  $matches = issue_search($search, "-status -priority id",
-			$project_id, $priority, $status, $femail);
-  $count   = sizeof($matches);
-
-  if ($id != 0 && $count > 1 && $search != "")
-  {
-    if (($me = array_search($id, $matches)) === FALSE)
-      $me = -1;
-
-    $issuelinks = "<span style='float: right;'>";
-
-    if ($me > 0)
-    {
-      $previd   = $matches[$me - 1];
-      $issuelinks .= "<a href='$PHP_SELF?$op$previd$options'>Prev</a>";
-    }
-    else
-      $issuelinks .= "<span style='color: #cccccc;'>Prev</span>";
-
-    $issuelinks .= " &middot; ";
-
-    if (($me + 1) < $count)
-    {
-      $nextid   = $matches[$me + 1];
-      $issuelinks .= "<a href='$PHP_SELF?$op$nextid$options'>Next</a>";
-    }
-    else
-      $issuelinks .= "<span style='color: #cccccc;'>Next</span>";
-
-    $issuelinks .= "</span>";
-  }
-  else
-    $issuelinks = "";
-}
-else
-  $issuelinks = "";
+$options = "+P$priority+S$status+I$index+E$femail+Z$document_id+Q" . urlencode($search);
 
 switch ($op)
 {
@@ -186,13 +136,7 @@ switch ($op)
         break;
       }
 
-      if (array_key_exists("status", $_POST) &&
-          ($_POST["status"] != "" ||
-	   $_POST["issue_version"] != "" ||
-	   $_POST["fix_version"] != "" ||
-	   $_POST["priority"] != "" ||
-	   $_POST["assigned_id"] != "" ||
-	   $_POST["message"] != ""))
+      if (array_key_exists("status", $_POST) && ($_POST["status"] != "" || $_POST["priority"] != "" || $_POST["assigned_id"] != ""))
       {
         foreach ($_POST as $key => $val)
 	{
@@ -204,30 +148,28 @@ switch ($op)
 	    if ($issue->id != $id)
 	      continue;
 
+            $contents = "";
+
 	    if (array_key_exists("status", $_POST) && (int)$_POST["status"] > 0)
+	    {
 	      $issue->status = (int)$_POST["status"];
-	    if (array_key_exists("issue_version", $_POST))
-	      $issue->issue_version = trim($_POST["issue_version"]);
-	    if (array_key_exists("fix_version", $_POST))
-	      $issue->fix_version = trim($_POST["fix_version"]);
-	    if (array_key_exists("priority", $_POST) &&
-	        (int)$_POST["priority"] > 0)
+	      $contents .= "Status changed to '" . $ISSUE_STATUS_SHORT[$issue->status] . "'.\n";
+	    }
+	    if (array_key_exists("priority", $_POST) && (int)$_POST["priority"] > 0)
+	    {
 	      $issue->priority = (int)$_POST["priority"];
-	    if (array_key_exists("assigned_id", $_POST) &&
-		(int)$_POST["assigned_id"] > 0)
+	      $contents .= "Priority changed to '" . $ISSUE_PRIORITY_SHORT[$issue->priority] . "'.\n";
+	    }
+	    if (array_key_exists("assigned_id", $_POST) && (int)$_POST["assigned_id"] > 0)
+	    {
 	      $issue->assigned_id = (int)$_POST["assigned_id"];
+	      $contents .= "Assigned to '" . user_name($issue->assigned_id) . "'.\n";
+            }
 
             if ($issue->validate())
 	    {
               $issue->save();
-
-              if ($_POST["message"] != "")
-		$contents = $issue->add_text();
-	      else
-	        $contents = "";
-
-	      if ($contents !== FALSE)
-		$issue->notify_users($contents);
+	      $issue->notify_users($contents);
 	    }
 	  }
         }
@@ -237,7 +179,13 @@ switch ($op)
       break;
 
   case 'L' : // List issue(s)
-      issue_header("Issues");
+      site_header("Issues");
+
+      if ($LOGIN_ID != 0)
+        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
+      else
+	print("<p><a class=\"btn btn-default btn-xs\" href=\"$html_login_url?PAGE=" .
+	      urlencode("issues.php?U$options") . "\">Login to Create Issue</a></p>\n");
 
       html_form_start("$PHP_SELF?L$options");
       print("<p align=\"center\">");
@@ -260,15 +208,11 @@ switch ($op)
       else
         print("Show: All&nbsp;Issues");
 
-      if ($project_id < 0)
+      if ($document_id < 0)
       {
 	print("&nbsp;in&nbsp;");
-        project_select("FPROJECTID", $project_id, "All Projects");
+        document_select("FDOCUMENTID", $document_id, "All Documents");
       }
-
-      print("<br>\n"
-           ."<small>Search supports 'and', 'or', 'not', and parenthesis. "
-	   ."<a href='search-help.php'>More info...</a></small></p>\n");
       html_form_end();
 
       $matches = issue_search($search, "-status -priority id", $priority, $status, $femail);
@@ -276,7 +220,7 @@ switch ($op)
 
       if ($count == 0)
       {
-	print("<p>No bugs found.</p>\n");
+	print("<p>No issues found.</p>\n");
 
 	if (($priority || $status) && $search != "")
 	{
@@ -285,7 +229,7 @@ switch ($op)
 	       ."'>Search for \"<i>$htmlsearch</i>\" in all issues...</a></p>\n");
 	}
 
-	issue_footer();
+	site_footer();
 	exit();
       }
 
@@ -309,10 +253,9 @@ switch ($op)
 
       html_paginate($index, $count, $LOGIN_PAGEMAX,
                     "$PHP_SELF?L+P$priority+S$status+E$femail+I",
-                    "+Q" . urlencode($search));
+                    "+Z$document_id+Q" . urlencode($search));
 
-      $columns  = array("Id", "Priority", "Status", "Summary", "Version",
-		        "Last Updated");
+      $columns  = array("Id", "Priority", "Status", "Summary", "Last Updated");
       $colcount = sizeof($columns);
 
       html_start_table($columns);
@@ -325,7 +268,7 @@ switch ($op)
 	$tabbr  = html_abbreviate($issue->title, 80);
 	$prtext = $BUG_PRIORITY_SHORT[$issue->priority];
 	$sttext = $BUG_STATUS_SHORT[$issue->status];
-	$link   = "<a href='$PHP_SELF?U$issue->id$options' title='Issue #$issue->id: $summary'>";
+	$link   = "<a href='$PHP_SELF?U$issue->id$options' title='Issue #$issue->id: $title'>";
 
 	print("<tr><td nowrap>");
 	if ($LOGIN_IS_ADMIN)
@@ -334,22 +277,19 @@ switch ($op)
 	     ."<td align=\"center\">$link$prtext</a></td>"
 	     ."<td align=\"center\">$link$sttext</a></td>"
 	     ."<td>$link$tabbr</a></td>"
-	     ."<td align=\"center\">$link$issue->issue_version</a></td>"
 	     ."<td align=\"center\" nowrap>$link$date</a></td>"
 	     ."</tr>\n");
 
-	if ($issue->status >= BUG_STATUS_PENDING)
+	if ($issue->status >= ISSUE_STATUS_PENDING)
 	{
 	  $textresult = comment_search("issue_$issue->id");
 	  if (($count = sizeof($textresult)) > 0)
 	  {
 	    $comment  = new comment($textresult[$count - 1]);
 	    $name     = user_name($comment->create_id);
-	    $contents = html_abbreviate($comment->contents, 128);
+	    $contents = html_text($comment->contents, TRUE);
 
-	    print("<tr><td colspan=\"3\">&nbsp;</td>"
-	         ."<td colspan=\"$textcount\">$name: <tt>$contents</tt>"
-	         ."</td></tr>\n");
+	    print("<tr><td colspan=\"$colcount\">$name: <tt>$contents</tt></td></tr>\n");
 	  }
 	}
       }
@@ -360,15 +300,19 @@ switch ($op)
       {
 	print("<div class=\"form-actions\">");
         html_form_select("status",
-                         array("Status: Resolved", "Status: Unresolved",
-                               "Status: Active", "Status: Pending"),
-                         "Status: No Change", 0, "", "1");
+                         array(ISSUE_STATUS_PENDING => "Status: Pending",
+                               ISSUE_STATUS_ACTIVE => "Status: Active",
+                               ISSUE_STATUS_RESOLVED => "Status: Resolved",
+                               ISSUE_STATUS_UNRESOLVED => "Status: Unresolved"),
+                         "Status: No Change", 0);
         html_form_select("priority",
-                         array("Priority: RFE", "Priority: Low",
-                               "Priority: Mod", "Priority: High",
-                               "Priority: Crit"),
-                         "Priority: No Change", 0, "", "1");
-	user_select("assigned_id", 0, TRUE, "No Change", "Assigned To: ");
+                         array(ISSUE_PRIORITY_CRITICAL => "Priority: Critical",
+                               ISSUE_PRIORITY_HIGH => "Priority: High",
+                               ISSUE_PRIORITY_MODERATE => "Priority: Moderate",
+                               ISSUE_PRIORITY_LOW => "Priority: Low",
+                               ISSUE_PRIORITY_RFE => "Priority: Enhancement"),
+                         "Priority: No Change", 0);
+	user_select("assigned_id", 0, USER_SELECT_MEMBER | USER_SELECT_EDITOR, "No Change", "Assigned To: ");
         html_form_end(array("SUBMIT" => "-Modify Selected Issues"));
         print("</div>");
       }
@@ -377,7 +321,7 @@ switch ($op)
                     "$PHP_SELF?L+P$priority+S$status+E$femail+I",
                     "+Q" . urlencode($search));
 
-      issue_footer();
+      site_footer();
       break;
 
   case 'U' : // Post new/modify existing Issue
@@ -397,14 +341,18 @@ switch ($op)
       else
       {
 	$action = "Save Issue #$id";
-	$title  = "Issue #$id: $issue->summary";
+	$title  = "Issue #$id: $issue->title";
       }
 
       if ($issue->id != $id)
       {
-        issue_header($action);
-	print("<p><b>Error:</b> Issue #$id was not found.</p>\n");
-	issue_footer();
+        site_header($action);
+
+	print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+
+	html_show_error("Issue #$id was not found.");
+
+	site_footer();
 	exit();
       }
 
@@ -412,7 +360,7 @@ switch ($op)
       {
         $havedata = $issue->loadform();
 
-	if ($id == 0 && !array_key_exists("contents", $_POST))
+	if ($id == 0 && (!array_key_exists("contents", $_POST) || trim($_POST["contents"]) == ""))
 	  $havedata = 0;
       }
       else
@@ -426,9 +374,13 @@ switch ($op)
       {
         if (!$issue->save())
 	{
-	  issue_header($title);
-	  print("<p>Unable to save issue.</p>\n");
-	  issue_footer();
+	  site_header($title);
+
+	  print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+
+	  html_show_error("Unable to save issue.");
+
+	  site_footer();
 	  exit();
 	}
 
@@ -437,14 +389,18 @@ switch ($op)
 	  // Add text...
 	  if (($contents = $issue->add_comment()) === FALSE)
 	  {
-	    issue_header($title);
-	    print("<p>Unable to save text to issue.</p>\n");
-	    issue_footer();
+	    site_header($title);
+
+	    print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+
+	    html_show_error("Unable to save comment to issue.");
+
+	    site_footer();
 	    exit();
 	  }
 	}
 	else
-	  $contents = "";
+	  $contents = "Updated by '" . user_name($issue->modify_id) . "'.";;
 
 	if ($id <= 0)
 	  $issue->notify_users($contents, "");
@@ -455,24 +411,18 @@ switch ($op)
       }
       else
       {
-        issue_header($title);
-	print($issuelinks);
+        site_header($title);
+
+	print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	if ($REQUEST_METHOD == "POST")
-	{
-	  print("<p><b>Error:</b> Please fill in the fields as "
-	       ."<span class=\"invalid\">marked</span> and resubmit.</p>\n"
-	       ."<hr noshade>\n");
-	}
+	  html_show_error("Please correct the highlighted fields.");
 
         $issue->form($action, $options);
 
-	issue_footer();
+	site_footer();
       }
       break;
 }
 
-//
-// End of "$Id: issues.php 143 2014-04-14 02:16:36Z msweet $".
-//
 ?>

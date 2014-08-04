@@ -5,6 +5,7 @@
 
 include_once "db-comment.php";
 include_once "db-document.php";
+include_once "db-workgroup.php";
 
 
 //
@@ -15,7 +16,7 @@ define("ISSUE_STATUS_ALL_WILDCARD", 0);
 define("ISSUE_STATUS_CLOSED_WILDCARD", -1);
 define("ISSUE_STATUS_OPEN_WILDCARD", -2);
 
-define("ISSUE_STATUS_NEW", 1);
+define("ISSUE_STATUS_NEW", 1); // New/Unconfirmed
 define("ISSUE_STATUS_PENDING", 2);
 define("ISSUE_STATUS_ACTIVE", 3);
 define("ISSUE_STATUS_RESOLVED", 4);
@@ -43,7 +44,7 @@ $ISSUE_STATUS_LIST = array(
   ISSUE_STATUS_UNRESOLVED => "Status: Unresolved",
   ISSUE_STATUS_ACTIVE => "Status: Active",
   ISSUE_STATUS_PENDING => "Status: Pending",
-  ISSUE_STATUS_NEW => "Status: New"
+  ISSUE_STATUS_NEW => "Status: New/Unconfirmed"
 );
 
 $ISSUE_STATUS_SHORT = array(
@@ -51,7 +52,7 @@ $ISSUE_STATUS_SHORT = array(
   ISSUE_STATUS_UNRESOLVED => "Unresolved",
   ISSUE_STATUS_ACTIVE => "Active",
   ISSUE_STATUS_PENDING => "Pending",
-  ISSUE_STATUS_NEW => "New"
+  ISSUE_STATUS_NEW => "New/Unconfirmed"
 );
 
 $ISSUE_PRIORITY_LIST = array(
@@ -91,7 +92,7 @@ class issue
   var $id;
   var $parent_id, $parent_id_valid;
   var $workgroup_id, $workgroup_id_valid;
-  var $document_id, $doucment_id_valid;
+  var $document_id, $document_id_valid;
   var $status, $status_valid;
   var $priority, $priority_valid;
   var $title, $title_valid;
@@ -157,8 +158,8 @@ class issue
   {
     $this->id           = 0;
     $this->parent_id    = 0;
-    $this->workgroup_id = -1;
-    $this->document_id  = -1;
+    $this->workgroup_id = 0;
+    $this->document_id  = 0;
     $this->status       = ISSUE_STATUS_NEW;
     $this->priority     = ISSUE_PRIORITY_UNASSIGNED;
     $this->title        = "";
@@ -179,13 +180,16 @@ class issue
        $options = "")			// I - URL options
   {
     global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $PHP_SELF, $REQUEST_METHOD;
-    global $ISSUE_STATUS_LONG, $ISSUE_PRIORITY_LONG, $ISSUE_MESSAGES;
-    global $_POST, $html_path, $html_is_phone, $html_input_width, $html_textarea_width;
+    global $ISSUE_STATUS_SHORT, $ISSUE_PRIORITY_LONG, $ISSUE_MESSAGES;
+    global $_POST, $html_path, $html_login_url;
 
 
     print("<h2>Information</h2>\n");
 
-    html_form_start("$PHP_SELF?U$this->id$options", FALSE);
+    if ($LOGIN_ID != 0)
+      html_form_start("$PHP_SELF?U$this->id$options");
+    else
+      print("<div class=\"container\">\n");
 
     // parent_id
     html_form_field_start("parent_id", "Duplicate Of", $this->parent_id_valid);
@@ -198,19 +202,22 @@ class issue
     html_form_field_end();
 
     // workgroup_id
-    html_form_field_start("workgroup_id", "Workgroup", $this->workgroup_id_valid);
-    workgroup_select("workgroup_id", $this->workgroup_id);
+    html_form_field_start("workgroup_id", "Workgroup");
+    if ($this->workgroup_id != 0)
+      print(workgroup_name($this->workgroup_id));
+    else
+      print("Unassigned");
     html_form_field_end();
 
     // document_id
     html_form_field_start("document_id", "Document", $this->document_id_valid);
-    document_select("document_id", $this->document_id);
+    document_select("document_id", $this->document_id, "-- Choose --");
     html_form_field_end();
 
     // status
     html_form_field_start("status", "Status", $this->status_valid);
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
-      html_form_select("status", $ISSUE_STATUS_LONG, "", $this->status);
+      html_form_select("status", $ISSUE_STATUS_SHORT, "", $this->status);
     else
       print($ISSUE_STATUS_LONG[$this->status]);
     html_form_field_end();
@@ -228,25 +235,27 @@ class issue
     $date = html_date($this->create_date);
     $name = user_name($this->create_id);
 
-    html_form_field_start("", "Created By");
+    html_form_field_start("create_id", "Created By");
     print("$name ($date)");
     html_form_field_end();
 
     // title
-    html_form_field_start("title", "Summary", $this->summary_valid);
-    html_form_text("title", "Short description of issue.", $this->summary);
+    html_form_field_start("title", "Summary", $this->title_valid);
+    html_form_text("title", "Short description of issue.", $this->title);
     html_form_field_end();
 
     // assigned_id
     html_form_field_start("assigned_id", "Assigned To");
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
-      user_select("assigned_id", $this->assigned_id);
-    else
+      user_select("assigned_id", $this->assigned_id, USER_SELECT_MEMBER | USER_SELECT_EDITOR, "Nobody");
+    else if ($this->assigned_id > 0)
       print(user_name($this->assigned_id));
+    else
+      print("<em>Unassigned</em>");
     html_form_field_end();
 
     // Submit
-    html_form_buttons(array("SUBMIT" => $action));
+    html_form_buttons(array("SUBMIT" => "+$action"));
 
     // Attachements and discussion...
     print("<h2>Discussion</h2>\n");
@@ -265,19 +274,25 @@ class issue
       }
     }
 
-    if (array_key_exists("contents", $_POST))
-      $contents = $_POST["contents"];
+    if ($LOGIN_ID != 0)
+    {
+      if (array_key_exists("contents", $_POST))
+	$contents = trim($_POST["contents"]);
+      else
+	$contents = "";
+
+      print("<h3><a name=\"POST\">$LOGIN_NAME <small>Today</small></a></h3>\n"
+	   ."<p>");
+
+      html_form_text("contents", "Comment text.", $contents, "", 12);
+      print("<br>\n");
+      html_form_button("SUBMIT", "Post Comment");
+      print("</p>\n");
+      html_form_end();
+    }
     else
-      $contents = "";
-
-    print("<h3><a name=\"POST\">$LOGIN_NAME <small>Today</small></a></h3>\n"
-	 ."<p>");
-
-    html_form_text("contents", "Comment text.", $contents, "", 12);
-    html_form_button("SUBMIT", "-$action");
-    print("</p>\n");
-
-    html_form_end();
+      print("<p><a class=\"btn btn-default\" href=\"$html_login_url\">Login to Post Comment</a></p>\n"
+           ."</div>\n");
   }
 
 
@@ -334,13 +349,14 @@ class issue
 	$this->parent_id = (int)trim($_POST["parent_id"]);
     }
 
-    if (array_key_exists("workgroup_id", $_POST) &&
-	preg_match("/^[0-9]+\$/", $_POST["workgroup_id"]))
-      $this->workgroup_id = (int)$_POST["workgroup_id"];
-
     if (array_key_exists("document_id", $_POST) &&
 	preg_match("/^[0-9]+\$/", $_POST["document_id"]))
+    {
       $this->document_id = (int)$_POST["document_id"];
+      $document = new document($this->document_id);
+      if ($document->id == $this->document_id)
+        $this->workgroup_id = $document->workgroup_id;
+    }
 
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
     {
@@ -373,12 +389,14 @@ class issue
 	       $what = "Re: ")		// I - Reply or new message
   {
     global $ISSUE_PRIORITY_SHORT, $ISSUE_STATUS_LONG;
-    global $SITE_EMAIL, $SITE_HOSTNAME, $SITE_URL, $SITE_MODULE;
+    global $SITE_EMAIL, $SITE_HOSTNAME, $SITE_URL;
 
 
-    // Send the email to either the manager user or create user, depending
+    // Send the email to either the assigned user or create user, depending
     // on who modified the Issue...
-    if ($this->modify_id != $this->assigned_id)
+    if ($this->assigned_id == 0)
+      $to = $SITE_EMAIL;
+    else if ($this->modify_id != $this->assigned_id)
       $to = user_email($this->assigned_id);
     else
       $to = user_email($this->create_id);
@@ -406,31 +424,21 @@ class issue
 	       ."\n"
 	       . wordwrap(trim($contents)) . "\n"
 	       ."\n"
-	       ."Link: ${SITE_URL}dynamo/issues.php?U$this->id\n"
-	       ."Version: $this->issue_version\n";
-
-    if ($this->fix_version != "")
-    {
-      // Add fix version
-      $message .= "Fix Version: $this->fix_version";
-      if ($this->fix_revision != 0)
-	$message .= " (r$this->fix_revision)";
-      $message .= "\n";
-    }
+	       ."Link: ${SITE_URL}dynamo/issues.php?U$this->id\n";
 
     // Set message ID to track this bug...
     if ($this->create_date == $this->modify_date)
-      $headers .= "Message-Id: <bug-$this->id@$SITE_HOSTNAME>\n";
+      $headers .= "Message-Id: <issue-$this->id@$SITE_HOSTNAME>\n";
     else
-      $headers .= "In-Reply-To: <bug-$this->id@$SITE_HOSTNAME>\n";
+      $headers .= "In-Reply-To: <issue-$this->id@$SITE_HOSTNAME>\n";
 
     // Carbon copy create user, devel/bug lists, and interested addressees...
     if ($this->modify_id != $this->create_id)
       $headers .= "Cc: " . user_email($this->create_id) . "\n";
 
-    if ($this->assigned_id != "" && $this->status <= ISSUE_STATUS_UNRESOLVED)
+    if ($this->assigned_id != 0 && $this->status <= ISSUE_STATUS_UNRESOLVED)
     {
-      // Carbon copy the email to the project address...
+      // Carbon copy the email to the site address...
       $headers .= "Cc: $SITE_EMAIL\n";
     }
 
@@ -504,17 +512,21 @@ class issue
   function				// O - TRUE if OK, FALSE otherwise
   validate()
   {
-    global $REQUEST_METHOD, $LOGIN_IS_ADMIN;
-
     $valid = TRUE;
+
+    $document = new document($this->document_id);
+
+    if ($document->id != $this->document_id)
+    {
+      $this->document_id_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->document_id_valid  = TRUE;
 
     if ($this->parent_id > 0)
     {
       $temp = new issue($this->parent_id);
-
-      // TODO: Validate document_id and workgroup_id
-      $this->workgroup_id_valid = TRUE;
-      $this->document_id_valid  = TRUE;
 
       if ($temp->id != $this->parent_id)
       {
@@ -532,8 +544,8 @@ class issue
     else
       $this->parent_id_valid = TRUE;
 
-    if ($this->status < ISSUE_STATUS_RESOLVED ||
-        $this->status > ISSUE_STATUS_NEW)
+    if ($this->status < ISSUE_STATUS_NEW ||
+        $this->status > ISSUE_STATUS_UNRESOLVED)
     {
       $this->status_valid = FALSE;
       $valid = FALSE;
@@ -542,7 +554,7 @@ class issue
       $this->status_valid = TRUE;
 
     if ($this->priority < ISSUE_PRIORITY_UNASSIGNED ||
-        $this->priority > ISSUE_PRIORITY_CRITICAL)
+        $this->priority > ISSUE_PRIORITY_RFE)
     {
       $this->priority_valid = FALSE;
       $valid = FALSE;
@@ -550,7 +562,7 @@ class issue
     else
       $this->priority_valid = TRUE;
 
-    if ($this->title == "" && $REQUEST_METHOD == "POST")
+    if ($this->title == "")
     {
       $this->title_valid = FALSE;
       $valid = FALSE;

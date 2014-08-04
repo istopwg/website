@@ -1,5 +1,5 @@
 --
--- "$Id$"
+-- "pwg.sql"
 --
 -- Database schema for the PWG web pages.
 --
@@ -10,13 +10,11 @@
 --
 --   - Users
 --   - News/announcements
--- !!   - Blog articles and user-editable content/workgroup pages
--- !!   - Calendar
 --   - Issues
 --   - Certified printers
 --   - Pending certifications (submissions)
---   - Comments (attached to pretty much anything)
--- !!   - RSS feed for blog and certified printers
+--   - Comments (attached to pretty much anything, although initially just for
+--     issues and certification stuff)
 --
 
 
@@ -53,6 +51,8 @@ CREATE TABLE user (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- These are all test accounts with the password "Printing123".
+-- (Not present on the production servers...)
 INSERT INTO user VALUES(1, 2, 'webmaster@pwg.org','PWG Webmaster',0,'$6$68e043b431d79cce$7aa1mK7RxdK15B3XcBU9grtBqaTc9Nypym8IV2JWB6yHEuX5s.N3mMVjJ9udCprIPqslwa/V0vdBL/SOaXxqi1',1,1,1,1,1,'America/Toronto',50,'2014-07-20 12:00:00',1,'2014-07-20 12:00:00',1);
 INSERT INTO user VALUES(2, 2, 'wwwtestuser@pwg.org','PWG Test User',0,'$6$68e043b431d79cce$7aa1mK7RxdK15B3XcBU9grtBqaTc9Nypym8IV2JWB6yHEuX5s.N3mMVjJ9udCprIPqslwa/V0vdBL/SOaXxqi1',0,0,0,0,0,'America/Toronto',50,'2014-07-20 12:00:00',1,'2014-07-20 12:00:00',1);
 INSERT INTO user VALUES(3, 2, 'wwwtesteditor@pwg.org','PWG Test Editor',0,'$6$68e043b431d79cce$7aa1mK7RxdK15B3XcBU9grtBqaTc9Nypym8IV2JWB6yHEuX5s.N3mMVjJ9udCprIPqslwa/V0vdBL/SOaXxqi1',0,1,0,0,0,'America/Toronto',50,'2014-07-20 12:00:00',1,'2014-07-20 12:00:00',1);
@@ -83,36 +83,39 @@ CREATE TABLE organization (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO organization VALUES(1,3,'Apple Inc.','apple.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(2,3,'Brother Industries Ltd','brother.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(3,3,'Canon Inc.','canon.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(4,2,'Conexant','conexant.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(5,2,'CSR','csr.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(6,3,'Dell','dell.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(7,2,'Digital Imaging Technology','itekus.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(8,3,'Epson','epson.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(9,2,'Fenestrae','udocx.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(10,3,'Fuji Xerox Co Ltd','fujixerox.co.jp',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(11,3,'Hewlett Packard Company','hp.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(12,2,'High North Inc.','',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(13,3,'Konica Minolta','konicaminolta.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(14,3,'Kyocera Document Solutions Inc.','kyocera.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(15,3,'Lexmark','lexmark.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(16,2,'Meteor Networks','meteornetworks.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(17,3,'Microsoft','microsoft.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(18,2,'MPI Tech','mpitech.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(19,2,'MWA Intelligence Inc.','mwaintelligence.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(20,2,'Northlake Software Inc.','nls.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(21,3,'Oki Data Americas Inc.','okidata.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(22,3,'Ricoh','ricoh.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(23,2,'Quality Logic Inc.','qualitylogic.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(24,3,'Samsung Electronics Corporation','samsung.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(25,3,'Sharp','sharp.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(26,1,'Technical Interface Consulting','',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(27,2,'Thinxtream Technologies','thinxtream.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(28,2,'Tykodi Consulting Services LLC','',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(29,3,'Toshiba','toshiba.com',0,'2014-07=20',1,'2014-07=20',1);
-INSERT INTO organization VALUES(30,3,'Xerox Corporation','xerox.com',0,'2014-07=20',1,'2014-07=20',1);
+INSERT INTO organization VALUES(1,3,'Apple Inc.','apple.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(2,3,'Brother Industries Ltd','brother.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(3,3,'Canon Inc.','canon.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(4,2,'Conexant','conexant.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(5,2,'CSR','csr.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(6,3,'Dell','dell.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(7,2,'Digital Imaging Technology','itekus.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(8,3,'Epson','epson.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(9,2,'Fenestrae','udocx.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(10,3,'Fuji Xerox Co Ltd','fujixerox.co.jp',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(11,3,'Hewlett Packard Company','hp.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(12,2,'High North Inc.','',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(13,3,'Konica Minolta','konicaminolta.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(14,3,'Kyocera Document Solutions Inc.','kyocera.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(15,3,'Lexmark','lexmark.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(16,2,'Meteor Networks','meteornetworks.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(17,3,'Microsoft','microsoft.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(18,2,'MPI Tech','mpitech.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(19,2,'MWA Intelligence Inc.','mwaintelligence.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(20,2,'Northlake Software Inc.','nls.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(21,3,'Oki Data Americas Inc.','okidata.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(22,3,'Ricoh','ricoh.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(23,2,'Quality Logic Inc.','qualitylogic.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(24,3,'Samsung Electronics Corporation','samsung.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(25,3,'Sharp','sharp.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(26,1,'Technical Interface Consulting','',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(27,2,'Thinxtream Technologies','thinxtream.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(28,2,'Tykodi Consulting Services LLC','',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(29,3,'Toshiba','toshiba.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(30,3,'Xerox Corporation','xerox.com',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(31,2,'Individual: Daniel Brennan','',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(32,1,'Individual: Daniel Dressler','',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(33,2,'Individual: Nancy Chen','',0,'2014-07-20',1,'2014-07-20',1);
 
 
 --
@@ -201,52 +204,33 @@ INSERT INTO article VALUES(NULL,2,'PWG Last Call: IPP Finishings 2.0','The PWG L
 
 
 --
--- Schema for table 'page'
---
--- This table lists the available blog articles and pages for each workgroup.
---
-
-DROP TABLE IF EXISTS page;
--- CREATE TABLE page (
---  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
---  is_published BOOLEAN DEFAULT FALSE,	-- FALSE/0 = private, TRUE/1 = public
---  workgroup_id INTEGER,			-- Workgroup, if any
---  type INTEGER,				-- 0 = long-term content, 1 = blog article
---  title VARCHAR(255) NOT NULL,		-- Title of page
---  contents TEXT NOT NULL,		-- Contents of page
---  filename VARCHAR(255) UNIQUE NOT NULL,-- Filename link
---  altname VARCHAR(255) NOT NULL,	-- Alternate filename, if any
---  create_date DATETIME NOT NULL,	-- Time/date of creation
---  create_id INTEGER NOT NULL,		-- User that created the article
---  modify_date DATETIME NOT NULL,	-- Time/date of last change
---  modify_id INTEGER NOT NULL,		-- User that made the last change
---
---  INDEX(workgroup_id),
---  INDEX(type),
---  INDEX(filename),
---  INDEX(altname),
---  INDEX(create_id),
---  INDEX(modify_id)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
---
 -- Schema for table 'document'
 --
--- This table stores published documents.
+-- This table stores approved documents, white papers, working drafts, and minutes.
 --
 
 DROP TABLE IF EXISTS document;
 CREATE TABLE document (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
   workgroup_id INTEGER,			-- Workgroup, if any
-  status INTEGER,			-- 0 = withdrawn, 1 = informational,
-					-- 2 = candidate standard, 3 = standard
+  status INTEGER,			-- 0 = withdrawn, 1 = initial working draft,
+					-- 2 = interim working draft,
+					-- 3 = prototype working draft,
+					-- 4 = stable working draft,
+					-- 5 = conference call minutes,
+					-- 6 = face-to-face minutes,
+					-- 7 = (published) white paper,
+					-- 8 = (approved) charter,
+					-- 9 = (published) informational,
+					-- 10 = candidate standard,
+					-- 11 = (full) standard
   number VARCHAR(255) NOT NULL,		-- PWG document number, if any (5100.1, etc.)
   version VARCHAR(255) NOT NULL,	-- Document version number, if any (1.0, etc.)
   title VARCHAR(255) NOT NULL,		-- Title of document
-  abtract TEXT NOT NULL,		-- Abstract of document
-  url VARCHAR(255) NOT NULL,		-- Published URL
+  contents TEXT NOT NULL,		-- Abstract of document
+  editable_url VARCHAR(255) NOT NULL,	-- Published URL of editable (Word) file
+  readonly_url VARCHAR(255) NOT NULL,	-- Published URL of read-only (PDF) file w/o change marks
+  redline_url VARCHAR(255) NOT NULL,	-- Published URL of read-only (PDF) file w/change marks
   create_date DATETIME NOT NULL,	-- Time/date of creation
   create_id INTEGER NOT NULL,		-- User that created the STR
   modify_date DATETIME NOT NULL,	-- Time/date of last change
@@ -271,8 +255,8 @@ CREATE TABLE issue (
   parent_id INTEGER,			-- "Duplicate of" number
   workgroup_id INTEGER,			-- Workgroup, if any
   document_id INTEGER,			-- Document ID, if any
-  status INTEGER,			-- 1 = new, 2 = pending, 3 = active
-					-- 4 = closed/resolved,
+  status INTEGER,			-- 1 = new/unconfirmed, 2 = pending,
+					-- 3 = active, 4 = closed/resolved,
 					-- 5 = closed/unresolved
   priority INTEGER,			-- 0 = unassigned, 1 = critical, 2 = high,
 					-- 3 = moderate, 4 = low, 5 = enhancement
@@ -378,31 +362,6 @@ CREATE TABLE exception (
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Schema for table 'calendar'
---
--- This table contains the calendar events for meetings, etc.
---
-
-DROP TABLE IF EXISTS calendar;
--- CREATE TABLE calendar (
---  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Printer ID
---  status INTEGER NOT NULL,		-- 0 = tentative, 1 = confirmed, 2 = canceled
---  workgroup_id INTEGER,			-- Workgroup, if any
---  date DATETIME NOT NULL,		-- Date of event
---  duration INTEGER NOT NULL,		-- Duration of event in minutes
---  title VARCHAR(255) NOT NULL,		-- Title/summary of event
---  contents TEXT NOT NULL,		-- Text/description of event
---  create_date DATETIME NOT NULL,	-- Time/date of creation
---  create_id INTEGER NOT NULL,		-- User that submitted the printer
---  modify_date DATETIME NOT NULL,	-- Time/date of last change
---  modify_id INTEGER NOT NULL,		-- User that made the last change
---
---  INDEX(workgroup_id),
---  INDEX(create_id),
---  INDEX(modify_id)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 --
 -- Schema for table 'printer'
@@ -442,5 +401,5 @@ CREATE TABLE printer (
 
 
 --
--- End of "$Id$".
+-- End of "pwg.sql".
 --

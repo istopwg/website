@@ -120,6 +120,11 @@ a:link.btn-primary {
   color: #fff;
 }
 
+.form-control {
+  display: inline-block;
+  width: auto;
+}
+
 /* Some old site styles we are keeping around for now... */
 #PWGInfo TD {
   padding-right: 10px;

@@ -165,7 +165,7 @@ site_header($title = "",		// I - Additional document title
        ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg.png\" "
        ."type=\"image/png\">\n"
        ."</head>\n"
-       ."<body onLoad=\"load_toc('$html_path');\">\n"
+       ."<body>\n"
        ."<nav class=\"navbar navbar-inverse pwg-navbar\" role=\"navigation\">\n"
        ."  <div class=\"container-fluid\">\n"
        ."    <div class=\"navbar-header\">\n"
@@ -216,12 +216,7 @@ site_header($title = "",		// I - Additional document title
        ."    </div>\n"
        ."  </div>\n"
        ."</nav>\n"
-       ."<div id=\"pwg-body\">\n"
-       ."  <div class=\"dropdown\" id=\"pwg-toc-button\" style=\"display: none;\">\n"
-       ."    <button type=\"button\" class=\"btn btn-default btn-sm dropdown-toggle\" data-toggle=\"dropdown\">Jump To... <span class=\"caret\"></span></button>\n"
-       ."    <ul class=\"dropdown-menu\" role=\"menu\" id=\"pwg-toc-menu\">\n"
-       ."    </ul>\n"
-       ."  </div>\n");
+       ."<div id=\"pwg-body\">\n");
   if (!$html_is_phone)
     print("  <div id=\"pwg-search-results\"></div>\n");
   print("  <div id=\"pwg-content\">\n");

@@ -791,7 +791,7 @@ user_select(
     $name         = htmlspecialchars($row["name"]);
     $organization = htmlspecialchars(organization_name($row["organization_id"]));
 
-    if ($organization != "")
+    if ($organization != "" && !preg_match("/^Individual:/i", $organization))
       $label = "$name ($organization)";
     else
       $label = $name;

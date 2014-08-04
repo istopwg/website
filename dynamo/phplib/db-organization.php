@@ -102,7 +102,7 @@ class organization
     html_form_start("$PHP_SELF?U$this->id$options");
 
     html_form_field_start("name", "Display Name", $this->name_valid);
-    html_form_text("name", "Example Inc.", $this->name);
+    html_form_text("name", "'Example Inc.' or 'Individual: Name'", $this->name);
     html_form_field_end();
 
     html_form_field_start("domain", "Domain", $this->domain_valid);

@@ -22,7 +22,7 @@ if (array_key_exists("HTTP_USER_AGENT", $_SERVER))
   {
     $html_input_width    = 72;
     $html_is_phone       = FALSE;
-    $html_search_width   = 80;
+    $html_search_width   = 70;
     $html_textarea_width = 80;
 
     if (preg_match("/(iPad;|iPad Simulator;)/", $_SERVER["HTTP_USER_AGENT"]))
@@ -37,7 +37,7 @@ else
   $html_input_width    = 72;
   $html_is_phone       = FALSE;
   $html_is_tablet      = FALSE;
-  $html_search_width   = 80;
+  $html_search_width   = 70;
   $html_show_all       = TRUE;
   $html_textarea_width = 80;
 }

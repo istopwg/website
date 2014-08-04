@@ -184,18 +184,3 @@ function saveSettings(key, value)
   // write the cookie
   document.cookie = PANEL_COOKIE_NAME + "=" + escape(panelsData.join("|")) + ";expires=" + expirationDate.toGMTString();
 }
-
-/* Table-of-contents loading code */
-function load_toc(path) {
-  setUpPanels();
-
-  if (document.anchors.length > 0)
-  {
-    contents = '';
-    for (i = 0; i < document.anchors.length; i ++)
-      contents = contents + '<li><a href="#' + document.anchors[i].name +
-                 '">' + document.anchors[i].innerHTML + '</a></li>\n';
-    document.getElementById('pwg-toc-menu').innerHTML = contents;
-    document.getElementById('pwg-toc-button').style.display = 'inherit';
-  }
-}
