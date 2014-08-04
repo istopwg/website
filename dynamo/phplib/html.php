@@ -721,7 +721,7 @@ html_start_table($headings)		// I - Array of heading strings
   global $html_row;
 
 
-  print("<table class='table table-striped' summary=''>\n"
+  print("<table class=\"table table-condensed table-striped\" summary=\"\">\n"
        ."<thead><tr>");
 
   $html_row = 0;
@@ -733,12 +733,12 @@ html_start_table($headings)		// I - Array of heading strings
 
     if ($header[0] == '-')
     {
-      $class  = " class='hidden-phone'";
+      $class  = " class=\"hidden-phone\"";
       $header = substr($header, 1);
     }
     else if ($header[0] == '+')
     {
-      $class  = " class='visible-phone'";
+      $class  = " class=\"visible-phone\"";
       $header = substr($header, 1);
     }
 
@@ -746,7 +746,7 @@ html_start_table($headings)		// I - Array of heading strings
 
     if ($len >= 2 && $header[$len - 2] == ":")
     {
-      $colspan = " colspan='" . $header[$len - 1] . "'";
+      $colspan = " colspan=\"" . $header[$len - 1] . "\"";
       $header  = substr($header, 0, $len - 2);
     }
     else

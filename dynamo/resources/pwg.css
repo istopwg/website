@@ -122,7 +122,12 @@ a:link.btn-primary {
 
 .form-control {
   display: inline-block;
+  height: auto;
   width: auto;
+}
+
+input[type="checkbox"] {
+  height: 16px !important;
 }
 
 /* Some old site styles we are keeping around for now... */

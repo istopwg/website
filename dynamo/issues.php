@@ -32,9 +32,9 @@ include_once "phplib/db-issue.php";
 
 $femail     = 0;
 $index      = 0;
-$priority   = 0;
+$priority   = ISSUE_PRIORITY_ANY_WILDCARD;
 $search     = "";
-$status     = -2;
+$status     = ISSUE_STATUS_OPEN_WILDCARD;
 
 if ($argc)
 {
@@ -192,8 +192,8 @@ switch ($op)
       html_form_search("SEARCH", "Search Issues", $search);
       html_form_button("SUBMIT", "-Search Issues");
       print("<br>\n");
-      html_form_select("FPRIORITY", $BUG_PRIORITY_LIST, "", $priority);
-      html_form_select("FSTATUS", $BUG_STATUS_LIST, "", $status);
+      html_form_select("FPRIORITY", $ISSUE_PRIORITY_LIST, "", $priority);
+      html_form_select("FSTATUS", $ISSUE_STATUS_LIST, "", $status);
 
       if ($LOGIN_ID != 0)
       {
@@ -208,7 +208,7 @@ switch ($op)
       else
         print("Show: All&nbsp;Issues");
 
-      if ($document_id < 0)
+      if ($document_id <= 0)
       {
 	print("&nbsp;in&nbsp;");
         document_select("FDOCUMENTID", $document_id, "All Documents");
@@ -256,7 +256,7 @@ switch ($op)
                     "+Z$document_id+Q" . urlencode($search));
 
       $columns  = array("Id", "Priority", "Status", "Summary", "Last Updated");
-      $colcount = sizeof($columns);
+      $colcount = sizeof($columns) - 2;
 
       html_start_table($columns);
 
@@ -266,8 +266,8 @@ switch ($op)
 	$date   = html_date($issue->modify_date);
 	$title  = htmlspecialchars($issue->title, ENT_QUOTES);
 	$tabbr  = html_abbreviate($issue->title, 80);
-	$prtext = $BUG_PRIORITY_SHORT[$issue->priority];
-	$sttext = $BUG_STATUS_SHORT[$issue->status];
+	$prtext = $ISSUE_PRIORITY_SHORT[$issue->priority];
+	$sttext = $ISSUE_STATUS_SHORT[$issue->status];
 	$link   = "<a href='$PHP_SELF?U$issue->id$options' title='Issue #$issue->id: $title'>";
 
 	print("<tr><td nowrap>");
@@ -276,11 +276,11 @@ switch ($op)
 	print("$link$issue->id</a></td>"
 	     ."<td align=\"center\">$link$prtext</a></td>"
 	     ."<td align=\"center\">$link$sttext</a></td>"
-	     ."<td>$link$tabbr</a></td>"
+	     ."<td width=\"66%\">$link$tabbr</a></td>"
 	     ."<td align=\"center\" nowrap>$link$date</a></td>"
 	     ."</tr>\n");
 
-	if ($issue->status >= ISSUE_STATUS_PENDING)
+	if ($issue->status <= ISSUE_STATUS_ACTIVE)
 	{
 	  $textresult = comment_search("issue_$issue->id");
 	  if (($count = sizeof($textresult)) > 0)
@@ -289,7 +289,7 @@ switch ($op)
 	    $name     = user_name($comment->create_id);
 	    $contents = html_text($comment->contents, TRUE);
 
-	    print("<tr><td colspan=\"$colcount\">$name: <tt>$contents</tt></td></tr>\n");
+	    print("<tr><td colspan=\"2\">&nbsp;</td><td colspan=\"$colcount\">$name: <tt>$contents</tt></td></tr>\n");
 	  }
 	}
       }

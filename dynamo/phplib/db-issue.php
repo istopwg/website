@@ -37,14 +37,14 @@ define("ISSUE_PRIORITY_RFE", 5);
 //
 
 $ISSUE_STATUS_LIST = array(
-  ISSUE_STATUS_ALL => "Status: All",
-  ISSUE_STATUS_CLOSED => "Status: Closed",
-  ISSUE_STATUS_OPEN => "Status: Open",
+  ISSUE_STATUS_ALL_WILDCARD => "Status: All",
+  ISSUE_STATUS_CLOSED_WILDCARD => "Status: Closed",
+  ISSUE_STATUS_OPEN_WILDCARD => "Status: Open",
   ISSUE_STATUS_RESOLVED => "Status: Resolved",
   ISSUE_STATUS_UNRESOLVED => "Status: Unresolved",
   ISSUE_STATUS_ACTIVE => "Status: Active",
   ISSUE_STATUS_PENDING => "Status: Pending",
-  ISSUE_STATUS_NEW => "Status: New/Unconfirmed"
+  ISSUE_STATUS_NEW => "Status: Unconfirmed"
 );
 
 $ISSUE_STATUS_SHORT = array(
@@ -52,11 +52,11 @@ $ISSUE_STATUS_SHORT = array(
   ISSUE_STATUS_UNRESOLVED => "Unresolved",
   ISSUE_STATUS_ACTIVE => "Active",
   ISSUE_STATUS_PENDING => "Pending",
-  ISSUE_STATUS_NEW => "New/Unconfirmed"
+  ISSUE_STATUS_NEW => "Unconfirmed"
 );
 
 $ISSUE_PRIORITY_LIST = array(
-  ISSUE_PRIORITY_ANY => "Priority: Any",
+  ISSUE_PRIORITY_ANY_WILDCARD => "Priority: Any",
   ISSUE_PRIORITY_UNASSIGNED => "Priority: UNKN",
   ISSUE_PRIORITY_CRITICAL => "Priority: CRIT",
   ISSUE_PRIORITY_HIGH => "Priority: HIGH",
@@ -66,12 +66,12 @@ $ISSUE_PRIORITY_LIST = array(
 );
 
 $ISSUE_PRIORITY_SHORT = array(
-  ISSUE_PRIORITY_UNASSIGNED => "0 - UNKN",
-  ISSUE_PRIORITY_CRITICAL => "1 - CRIT",
-  ISSUE_PRIORITY_HIGH => "2 - HIGH",
-  ISSUE_PRIORITY_MODERATE => "3 - MOD",
-  ISSUE_PRIORITY_LOW => "2 - LOW",
-  ISSUE_PRIORITY_RFE => "1 - ENH"
+  ISSUE_PRIORITY_UNASSIGNED => "UNKN",
+  ISSUE_PRIORITY_CRITICAL => "CRIT",
+  ISSUE_PRIORITY_HIGH => "HIGH",
+  ISSUE_PRIORITY_MODERATE => "MOD",
+  ISSUE_PRIORITY_LOW => "LOW",
+  ISSUE_PRIORITY_RFE => "ENH"
 );
 
 $ISSUE_PRIORITY_LONG = array(
@@ -600,31 +600,25 @@ issue_search($search = "",		// I - Search buging
   $query  = "";
   $prefix = " WHERE ";
 
-  if ($project_id > 0)
-  {
-    $query .= "${prefix}project_id = $project_id";
-    $prefix = " AND ";
-  }
-
   if ($priority > 0)
   {
     $query .= "${prefix}priority = $priority";
     $prefix = " AND ";
   }
 
-  if ($status > ISSUE_STATUS_ALL)
+  if ($status > ISSUE_STATUS_ALL_WILDCARD)
   {
     $query .= "${prefix}status = $status";
     $prefix = " AND ";
   }
-  else if ($status == ISSUE_STATUS_CLOSED) // Show closed
+  else if ($status == ISSUE_STATUS_CLOSED_WILDCARD) // Show closed
   {
-    $query .= "${prefix}status <= " . ISSUE_STATUS_UNRESOLVED;
+    $query .= "${prefix}status >= " . ISSUE_STATUS_RESOLVED;
     $prefix = " AND ";
   }
-  else if ($status == ISSUE_STATUS_OPEN) // Show open
+  else if ($status == ISSUE_STATUS_OPEN_WILDCARD) // Show open
   {
-    $query .= "${prefix}status >= " . ISSUE_STATUS_ACTIVE;
+    $query .= "${prefix}status <= " . ISSUE_STATUS_ACTIVE;
     $prefix = " AND ";
   }
 
