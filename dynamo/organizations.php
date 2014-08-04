@@ -173,7 +173,7 @@ switch ($op)
 
       print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Organization</a></p>\n");
 
-      html_form_start("$PHP_SELF?L", TRUE);
+      html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
       html_form_search("search", "Search Organizations", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
@@ -238,10 +238,10 @@ switch ($op)
 
       html_end_table();
 
-      print("<div class=\"form-group\">");
+      print("<p align=\"center\">");
       html_form_select("STATUS", $ORGANIZATION_STATUSES, "-- Choose --");
-      html_form_end(array("SUBMIT" => "-Set Status of Checked Organizations"));
-      print("</div>\n");
+      html_form_end(array("SUBMIT" => "--Set Status of Checked Organizations"));
+      print("</p>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));

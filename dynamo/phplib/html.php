@@ -1139,7 +1139,8 @@ html_form_field_start($name,		// I - Field (form) name
 function
 html_form_start($action,		// I - URL for submission
                 $inline = FALSE,	// I - Inline form?
-                $attachments = FALSE)	// I - Allow attachments?
+                $attachments = FALSE,	// I - Allow attachments?
+                $center = FALSE)	// I - Center form?
 {
   global $html_inline_form;
 
@@ -1150,7 +1151,11 @@ html_form_start($action,		// I - URL for submission
   if ($inline)
   {
     $hclass = "form-inline";
-    print("<div style=\"display: block-inline;\">\n");
+
+    if ($center)
+      print("<div style=\"display: block-inline; text-align: center;\">\n");
+    else
+      print("<div style=\"display: block-inline;\">\n");
   }
   else
   {

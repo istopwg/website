@@ -187,8 +187,7 @@ switch ($op)
 	print("<p><a class=\"btn btn-primary\" href=\"$html_login_url?PAGE=" .
 	      urlencode("$PHP_SELF?U$options") . "\">Login to Create Issue</a></p>\n");
 
-      html_form_start("$PHP_SELF?L$options");
-      print("<p align=\"center\">");
+      html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
       html_form_search("SEARCH", "Search Issues", $search);
       html_form_button("SUBMIT", "-Search Issues");
       print("<br>\n");

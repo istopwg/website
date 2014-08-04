@@ -177,7 +177,7 @@ switch ($op)
       // List accounts...
       accounts_header("Manage Accounts");
 
-      html_form_start("$PHP_SELF?L", TRUE);
+      html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
       html_form_search("search", "Search Accounts", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
@@ -260,11 +260,11 @@ switch ($op)
 
       html_end_table();
 
-      print("<div class=\"form-group\">");
+      print("<p align=\"center\">");
       html_form_select("OP", array("ban" => "Ban", "delete" => "Delete",
                                    "enable" => "Enable"), "-- Choose --");
-      html_form_end(array("SUBMIT" => "-Checked Accounts"));
-      print("</div>\n");
+      html_form_end(array("SUBMIT" => "--Checked Accounts"));
+      print("</p>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));

@@ -136,7 +136,7 @@ switch ($op)
       if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
         print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Article</a></p>\n");
 
-      html_form_start("$PHP_SELF?L", TRUE);
+      html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
       html_form_search("search", "Search Articles", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
