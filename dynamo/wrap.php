@@ -98,9 +98,10 @@ if ($PATH_INFO == "${SITE_DOCROOT}index.html")
   print("<p><a class=\"btn btn-default btn-xs\" href=\"${html_path}/dynamo/articles.php\">View Older Articles</a></p>\n");
 
   if (sizeof($carousel) > 0)
-    site_footer("\$('carousel').carousel(0);");
+    site_footer("pwg-rolling.js");
   else
     site_footer();
+
   exit(0);
 }
 else if (file_exists($PATH_TRANSLATED))

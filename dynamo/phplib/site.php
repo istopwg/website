@@ -258,7 +258,7 @@ site_footer($javascript = "")
   print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
        ."</script>\n");
   if ($javascript != "")
-    print("<script>$javascript</script>\n");
+    print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/$javascript\"></script>\n");
   print("</body>\n"
        ."</html>\n");
 }
