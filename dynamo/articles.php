@@ -134,7 +134,7 @@ switch ($op)
       article_header("Articles");
 
       if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
-        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?U$options\">Post Article</a></p>\n");
+        print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Article</a></p>\n");
 
       html_form_start("$PHP_SELF?L", TRUE);
       html_form_search("search", "Search Articles", $search);
@@ -228,7 +228,7 @@ switch ($op)
       {
         article_header("Modify Article", $id);
 
-        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
+        print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
         if (!$article->validate())
           html_show_error("Please correct the highlighted fields.");

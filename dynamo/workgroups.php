@@ -170,6 +170,8 @@ switch ($op)
       // List workgroups...
       workgroups_header("Manage Workgroups");
 
+      print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Workgroup</a></p>\n");
+
       html_form_start("$PHP_SELF?L", TRUE);
       html_form_search("search", "Search Workgroups", $search);
       html_form_end(array("SUBMIT" => "-Search"));
@@ -266,7 +268,7 @@ switch ($op)
       {
         workgroups_header("Modify Workgroup", $id);
 
-        print("<p><a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
+        print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
 	$workgroup->form($options);
 
