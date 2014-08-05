@@ -164,7 +164,7 @@ class document
 
     html_form_field_start("replaces_id", "Replaces");
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID)
-      document_select("replaces_id", $this->replaces_id, "None");
+      document_select("replaces_id", $this->replaces_id, "None", "", TRUE);
     else if ($this->replaces_id)
     {
       $document = new document($this->replaces_id);
@@ -514,7 +514,7 @@ class document
     else
       $this->editable_url_valid = TRUE;
 
-    if ($this->clear_url != "" && !preg_match("/^http:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->clean_url))
+    if ($this->clean_url != "" && !preg_match("/^http:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->clean_url))
     {
       $this->clean_url_valid = FALSE;
       $valid = FALSE;
@@ -714,12 +714,12 @@ document_select(
   if ($editable)
   {
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER)
-      $results = db_query("SELECT id, title, number FROM document ORDER BY title WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT);
+      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " ORDER BY title");
     else
-      $results = db_query("SELECT id, title, number FROM document ORDER BY title WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND create_id = $LOGIN_ID");
+      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND create_id = $LOGIN_ID ORDER BY title");
   }
   else
-    $results = db_query("SELECT id, title, number FROM document ORDER BY title WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER);
+    $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER . " ORDER BY title");
 
   while ($row = db_next($results))
   {

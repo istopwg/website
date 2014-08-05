@@ -27,7 +27,10 @@ function
 documents_header($title, $id = 0)
 {
   if ($id)
-    site_header($title, document_name($id));
+  {
+    $document = new document($id);
+    site_header($title, $document->display_name());
+  }
   else
     site_header($title);
 }
@@ -210,11 +213,11 @@ switch ($op)
 	$status  = $DOCUMENT_STATUSES[$document->status];
 	$links   = "";
 	if ($document->editable_url != "")
-	  $links .= htmlspecialchars($document->editable_url. ENT_QUOTES) . "\n";
+	  $links .= htmlspecialchars($document->editable_url, ENT_QUOTES) . "\n";
 	if ($document->clean_url != "")
-	  $links .= htmlspecialchars($document->clean_url. ENT_QUOTES) . "\n";
+	  $links .= htmlspecialchars($document->clean_url, ENT_QUOTES) . "\n";
 	if ($document->redline_url != "")
-	  $links .= htmlspecialchars($document->redline_url. ENT_QUOTES) . "\n";
+	  $links .= htmlspecialchars($document->redline_url, ENT_QUOTES) . "\n";
 
 	print("<tr><td nowrap>");
 	html_form_checkbox("ID_$document->id");
@@ -263,7 +266,10 @@ switch ($op)
       }
       else
       {
-        documents_header("Modify Document", $id);
+        if ($id)
+	  documents_header("Modify Document", $id);
+	else
+	  site_header("Create Document");
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 

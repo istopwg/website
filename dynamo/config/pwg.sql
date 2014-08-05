@@ -231,7 +231,7 @@ CREATE TABLE document (
   title VARCHAR(255) NOT NULL,		-- Title of document
   contents TEXT NOT NULL,		-- Abstract of document
   editable_url VARCHAR(255) NOT NULL,	-- Published URL of editable (Word) file
-  readonly_url VARCHAR(255) NOT NULL,	-- Published URL of read-only (PDF) file w/o change marks
+  clean_url VARCHAR(255) NOT NULL,	-- Published URL of read-only (PDF) file w/o change marks
   redline_url VARCHAR(255) NOT NULL,	-- Published URL of read-only (PDF) file w/change marks
   create_date DATETIME NOT NULL,	-- Time/date of creation
   create_id INTEGER NOT NULL,		-- User that created the STR
