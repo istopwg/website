@@ -13,7 +13,7 @@ include_once "phplib/db-article.php";
 
 
 //
-// 'article_header()' - Show standard account page header...
+// 'article_header()' - Show standard article page header...
 //
 
 function
@@ -31,7 +31,7 @@ article_header($title, $id = 0)
 
 
 //
-// 'article_footer()' - Show standard account page footer...
+// 'article_footer()' - Show standard article page footer...
 //
 
 function
@@ -134,7 +134,7 @@ switch ($op)
       article_header("Articles");
 
       if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
-        print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Article</a></p>\n");
+        print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Article</a></p>\n");
 
       html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
       html_form_search("search", "Search Articles", $search);
@@ -230,7 +230,7 @@ switch ($op)
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
-        if (!$article->validate())
+        if ($REQUEST_METHOD == "POST")
           html_show_error("Please correct the highlighted fields.");
 
 	$article->form($options);

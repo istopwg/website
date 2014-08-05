@@ -182,9 +182,9 @@ switch ($op)
       site_header("Issues");
 
       if ($LOGIN_ID != 0)
-        print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
+        print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
       else
-	print("<p><a class=\"btn btn-primary\" href=\"$html_login_url?PAGE=" .
+	print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$html_login_url?PAGE=" .
 	      urlencode("$PHP_SELF?U$options") . "\">Login to Create Issue</a></p>\n");
 
       html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);

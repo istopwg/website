@@ -28,6 +28,8 @@ if ($REQUEST_METHOD == "POST")
     $user->save();
     html_show_info("Changes saved.");
   }
+
+  html_show_error("Please correct the highlighted fields.");
 }
 $user->form();
 

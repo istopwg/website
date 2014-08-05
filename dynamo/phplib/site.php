@@ -119,6 +119,8 @@ site_header($title = "",		// I - Additional document title
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
       $userlogin .= "            <li><a href=\"${html_path}dynamo/articles.php\">Manage Articles</a></li>\n";
 
+    $userlogin .= "            <li><a href=\"${html_path}dynamo/documents.php\">Manage Documents</a></li>\n";
+
     if ($LOGIN_IS_ADMIN)
       $userlogin .= "            <li><a href=\"${html_path}dynamo/organizations.php\">Manage Organizations</a></li>\n"
                    ."            <li><a href=\"${html_path}dynamo/accounts.php\">Manage Users</a></li>\n"

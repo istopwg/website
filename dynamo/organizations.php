@@ -40,7 +40,7 @@ organizations_header($title, $id = 0)
 
 
 //
-// 'organizations_footer()' - Show standard account page footer...
+// 'organizations_footer()' - Show standard organization page footer...
 //
 
 function
@@ -171,7 +171,7 @@ switch ($op)
       // List organizations...
       organizations_header("Manage Organizations");
 
-      print("<p><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Organization</a></p>\n");
+      print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Organization</a></p>\n");
 
       html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
       html_form_search("search", "Search Organizations", $search);
@@ -270,6 +270,9 @@ switch ($op)
         organizations_header("Modify Organization", $id);
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
+
+        if ($REQUEST_METHOD == "POST")
+          html_show_error("Please correct the highlighted fields.");
 
 	$organization->form($options);
 

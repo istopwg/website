@@ -6,11 +6,13 @@
 include_once "site.php";
 
 define("WORKGROUP_STATUS_INACTIVE", 0);
-define("WORKGROUP_STATUS_ACTIVE", 1);
+define("WORKGROUP_STATUS_ACTIVE_BOF", 1);
+define("WORKGROUP_STATUS_ACTIVE_WG", 2);
 
 $WORKGROUP_STATUSES = array(
   WORKGROUP_STATUS_INACTIVE => "Inactive",
-  WORKGROUP_STATUS_ACTIVE => "Active"
+  WORKGROUP_STATUS_ACTIVE_BOF => "Active BOF",
+  WORKGROUP_STATUS_ACTIVE_WG => "Active Workgroup"
 );
 
 $WORKGROUP_NAMES = array("w0" => "");
@@ -25,8 +27,10 @@ class workgroup
   var $id;
   var $status;
   var $name, $name_valid;
-  var $dirname, $dirname_valid;
+  var $wwwdir, $wwwdir_valid;
+  var $ftpdir, $ftpdir_valid;
   var $list, $list_valid;
+  var $contents, $contents_valid;
   var $chair_id, $vicechair_id, $secretary_id;
   var $create_date;
   var $create_id;
@@ -60,7 +64,8 @@ class workgroup
     $this->id           = 0;
     $this->status       = WORKGROUP_STATUS_INACTIVE;
     $this->name         = "";
-    $this->dirname      = "";
+    $this->wwwdir       = "";
+    $this->ftpdir       = "";
     $this->list         = "";
     $this->contents     = "";
     $this->chair_id     = 0;
@@ -106,8 +111,12 @@ class workgroup
     html_form_text("name", "Example Model", $this->name);
     html_form_field_end();
 
-    html_form_field_start("dirname", "Directory", $this->dirname_valid);
-    html_form_email("dirname", "example", $this->dirname);
+    html_form_field_start("wwwdir", "Web Site Directory", $this->wwwdir_valid);
+    html_form_text("wwwdir", "example", $this->wwwdir, "", 1, "www.pwg.org/");
+    html_form_field_end();
+
+    html_form_field_start("ftpdir", "FTP Directory", $this->ftpdir_valid);
+    html_form_text("ftpdir", "example", $this->ftpdir, "", 1, "ftp.pwg.org/pub/pwg/");
     html_form_field_end();
 
     html_form_field_start("list", "Mailing List", $this->list_valid);
@@ -167,7 +176,8 @@ class workgroup
     $this->id           = $row["id"];
     $this->status       = $row["status"];
     $this->name         = $row["name"];
-    $this->dirname      = $row["dirname"];
+    $this->wwwdir       = $row["wwwdir"];
+    $this->ftpdir       = $row["ftpdir"];
     $this->list         = $row["list"];
     $this->contents     = $row["contents"];
     $this->chair_id     = $row["chair_id"];
@@ -203,8 +213,11 @@ class workgroup
     if (array_key_exists("name", $_POST))
       $this->name = trim($_POST["name"]);
 
-    if (array_key_exists("dirname", $_POST))
-      $this->dirname = trim($_POST["dirname"]);
+    if (array_key_exists("wwwdir", $_POST))
+      $this->wwwdir = trim($_POST["wwwdir"]);
+
+    if (array_key_exists("ftpdir", $_POST))
+      $this->ftpdir = trim($_POST["ftpdir"]);
 
     if (array_key_exists("list", $_POST))
       $this->list = trim($_POST["list"]);
@@ -243,7 +256,8 @@ class workgroup
       return (db_query("UPDATE workgroup "
                       ." SET status = $this->status"
                       .", name = '" . db_escape($this->name) . "'"
-                      .", dirname = '" . db_escape($this->dirname) . "'"
+                      .", wwwdir = '" . db_escape($this->wwwdir) . "'"
+                      .", ftpdir = '" . db_escape($this->ftpdir) . "'"
                       .", list = '" . db_escape($this->list) . "'"
                       .", contents = '" . db_escape($this->contents) . "'"
                       .", chair_id = $this->chair_id"
@@ -262,7 +276,8 @@ class workgroup
                   ."(NULL"
                   .", $this->status"
                   .", '" . db_escape($this->name) . "'"
-                  .", '" . db_escape($this->dirname) . "'"
+                  .", '" . db_escape($this->wwwdir) . "'"
+                  .", '" . db_escape($this->ftpdir) . "'"
                   .", '" . db_escape($this->list) . "'"
                   .", '" . db_escape($this->contents) . "'"
                   .", $this->chair_id"
@@ -300,13 +315,21 @@ class workgroup
     else
       $this->name_valid = TRUE;
 
-    if (!preg_match("/^[a-z]+\$/", $this->dirname))
+    if (!preg_match("/^[-._0-9a-z]+\$/", $this->wwwdir))
     {
-      $this->dirname_valid = FALSE;
+      $this->wwwdir_valid = FALSE;
       $valid = FALSE;
     }
     else
-      $this->dirname_valid = TRUE;
+      $this->wwwdir_valid = TRUE;
+
+    if (!preg_match("/^[-._0-9a-z]+\$/", $this->ftpdir))
+    {
+      $this->ftpdir_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->ftpdir_valid = TRUE;
 
     if (!validate_email($this->list))
     {
@@ -358,8 +381,8 @@ workgroup_name($id)			// I - Organization ID
 //
 
 function				// O - Array of workgroup IDs
-workgroup_search($search = "",	// I - Search string
-                    $order = "")	// I - Order fields
+workgroup_search($search = "",		// I - Search string
+                 $order = "")		// I - Order fields
 {
   if ($search != "")
   {
@@ -402,7 +425,8 @@ workgroup_search($search = "",	// I - Search string
 
 	$query .= "${subpre}name LIKE \"%$word%\"";
 	$subpre = " OR ";
-	$query .= "${subpre}dirname LIKE \"%$word%\"";
+	$query .= "${subpre}wwwdir LIKE \"%$word%\"";
+	$query .= "${subpre}ftpdir LIKE \"%$word%\"";
 	$query .= "${subpre}list LIKE \"%$word%\"";
 
 	$query .= ")";
@@ -469,7 +493,7 @@ workgroup_select(
   if ($any_id != "")
     print("<option value=\"0\">$prefix$any_id</option>");
 
-  $results = db_query("SELECT id, name FROM workgroup WHERE status = " . WORKGROUP_STATUS_ACTIVE . " ORDER BY name");
+  $results = db_query("SELECT id, name FROM workgroup WHERE status >= " . WORKGROUP_STATUS_ACTIVE_BOF . " ORDER BY name");
   while ($row = db_next($results))
   {
     $wid  = $row["id"];

@@ -127,9 +127,10 @@ INSERT INTO organization VALUES(33,2,'Individual: Nancy Chen','',0,'2014-07-20',
 DROP TABLE IF EXISTS workgroup;
 CREATE TABLE workgroup (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
-  status INTEGER NOT NULL,		-- 0 = inactive, 1 = active
+  status INTEGER NOT NULL,		-- 0 = inactive, 1 = active BOF, 2 = active workgroup
   name VARCHAR(255) NOT NULL,		-- Workgroup name
-  dirname VARCHAR(255) NOT NULL,	-- Directory name
+  wwwdir VARCHAR(255) NOT NULL,		-- Directory name on web server
+  ftpdir VARCHAR(255) NOT NULL,		-- Directory name on FTP server
   list VARCHAR(255) NOT NULL,		-- Mailing list address
   contents TEXT NOT NULL,		-- Description of workgroup
   chair_id INTEGER,			-- Chair of WG
@@ -143,12 +144,12 @@ CREATE TABLE workgroup (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO workgroup VALUES(1, 1, 'Printer Working Group', 'chair', 'chair@pwg.org', '', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(2, 1, 'Internet Printing Protocol (IPP)', 'ipp', 'ipp@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(3, 1, 'Semantic Model (SM)', 'sm3', 'sm3@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(4, 1, 'Imaging Device Security (IDS)', 'ids', 'ids@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(5, 1, 'Cloud Imaging Model', 'cloud', 'cloud@pwg.org', '', 0, 0, 1, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
-INSERT INTO workgroup VALUES(6, 0, 'Workgroup for Imaging Management Solutions (WIMS)', 'wims', 'wims@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(1, 2, 'Printer Working Group', 'chair', 'general', 'chair@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(2, 2, 'Internet Printing Protocol (IPP)', 'ipp', 'ipp', 'ipp@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(3, 2, 'Semantic Model (SM)', 'sm', 'sm3', 'sm3@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(4, 2, 'Imaging Device Security (IDS)', 'ids', 'ids', 'ids@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(5, 2, 'Cloud Imaging Model', 'cloud', 'cloud', 'cloud@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
+INSERT INTO workgroup VALUES(6, 0, 'Workgroup for Imaging Management Solutions (WIMS)', 'wims', 'wims', 'wims@pwg.org', '', 0, 0, 0, '1991-01-01 00:00:00',1,'1991-01-01 00:00:00',1);
 
 
 --
@@ -212,6 +213,7 @@ INSERT INTO article VALUES(NULL,2,'PWG Last Call: IPP Finishings 2.0','The PWG L
 DROP TABLE IF EXISTS document;
 CREATE TABLE document (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
+  replaces_id INTEGER,			-- Document ID this replaces, if any
   workgroup_id INTEGER,			-- Workgroup, if any
   status INTEGER,			-- 0 = withdrawn, 1 = initial working draft,
 					-- 2 = interim working draft,

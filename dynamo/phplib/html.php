@@ -933,7 +933,7 @@ html_show_error($message,		// I - Error message
   print("<div class=\"alert alert-danger\">");
   if ($dismiss)
     print("<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n");
-  print("$message</div>\n");
+  print("<span class=\"glyphicon glyphicon-warning-sign\"></span> $message</div>\n");
 }
 
 
@@ -948,7 +948,7 @@ html_show_info($message,		// I - Error message
   print("<div class=\"alert alert-info\">");
   if ($dismiss)
     print("<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n");
-  print("$message</div>\n");
+  print("<span class=\"glyphicon glyphicon-info-sign\"></span> $message</div>\n");
 }
 
 
@@ -1100,6 +1100,12 @@ html_form_end($buttons = FALSE)		// I - Array of buttons
 function
 html_form_field_end()
 {
+  global $REQUEST_METHOD, $html_field_valid;
+
+
+  if (!$html_field_valid && $REQUEST_METHOD != "GET")
+    print("<span class=\"glyphicon glyphicon-warning-sign form-control-feedback\"></span>");
+
   print("</div></div>\n");
 }
 
@@ -1114,12 +1120,13 @@ html_form_field_start($name,		// I - Field (form) name
                       $valid = TRUE,	// I - Is the current value valid?
                       $desktop = FALSE)	// I - Only desktop?
 {
-  global $REQUEST_METHOD;
+  global $REQUEST_METHOD, $html_field_valid;
 
 
+  $html_field_valid = $valid;
   $hclass = "form-group";
   if (!$valid && $REQUEST_METHOD != "GET")
-    $hclass .= " has-error";
+    $hclass .= " has-error has-feedback";
   if ($desktop)
     $hclass .= " visible-desktop";
 
@@ -1531,7 +1538,7 @@ html_form_text($name,			// I - Field name
                $value = "",		// I - Current value
                $help = "",		// I - Help, if any
                $rows = 1,		// I - Number of rows (>1 is textarea)
-               $pattern = "",		// I - Validation regular expression
+               $addon = "",		// I - Add-on text
                $width = 999)		// I - Maximum width
 {
   global $html_input_width, $html_textarea_width;
@@ -1557,17 +1564,32 @@ html_form_text($name,			// I - Field name
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
   $value       = htmlspecialchars($value, ENT_QUOTES);
 
-  if ($pattern != "")
-    $pattern = " pattern=\"" . htmlspecialchars($pattern, ENT_QUOTES) . "\"";
+  if ($addon != "")
+  {
+    print("<div class=\"input-group\">");
+    if ($addon[0] != '+')
+      print("<span class=\"input-group-addon\">$addon</span>");
+  }
 
   if ($rows <= 1)
     print("<input class=\"form-control\" type=\"text\" name=\"$name\" size=\"$width\" "
-         ."placeholder=\"$placeholder\" maxlength=\"255\"$required$pattern "
+         ."placeholder=\"$placeholder\" maxlength=\"255\"$required "
          ."value=\"$value\">");
   else
     print("<textarea class=\"form-control\" name=\"$name\" cols=\"$width\" rows=\"$rows\" "
          ."wrap=\"virtual\" placeholder=\"$placeholder\""
-         ."$required$pattern>$value</textarea>");
+         ."$required>$value</textarea>");
+
+  if ($addon != "")
+  {
+    if ($addon[0] == '+')
+    {
+      $addon = substr($addon, 1);
+      print("<span class=\"input-group-addon\">$addon</span></div>");
+    }
+    else
+      print("</div>");
+  }
 
   if ($help != "")
   {

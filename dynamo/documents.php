@@ -2,14 +2,14 @@
 //
 // "$Id$"
 //
-// Workgroup management page...
+// Document management page...
 //
 
 //
 // Include necessary headers...
 //
 
-include_once "phplib/db-workgroup.php";
+include_once "phplib/db-document.php";
 
 
 if ($LOGIN_ID == 0)
@@ -18,51 +18,34 @@ if ($LOGIN_ID == 0)
   exit(0);
 }
 
-if (!$LOGIN_IS_ADMIN)
-{
-  header("Location: ${html_path}index.html");
-  exit(0);
-}
-
 
 //
-// 'workgroups_header()' - Show standard workgroup page header...
+// 'documents_header()' - Show standard document page header...
 //
 
 function
-workgroups_header($title, $id = 0)
+documents_header($title, $id = 0)
 {
   if ($id)
-    site_header($title, workgroup_name($id));
+    site_header($title, document_name($id));
   else
     site_header($title);
 }
 
 
-//
-// 'workgroups_footer()' - Show standard workgroup page footer...
-//
-
-function
-workgroups_footer()
-{
-  site_footer();
-}
-
-
 // Get command-line options...
 //
-// Usage: workgroups.php [operation] [options]
+// Usage: documents.php [operation] [options]
 //
 // Operations:
 //
-// B         = Batch update selected workgroups
+// B         = Batch update selected documents
 // L         = List
-// U#        = Modify workgroup #
+// U#        = Modify document #
 //
 // Options:
 //
-// I#        = Set first workgroup
+// I#        = Set first document
 // Qtext     = Set search text
 
 $search = "";
@@ -75,21 +58,21 @@ if ($argc)
 
   if ($op != 'B' && $op != 'L' && $op != 'U')
   {
-    site_header("Manage Workgroups");
-    print("<p>Bad command '$op'.</p>\n");
-    workgroups_footer();
+    site_header("Manage Documents");
+    html_show_error("Bad command '$op'.");
+    site_footer();
     exit();
   }
 
   if ($op == 'U' && $id)
   {
-    $workgroup = new workgroup($id);
+    $document = new document($id);
 
-    if ($workgroup->id != $id)
+    if ($document->id != $id)
     {
-      site_header("Manage Workgroups");
-      print("<p>Workgroup #$id does not exist.</p>\n");
-      workgroups_footer();
+      site_header("Manage Documents");
+      html_show_error("Document #$id does not exist.");
+      site_footer();
       exit();
     }
   }
@@ -100,7 +83,7 @@ if ($argc)
 
     switch ($argv[$i][0])
     {
-      case 'I' : // Set first workgroup
+      case 'I' : // Set first document
           $index = (int)$option;
 	  if ($index < 0)
 	    $index = 0;
@@ -115,9 +98,9 @@ if ($argc)
 	  }
 	  break;
       default :
-	  site_header("Manage Workgroups");
-	  print("<p>Bad option '$argv[$i]'.</p>\n");
-	  workgroups_footer();
+	  site_header("Manage Documents");
+	  html_show_error("Bad option '$argv[$i]'.");
+	  site_footer();
 	  exit();
 	  break;
     }
@@ -140,7 +123,7 @@ $options = "+I$index+Q" . urlencode($search);
 switch ($op)
 {
   case 'B' : // Batch update
-      // Batch update status of workgroups...
+      // Batch update status of documents...
       if (html_form_validate() && array_key_exists("STATUS", $_POST))
       {
 	$status = (int)$_POST["STATUS"];
@@ -152,11 +135,11 @@ switch ($op)
           if (substr($key, 0, 3) == "ID_")
 	  {
 	    $id = (int)substr($key, 3);
-	    $workgroup = new workgroup($id);
-	    if ($workgroup->id == $id)
+	    $document = new document($id);
+	    if ($document->id == $id)
 	    {
-	      $workgroup->status = $status;
-	      $workgroup->save();
+	      $document->status = $status;
+	      $document->save();
 	    }
 	  }
 
@@ -167,23 +150,23 @@ switch ($op)
       break;
 
   case 'L' : // View/list
-      // List workgroups...
-      workgroups_header("Manage Workgroups");
+      // List documents...
+      documents_header("Manage Documents");
 
-      print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Workgroup</a></p>\n");
+      print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Document</a></p>\n");
 
       html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
-      html_form_search("search", "Search Workgroups", $search);
+      html_form_search("search", "Search Documents", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
-      $matches = workgroup_search($search, "name");
+      $matches = document_search($search, "title");
       $count   = sizeof($matches);
 
       if ($count == 0)
       {
-	print("<p>No workgroups found.</p>\n");
+	print("<p>No documents found.</p>\n");
 
-	workgroups_footer();
+	site_footer();
 	exit();
       }
 
@@ -203,79 +186,93 @@ switch ($op)
       $next = $index + $LOGIN_PAGEMAX;
 
       if ($count == 1)
-	print("<p>1 workgroup found:</p>\n");
+	print("<p>1 document found:</p>\n");
       else if ($count <= $LOGIN_PAGEMAX)
-	print("<p>$count workgroups found:</p>\n");
+	print("<p>$count documents found:</p>\n");
       else
-	print("<p>$count workgroups found, showing $start to $end:</p>\n");
+	print("<p>$count documents found, showing $start to $end:</p>\n");
 
       html_form_start("$PHP_SELF?B$options", TRUE);
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      html_start_table(array("Name", "Home Page", "Status"));
+      html_start_table(array("Name", "URLs", "Status"));
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
-	$workgroup = new workgroup($matches[$i]);
+	$document = new document($matches[$i]);
 
-	if ($workgroup->id != $matches[$i])
+	if ($document->id != $matches[$i])
 	  continue;
 
-	$name   = htmlspecialchars($workgroup->name, ENT_QUOTES);
-	$wwwdir = htmlspecialchars($workgroup->wwwdir, ENT_QUOTES);
-	$status = $WORKGROUP_STATUSES[$workgroup->status];
+	$name    = $document->display_name();
+	$status  = $DOCUMENT_STATUSES[$document->status];
+	$links   = "";
+	if ($document->editable_url != "")
+	  $links .= htmlspecialchars($document->editable_url. ENT_QUOTES) . "\n";
+	if ($document->clean_url != "")
+	  $links .= htmlspecialchars($document->clean_url. ENT_QUOTES) . "\n";
+	if ($document->redline_url != "")
+	  $links .= htmlspecialchars($document->redline_url. ENT_QUOTES) . "\n";
 
 	print("<tr><td nowrap>");
-	html_form_checkbox("ID_$workgroup->id");
-	print("<a href=\"$PHP_SELF?U$workgroup->id$options\">$name</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$workgroup->id$options\">$SITE_URL/$wwwdir</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$workgroup->id$options\">$status</a></td>"
+	html_form_checkbox("ID_$document->id");
+	print("<a href=\"$PHP_SELF?U$document->id$options\">$name</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$document->id$options\">$links</a></td>"
+	     ."<td><a href=\"$PHP_SELF?U$document->id$options\">$status</a></td>"
 	     ."</tr>\n");
       }
 
       html_end_table();
 
       print("<p align=\"center\">");
-      html_form_select("STATUS", $WORKGROUP_STATUSES, "-- Choose --");
-      html_form_end(array("SUBMIT" => "--Set Status of Checked Workgroups"));
+      html_form_select("STATUS", $DOCUMENT_STATUSES, "-- Choose --");
+      html_form_end(array("SUBMIT" => "--Set Status of Checked Documents"));
       print("</p>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      workgroups_footer();
+      site_footer();
       break;
 
   case 'U' : // Update/create
-      $workgroup = new workgroup($id);
+      $document = new document($id);
 
-      if ($workgroup->id != $id)
+      if ($document->id != $id)
       {
-	site_header("Manage Workgroups");
-	print("<p>Workgroup #$id does not exist.\n");
-	workgroups_footer();
+	site_header("Manage Documents");
+	html_show_error("Document #$id does not exist.");
+	site_footer();
 	exit();
       }
 
-      if ($workgroup->loadform())
+      if ($document->create_id != $LOGIN_ID && !$LOGIN_IS_ADMIN && !$LOGIN_IS_OFFICER && !$LOGIN_IS_EDITOR)
       {
-        $workgroup->save();
+	site_header("Manage Documents");
+	html_show_error("You do not have permission to edit document #$id.");
+	site_footer();
+	exit();
+      }
+
+      if ($document->loadform())
+      {
+        $document->save();
         header("Location: $PHP_SELF?L$options");
       }
       else
       {
-        workgroups_header("Modify Workgroup", $id);
+        documents_header("Modify Document", $id);
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
         if ($REQUEST_METHOD == "POST")
           html_show_error("Please correct the highlighted fields.");
 
-	$workgroup->form($options);
+	$document->form($options);
 
-        workgroups_footer();
+        site_footer();
       }
       break;
 }

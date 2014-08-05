@@ -294,6 +294,9 @@ switch ($op)
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
+        if ($REQUEST_METHOD == "POST")
+          html_show_error("Please correct the highlighted fields.");
+
 	$user->form($options);
 
         accounts_footer();
