@@ -150,17 +150,17 @@ switch ($op)
 
             $contents = "";
 
-	    if (array_key_exists("status", $_POST) && (int)$_POST["status"] > 0)
+	    if (array_key_exists("status", $_POST) && (int)$_POST["status"] > 0 && (int)$_POST["status"] != $issue->status)
 	    {
 	      $issue->status = (int)$_POST["status"];
 	      $contents .= "Status changed to '" . $ISSUE_STATUS_SHORT[$issue->status] . "'.\n";
 	    }
-	    if (array_key_exists("priority", $_POST) && (int)$_POST["priority"] > 0)
+	    if (array_key_exists("priority", $_POST) && (int)$_POST["priority"] > 0 && (int)$_POST["priority"] != $issue->priority)
 	    {
 	      $issue->priority = (int)$_POST["priority"];
-	      $contents .= "Priority changed to '" . $ISSUE_PRIORITY_SHORT[$issue->priority] . "'.\n";
+	      $contents .= "Priority changed to '" . $ISSUE_PRIORITY_LONG[$issue->priority] . "'.\n";
 	    }
-	    if (array_key_exists("assigned_id", $_POST) && (int)$_POST["assigned_id"] > 0)
+	    if (array_key_exists("assigned_id", $_POST) && (int)$_POST["assigned_id"] > 0 && (int)$_POST["assigned_id"] != $issue->assigned_id)
 	    {
 	      $issue->assigned_id = (int)$_POST["assigned_id"];
 	      $contents .= "Assigned to '" . user_name($issue->assigned_id) . "'.\n";
@@ -330,7 +330,8 @@ switch ($op)
 	return;
       }
 
-      $issue = new issue($id);
+      $issue    = new issue($id);
+      $oldissue = new issue($id); // TODO: Way to get real copy?
 
       if ($id <= 0)
       {
@@ -399,7 +400,16 @@ switch ($op)
 	  }
 	}
 	else
-	  $contents = "Updated by '" . user_name($issue->modify_id) . "'.";;
+	  $contents = "Updated by '" . user_name($issue->modify_id) . "'.";
+
+	$contents .= "\n";
+
+	if (array_key_exists("status", $_POST) && (int)$_POST["status"] > 0 && (int)$_POST["status"] != $oldissue->status)
+	  $contents .= "\nStatus changed to '" . $ISSUE_STATUS_SHORT[$issue->status] . "'.";
+	if (array_key_exists("priority", $_POST) && (int)$_POST["priority"] > 0 && (int)$_POST["priority"] != $oldissue->priority)
+	  $contents .= "\nPriority changed to '" . $ISSUE_PRIORITY_LONG[$issue->priority] . "'.";
+	if (array_key_exists("assigned_id", $_POST) && (int)$_POST["assigned_id"] > 0 && (int)$_POST["assigned_id"] != $oldissue->assigned_id)
+	  $contents .= "\nAssigned to '" . user_name($issue->assigned_id) . "'.";
 
 	if ($id <= 0)
 	  $issue->notify_users($contents, "");

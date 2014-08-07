@@ -75,12 +75,12 @@ $ISSUE_PRIORITY_SHORT = array(
 );
 
 $ISSUE_PRIORITY_LONG = array(
-  ISSUE_PRIORITY_UNASSIGNED => "0 - Unassigned",
-  ISSUE_PRIORITY_CRITICAL => "1 - Critical",
-  ISSUE_PRIORITY_HIGH => "2 - High",
-  ISSUE_PRIORITY_MODERATE => "3 - Moderate",
-  ISSUE_PRIORITY_LOW => "4 - Low",
-  ISSUE_PRIORITY_RFE => "5 - Enhancement"
+  ISSUE_PRIORITY_UNASSIGNED => "Unassigned",
+  ISSUE_PRIORITY_CRITICAL => "Critical",
+  ISSUE_PRIORITY_HIGH => "High",
+  ISSUE_PRIORITY_MODERATE => "Moderate",
+  ISSUE_PRIORITY_LOW => "Low",
+  ISSUE_PRIORITY_RFE => "Enhancement"
 );
 
 class issue
