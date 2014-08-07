@@ -200,7 +200,7 @@ switch ($op)
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
                     "+Q" . urlencode($search));
 
-      html_start_table(array("Name", "URLs", "Status"));
+      html_start_table(array("Name", "Status"));
 
       for ($i = $start - 1; $i < $end; $i ++)
       {
@@ -211,18 +211,10 @@ switch ($op)
 
 	$name    = $document->display_name();
 	$status  = $DOCUMENT_STATUSES[$document->status];
-	$links   = "";
-	if ($document->editable_url != "")
-	  $links .= htmlspecialchars($document->editable_url, ENT_QUOTES) . "\n";
-	if ($document->clean_url != "")
-	  $links .= htmlspecialchars($document->clean_url, ENT_QUOTES) . "\n";
-	if ($document->redline_url != "")
-	  $links .= htmlspecialchars($document->redline_url, ENT_QUOTES) . "\n";
 
 	print("<tr><td nowrap>");
 	html_form_checkbox("ID_$document->id");
 	print("<a href=\"$PHP_SELF?U$document->id$options\">$name</a></td>"
-	     ."<td><a href=\"$PHP_SELF?U$document->id$options\">$links</a></td>"
 	     ."<td><a href=\"$PHP_SELF?U$document->id$options\">$status</a></td>"
 	     ."</tr>\n");
       }
