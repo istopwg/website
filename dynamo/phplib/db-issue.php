@@ -606,6 +606,7 @@ issue_search($search = "",		// I - Search buging
 	     $order = "",		// I - Order fields
 	     $priority = 0,		// I - Priority
 	     $status = 0,		// I - Status
+	     $document_id = 0,		// I - Which document
 	     $whose = 0)		// I - Whose
 {
   global $LOGIN_EMAIL, $LOGIN_IS_ADMIN, $LOGIN_ID;
@@ -633,6 +634,12 @@ issue_search($search = "",		// I - Search buging
   else if ($status == ISSUE_STATUS_OPEN_WILDCARD) // Show open
   {
     $query .= "${prefix}status <= " . ISSUE_STATUS_ACTIVE;
+    $prefix = " AND ";
+  }
+
+  if ($document_id)
+  {
+    $query .= "${prefix}document_id = $document_id";
     $prefix = " AND ";
   }
 

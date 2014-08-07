@@ -30,11 +30,12 @@ include_once "phplib/db-issue.php";
 // Qtext     = Set search text
 // Z#        = Set document ID
 
-$femail     = 0;
-$index      = 0;
-$priority   = ISSUE_PRIORITY_ANY_WILDCARD;
-$search     = "";
-$status     = ISSUE_STATUS_OPEN_WILDCARD;
+$document_id = 0;
+$femail      = 0;
+$index       = 0;
+$priority    = ISSUE_PRIORITY_ANY_WILDCARD;
+$search      = "";
+$status      = ISSUE_STATUS_OPEN_WILDCARD;
 
 if ($argc)
 {
@@ -121,6 +122,8 @@ if (html_form_validate())
     $status = (int)$_POST["FSTATUS"];
   if (array_key_exists("FEMAIL", $_POST))
     $femail = (int)$_POST["FEMAIL"];
+  if (array_key_exists("FDOCUMENTID", $_POST))
+    $document_id = (int)$_POST["FDOCUMENTID"];
   if (array_key_exists("SEARCH", $_POST))
     $search = $_POST["SEARCH"];
 }
@@ -207,14 +210,12 @@ switch ($op)
       else
         print("Show: All&nbsp;Issues");
 
-      if ($document_id <= 0)
-      {
-	print("&nbsp;in&nbsp;");
-        document_select("FDOCUMENTID", $document_id, "All Documents");
-      }
+      print("&nbsp;in&nbsp;");
+      document_select("FDOCUMENTID", $document_id, "All Documents");
+
       html_form_end();
 
-      $matches = issue_search($search, "-status -priority id", $priority, $status, $femail);
+      $matches = issue_search($search, "-status -priority id", $priority, $status, $document_id, $femail);
       $count   = sizeof($matches);
 
       if ($count == 0)
@@ -337,6 +338,8 @@ switch ($op)
       {
 	$action = "Create Issue";
 	$title  = "Create Issue";
+
+	$issue->document_id = $document_id;
       }
       else
       {
