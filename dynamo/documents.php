@@ -212,7 +212,7 @@ switch ($op)
 	$name    = $document->display_name();
 	$status  = $DOCUMENT_STATUSES[$document->status];
 
-	print("<tr><td nowrap>");
+	print("<tr><td>");
 	html_form_checkbox("ID_$document->id");
 	print("<a href=\"$PHP_SELF?U$document->id$options\">$name</a></td>"
 	     ."<td><a href=\"$PHP_SELF?U$document->id$options\">$status</a></td>"
