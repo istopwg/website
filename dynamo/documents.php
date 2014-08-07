@@ -251,7 +251,7 @@ switch ($op)
 	exit();
       }
 
-      if ($document->loadform())
+      if ($document->loadform($error))
       {
         $document->save();
         header("Location: $PHP_SELF?L$options");
@@ -266,7 +266,7 @@ switch ($op)
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
         if ($REQUEST_METHOD == "POST")
-          html_show_error("Please correct the highlighted fields.");
+          html_show_error($error);
 
 	$document->form($options);
 

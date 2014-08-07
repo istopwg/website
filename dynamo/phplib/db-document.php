@@ -334,13 +334,18 @@ class document
   //
 
   function				// O - TRUE if OK, FALSE otherwise
-  loadform()
+  loadform(&$error)
   {
     global $_POST;
 
 
     if (!html_form_validate())
+    {
+      $error = "Unable to validate form data.";
       return (FALSE);
+    }
+
+    $error = "";
 
     if (array_key_exists("status", $_POST))
       $this->status = (int)$_POST["status"];
@@ -369,12 +374,32 @@ class document
     if (array_key_exists("redline_url", $_POST))
       $this->redline_url = str_replace("ftp://ftp.pwg.org/", "http://ftp.pwg.org/", trim($_POST["redline_url"]));
 
-    // TODO: Implement file uploads
-
     if (array_key_exists("workgroup_id", $_POST))
       $this->workgroup_id = (int)$_POST["workgroup_id"];
 
-    return ($this->validate());
+    if (array_key_exists("editable_file", $_FILES))
+      if ($url = $this->upload($_FILES["editable_file"], $error))
+        $this->editable_url = $url;
+      else
+        return (FALSE);
+
+    if (array_key_exists("redline_file", $_FILES))
+      if ($url = $this->upload($_FILES["redline_file"], $error))
+        $this->redline_url = $url;
+      else
+        return (FALSE);
+
+    if (array_key_exists("clean_file", $_FILES))
+      if ($url = $this->upload($_FILES["clean_file"], $error))
+        $this->clean_url = $url;
+      else
+        return (FALSE);
+
+    if (!$this->validate())
+    {
+      $error = "Please correct the highlighted fields.";
+      return (FALSE);
+    }
   }
 
 
@@ -461,6 +486,119 @@ class document
     return (TRUE);
   }
 
+
+  //
+  // 'document::upload()' - Upload a document to the FTP server.
+  //
+
+  function				// O - URL if OK, empty string otherwise
+  upload($file, &$error)		// I - File to upload (from form)
+  {
+    global $FTP_USER, $FTP_PASSWORD;	// FTP account info from site.cfg
+
+
+    $filename = $file["name"];		// Original filename
+    $filetype = $file["type"];		// File type as reported by browser
+    $tmp_name = $file["tmp_name"];	// Local temporary file
+
+    if (!preg_match("/^[a-z0-9-_.]+\\.(doc|docx|html|pdf|rtf|txt|xml)\$/i", $filename))
+    {
+      $error = "Bad filename \"$filename\" - only HTML, PDF, text, RTF, MS Word, and XML documents can be uploaded at this time.";
+      return ("");
+    }
+
+    switch ($this->status)
+    {
+      case DOCUMENT_STATUS_OBSOLETE :
+          $error = "Cannot upload new files for obsolete documents.";
+          return ("");
+
+      case DOCUMENT_STATUS_INITIAL_WORKING_DRAFT :
+      case DOCUMENT_STATUS_INTERIM_WORKING_DRAFT :
+      case DOCUMENT_STATUS_PROTOTYPE_WORKING_DRAFT :
+      case DOCUMENT_STATUS_STABLE_WORKING_DRAFT :
+          $workgroup = new workgroup($this->workgroup_id);
+          if ($workgroup->id == $this->workgroup_id)
+            $ftpdir = $workgroup->ftpdir;
+          else
+            $ftpdir = "general";
+
+          $path = "/pub/pwg/$ftpdir/wd/$filename";
+          break;
+      case DOCUMENT_STATUS_CONFERENCE_CALL_MINUTES :
+      case DOCUMENT_STATUS_FACE_TO_FACE_MINUTES :
+          $workgroup = new workgroup($this->workgroup_id);
+          if ($workgroup->id == $this->workgroup_id)
+            $ftpdir = $workgroup->ftpdir;
+          else
+            $ftpdir = "general";
+
+          $path = "/pub/pwg/$ftpdir/minutes/$filename";
+          break;
+      case DOCUMENT_STATUS_WHITE_PAPER :
+          $workgroup = new workgroup($this->workgroup_id);
+          if ($workgroup->id == $this->workgroup_id)
+            $ftpdir = $workgroup->ftpdir;
+          else
+            $ftpdir = "general";
+
+          $path = "/pub/pwg/$ftpdir/white/$filename";
+          break;
+      case DOCUMENT_STATUS_CHARTER :
+          if (!preg_match("/^ch-[-a-z0-9]-[0-9]{8}\\.(doc|docx|pdf)/i", $filename))
+          {
+            $error = "Approved charters must have names of the form 'ch-name-YYYYMMDD.ext'.";
+            return ("");
+          }
+
+          $workgroup = new workgroup($this->workgroup_id);
+          if ($workgroup->id == $this->workgroup_id)
+            $ftpdir = $workgroup->ftpdir;
+          else
+            $ftpdir = "general";
+
+          $path = "/pub/pwg/$ftpdir/charter/$filename";
+          break;
+      case DOCUMENT_STATUS_INFORMATIONAL :
+          if (!preg_match("/^(bp|info|req)-[-a-z0-9]-[0-9]{8}\\.(doc|docx|pdf)/i", $filename))
+          {
+            $error = "Approved informational documents must have names of the form '(bp|info|req)-name-YYYYMMDD.ext'.";
+            return ("");
+          }
+
+          $path = "/pub/pwg/informational/$filename";
+          break;
+      case DOCUMENT_STATUS_CANDIDATE_STANDARD :
+          if (!preg_match("/^cs-[-a-z0-9][0-9][0-9]-[0-9]{8}-51[0-9][0-9]\\.[0-9]+\\.(doc|docx|pdf)/i", $filename))
+          {
+            $error = "Approved candidate standards must have names of the form 'cs-nameNN-YYYYMMDD-51XX.X.ext'.";
+            return ("");
+          }
+
+          $path = "/pub/pwg/candidates/$filename";
+          break;
+      case DOCUMENT_STATUS_FULL_STANDARD :
+          if (!preg_match("/^cs-[-a-z0-9][0-9][0-9]-[0-9]{8}-51[0-9][0-9]\\.[0-9]+\\.(doc|docx|pdf)/i", $filename))
+          {
+            $error = "Approved full standards must have names of the form 'std-nameNN-YYYYMMDD-51XX.X.ext'.";
+            return ("");
+          }
+
+          $path = "/pub/pwg/standards/$filename";
+          break;
+    }
+
+    $url = "ftp://$FTP_USER:$FTP_PASSWORD@ftp.pwg.org$path";
+    if (copy($tmp_name, $url))
+      return ("http://ftp.pwg.org$path");
+
+    if ($temp = error_get_last())
+      $error = $temp["message"];
+    else
+      $error = htmlspecialchars("Unable to upload '$filename' to the FTP server.");
+
+    return ("");
+  }
 
 
   //
