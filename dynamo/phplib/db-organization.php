@@ -433,7 +433,7 @@ organization_select(
   if ($any_id != "")
     print("<option value=\"0\">$prefix$any_id</option>");
 
-  $results = db_query("SELECT id, name FROM organization ORDER BY name WHERE status < " . ORGANIZATION_STATUS_DELETED);
+  $results = db_query("SELECT id, name FROM organization WHERE status < " . ORGANIZATION_STATUS_DELETED . " ORDER BY name");
   while ($row = db_next($results))
   {
     $oid          = $row["id"];
