@@ -6,7 +6,7 @@
 include_once "site.php";
 include_once "db-workgroup.php";
 
-define("DOCUMENT_STATUS_WITHDRAWN", 0);
+define("DOCUMENT_STATUS_OBSOLETE", 0);
 define("DOCUMENT_STATUS_INITIAL_WORKING_DRAFT", 1);
 define("DOCUMENT_STATUS_INTERIM_WORKING_DRAFT", 2);
 define("DOCUMENT_STATUS_PROTOTYPE_WORKING_DRAFT", 3);
@@ -20,7 +20,7 @@ define("DOCUMENT_STATUS_CANDIDATE_STANDARD", 10);
 define("DOCUMENT_STATUS_FULL_STANDARD", 11);
 
 $DOCUMENT_STATUSES = array(
-  DOCUMENT_STATUS_WITHDRAWN => "Withdrawn",
+  DOCUMENT_STATUS_OBSOLETE => "Obsolete",
   DOCUMENT_STATUS_INITIAL_WORKING_DRAFT => "Initial Working Draft",
   DOCUMENT_STATUS_INTERIM_WORKING_DRAFT => "Interim Working Draft",
   DOCUMENT_STATUS_PROTOTYPE_WORKING_DRAFT => "Prototype Working Draft",
@@ -42,6 +42,7 @@ $DOCUMENT_STATUSES_ANY_USER = array(
   DOCUMENT_STATUS_CONFERENCE_CALL_MINUTES => "Conference Call Minutes",
   DOCUMENT_STATUS_FACE_TO_FACE_MINUTES => "Face-to-Face Minutes"
 );
+
 
 
 class document
@@ -397,12 +398,12 @@ class document
       if ($document->id != $this->replaces_id)
         return (FALSE);
 
-      if ($document->status != DOCUMENT_STATUS_WITHDRAWN)
+      if ($document->status != DOCUMENT_STATUS_OBSOLETE)
       {
         if ($LOGIN_ID == $document->create_id || $LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER)
         {
           if (db_query("UPDATE document SET "
-                      ."status = " . DOCUMENT_STATUS_WITHDRAWN
+                      ."status = " . DOCUMENT_STATUS_OBSOLETE
                       .", modify_date='" . db_escape($this->modify_date) . "'"
                       .", modify_id = $LOGIN_ID"
                       ." WHERE id = $this->replaces_id") === FALSE)
@@ -473,7 +474,7 @@ class document
 
 
     if (($this->number == "" && $this->status >= DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
-        ($this->number != "" && $this->status > DOCUMENT_STATUS_WITHDRAWN && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
+        ($this->number != "" && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
         ($this->number != "" && !preg_match("/^51[0-9][0-9]\\.[0-9]+(-[0-9]{4}|)\$/", $this->number)))
     {
       $this->number_valid = FALSE;
@@ -578,7 +579,7 @@ function				// O - Array of document objects
 document_search($search = "",		// I - Search text
                 $order = "-modify_date",// I - Order of objects
                 $workgroup_id = -1,	// I - Which workgroup to limit to
-                $min_status = DOCUMENT_STATUS_WITHDRAWN,
+                $min_status = DOCUMENT_STATUS_OBSOLETE,
                 $max_status = DOCUMENT_STATUS_FULL_STANDARD)
                 			// I - Min and max status
 {
@@ -647,7 +648,7 @@ document_search($search = "",		// I - Search text
   else
     $query = "";
 
-  if ($min_status != DOCUMENT_STATUS_WITHDRAWN || $max_status != DOCUMENT_STATUS_FULL_STANDARD)
+  if ($min_status != DOCUMENT_STATUS_OBSOLETE || $max_status != DOCUMENT_STATUS_FULL_STANDARD)
   {
     if ($query == "")
       $query = " WHERE";
@@ -714,9 +715,9 @@ document_select(
   if ($editable)
   {
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER)
-      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " ORDER BY title");
+      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND status <= " . DOCUMENT_STATUS_STABLE_WORKING_DRAFT . " ORDER BY title");
     else
-      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND create_id = $LOGIN_ID ORDER BY title");
+      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND status <= " . DOCUMENT_STATUS_STABLE_WORKING_DRAFT . " AND create_id = $LOGIN_ID ORDER BY title");
   }
   else
     $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER . " ORDER BY title");
