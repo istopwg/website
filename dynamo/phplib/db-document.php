@@ -725,7 +725,7 @@ document_select(
   while ($row = db_next($results))
   {
     $did    = $row["id"];
-    $title  = htmlspecialchars($row["title"]);
+    $title  = html_abbreviate($row["title"]);
     $number = $row["number"];
 
     if ($number != "")

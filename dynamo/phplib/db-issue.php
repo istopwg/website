@@ -219,7 +219,7 @@ class issue
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
       html_form_select("status", $ISSUE_STATUS_SHORT, "", $this->status);
     else
-      print($ISSUE_STATUS_LONG[$this->status]);
+      print($ISSUE_STATUS_SHORT[$this->status]);
     html_form_field_end();
 
     // priority
@@ -402,7 +402,7 @@ class issue
   notify_users($contents = "",		// I - Notification message, if any
 	       $what = "Re: ")		// I - Reply or new message
   {
-    global $ISSUE_PRIORITY_SHORT, $ISSUE_STATUS_LONG;
+    global $ISSUE_PRIORITY_SHORT, $ISSUE_STATUS_SHORT;
     global $SITE_EMAIL, $SITE_HOSTNAME, $SITE_URL;
 
 
@@ -434,7 +434,7 @@ class issue
     else
       $message = "";
 
-    $message .= "[Issue " . substr($ISSUE_STATUS_LONG[$this->status], 4) . "]\n"
+    $message .= "[Issue " . $ISSUE_STATUS_SHORT[$this->status] . "]\n"
 	       ."\n"
 	       . wordwrap(trim($contents)) . "\n"
 	       ."\n"
