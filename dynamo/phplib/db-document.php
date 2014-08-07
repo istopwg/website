@@ -715,12 +715,12 @@ document_select(
   if ($editable)
   {
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER)
-      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND status <= " . DOCUMENT_STATUS_STABLE_WORKING_DRAFT . " ORDER BY title");
+      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " ORDER BY status,number,title");
     else
-      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND status <= " . DOCUMENT_STATUS_STABLE_WORKING_DRAFT . " AND create_id = $LOGIN_ID ORDER BY title");
+      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND create_id = $LOGIN_ID ORDER BY status,number,title");
   }
   else
-    $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER . " ORDER BY title");
+    $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER . " ORDER BY status,number,title");
 
   while ($row = db_next($results))
   {
