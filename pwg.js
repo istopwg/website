@@ -209,6 +209,7 @@ function load_sidebar(path) {
   <li><a href="' + path + 'pwg-logos/members.html">Members</a><span class="PWGNoMobile">/<a href="' + path + 'pwg-logos/members.html#JOINING">Joining</a></span></li>\
   <li><a href="' + path + 'chair/meeting-info/meetings.html">Meetings</a></li>\
   <li><a href="' + path + 'chair/participating.html">Participating</a></li>\
+  <li><a href="' + path + 'bofs.html">Birds of a Feather Sessions</a></li>\
 </ul>\
 <p>Publications:</p>\
 <ul>\
