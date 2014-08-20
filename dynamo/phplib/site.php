@@ -166,9 +166,14 @@ site_header($title = "",		// I - Additional document title
        ."type=\"application/rss+xml\" href=\"${html_path}rss/index.rss\">\n"
        ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg.png\" "
        ."type=\"image/png\">\n"
-       ."</head>\n"
-       ."<body>\n"
-       ."<nav class=\"navbar navbar-inverse pwg-navbar\" role=\"navigation\">\n"
+       ."</head>\n");
+
+  if ($sidebar)
+    print("<body data-spy=\"scroll\" data-target=\"#pwg-toc\">\n");
+  else
+    print("<body>\n");
+
+  print("<nav class=\"navbar navbar-inverse pwg-navbar\" role=\"navigation\">\n"
        ."  <div class=\"container-fluid\">\n"
        ."    <div class=\"navbar-header\">\n"
        ."      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#pwg-nav-collapsible\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n"

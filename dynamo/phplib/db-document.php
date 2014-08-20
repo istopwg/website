@@ -55,6 +55,7 @@ class document
   var $replaces_id;
   var $workgroup_id;
   var $status;
+  var $series, $series_valid;
   var $number, $number_valid;
   var $version, $version_valid;
   var $title, $title_valid;
@@ -95,7 +96,8 @@ class document
     $this->replaces_id  = 0;
     $this->workgroup_id = 0;
     $this->status       = DOCUMENT_STATUS_CONFERENCE_CALL_MINUTES;
-    $this->number       = "";
+    $this->series       = 0;
+    $this->number       = 0;
     $this->version      = "";
     $this->title        = "";
     $this->contents     = "";
@@ -128,8 +130,18 @@ class document
   function				// O - Display name
   display_name()
   {
-    if ($this->number != "")
-      return ("PWG $this->number: " . htmlspecialchars($this->title, ENT_QUOTES));
+    if ($this->series != 0)
+    {
+      if (preg_match("/-(20[0-9][0-9])[0-9]{4,4}-51/", $this->clean_url, $matches))
+        $year = "-$matches[1]";
+      else
+        $year = "";
+
+      if ($this->series == 5108)		// For Pete
+        return (sprintf("PWG %d.%02d%s: %s", $this->series, $this->number, $year, htmlspecialchars($this->title, ENT_QUOTES)));
+      else
+        return (sprintf("PWG %d.%d%s: %s", $this->series, $this->number, $year, htmlspecialchars($this->title, ENT_QUOTES)));
+    }
     else
       return (htmlspecialchars($this->title, ENT_QUOTES));
   }
@@ -196,9 +208,13 @@ class document
 
     html_form_field_start("number", "Standard Number", $this->title_valid);
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID)
-      html_form_text("number", "5100.1, etc.", $this->number);
-    else if ($this->number != "")
-      print(htmlspecialchars($this->number));
+    {
+      html_form_text("series", "5100, etc.", $this->series);
+      print(".");
+      html_form_text("number", "1, 2, etc.", $this->number);
+    }
+    else if ($this->series != 0)
+      print("$this->series.$this->number");
     else
       print("None");
     html_form_field_end();
@@ -311,6 +327,7 @@ class document
     $this->replaces_id  = $row["replaces_id"];
     $this->workgroup_id = $row["workgroup_id"];
     $this->status       = $row["status"];
+    $this->series       = $row["series"];
     $this->number       = $row["number"];
     $this->version      = $row["version"];
     $this->title        = $row["title"];
@@ -356,8 +373,11 @@ class document
     if (array_key_exists("title", $_POST))
       $this->title = trim($_POST["title"]);
 
+    if (array_key_exists("series", $_POST))
+      $this->series = (int)($_POST["series"]);
+
     if (array_key_exists("number", $_POST))
-      $this->number = trim($_POST["number"]);
+      $this->number = (int)($_POST["number"]);
 
     if (array_key_exists("version", $_POST))
       $this->version = trim($_POST["version"]);
@@ -445,7 +465,8 @@ class document
                       ." SET replaces_id = $this->replaces_id"
                       .", workgroup_id = $this->workgroup_id"
                       .", status = $this->status"
-                      .", number = '" . db_escape($this->number) . "'"
+                      .", series = $this->series"
+                      .", number = $this->number"
                       .", version = '" . db_escape($this->version) . "'"
                       .", title = '" . db_escape($this->title) . "'"
                       .", contents = '" . db_escape($this->contents) . "'"
@@ -466,7 +487,8 @@ class document
                   .", $this->replaces_id"
                   .", $this->workgroup_id"
                   .", $this->status"
-                  .", '" . db_escape($this->number) . "'"
+                  .", $this->series"
+                  .", $this->number"
                   .", '" . db_escape($this->version) . "'"
                   .", '" . db_escape($this->title) . "'"
                   .", '" . db_escape($this->contents) . "'"
@@ -611,9 +633,18 @@ class document
     $valid = TRUE;
 
 
-    if (($this->number == "" && $this->status >= DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
-        ($this->number != "" && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
-        ($this->number != "" && !preg_match("/^51[0-9][0-9]\\.[0-9]+(-[0-9]{4}|)\$/", $this->number)))
+    if (($this->series == 0 && $this->status >= DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
+        ($this->series != 0 && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
+        ($this->series != 0 && $this->series < 5100 || $this->series > 5199))
+    {
+      $this->series_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->series_valid = TRUE;
+
+    if (($this->number == 0 && $this->status >= DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
+        ($this->number != 0 && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD))
     {
       $this->number_valid = FALSE;
       $valid = FALSE;
@@ -685,7 +716,11 @@ class document
 
     $title    = $this->display_name();
     $contents = html_format($this->contents, FALSE, $level + 1);
-    $date     = html_date($this->modify_date);
+
+    if (preg_match("/-(20[0-9]{2,2})([0-9]{2,2})([0-9]{2,2})/", $this->clean_url, $matches))
+      $date = html_date("$matches[1]-$matches[2]-$matches[3]");
+    else
+      $date = html_date($this->modify_date);
 
     if ($this->clean_url != "")
       $url = htmlspecialchars($this->clean_url, ENT_QUOTES);

@@ -177,47 +177,6 @@ P.PWGList A {
   white-space: nowrap;
 }
 
-# Collapsible panel support
-.panel, .panelcollapsed {
-}
-
-.panel h2::after, .panelcollapsed h2::after {
-  background: #303028;
-  border-radius: 8px;
-  color: white;
-  padding: 4px 8px;
-  font-size: 50%;
-  margin-left: 1em;
-  text-decoration: none;
-}
-
-.panel h2::after:hover, .panelcollapsed h2::after:hover {
-  background: #606050;
-  color: white;
-}
-
-.panel h2::after:active, .panelcollapsed h2::after:active {
-  background: #c0c0a0;
-  color: black;
-}
-
-.panel h2::after {
-  content: "Hide";
-}
-
-.panelcollapsed h2::after {
-  content: "Show";
-}
-
-.panelcontent {
-  margin: 0px 2em;
-  overflow: hidden;
-}
-
-.panelcollapsed .panelcontent {
-  display: none;
-}
-
 /* Appearance tweaks for navigation bar */
 .pwg-navbar {
   background: #303028;
@@ -385,10 +344,6 @@ a.gsc-trailing-more-results:link {
   padding: 0px 10px 10px; /* top right+left bottom */
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-}
-
-#pwg-toc-button {
-  margin-top: 10px;
 }
 
 #pwg-content {
