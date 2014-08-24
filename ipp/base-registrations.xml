@@ -4,17 +4,19 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2013-12-08 (PWG: 2014-05-12)</updated>
+  <updated>2013-12-08 (PWG: 2014-08-22)</updated>
   <!--
     Pending PWG Registrations and Changes:
+    - Fixed IPP FaxOut registrations: retry-time-out (not retry-timeout), missing cover-sheet-info-default
     - Moved read-only document-format-varying-attributes, job-settable-attributes-supported, pages-per-minute, pages-per-minute-color, printer-message-from-operator, printer-settable-attributes-supported, xri-authentication-supported, xri-security-supported, and xri-uri-scheme-supported attributes to the Printer Status group.
     - Moved printer-current-time and printer-xri-supported back to Printer Description group (potentially READ-WRITE according to RFC 3380)
     - Added missing PWG 5100.13 printer-config-change-date-time/-time attributes.
     - Added missing PWG 5100.15 and 5107.3 registrations
     - Fixed the registrations of the PWG 5100.9 xxx-recoverable-storage[-error] keywords (dropped "-error")
+    - Added HP job-password-encryption keywords for SHA-2 algorithms
+    - Added HP output-bin keywords for collator and job-separator, with prohibition for output-bin-actual.
     - Added Xerox printer-state-reasons xxx-missing keywords for missing supplies
     - Added Xerox media keywords for Mopria sizes
-    - Added HP job-password-encryption keywords for SHA2
     - Added prototype IPP Shared Infrastructure Extensions (IPPSIX) definitions
     - Added stable IPP Scan Service definitions
     - Added stable IPP Finishings 2.0 (FIN2) definitions
@@ -2707,7 +2709,7 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Job Template</collection>
-      <name>retry-timeout</name>
+      <name>retry-time-out</name>
       <syntax>integer(1:MAX)</syntax>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
@@ -3405,6 +3407,19 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <name>cover-front-supported</name>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>cover-sheet-info-default</name>
+      <syntax>collection</syntax>
+      <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>cover-sheet-info-default</name>
+      <member_attribute>&lt;Member attributes are the same as the "cover-sheet-info" Job Template attribute&gt;</member_attribute>
+      <syntax />
+      <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
       <collection>Printer Description</collection>

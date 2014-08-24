@@ -1,4 +1,4 @@
-http://www.pwg.org/archives/ipp/2014/.html
+http://www.pwg.org/pipermail/ipp/2014/018054.html
 
 Attributes (attribute syntax)
   Keyword Attribute Value                       Reference

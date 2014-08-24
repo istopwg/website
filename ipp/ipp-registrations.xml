@@ -14794,7 +14794,7 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <attribute>output-bin</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
+      <syntax>type2 keyword</syntax>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
     </record>
     <record>
@@ -14810,6 +14810,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
     </record>
     <record>
+      <value>collator</value>
+      <attribute>output-bin</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="http://www.pwg.org/pipermail/ipp/2014/018105.html" type="uri">HP2</xref>
+    </record>
+    <record>
       <value>face-down</value>
       <attribute>output-bin</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
@@ -14820,6 +14826,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <attribute>output-bin</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
+    </record>
+    <record>
+      <value>job-separator</value>
+      <attribute>output-bin</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="http://www.pwg.org/pipermail/ipp/2014/018105.html" type="uri">HP2</xref>
     </record>
     <record>
       <value>large-capacity</value>
@@ -15048,6 +15060,17 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <attribute>output-bin</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
+    </record>
+    <record>
+      <attribute>output-bin-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="http://www.pwg.org/pipermail/ipp/2014/018105.html" type="uri">HP2</xref>
+    </record>
+    <record>
+      <value>&lt;Any &quot;output-bin&quot; keyword value except 'collator' or 'job-separator'.&gt;</value>
+      <attribute>output-bin-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="http://www.pwg.org/pipermail/ipp/2014/018105.html" type="uri">HP2</xref>
     </record>
     <record>
       <attribute>output-bin-default</attribute>
@@ -24099,7 +24122,31 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
+      <name>Acknowledge-Document</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Acknowledge-Document</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
       <name>Acknowledge-Identify-Printer</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Acknowledge-Identify-Printer</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Acknowledge-Identify-Printer</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Acknowledge-Job</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Acknowledge-Job</name>
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
@@ -24215,6 +24262,22 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
+      <name>Fetch-Document</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Fetch-Document</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Fetch-Job</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Fetch-Job</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
       <name>Fetch-Job</name>
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
@@ -24255,6 +24318,22 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
+      <name>Get-Jobs (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Jobs (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Next-Document-Images</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippscan10-20140509.pdf" type="uri">PWG5100.SCAN</xref>
+    </record>
+    <record>
+      <name>Get-Next-Document-Images</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippscan10-20140509.pdf" type="uri">PWG5100.SCAN</xref>
+    </record>
+    <record>
       <name>Get-Next-Document-Images</name>
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippscan10-20140509.pdf" type="uri">PWG5100.SCAN</xref>
     </record>
@@ -24264,6 +24343,22 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
     </record>
     <record>
       <name>Get-Notifications (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Notifications (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Notifications (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Output-Device-Attributes</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Output-Device-Attributes</name>
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
@@ -24281,6 +24376,14 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
     <record>
       <name>Get-Printer-Attributes (extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
+    </record>
+    <record>
+      <name>Get-Printer-Attributes (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Get-Printer-Attributes (extension)</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
       <name>Get-Printer-Attributes (extension)</name>
@@ -24308,11 +24411,11 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
     </record>
     <record>
       <name>Hold-Job (extension)</name>
-      <xref type="rfc" data="rfc3380" />
+      <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
       <name>Hold-Job (extension)</name>
-      <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
+      <xref type="rfc" data="rfc3380" />
     </record>
     <record>
       <name>Hold-New-Jobs</name>
@@ -24519,11 +24622,43 @@ as well on separate lines with the notation &quot;(extension)&quot; after the na
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
+      <name>Update-Active-Jobs</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Active-Jobs</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Document-Status</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Document-Status</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
       <name>Update-Document-Status</name>
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
       <name>Update-Job-Status</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Job-Status</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Job-Status</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Output-Device-Attributes</name>
+      <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
+    </record>
+    <record>
+      <name>Update-Output-Device-Attributes</name>
       <xref data="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsix10-20140226.pdf" type="uri">PWG5100.SIX</xref>
     </record>
     <record>
