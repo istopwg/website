@@ -109,7 +109,7 @@ class submission
   function				// O - TRUE if successful, FALSE otherwise
   add_files()
   {
-    global $_FILES;
+    global $_FILES, $LOGIN_ID;
 
 
     $this->bonjour_file_error  = "";
