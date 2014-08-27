@@ -6,19 +6,47 @@
 include_once "site.php";
 include_once "db.php";
 
+define("SUBMISSION_STATUS_PENDING", 0);
+define("SUBMISSION_STATUS_REVIEW", 1);
+define("SUBMISSION_STATUS_APPROVED", 2);
+define("SUBMISSION_STATUS_REJECTED", 3);
+define("SUBMISSION_STATUS_APPEALED", 4);
 
-class article
+$SUBMISSION_STATUSES = array(
+  SUBMISSION_STATUS_PENDING => "Pending",
+  SUBMISSION_STATUS_REVIEW => "Review",
+  SUBMISSION_STATUS_APPROVED => "Approved",
+  SUBMISSION_STATUS_REJECTED => "Rejected",
+  SUBMISSION_STATUS_APPEALED => "Appealed"
+);
+
+$SUBMISSION_VERSIONS = array(
+  "org.pwg.ipp-everywhere.20140826" => "1.0 Draft (August 26, 2014)"
+);
+
+
+class submission
 {
   //
   // Instance variables...
   //
 
   var $id;
-  var $project_id, $project_id_valid;
-  var $is_published;
-  var $title, $title_valid;
-  var $summary, $summary_valid;
-  var $contents, $contents_valid;
+  var $status;
+  var $organization_id, $organization_id_valid;
+  var $contact_name, $contact_name_valid;
+  var $contact_email, $contact_email_valid;
+  var $product_family, $product_family_valid;
+  var $models, $models_valid;
+  var $url, $url_valid;
+  var $cert_version, $cert_version_valid;
+  var $used_approved, $used_approved_valid;
+  var $used_prodready, $used_prodready_valid;
+  var $printed_correctly, $printed_correctly_valid;
+  var $reviewer1_id, $reviewer1_id_valid;
+  var $reviewer1_status;
+  var $reviewer2_id, $reviewer2_id_valid;
+  var $reviewer2_status;
   var $create_date;
   var $create_id;
   var $modify_date;
@@ -26,11 +54,11 @@ class article
 
 
   //
-  // 'article::article()' - Create an Article object.
+  // 'submission::submission()' - Create a submission object.
   //
 
   function				// O - New Article object
-  article($id = 0)			// I - ID, if any
+  submission($id = 0)			// I - ID, if any
   {
     if ($id > 0)
       $this->load($id);
@@ -40,99 +68,248 @@ class article
 
 
   //
-  // 'article::clear()' - Initialize a new an Article object.
+  // 'submission::clear()' - Initialize a new submission object.
   //
 
   function
   clear()
   {
-    $this->id           = 0;
-    $this->project_id   = -1;
-    $this->is_published = 0;
-    $this->title        = "";
-    $this->summary      = "";
-    $this->contents     = "";
-    $this->create_date  = "";
-    $this->create_id    = 0;
-    $this->modify_date  = "";
-    $this->modify_id    = 0;
+    global $LOGIN_ID;
+
+
+    $this->id                = 0;
+    $this->status            = SUBMISSION_STATUS_PENDING;
+    $this->organization_id   = -1;
+    $this->contact_name      = "";
+    $this->contact_email     = "";
+    $this->product_family    = "";
+    $this->models            = "";
+    $this->url               = "";
+    $this->cert_version      = "";
+    $this->used_approved     = 0;
+    $this->used_prodready    = 0;
+    $this->printed_correctly = 0;
+    $this->reviewer1_id      = -1;
+    $this->reviewer1_status  = SUBMISSION_STATUS_PENDING;
+    $this->reviewer2_id      = -1;
+    $this->reviewer2_status  = SUBMISSION_STATUS_PENDING;
+    $this->create_date       = "";
+    $this->create_id         = $LOGIN_ID;
+    $this->modify_date       = "";
+    $this->modify_id         = 0;
   }
 
 
   //
-  // 'article::delete()' - Delete an Article object.
+  // 'submission::delete()' - Delete a submission object.
   //
 
   function
   delete()
   {
-    db_query("DELETE FROM article WHERE id=$this->id");
+    db_query("DELETE FROM submission WHERE id=$this->id");
     $this->clear();
   }
 
 
   //
-  // 'article::form()' - Display a form for an Article object.
+  // 'submission::form()' - Display a form for a submission object.
   //
 
   function
-  form($options = "")			// I - Search/etc. options
+  form()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS;
 
 
     if ($this->id <= 0)
-      $action = "Create Article";
+      $action = "Submit Self-Certification";
     else
-      $action = "Modify Article #$this->id";
+      $action = "Modify Submission #$this->id";
 
-    print("<h2>$action</h2>\n");
-    html_form_start("$PHP_SELF?U$this->id$options");
+    html_form_start("$PHP_SELF?U$this->id", FALSE, TRUE);
 
-    // project_id
-    html_form_field_start("project_id", "Project", $this->project_id_valid);
-    project_select("project_id", $this->project_id,
-                   $this->id < 0 ? "Select Project" : "");
+    // status
+    html_form_field_start("status", "Status");
+    if ($LOGIN_IS_ADMIN)
+      html_form_select("status", $SUBMISSION_STATUSES, "", $this->status);
+    else
+      print($SUBMISSION_STATUSES[$this->status]);
     html_form_field_end();
 
-    if ($LOGIN_IS_ADMIN)
+    // organization_id
+    html_form_field_start("+organization_id", "Organization Name", $this->organization_id_valid);
+    if ($this->create_id == $LOGIN_ID)
+      organization_select("organization_id", $this->organization_id, "-- Choose --");
+    else
+      print(organization_name($this->organization_id));
+    html_form_field_end();
+
+    // contact_name
+    html_form_field_start("+contact_name", "Contact Name", $this->contact_name_valid);
+    if ($this->create_id == $LOGIN_ID)
+      html_form_text("contact_name", "Contact for submission", $this->contact_name);
+    else
+      print(htmlspecialchars($this->contact_name));
+    html_form_field_end();
+
+    // contact_email
+    html_form_field_start("+contact_email", "Contact Name", $this->contact_email_valid);
+    if ($this->create_id == $LOGIN_ID)
+      html_form_email("contact_email", "name@example.com", $this->contact_email);
+    else
+      print(htmlspecialchars($this->contact_email));
+    html_form_field_end();
+
+    // product_family
+    html_form_field_start("+product_family", "Product Family Name", $this->product_family_valid);
+    if ($this->create_id == $LOGIN_ID)
+      html_form_text("product_family", "Name of product family being submitted", $this->product_family);
+    else
+      print(htmlspecialchars($this->product_family));
+    html_form_field_end();
+
+    // url
+    html_form_field_start("url", "Product Family URL", $this->url_valid);
+    if ($this->create_id == $LOGIN_ID)
+      html_form_url("url", "http://www.example.com/products", $this->url);
+    else
     {
-      // is_published
-      html_form_field_start("is_published", "Visibility");
-      html_select_is_published($this->is_published);
+      $temp = htmlspecialchars($this->url, ENT_QUOTES);
+      print("<a href=\"$temp\">$temp</a>");
+    }
+    html_form_field_end();
+
+    // models
+    html_form_field_start("+models", "Models", $this->models_valid);
+    if ($this->create_id == $LOGIN_ID)
+      html_form_text("models", "Make Model\nMake Model\n...", $this->models,
+                   "List the make and model of every printer in the product family, one per line.", 20);
+    else
+      print(html_text($this->model));
+    html_form_field_end();
+
+    // cert_version
+    html_form_field_start("+cert_version", "Self-Certification Manual");
+    if ($this->create_id == $LOGIN_ID)
+      html_form_select("cert_version", $SUBMISSION_VERSIONS, "", $this->cert_version);
+    else if (array_key_exists($this->cert_version, $SUBMISSION_VERSIONS))
+      print($SUBMISSION_VERSIONS[$this->cert_version]);
+    else
+      print("Unknown (" . htmlspecialchars($this->cert_version) . ")");
+    html_form_field_end();
+
+    // used_approved, used_prodready, printed_correctly
+    html_form_field_start("+used_approved", "Submission Checklist");
+    if ($this->create_id == $LOGIN_ID)
+    {
+      html_form_checkbox("used_approved", "Used PWG self-certification tools.", $this->used_approved, "As supplied on the PWG FTP server.");
+      html_form_checkbox("used_prodready", "Used Production-Ready Code.", $this->used_prodready, "Production-Ready Code: Software and/or firmware that is considered ready to be included in products shipped to customers.");
+      html_form_checkbox("printed_correctly", "All output printed correctly.", $this->printed_correctly, "As documented in section 7.3 of the IPP Everywhere Printer Self-Certification Manual 1.0.");
+    }
+    else
+    {
+      if ($this->used_approved)
+        print("<span class=\"glyphicon glyphicon-check\"></span>");
+      else
+        print("<span class=\"glyphicon glyphicon-unchecked\"></span>");
+      print(" Used PWG self-certification tools.<br>\n");
+
+      if ($this->used_prodready)
+        print("<span class=\"glyphicon glyphicon-check\"></span>");
+      else
+        print("<span class=\"glyphicon glyphicon-unchecked\"></span>");
+      print(" Used Production-Ready Code.<br>\n");
+
+      if ($this->printed_correctly)
+        print("<span class=\"glyphicon glyphicon-check\"></span>");
+      else
+        print("<span class=\"glyphicon glyphicon-unchecked\"></span>");
+      print(" All output printed correctly.\n");
+    }
+    html_form_field_end();
+
+    // reviewer1_id
+    html_form_field_start("+reviewer1_id", "First Reviewer", $this->reviewer1_id_valid);
+    if ($this->create_id == $LOGIN_ID)
+      user_select("reviewer1_id", $this->reviewer1_id, USER_SELECT_REVIEWER, "-- Choose --");
+    else
+      print(user_name($this->reviewer1_id));
+    html_form_field_end();
+
+    if ($this->id)
+    {
+      html_form_field_start("+reviewer1_status", "First Status");
+      if ($this->reviewer1_id == $LOGIN_ID)
+	html_form_select("reviewer1_status", $SUBMISSION_STATUSES, "", $this->reviewer1_status);
+      else
+	print($SUBMISSION_STATUSES[$this->reviewer1_status]);
       html_form_field_end();
     }
 
-    // title
-    html_form_field_start("title", "Title", $this->title_valid);
-    html_form_text("title", "Title of Article", $this->title);
+    // reviewer2_id
+    html_form_field_start("+reviewer2_id", "Second Reviewer", $this->reviewer2_id_valid);
+    if ($this->create_id == $LOGIN_ID)
+      user_select("reviewer2_id", $this->reviewer2_id, USER_SELECT_REVIEWER, "-- Choose --");
+    else
+      print(user_name($this->reviewer2_id));
     html_form_field_end();
 
-    // summary
-    html_form_field_start("summary", "Summary", $this->summary_valid);
-    html_form_text("summary", "Summary of Article", $this->summary);
-    html_form_field_end();
+    if ($this->id)
+    {
+      html_form_field_start("+reviewer2_status", "Second Status");
+      if ($this->reviewer2_id == $LOGIN_ID)
+	html_form_select("reviewer2_status", $SUBMISSION_STATUSES, "", $this->reviewer2_status);
+      else
+	print($SUBMISSION_STATUSES[$this->reviewer2_status]);
+      html_form_field_end();
+    }
 
-    // contents
-    html_form_field_start("contents", "Contents", $this->contents_valid);
-    html_form_text("contents", "Contents of article.", $this->contents,
-                   "The contents may contain:\n"
-		  ."! Heading\n"
-		  ."!! Sub-Heading\n"
-		  ."- Unordered list\n"
-		  ."1. Ordered list\n"
-		  ."\" Blockquote\n"
-		  ."SPACE Preformatted text\n"
-		  ."[[URL|text of link]]", 20);
-    html_form_field_end();
+    // files
+    if ($this->create_id == $LOGIN_ID)
+    {
+      html_form_field_start("+bonjour_file", "Bonjour Test Results");
+      html_form_file("bonjour_file");
+      html_form_field_end();
+
+      html_form_field_start("+ipp_file", "IPP Test Results");
+      html_form_file("ipp_file");
+      html_form_field_end();
+
+      html_form_field_start("+document_file", "Document Data Test Results");
+      html_form_file("document_file");
+      html_form_field_end();
+
+      html_form_field_start("exceptions", "Exceptions");
+      print("EXCEPTION UI HERE");
+      html_form_field_end();
+    }
+    else
+    {
+      html_form_field_start("+bonjour_file", "Bonjour Test Results");
+      print("LINK TO FILE");
+      html_form_field_end();
+
+      html_form_field_start("+ipp_file", "IPP Test Results");
+      print("LINK TO FILE");
+      html_form_field_end();
+
+      html_form_field_start("+document_file", "Document Data Test Results");
+      print("LINK TO FILE");
+      html_form_field_end();
+
+      html_form_field_start("exceptions", "Exceptions");
+      print("EXCEPTION LIST HERE");
+      html_form_field_end();
+    }
 
     // Submit
-    html_form_end(array("SUBMIT" => "+$action", "PREVIEW" => "Preview Article"));
+    html_form_end(array("SUBMIT" => "+$action"));
   }
 
 
   //
-  // 'article::load()' - Load an Article object.
+  // 'submission::load()' - Load a submission object.
   //
 
   function				// O - TRUE if OK, FALSE otherwise
@@ -140,21 +317,31 @@ class article
   {
     $this->clear();
 
-    $result = db_query("SELECT * FROM article WHERE id = $id");
+    $result = db_query("SELECT * FROM submission WHERE id = $id");
     if (db_count($result) != 1)
       return (FALSE);
 
     $row = db_next($result);
-    $this->id           = $row["id"];
-    $this->project_id   = $row["project_id"];
-    $this->is_published = $row["is_published"];
-    $this->title        = $row["title"];
-    $this->summary      = $row["summary"];
-    $this->contents     = $row["contents"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
+    $this->id                = $row["id"];
+    $this->status            = $row["status"];
+    $this->organization_id   = $row["organization_id"];
+    $this->contact_name      = $row["contact_name"];
+    $this->contact_email     = $row["contact_email"];
+    $this->product_family    = $row["product_family"];
+    $this->models            = $row["models"];
+    $this->url               = $row["url"];
+    $this->cert_version      = $row["cert_version"];
+    $this->used_approved     = $row["used_approved"];
+    $this->used_prodready    = $row["used_prodready"];
+    $this->printed_correctly = $row["printed_correctly"];
+    $this->reviewer1_id      = $row["reviewer1_id"];
+    $this->reviewer1_status  = $row["reviewer1_status"];
+    $this->reviewer2_id      = $row["reviewer2_id"];
+    $this->reviewer2_status  = $row["reviewer2_status"];
+    $this->create_date       = $row["create_date"];
+    $this->create_id         = $row["create_id"];
+    $this->modify_date       = $row["modify_date"];
+    $this->modify_id         = $row["modify_id"];
 
     db_free($result);
 
@@ -163,42 +350,81 @@ class article
 
 
   //
-  // 'article::loadform()' - Load an Article object from form data.
+  // 'submission::loadform()' - Load a submission object from form data.
   //
 
   function				// O - TRUE if OK, FALSE otherwise
   loadform()
   {
-    global $_POST, $LOGIN_IS_ADMIN;
+    global $_POST, $LOGIN_ID, $LOGIN_IS_ADMIN;
 
 
     if (!html_form_validate())
       return (FALSE);
 
-    if (!$LOGIN_IS_ADMIN && $this->id == 0)
-      $this->is_published = 0;
-    else if (array_key_exists("is_published", $_POST))
-      $this->is_published = (int)$_POST["is_published"];
+    if ($LOGIN_IS_ADMIN && array_key_exists("status", $_POST))
+      $this->status = (int)$_POST["status"];
 
-    if (array_key_exists("project_id", $_POST) &&
-        preg_match("/^p[0-9]+\$/", $_POST["project_id"]))
-      $this->project_id = (int)substr($_POST["project_id"], 1);
+    if ($this->create_id == $LOGIN_ID)
+    {
+      if (array_key_exists("organization_id", $_POST) &&
+	  preg_match("/^o[0-9]+\$/", $_POST["organization_id"]))
+	$this->organization_id = (int)substr($_POST["organization_id"], 1);
 
-    if (array_key_exists("title", $_POST))
-      $this->title = trim($_POST["title"]);
+      if (array_key_exists("contact_name", $_POST))
+	$this->contact_name = trim($_POST["contact_name"]);
 
-    if (array_key_exists("summary", $_POST))
-      $this->summary = trim($_POST["summary"]);
+      if (array_key_exists("contact_email", $_POST))
+	$this->contact_email = trim($_POST["contact_email"]);
 
-    if (array_key_exists("contents", $_POST))
-      $this->contents = trim($_POST["contents"]);
+      if (array_key_exists("product_family", $_POST))
+	$this->product_family = trim($_POST["product_family"]);
+
+      if (array_key_exists("models", $_POST))
+	$this->models = trim($_POST["models"]);
+
+      if (array_key_exists("url", $_POST))
+	$this->url = trim($_POST["url"]);
+
+      if (array_key_exists("cert_version", $_POST))
+	$this->cert_version = trim($_POST["cert_version"]);
+
+      if (array_key_exists("used_approved", $_POST))
+	$this->used_approved = 1;
+      else
+	$this->used_approved = 0;
+
+      if (array_key_exists("used_prodready", $_POST))
+	$this->used_prodready = 1;
+      else
+	$this->used_prodready = 0;
+
+      if (array_key_exists("printed_correctly", $_POST))
+	$this->printed_correctly = 1;
+      else
+	$this->printed_correctly = 0;
+
+      if (array_key_exists("reviewer1_id", $_POST))
+	$this->reviewer1_id = (int)$_POST["reviewer1_id"];
+
+      if (array_key_exists("reviewer2_id", $_POST))
+	$this->reviewer2_id = (int)$_POST["reviewer2_id"];
+    }
+
+    if ($LOGIN_ID == $this->reviewer1_id &&
+        array_key_exists("reviewer1_status", $_POST))
+      $this->reviewer1_status = (int)$_POST["reviewer1_status"];
+
+    if ($LOGIN_ID == $this->reviewer2_id &&
+        array_key_exists("reviewer2_status", $_POST))
+      $this->reviewer2_status = (int)$_POST["reviewer2_status"];
 
     return ($this->validate());
   }
 
 
   //
-  // 'article::save()' - Save an Article object.
+  // 'submission::save()' - Save a submission object.
   //
 
   function				// O - TRUE if OK, FALSE otherwise
@@ -212,12 +438,22 @@ class article
 
     if ($this->id > 0)
     {
-      return (db_query("UPDATE article "
-                      ." SET is_published = $this->is_published"
-                      .", project_id = $this->project_id"
-                      .", title = '" . db_escape($this->title) . "'"
-                      .", summary = '" . db_escape($this->summary) . "'"
-                      .", contents = '" . db_escape($this->contents) . "'"
+      return (db_query("UPDATE submission "
+                      ." SET status = $this->status"
+                      .", organization_id = $this->organization_id"
+                      .", contact_name = '" . db_escape($this->contact_name) . "'"
+                      .", contact_email = '" . db_escape($this->contact_email) . "'"
+                      .", product_family = '" . db_escape($this->product_family) . "'"
+                      .", models = '" . db_escape($this->models) . "'"
+                      .", url = '" . db_escape($this->url) . "'"
+                      .", cert_version = '" . db_escape($this->cert_version) . "'"
+                      .", used_approved = $this->used_approved"
+                      .", used_prodready = $this->used_prodready"
+                      .", printed_correctly = $this->printed_correctly"
+                      .", reviewer1_id = $this->reviewer1_id"
+                      .", reviewer1_status = $this->reviewer1_status"
+                      .", reviewer2_id = $this->reviewer2_id"
+                      .", reviewer2_status = $this->reviewer2_status"
                       .", modify_date = '" . db_escape($this->modify_date) . "'"
                       .", modify_id = $this->modify_id"
                       ." WHERE id = $this->id") !== FALSE);
@@ -227,13 +463,23 @@ class article
       $this->create_date = $this->modify_date;
       $this->create_id   = $this->modify_id;
 
-      if (db_query("INSERT INTO article VALUES"
+      if (db_query("INSERT INTO submission VALUES"
                   ."(NULL"
-		  .", $this->project_id"
-                  .", $this->is_published"
-                  .", '" . db_escape($this->title) . "'"
-                  .", '" . db_escape($this->summary) . "'"
-                  .", '" . db_escape($this->contents) . "'"
+		  .", $this->status"
+                  .", $this->organization_id"
+                  .", '" . db_escape($this->contact_name) . "'"
+                  .", '" . db_escape($this->contact_email) . "'"
+                  .", '" . db_escape($this->product_family) . "'"
+                  .", '" . db_escape($this->models) . "'"
+                  .", '" . db_escape($this->url) . "'"
+                  .", '" . db_escape($this->cert_version) . "'"
+                  .", $this->used_approved"
+                  .", $this->used_prodready"
+                  .", $this->printed_correctly"
+                  .", $this->reviewer1_id"
+                  .", $this->reviewer1_status"
+                  .", $this->reviewer2_id"
+                  .", $this->reviewer2_status"
                   .", '" . db_escape($this->create_date) . "'"
                   .", $this->create_id"
                   .", '" . db_escape($this->modify_date) . "'"
@@ -249,386 +495,132 @@ class article
 
 
   //
-  // 'article::validate()' - Validate the current Article object values.
+  // 'submission::validate()' - Validate the current Article object values.
   //
 
   function				// O - TRUE if OK, FALSE otherwise
   validate()
   {
-    global $REQUEST_METHOD;
+    global $REQUEST_METHOD, $SUBMISSION_VERSIONS;
 
 
     $valid = TRUE;
 
-    if ($this->project_id < 0 && $REQUEST_METHOD == "POST")
+    if ($this->organization_id < 0 && $REQUEST_METHOD == "POST")
     {
-      $this->project_id_valid = FALSE;
+      $this->organization_id_valid = FALSE;
       $valid = FALSE;
     }
+    else if ($this->organization_id > 0)
+    {
+      $org = new organization($this->organization_id);
+      if ($org->id != $this->organization_id || !$org->is_everywhere)
+      {
+	$this->organization_id_valid = FALSE;
+	$valid = FALSE;
+      }
+      else
+	$this->organization_id_valid = TRUE;
+    }
     else
-      $this->project_id_valid = TRUE;
+      $this->organization_id_valid = TRUE;
 
-    if ($this->title == "" && $REQUEST_METHOD == "POST")
+    if ($this->contact_name == "" && $REQUEST_METHOD == "POST")
     {
-      $this->title_valid = FALSE;
+      $this->contact_name_valid = FALSE;
       $valid = FALSE;
     }
     else
-      $this->title_valid = TRUE;
+      $this->contact_name_valid = TRUE;
 
-    if ($this->summary == "" && $REQUEST_METHOD == "POST")
+    if ($this->contact_email == "" && $REQUEST_METHOD == "POST")
     {
-      $this->summary_valid = FALSE;
+      $this->contact_email_valid = FALSE;
       $valid = FALSE;
     }
     else
-      $this->summary_valid = TRUE;
+      $this->contact_email_valid = TRUE;
 
-    if ($this->contents == "" && $REQUEST_METHOD == "POST")
+    if ($this->product_family == "" && $REQUEST_METHOD == "POST")
     {
-      $this->contents_valid = FALSE;
+      $this->product_family_valid = FALSE;
       $valid = FALSE;
     }
     else
-      $this->contents_valid = TRUE;
+      $this->product_family_valid = TRUE;
+
+    if ($this->models == "" && $REQUEST_METHOD == "POST")
+    {
+      $this->models_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->models_valid = TRUE;
+
+    if ($this->url != "" && !validate_url($this->url))
+    {
+      $this->url_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->url_valid = TRUE;
+
+    if (!array_key_exists($this->cert_version, $SUBMISSION_VERSIONS) && $REQUEST_METHOD == "POST")
+    {
+      $this->cert_version_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->cert_version_valid = TRUE;
+
+    if ($this->reviewer1_id > 0)
+    {
+      $user = new user($this->reviewer1_id);
+      if ($user->id != $this->reviewer1_id || !$user->is_reviewer)
+      {
+        $this->reviewer1_id_valid = FALSE;
+        $valid = FALSE;
+      }
+      else
+        $this->reviewer1_id_valid = TRUE;
+    }
+    else if ($this->reviewer1_id == 0 && $REQUEST_METHOD == "POST")
+    {
+      $this->reviewer1_id_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->reviewer1_id_valid = TRUE;
+
+    if ($this->reviewer2_id > 0)
+    {
+      $user = new user($this->reviewer2_id);
+      if ($user->id != $this->reviewer2_id || !$user->is_reviewer)
+      {
+        $this->reviewer2_id_valid = FALSE;
+        $valid = FALSE;
+      }
+      else
+        $this->reviewer2_id_valid = TRUE;
+    }
+    else if ($this->reviewer2_id == 0 && $REQUEST_METHOD == "POST")
+    {
+      $this->reviewer2_id_valid = FALSE;
+      $valid = FALSE;
+    }
+    else
+      $this->reviewer2_id_valid = TRUE;
+
+    if ($this->reviewer1_id != 0 && $this->reviewer1_id == $this->reviewer2_id)
+    {
+      $this->reviewer1_id_valid = FALSE;
+      $this->reviewer2_id_valid = FALSE;
+      $valid = FALSE;
+    }
 
     return ($valid);
   }
-
-
-  //
-  // 'article::view()' - View an article.
-  //
-
-  function
-  view($show_edit = FALSE, $options = "", $show_link = TRUE)
-  {
-    global $html_path, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $html_textarea_width;
-
-
-    if ($options == "")
-      $options = "+Z$this->project_id";
-
-    if ($show_edit)
-      $edit = " <a class=\"btn\" href=\"${html_path}/blog.php?"
-             ."U$this->id$options\">Edit</a>";
-    else
-      $edit = "";
-
-    $temp     = db_query("SELECT id FROM comment WHERE "
-			."ref_id = 'article$this->id' AND is_published = 1 "
-			."ORDER BY create_date");
-    $count    = db_count($temp);
-
-    if ($show_link)
-    {
-      if ($row = db_next($temp))
-        $cid = "C$row[id]";
-      else
-        $cid = "POST_COMMENT";
-
-      $link    = "<a href=\"$html_path/blog.php?L$this->id$options\">";
-      $btnlink = "<a class=\"btn\" "
-                ."href=\"$html_path/blog.php?L$this->id$options#$cid\">";
-      $endlink = "</a>";
-    }
-    else
-    {
-      $link    = "";
-      $btnlink = "";
-      $endlink = "";
-    }
-
-    $title    = htmlspecialchars($this->title);
-    $contents = html_format($this->contents);
-    $date     = html_date($this->modify_date);
-
-    if (!$this->is_published)
-      $title .= "&nbsp;<i class=\"icon-ban-circle\"></i>";
-
-    if ($count == 0)
-    {
-      if ($show_link)
-        $comments = "${btnlink}Post&nbsp;comment$endlink";
-      else
-        $comments = "No&nbsp;comments";
-    }
-    else if ($count == 1)
-      $comments = "${btnlink}1&nbsp;comment$endlink";
-    else
-      $comments = "${btnlink}$count&nbsp;comments$endlink";
-
-    print("<h2>$title <small>$date</small>$edit</h2>\n"
-         ."$contents\n<p>$comments</p>\n");
-
-    if (!$show_link)
-    {
-      if ($LOGIN_IS_ADMIN)
-        html_form_start("$html_path/blog.php?B$this->id$options", TRUE);
-
-      $results = db_query("SELECT * FROM comment WHERE "
-                         ."ref_id = 'article$this->id' "
-                         ."ORDER BY create_date;");
-      while ($row = db_next($results))
-      {
-        if (!$row["is_published"] && !$LOGIN_IS_ADMIN)
-          continue;
-
-        $name     = user_name($row["create_id"]);
-        $contents = html_text($row["contents"]);
-        $date     = html_date($row["create_date"]);
-
-	if ($LOGIN_IS_ADMIN)
-	{
-	  if ($row["is_published"])
-	    $button = "<input type=\"submit\" "
-		     ."name=\"HIDE_COMMENT_ID_$row[id]\" value=\"Hide\"> ";
-	  else
-	    $button = "<input type=\"submit\" "
-		     ."name=\"SHOW_COMMENT_ID_$row[id]\" value=\"Show\"> ";
-        }
-        else
-          $button = "";
-
-        if (!$row["is_published"])
-          $contents = "<del>$contents</del>";
-
-        print("<h3><a name=\"C$row[id]\">$button $name "
-             ."<small>$date</small></a></h3>\n"
-             ."<p>$contents</p>\n");
-      }
-      db_free($results);
-
-      if ($LOGIN_IS_ADMIN)
-        html_form_end();
-
-      if ($LOGIN_ID)
-      {
-	print("<h3><a name=\"POST_COMMENT\">$LOGIN_NAME "
-	     ."<small>Today</small></a></h3>\n");
-	html_form_start("$html_path/blog.php?C$this->id$options", TRUE);
-	html_form_text("comment", "Your comment here.", "", "", 4);
-	print("<br>\n");
-	html_form_end(array("SUBMIT" => "-Post Comment"));
-      }
-    }
-  }
-
-
-  //
-  // 'article::view_summary()' - View a summary of the article.
-  //
-
-  function
-  view_summary($show_checkbox = FALSE,
-               $options = "",
-               $show_link = TRUE)
-  {
-    global $html_path;
-
-
-    if ($options == "")
-      $options = "+Z$this->project_id";
-
-    if ($show_checkbox)
-      $edit = "<input type=\"checkbox\" name=\"ID_$this->id\">&nbsp;";
-    else
-      $edit = "";
-
-    $temp     = db_query("SELECT id FROM comment WHERE "
-			."ref_id = 'article$this->id' AND is_published = 1 "
-			."ORDER BY create_date");
-    $count    = db_count($temp);
-
-    if ($show_link)
-    {
-      if ($row = db_next($temp))
-        $cid = "C$row[id]";
-      else
-        $cid = "POST_COMMENT";
-
-      $link    = "<a href=\"$html_path/blog.php?L$this->id$options\">";
-      $btnlink = "<a class=\"btn\" "
-                ."href=\"$html_path/blog.php?L$this->id$options#$cid\">";
-      $endlink = "</a>";
-    }
-    else
-    {
-      $link    = "";
-      $btnlink = "";
-      $endlink = "";
-    }
-
-    $title   = htmlspecialchars($this->title);
-    $summary = htmlspecialchars($this->summary);
-    $date    = html_date($this->modify_date);
-    $temp    = db_query("SELECT id FROM comment WHERE "
-		       ."ref_id = 'article$this->id' AND is_published = 1;");
-    $count   = db_count($temp);
-
-    if (!$this->is_published)
-      $title .= "&nbsp;<i class=\"icon-ban-circle\"></i>";
-
-    if ($count == 0)
-    {
-      if ($show_link)
-        $comments = "${btnlink}Post&nbsp;comment$endlink";
-      else
-        $comments = "No&nbsp;comments";
-    }
-    else if ($count == 1)
-      $comments = "${btnlink}1&nbsp;comment$endlink";
-    else
-      $comments = "${btnlink}$count&nbsp;comments$endlink";
-
-    print("<h2>$edit$title <small>$date</small></h2>\n"
-         ."<p>$summary</p>\n<p>$comments</p>\n");
-  }
 }
 
 
-//
-// 'article_search()' - Get a list of Article IDs.
-//
-
-function				// O - Array of Article IDs
-article_search($search = "",		// I - Search string
-	       $order = "",		// I - Order fields
-	       $project_id = 0,		// I - Project, if any
-	       $is_published = 0)	// I - Only return published articles
-{
-  global $LOGIN_ID, $LOGIN_IS_ADMIN;
-
-
-  $query  = "";
-  $prefix = " WHERE ";
-
-  if ($is_published)
-  {
-    $query .= "${prefix}is_published = 1";
-    $prefix = " AND ";
-  }
-  else if (!$LOGIN_IS_ADMIN)
-  {
-    $query .= "${prefix}(is_published = 1 OR create_id = '"
-	     . db_escape($LOGIN_ID) . "')";
-    $prefix = " AND ";
-  }
-
-  if ($project_id > 0)
-  {
-    $query .= "${prefix}project_id = $project_id";
-    $prefix = " AND ";
-  }
-
-  if ($search != "")
-  {
-    // Convert the search string to an array of words...
-    $words = html_search_words($search);
-
-    // Loop through the array of words, adding them to the query...
-    $query .= "${prefix}(";
-    $prefix = "";
-    $next   = " OR";
-    $logic  = "";
-
-    reset($words);
-    foreach ($words as $word)
-    {
-      $word = db_escape($word);
-
-      if ($word == "or")
-      {
-	$next = ' OR';
-	if ($prefix != '')
-	  $prefix = ' OR';
-      }
-      else if ($word == "and")
-      {
-	$next = ' AND';
-	if ($prefix != '')
-	  $prefix = ' AND';
-      }
-      else if ($word == "not")
-	$logic = ' NOT';
-      else if (substr($word, 0, 8) == "creator:")
-      {
-	$word   = substr($word, 8);
-	$query .= "$prefix$logic create_id LIKE \"$word\"";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else if (substr($word, 0, 7) == "number:")
-      {
-	$number = (int)substr($word, 7);
-	$query  .= "$prefix$logic id = $number";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else if (substr($word, 0, 6) == "title:")
-      {
-	$word   = substr($word, 6);
-	$query  .= "$prefix$logic title LIKE \"%$word%\"";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else
-      {
-	$query .= "$prefix$logic (";
-	$subpre = "";
-
-	if (preg_match("/^[0-9]+\$/", $word))
-	{
-	  $query .= "${subpre}id = $word";
-	  $subpre = " OR ";
-	}
-
-	$query .= "${subpre}title LIKE \"%$word%\"";
-	$subpre = " OR ";
-	$query .= "${subpre}summary LIKE \"%$word%\"";
-	$query .= "${subpre}contents LIKE \"%$word%\"";
-
-	$query .= ")";
-	$prefix = $next;
-	$logic  = '';
-      }
-    }
-
-    $query .= ")";
-  }
-
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-//  print("<p>$query</p>\n");
-
-  // Do the query and convert the result to an array of objects...
-  $result  = db_query("SELECT id FROM article$query");
-  $matches = array();
-
-  while ($row = db_next($result))
-    $matches[sizeof($matches)] = $row["id"];
-
-  // Free the query result and return the array...
-  db_free($result);
-
-  return ($matches);
-}
 ?>

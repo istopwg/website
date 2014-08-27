@@ -420,6 +420,9 @@ CREATE TABLE comment (
 DROP TABLE IF EXISTS submission;
 CREATE TABLE submission (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Submission ID
+  status INTEGER NOT NULL,		-- Overall status: 0 = pending,
+					-- 1 = review, 2 = approved,
+					-- 3 = rejected, 4 = appealed
   organization_id INTEGER,		-- Organization ID
   contact_name VARCHAR(255) NOT NULL,	-- Person to contact
   contact_email VARCHAR(255) NOT NULL,	-- That person's email
@@ -428,7 +431,7 @@ CREATE TABLE submission (
   url VARCHAR(255) NOT NULL,		-- Product/organization URL
   cert_version VARCHAR(255) NOT NULL,	-- Certification version (M.m - YYYY-MM-DD)
   used_approved BOOLEAN DEFAULT FALSE,	-- Used approved software?
-  used_prodready BOOLEAN DEFAULT FALSE,	-- Used production-ready firmware? */
+  used_prodready BOOLEAN DEFAULT FALSE,	-- Used production-ready code? */
   printed_correctly BOOLEAN DEFAULT FALSE,
 					-- Documents printed correctly?
   reviewer1_id INTEGER NOT NULL,	-- First reviewer
