@@ -193,7 +193,7 @@ class submission
     else
       $action = "Modify Submission #$this->id";
 
-    html_form_start("$PHP_SELF?U$this->id", FALSE, TRUE);
+    html_form_start("$PHP_SELF/$this->id", FALSE, TRUE);
 
     if ($this->id > 0)
     {
@@ -313,7 +313,7 @@ class submission
 
     // reviewer1_id
     html_form_field_start("+reviewer1_id", "First Reviewer", $this->reviewer1_id_valid);
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING)
       user_select("reviewer1_id", $this->reviewer1_id, USER_SELECT_REVIEWER, "-- Choose --");
     else
       print(user_name($this->reviewer1_id));
@@ -331,7 +331,7 @@ class submission
 
     // reviewer2_id
     html_form_field_start("+reviewer2_id", "Second Reviewer", $this->reviewer2_id_valid);
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING)
       user_select("reviewer2_id", $this->reviewer2_id, USER_SELECT_REVIEWER, "-- Choose --");
     else
       print(user_name($this->reviewer2_id));
@@ -372,7 +372,7 @@ class submission
       $filename = "$SUBMISSION_DIR/$this->id/bonjour.plist";
       $filesize = sprintf("%.1fk", filesize($filename) / 1024);
       if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
-        print("<a class=\"btn btn-default btn-mini\" href=\"${html_path}dynamo/evefile.php/$this->id/bonjour.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download bonjour.plist ($filesize)</a>");
+        print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/bonjour.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download bonjour.plist ($filesize)</a>");
       else
         print("bonjour.plist ($filesize)");
       html_form_field_end();
@@ -381,7 +381,7 @@ class submission
       $filename = "$SUBMISSION_DIR/$this->id/ipp.plist";
       $filesize = sprintf("%.1fk", filesize($filename) / 1024);
       if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
-        print("<a class=\"btn btn-default btn-mini\" href=\"${html_path}dynamo/evefile.php/$this->id/ipp.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download ipp.plist ($filesize)</a>");
+        print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/ipp.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download ipp.plist ($filesize)</a>");
       else
         print("ipp.plist ($filesize)");
       html_form_field_end();
@@ -390,7 +390,7 @@ class submission
       $filename = "$SUBMISSION_DIR/$this->id/document.plist";
       $filesize = sprintf("%.1fk", filesize($filename) / 1024);
       if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
-        print("<a class=\"btn btn-default btn-mini\" href=\"${html_path}dynamo/evefile.php/$this->id/document.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download document.plist ($filesize)</a>");
+        print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/document.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download document.plist ($filesize)</a>");
       else
         print("document.plist ($filesize)");
       html_form_field_end();

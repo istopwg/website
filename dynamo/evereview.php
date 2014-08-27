@@ -11,7 +11,8 @@ include_once "phplib/db-submission.php";
 
 // Get command-line options...
 //
-// Usage: evesubmit.php
+// Usage: evereview.php
+//        evereview.php/nnn
 
 if (!$LOGIN_ID)
 {
@@ -23,24 +24,12 @@ site_header("IPP Everywhere", "Review Self-Certifications");
 
 // Get command-line options...
 //
-// Usage: evereview.php [operation]
-//
-// Operations:
-//
-// L         = List all submissions
-// U#        = Modify/view submission #
+// Usage: evereview.php[/#]
 
-if ($argc)
+if (preg_match("/^\\/([1-9][0-9]*)\$/", $PATH_INFO, $matches))
 {
-  $op = $argv[0][0];
-  $id = (int)substr($argv[0], 1);
-
-  if ($op != 'L' && $op != 'U')
-  {
-    print("<p>Bad command '$op'.</p>\n");
-    site_footer();
-    exit();
-  }
+  $op = 'U';
+  $id = (int)$matches[1];
 }
 else
 {
@@ -95,7 +84,7 @@ switch ($op)
 	  $pf = htmlspecialchars($submission->product_family);
 	  $st = $SUBMISSION_STATUSES[$submission->status];
 	  $lu = html_date($submission->modify_date);
-	  $l  = "<a href=\"$PHP_SELF?U$submission->id\">";
+	  $l  = "<a href=\"$PHP_SELF/$submission->id\">";
 
 	  print("<tr><td>$l$submission->id</a></td>"
 	       ."<td>$l$pf</a></td><td>$l$st</a></td>"
