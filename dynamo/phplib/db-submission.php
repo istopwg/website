@@ -213,7 +213,7 @@ class submission
 
     // status
     html_form_field_start("status", "Status");
-    if ($LOGIN_IS_ADMIN)
+    if ($LOGIN_IS_ADMIN && $this->status != SUBMISSION_STATUS_APPROVED)
       html_form_select("status", $SUBMISSION_STATUSES, "", $this->status);
     else
       print($SUBMISSION_STATUSES[$this->status]);
