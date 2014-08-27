@@ -89,7 +89,7 @@ switch ($op)
 	    if ($last_status != -1)
 	      print("<tr><td colspan=\"4\"></td></tr>\n");
 
-	    $last_status = $submission_status;
+	    $last_status = $submission->status;
 	  }
 
 	  $pf = htmlspecialchars($submission->product_family);
