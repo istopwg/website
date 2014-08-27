@@ -82,7 +82,9 @@ switch ($op)
 	  }
 
 	  $pf = htmlspecialchars($submission->product_family);
-	  $st = $SUBMISSION_STATUSES[$submission->status];
+	  $st = $SUBMISSION_STATUSES[$submission->status] . " (" .
+	        $SUBMISSION_STATUSES[$submission->reviewer1_status] . " / " .
+	        $SUBMISSION_STATUSES[$submission->reviewer2_status] . ")";
 	  $lu = html_date($submission->modify_date);
 	  $l  = "<a href=\"${html_path}dynamo/evereview.php/$submission->id\">";
 
