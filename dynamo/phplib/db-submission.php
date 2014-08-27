@@ -4,7 +4,7 @@
 //
 
 include_once "site.php";
-include_once "db.php";
+include_once "db-comment.php";
 
 define("SUBMISSION_STATUS_PENDING", 0);
 define("SUBMISSION_STATUS_REVIEW", 1);
@@ -14,7 +14,7 @@ define("SUBMISSION_STATUS_APPEALED", 4);
 
 $SUBMISSION_STATUSES = array(
   SUBMISSION_STATUS_PENDING => "Pending",
-  SUBMISSION_STATUS_REVIEW => "Review",
+  SUBMISSION_STATUS_REVIEW => "SC Review",
   SUBMISSION_STATUS_APPROVED => "Approved",
   SUBMISSION_STATUS_REJECTED => "Rejected",
   SUBMISSION_STATUS_APPEALED => "Appealed"
@@ -47,6 +47,7 @@ class submission
   var $reviewer1_status;
   var $reviewer2_id, $reviewer2_id_valid;
   var $reviewer2_status;
+  var $bonjour_file_error, $ipp_file_error, $document_file_error;
   var $create_date;
   var $create_id;
   var $modify_date;
@@ -68,18 +69,81 @@ class submission
 
 
   //
+  // 'document::add_file()' - Add a submission file
+  //
+
+  function				// O - Error string, if any
+  add_file($srcfile,			// I - File from form
+           $dstname)			// I - Destination filename
+  {
+    global $SUBMISSION_DIR;
+
+
+    $filename = $srcfile["name"];	// Original filename
+    $filetype = $srcfile["type"];	// File type as reported by browser
+    $tmp_name = $srcfile["tmp_name"];	// Local temporary file
+
+    if (!preg_match("/\\.plist\$/", $filename))
+      return (htmlspecialchars("Expected a plist file, got '$filename'."));
+
+    $dstdir  = "$SUBMISSION_DIR/$this->id";
+    $dstfile = "$SUBMISSION_DIR/$this->id/$dstname";
+
+    if (!file_exists($dstdir))
+    {
+      if (!mkdir($dstdir, 0700))
+        return ("Unable to create submission directory.");
+    }
+
+    if (!copy($tmp_name, $dstfile))
+      return ("Unable to copy '$filename' to submission directory.");
+
+    return ("");
+  }
+
+
+  //
+  // 'submission::add_files()' - Add all files in a form submission.
+  //
+
+  function				// O - TRUE if successful, FALSE otherwise
+  add_files()
+  {
+    global $_FILES;
+
+
+    $this->bonjour_file_error  = "";
+    $this->ipp_file_error      = "";
+    $this->document_file_error = "";
+
+    if ($this->create_id == $LOGIN_ID)
+    {
+      if (array_key_exists("bonjour_file", $_FILES))
+        $this->bonjour_file_error = $this->add_file($_FILES["bonjour_file"], "bonjour.plist");
+
+      if (array_key_exists("ipp_file", $_FILES))
+        $this->ipp_file_error = $this->add_file($_FILES["ipp_file"], "ipp.plist");
+
+      if (array_key_exists("document_file", $_FILES))
+        $this->document_file_error = $this->add_file($_FILES["document_file"], "document.plist");
+    }
+
+    return ($this->bonjour_file_error == "" && $this->ipp_file_error == "" && $this->document_file_error == "");
+  }
+
+  //
   // 'submission::clear()' - Initialize a new submission object.
   //
 
   function
   clear()
   {
-    global $LOGIN_ID;
+    global $LOGIN_ID, $LOGIN_ORGANIZATION;
 
 
     $this->id                = 0;
     $this->status            = SUBMISSION_STATUS_PENDING;
-    $this->organization_id   = -1;
+    $this->organization_id   = $LOGIN_ORGANIZATION;
     $this->contact_name      = "";
     $this->contact_email     = "";
     $this->product_family    = "";
@@ -119,8 +183,10 @@ class submission
   function
   form()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST;
 
+
+    print("<h2>Information</h2>\n");
 
     if ($this->id <= 0)
       $action = "Submit Self-Certification";
@@ -128,6 +194,22 @@ class submission
       $action = "Modify Submission #$this->id";
 
     html_form_start("$PHP_SELF?U$this->id", FALSE, TRUE);
+
+    if ($this->id > 0)
+    {
+      // create_id/date
+      html_form_field_start("create_date", "Submitted");
+      print(html_date($this->create_date) . " by " . user_name($this->create_id));
+      html_form_field_end();
+
+      // modify_id/date
+      if ($this->create_date != $this->modify_date)
+      {
+	html_form_field_start("modify_date", "Last Updated");
+	print(html_date($this->modify_date) . " by " . user_name($this->modify_id));
+	html_form_field_end();
+      }
+    }
 
     // status
     html_form_field_start("status", "Status");
@@ -186,7 +268,7 @@ class submission
       html_form_text("models", "Make Model\nMake Model\n...", $this->models,
                    "List the make and model of every printer in the product family, one per line.", 20);
     else
-      print(html_text($this->model));
+      print(html_text($this->models));
     html_form_field_end();
 
     // cert_version
@@ -266,18 +348,18 @@ class submission
     }
 
     // files
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->id == 0)
     {
       html_form_field_start("+bonjour_file", "Bonjour Test Results");
-      html_form_file("bonjour_file");
+      html_form_file("bonjour_file", "", $this->bonjour_file_error);
       html_form_field_end();
 
       html_form_field_start("+ipp_file", "IPP Test Results");
-      html_form_file("ipp_file");
+      html_form_file("ipp_file", "", $this->bonjour_file_error);
       html_form_field_end();
 
       html_form_field_start("+document_file", "Document Data Test Results");
-      html_form_file("document_file");
+      html_form_file("document_file", "", $this->bonjour_file_error);
       html_form_field_end();
 
       html_form_field_start("exceptions", "Exceptions");
@@ -287,15 +369,30 @@ class submission
     else
     {
       html_form_field_start("+bonjour_file", "Bonjour Test Results");
-      print("LINK TO FILE");
+      $filename = "$SUBMISSION_DIR/$this->id/bonjour.plist";
+      $filesize = sprintf("%.1fk", filesize($filename) / 1024);
+      if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
+        print("<a class=\"btn btn-default btn-mini\" href=\"${html_path}dynamo/evefile.php/$this->id/bonjour.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download bonjour.plist ($filesize)</a>");
+      else
+        print("bonjour.plist ($filesize)");
       html_form_field_end();
 
       html_form_field_start("+ipp_file", "IPP Test Results");
-      print("LINK TO FILE");
+      $filename = "$SUBMISSION_DIR/$this->id/ipp.plist";
+      $filesize = sprintf("%.1fk", filesize($filename) / 1024);
+      if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
+        print("<a class=\"btn btn-default btn-mini\" href=\"${html_path}dynamo/evefile.php/$this->id/ipp.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download ipp.plist ($filesize)</a>");
+      else
+        print("ipp.plist ($filesize)");
       html_form_field_end();
 
       html_form_field_start("+document_file", "Document Data Test Results");
-      print("LINK TO FILE");
+      $filename = "$SUBMISSION_DIR/$this->id/document.plist";
+      $filesize = sprintf("%.1fk", filesize($filename) / 1024);
+      if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
+        print("<a class=\"btn btn-default btn-mini\" href=\"${html_path}dynamo/evefile.php/$this->id/document.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download document.plist ($filesize)</a>");
+      else
+        print("document.plist ($filesize)");
       html_form_field_end();
 
       html_form_field_start("exceptions", "Exceptions");
@@ -304,7 +401,40 @@ class submission
     }
 
     // Submit
-    html_form_end(array("SUBMIT" => "+$action"));
+    html_form_buttons(array("SUBMIT" => "+$action"));
+
+    if ($this->id > 0)
+    {
+      print("<h2>Discussion</h2>\n");
+
+      if (array_key_exists("contents", $_POST))
+	$contents = trim($_POST["contents"]);
+      else
+	$contents = "";
+
+      print("<h3><a name=\"POST\">$LOGIN_NAME <small>Today</small></a></h3>\n"
+	   ."<p>");
+
+      html_form_text("contents", "Comment text.", $contents, "", 12);
+      print("<br>\n");
+      html_form_button("SUBMIT", "Post Comment");
+      print("</p>\n");
+
+      $comments = comment_search("submission_$this->id", "", "-id");
+      foreach ($comments as $id)
+      {
+	$comment  = new comment($id);
+	$name     = user_name($comment->create_id);
+	$contents = html_text($comment->contents);
+	$date     = html_date($comment->create_date);
+
+	print("<h3><a name=\"C$id\">$name <small>$date</small></a></h3>\n"
+	     ."<p>$contents</p>\n");
+      }
+    }
+
+    // Submit
+    html_form_end();
   }
 
 
@@ -424,13 +554,62 @@ class submission
 
 
   //
+  // 'submission::notify_users()' - Notify users of submission changes.
+  //
+
+  function
+  notify_users($what = "Re: ")		// I - Reply or new message
+  {
+    global $_POST, $SITE_EMAIL, $SITE_HOSTNAME, $SITE_URL, $SUBMISSION_STATUSES;
+
+
+    // Emails always go to the contact in the submission, and are Cc'd to the
+    // reviewers.
+    $to      = $this->contact_email;
+    $cc1     = user_email($this->reviewer1_id);
+    $cc2     = user_email($this->reviewer2_id);
+    $from    = user_email($this->modify_id);
+    $replyto = "noreply@$SITE_HOSTNAME";
+    if ($this->create_date == $this->modify_date)
+      $mid = "Message-Id: <submission-$this->id@$SITE_HOSTNAME>";
+    else
+      $mid = "In-Reply-To: <submission-$this->id@$SITE_HOSTNAME>";
+
+    // Send the email...
+    $subject = "${what}[IPPEVE] Submission #$this->id: $this->product_family";
+    $headers = "From: $from\n"
+	      ."Reply-To: $replyto\n"
+	      ."$mid\n"
+	      ."Cc: $cc1\n"
+	      ."Cc: $cc2\n"
+	      ."Mime-Version: 1.0\n"
+	      ."Content-Type: text/plain\n";
+
+    $message = "DO NOT REPLY TO THIS MESSAGE.  INSTEAD, POST ANY RESPONSES TO "
+	      ."THE LINK BELOW.\n\n"
+	      ."Overall Status: " . $SUBMISSION_STATUSES[$this->status] . "\n"
+	      ."Reviewer 1 Status: " . $SUBMISSION_STATUSES[$this->reviewer1_status] . "\n"
+	      ."Reviewer 2 Status: " . $SUBMISSION_STATUSES[$this->reviewer2_status] . "\n"
+	      ."Updated by: " . user_name($this->modify_id) . "\n";
+
+    if (array_key_exists("contents", $_POST))
+      $message .= "\n" . wordwrap(trim($_POST["contents"])) . "\n";
+
+    $message .= "\nLink: ${SITE_URL}dynamo/evereview.php?U$this->id\n";
+
+    // Send the email notification...
+    mail($to, $subject, $message, $headers);
+  }
+
+
+  //
   // 'submission::save()' - Save a submission object.
   //
 
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF;
+    global $LOGIN_ID, $PHP_SELF, $_POST;
 
 
     $this->modify_date = db_datetime();
@@ -438,25 +617,26 @@ class submission
 
     if ($this->id > 0)
     {
-      return (db_query("UPDATE submission "
-                      ." SET status = $this->status"
-                      .", organization_id = $this->organization_id"
-                      .", contact_name = '" . db_escape($this->contact_name) . "'"
-                      .", contact_email = '" . db_escape($this->contact_email) . "'"
-                      .", product_family = '" . db_escape($this->product_family) . "'"
-                      .", models = '" . db_escape($this->models) . "'"
-                      .", url = '" . db_escape($this->url) . "'"
-                      .", cert_version = '" . db_escape($this->cert_version) . "'"
-                      .", used_approved = $this->used_approved"
-                      .", used_prodready = $this->used_prodready"
-                      .", printed_correctly = $this->printed_correctly"
-                      .", reviewer1_id = $this->reviewer1_id"
-                      .", reviewer1_status = $this->reviewer1_status"
-                      .", reviewer2_id = $this->reviewer2_id"
-                      .", reviewer2_status = $this->reviewer2_status"
-                      .", modify_date = '" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $this->modify_id"
-                      ." WHERE id = $this->id") !== FALSE);
+      if (db_query("UPDATE submission "
+		  ." SET status = $this->status"
+		  .", organization_id = $this->organization_id"
+		  .", contact_name = '" . db_escape($this->contact_name) . "'"
+		  .", contact_email = '" . db_escape($this->contact_email) . "'"
+		  .", product_family = '" . db_escape($this->product_family) . "'"
+		  .", models = '" . db_escape($this->models) . "'"
+		  .", url = '" . db_escape($this->url) . "'"
+		  .", cert_version = '" . db_escape($this->cert_version) . "'"
+		  .", used_approved = $this->used_approved"
+		  .", used_prodready = $this->used_prodready"
+		  .", printed_correctly = $this->printed_correctly"
+		  .", reviewer1_id = $this->reviewer1_id"
+		  .", reviewer1_status = $this->reviewer1_status"
+		  .", reviewer2_id = $this->reviewer2_id"
+		  .", reviewer2_status = $this->reviewer2_status"
+		  .", modify_date = '" . db_escape($this->modify_date) . "'"
+		  .", modify_id = $this->modify_id"
+		  ." WHERE id = $this->id") === FALSE)
+      return (FALSE);
     }
     else
     {
@@ -490,6 +670,14 @@ class submission
       $this->id = db_insert_id();
     }
 
+    if (array_key_exists("contents", $_POST) && ($contents = trim($_POST["contents"])) != "")
+    {
+      $comment           = new comment();
+      $comment->ref_id   = "submission_$this->id";
+      $comment->contents = $contents;
+
+      return ($comment->save());
+    }
     return (TRUE);
   }
 

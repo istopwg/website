@@ -353,7 +353,7 @@ class document
   function				// O - TRUE if OK, FALSE otherwise
   loadform(&$error)
   {
-    global $_POST;
+    global $_POST, $_FILES;
 
 
     if (!html_form_validate())

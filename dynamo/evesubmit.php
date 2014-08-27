@@ -33,20 +33,29 @@ $submission = new submission();
 if ($REQUEST_METHOD == "POST" && $submission->loadform())
 {
   if ($submission->save())
-    print("<p>Thank you for submitting your self-certification results. Your submission number is $submission->id. You should receive a response within 25 working days.</p>\n");
+  {
+    if ($submission->add_files())
+    {
+      $submission->notify_users("");
+
+      print("<p>Thank you for submitting your self-certification results. Your submission number is $submission->id. You should receive a response within 25 working days.</p>\n");
+      site_footer();
+      exit(0);
+    }
+  }
   else
   {
     html_show_error("There was an error saving your submission.");
     print("<p>Please try again later or contact the <a href=\"mailto:$SITE_EMAIL\">PWG Webmaster</a> for assistance.");
+    site_footer();
+    exit(0);
   }
 }
-else
-{
-  if ($REQUEST_METHOD == "POST")
-    html_show_error("There was a problem with your submission. Please correct the highlighted fields below.");
 
-  $submission->form();
-}
+if ($REQUEST_METHOD == "POST")
+  html_show_error("There was a problem with your submission. Please correct the highlighted fields below.");
+
+$submission->form();
 
 site_footer();
 

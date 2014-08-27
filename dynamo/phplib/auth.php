@@ -21,6 +21,7 @@ $LOGIN_IS_OFFICER   = 0;
 $LOGIN_IS_REVIEWER  = 0;
 $LOGIN_IS_SUBMITTER = 0;
 $LOGIN_NAME         = "";
+$LOGIN_ORGANIZATION = 0;
 $LOGIN_PAGEMAX      = 10;
 $LOGIN_TIMEZONE     = "UTC";
 
@@ -36,7 +37,7 @@ auth_current()
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
          $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
-         $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
+         $LOGIN_NAME, $LOGIN_ORGANIZATION, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
   // See if the SID cookie is set; if not, the user is not logged in...
@@ -80,6 +81,7 @@ auth_current()
       $LOGIN_IS_REVIEWER  = $row["is_reviewer"];
       $LOGIN_IS_SUBMITTER = $row["is_submitter"];
       $LOGIN_NAME         = $row["name"];
+      $LOGIN_ORGANIZATION = $row["organization_id"];
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
       $LOGIN_TIMEZONE     = $row["timezone"];
 
@@ -124,7 +126,7 @@ auth_login($email,			// I - Email
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
          $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
-         $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
+         $LOGIN_NAME, $LOGIN_ORGANIZATION, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
   // Reset the user...
@@ -137,6 +139,7 @@ auth_login($email,			// I - Email
   $LOGIN_IS_REVIEWER  = 0;
   $LOGIN_IS_SUBMITTER = 0;
   $LOGIN_NAME         = "";
+  $LOGIN_ORGANIZATION = 0;
   $LOGIN_PAGEMAX      = 10;
   $LOGIN_TIMEZONE     = "UTC";
 
@@ -161,6 +164,7 @@ auth_login($email,			// I - Email
       $LOGIN_IS_REVIEWER  = $row["is_reviewer"];
       $LOGIN_IS_SUBMITTER = $row["is_submitter"];
       $LOGIN_NAME         = $row["name"];
+      $LOGIN_ORGANIZATION = $row["organization_id"];
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
       $LOGIN_TIMEZONE     = $row["timezone"];
 
@@ -194,7 +198,7 @@ auth_logout()
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
          $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
-         $LOGIN_NAME, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE;
+         $LOGIN_NAME, $LOGIN_ORGANIZATION, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE;
 
 
   // Reset the user...
@@ -207,6 +211,7 @@ auth_logout()
   $LOGIN_IS_REVIEWER  = 0;
   $LOGIN_IS_SUBMITTER = 0;
   $LOGIN_NAME         = "";
+  $LOGIN_ORGANIZATION = 0;
   $LOGIN_PAGEMAX      = 10;
   $LOGIN_TIMEZONE     = "UTC";
 

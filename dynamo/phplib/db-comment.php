@@ -146,11 +146,34 @@ class comment
 
 function				// O - Array of comment objects
 comment_search($ref_id,			// I - Reference ID
-               $search = "")		// I - Search text
+               $search = "",		// I - Search text
+               $order = "id")		// I - Ordering
 {
   $comments = array();
   $dref_id  = db_escape($ref_id);
-  $results  = db_query("SELECT id FROM comment WHERE ref_id='$dref_id' ORDER BY id");
+  $query    = "SELECT id FROM comment WHERE ref_id='$dref_id'";
+
+  if ($order != "")
+  {
+    // Separate order into array...
+    $fields = explode(" ", $order);
+    $prefix = " ORDER BY ";
+
+    // Add ORDER BY stuff...
+    foreach ($fields as $field)
+    {
+      if ($field[0] == '+')
+	$query .= "${prefix}" . substr($field, 1);
+      else if ($field[0] == '-')
+	$query .= "${prefix}" . substr($field, 1) . " DESC";
+      else
+	$query .= "${prefix}$field";
+
+      $prefix = ", ";
+    }
+  }
+
+  $results = db_query($query);
   while ($row = db_next($results))
     $comments[sizeof($comments)] = $row["id"];
   db_free($results);

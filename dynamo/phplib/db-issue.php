@@ -191,6 +191,22 @@ class issue
     else
       print("<div class=\"container\">\n");
 
+    if ($this->id > 0)
+    {
+      // create_id/date
+      html_form_field_start("create_date", "Submitted");
+      print(html_date($this->create_date) . " by " . user_name($this->create_id));
+      html_form_field_end();
+
+      // modify_id/date
+      if ($this->create_date != $this->modify_date)
+      {
+	html_form_field_start("modify_date", "Last Updated");
+	print(html_date($this->modify_date) . " by " . user_name($this->modify_id));
+	html_form_field_end();
+      }
+    }
+
     // parent_id
     html_form_field_start("parent_id", "Duplicate Of", $this->parent_id_valid);
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
@@ -235,10 +251,6 @@ class issue
     $date = html_date($this->create_date);
     $name = user_name($this->create_id);
 
-    html_form_field_start("create_id", "Created By");
-    print("$name ($date)");
-    html_form_field_end();
-
     // title
     html_form_field_start("title", "Summary", $this->title_valid);
     html_form_text("title", "Short description of issue.", $this->title);
@@ -275,18 +287,6 @@ class issue
     {
       print("<h2>Discussion</h2>\n");
 
-      $matches = comment_search("issue_$this->id");
-      foreach ($matches as $id)
-      {
-	$comment  = new comment($id);
-	$name     = user_name($comment->create_id);
-	$contents = html_text($comment->contents);
-	$date     = html_date($comment->create_date);
-
-	print("<h3><a name=\"C$id\">$name <small>$date</small></a></h3>\n"
-	     ."<p>$contents</p>\n");
-      }
-
       if ($LOGIN_ID != 0)
       {
 	if (array_key_exists("contents", $_POST))
@@ -301,12 +301,28 @@ class issue
 	print("<br>\n");
 	html_form_button("SUBMIT", "Post Comment");
 	print("</p>\n");
-	html_form_end();
       }
       else
 	print("<p><a class=\"btn btn-default\" href=\"$html_login_url\">Login to Post Comment</a></p>\n"
 	     ."</div>\n");
+
+      $matches = comment_search("issue_$this->id", "", "-id");
+      foreach ($matches as $id)
+      {
+	$comment  = new comment($id);
+	$name     = user_name($comment->create_id);
+	$contents = html_text($comment->contents);
+	$date     = html_date($comment->create_date);
+
+	print("<h3><a name=\"C$id\">$name <small>$date</small></a></h3>\n"
+	     ."<p>$contents</p>\n");
+      }
     }
+
+    if ($LOGIN_ID > 0)
+      html_form_end();
+    else
+      print("</div>\n");
   }
 
 
