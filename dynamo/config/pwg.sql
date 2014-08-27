@@ -435,6 +435,7 @@ CREATE TABLE submission (
   used_prodready BOOLEAN DEFAULT FALSE,	-- Used production-ready code? */
   printed_correctly BOOLEAN DEFAULT FALSE,
 					-- Documents printed correctly?
+  exceptions TEXT NOT NULL,		-- List of exception requests
   reviewer1_id INTEGER NOT NULL,	-- First reviewer
   reviewer1_status INTEGER NOT NULL,	-- 0 = pending, 1 = SC review,
 					-- 2 = approved, 3 = rejected
@@ -453,31 +454,7 @@ CREATE TABLE submission (
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Schema for table 'exception'
---
--- This table tracks the submitted exception requests for IPP Everywhere printers.
---
-
 DROP TABLE IF EXISTS exception;
-CREATE TABLE exception (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Printer ID
-  submission_id INTEGER NOT NULL,	-- Submission ID
-  item VARCHAR(255) NOT NULL,		-- Test item (B, I, or D followed by test item)
-  contents TEXT NOT NULL,		-- Text explaining why an exception is being requested
-  reviewer1_status INTEGER NOT NULL,	-- 0 = pending, 1 = SC review,
-					-- 2 = approved, 3 = rejected
-  reviewer2_status INTEGER NOT NULL,	-- 0 = pending, 1 = SC review,
-					-- 2 = approved, 3 = rejected
-  create_date DATETIME NOT NULL,	-- Time/date of creation
-  create_id INTEGER NOT NULL,		-- User that submitted the printer
-  modify_date DATETIME NOT NULL,	-- Time/date of last change
-  modify_id INTEGER NOT NULL,		-- User that made the last change
-
-  INDEX(create_id),
-  INDEX(modify_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 --
 -- Schema for table 'printer'

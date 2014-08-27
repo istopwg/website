@@ -44,6 +44,7 @@ class submission
   var $used_approved, $used_approved_valid;
   var $used_prodready, $used_prodready_valid;
   var $printed_correctly, $printed_correctly_valid;
+  var $exceptions;
   var $reviewer1_id, $reviewer1_id_valid;
   var $reviewer1_status;
   var $reviewer2_id, $reviewer2_id_valid;
@@ -154,6 +155,7 @@ class submission
     $this->used_approved     = 0;
     $this->used_prodready    = 0;
     $this->printed_correctly = 0;
+    $this->exceptions        = "";
     $this->reviewer1_id      = -1;
     $this->reviewer1_status  = SUBMISSION_STATUS_PENDING;
     $this->reviewer2_id      = -1;
@@ -315,6 +317,16 @@ class submission
     }
     html_form_field_end();
 
+    // exceptions
+    html_form_field_start("exceptions", "Requested Exceptions");
+    if ($this->id == 0)
+      html_form_text("exceptions", "Test number + reasons\nTest number + reasons\n...", $this->exceptions, "List the exceptions you are requesting, if any.", 20);
+    else if ($this->exceptions != "")
+      print(html_text($this->exceptions));
+    else
+      print("<em>None</em>");
+    html_form_field_end();
+
     // reviewer1_id
     html_form_field_start("+reviewer1_id", "First Reviewer", $this->reviewer1_id_valid);
     if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
@@ -428,10 +440,6 @@ class submission
           print(" <em>$error</em>");
       }
       html_form_field_end();
-
-      html_form_field_start("exceptions", "Exceptions");
-      print("EXCEPTION LIST HERE");
-      html_form_field_end();
     }
 
     // Submit
@@ -498,6 +506,7 @@ class submission
     $this->used_approved     = $row["used_approved"];
     $this->used_prodready    = $row["used_prodready"];
     $this->printed_correctly = $row["printed_correctly"];
+    $this->exceptions        = $row["exceptions"];
     $this->reviewer1_id      = $row["reviewer1_id"];
     $this->reviewer1_status  = $row["reviewer1_status"];
     $this->reviewer2_id      = $row["reviewer2_id"];
@@ -526,29 +535,14 @@ class submission
     if (!html_form_validate())
       return (FALSE);
 
-    if ($LOGIN_IS_ADMIN && array_key_exists("status", $_POST))
+    if ($LOGIN_IS_ADMIN && $this->status != SUBMISSION_STATUS_APPROVED && array_key_exists("status", $_POST))
       $this->status = (int)$_POST["status"];
 
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->id == 0)
     {
       if (array_key_exists("organization_id", $_POST) &&
 	  preg_match("/^o[0-9]+\$/", $_POST["organization_id"]))
 	$this->organization_id = (int)substr($_POST["organization_id"], 1);
-
-      if (array_key_exists("contact_name", $_POST))
-	$this->contact_name = trim($_POST["contact_name"]);
-
-      if (array_key_exists("contact_email", $_POST))
-	$this->contact_email = trim($_POST["contact_email"]);
-
-      if (array_key_exists("product_family", $_POST))
-	$this->product_family = trim($_POST["product_family"]);
-
-      if (array_key_exists("models", $_POST))
-	$this->models = trim($_POST["models"]);
-
-      if (array_key_exists("url", $_POST))
-	$this->url = trim($_POST["url"]);
 
       if (array_key_exists("cert_version", $_POST))
 	$this->cert_version = trim($_POST["cert_version"]);
@@ -568,19 +562,39 @@ class submission
       else
 	$this->printed_correctly = 0;
 
-      if (array_key_exists("reviewer1_id", $_POST))
+      if (array_key_exists("exceptions", $_POST))
+	$this->exceptions = trim($_POST["exceptions"]);
+
+    }
+
+    if ($this->create_id == $LOGIN_ID)
+    {
+      if (array_key_exists("contact_name", $_POST))
+	$this->contact_name = trim($_POST["contact_name"]);
+
+      if (array_key_exists("contact_email", $_POST))
+	$this->contact_email = trim($_POST["contact_email"]);
+
+      if (array_key_exists("product_family", $_POST))
+	$this->product_family = trim($_POST["product_family"]);
+
+      if (array_key_exists("models", $_POST))
+	$this->models = trim($_POST["models"]);
+
+      if (array_key_exists("url", $_POST))
+	$this->url = trim($_POST["url"]);
+
+      if ($this->status == SUBMISSION_STATUS_PENDING && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && array_key_exists("reviewer1_id", $_POST))
 	$this->reviewer1_id = (int)$_POST["reviewer1_id"];
 
-      if (array_key_exists("reviewer2_id", $_POST))
+      if ($this->status == SUBMISSION_STATUS_PENDING && $this->reviewer2_status == SUBMISSION_STATUS_PENDING && array_key_exists("reviewer2_id", $_POST))
 	$this->reviewer2_id = (int)$_POST["reviewer2_id"];
     }
 
-    if ($LOGIN_ID == $this->reviewer1_id &&
-        array_key_exists("reviewer1_status", $_POST))
+    if ($LOGIN_ID == $this->reviewer1_id && array_key_exists("reviewer1_status", $_POST))
       $this->reviewer1_status = (int)$_POST["reviewer1_status"];
 
-    if ($LOGIN_ID == $this->reviewer2_id &&
-        array_key_exists("reviewer2_status", $_POST))
+    if ($LOGIN_ID == $this->reviewer2_id && array_key_exists("reviewer2_status", $_POST))
       $this->reviewer2_status = (int)$_POST["reviewer2_status"];
 
     return ($this->validate());
@@ -653,16 +667,11 @@ class submission
     {
       if (db_query("UPDATE submission "
 		  ." SET status = $this->status"
-		  .", organization_id = $this->organization_id"
 		  .", contact_name = '" . db_escape($this->contact_name) . "'"
 		  .", contact_email = '" . db_escape($this->contact_email) . "'"
 		  .", product_family = '" . db_escape($this->product_family) . "'"
 		  .", models = '" . db_escape($this->models) . "'"
 		  .", url = '" . db_escape($this->url) . "'"
-		  .", cert_version = '" . db_escape($this->cert_version) . "'"
-		  .", used_approved = $this->used_approved"
-		  .", used_prodready = $this->used_prodready"
-		  .", printed_correctly = $this->printed_correctly"
 		  .", reviewer1_id = $this->reviewer1_id"
 		  .", reviewer1_status = $this->reviewer1_status"
 		  .", reviewer2_id = $this->reviewer2_id"
@@ -690,6 +699,7 @@ class submission
                   .", $this->used_approved"
                   .", $this->used_prodready"
                   .", $this->printed_correctly"
+                  .", '" . db_escape($this->exceptions) . "'"
                   .", $this->reviewer1_id"
                   .", $this->reviewer1_status"
                   .", $this->reviewer2_id"
@@ -712,6 +722,7 @@ class submission
 
       return ($comment->save());
     }
+
     return (TRUE);
   }
 
@@ -795,10 +806,12 @@ class submission
     else
       $this->cert_version_valid = TRUE;
 
+    $cuser = new user($this->create_id);
+
     if ($this->reviewer1_id > 0)
     {
-      $user = new user($this->reviewer1_id);
-      if ($user->id != $this->reviewer1_id || !$user->is_reviewer)
+      $user1 = new user($this->reviewer1_id);
+      if ($user1->id != $this->reviewer1_id || !$user1->is_reviewer || $user1->organization_id == $cuser->organization_id || $user1->organization_id == $this->organization_id)
       {
         $this->reviewer1_id_valid = FALSE;
         $valid = FALSE;
@@ -810,14 +823,18 @@ class submission
     {
       $this->reviewer1_id_valid = FALSE;
       $valid = FALSE;
+      $user1 = null;
     }
     else
+    {
       $this->reviewer1_id_valid = TRUE;
+      $user1 = null;
+    }
 
     if ($this->reviewer2_id > 0)
     {
-      $user = new user($this->reviewer2_id);
-      if ($user->id != $this->reviewer2_id || !$user->is_reviewer)
+      $user2 = new user($this->reviewer2_id);
+      if ($user2->id != $this->reviewer2_id || !$user2->is_reviewer || $user2->organization_id == $cuser->organization_id || $user2->organization_id == $this->organization_id)
       {
         $this->reviewer2_id_valid = FALSE;
         $valid = FALSE;
@@ -829,11 +846,15 @@ class submission
     {
       $this->reviewer2_id_valid = FALSE;
       $valid = FALSE;
+      $user2 = null;
     }
     else
+    {
       $this->reviewer2_id_valid = TRUE;
+      $user2 = null;
+    }
 
-    if ($this->reviewer1_id != 0 && $this->reviewer1_id == $this->reviewer2_id)
+    if ($user1 && $user2 && ($this->reviewer1_id == $this->reviewer2_id || $user1->organization_id == $user2->organization_id))
     {
       $this->reviewer1_id_valid = FALSE;
       $this->reviewer2_id_valid = FALSE;
