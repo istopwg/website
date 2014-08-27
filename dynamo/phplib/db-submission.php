@@ -5,6 +5,7 @@
 
 include_once "site.php";
 include_once "db-comment.php";
+include_once "plist.php";
 
 define("SUBMISSION_STATUS_PENDING", 0);
 define("SUBMISSION_STATUS_REVIEW", 1);
@@ -98,7 +99,7 @@ class submission
     if (!copy($tmp_name, $dstfile))
       return ("Unable to copy '$filename' to submission directory.");
 
-    return ("");
+    return ($this->validate_file($dstfile));
   }
 
 
@@ -183,7 +184,7 @@ class submission
   function
   form()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
 
 
     print("<h2>Information</h2>\n");
@@ -193,7 +194,10 @@ class submission
     else
       $action = "Modify Submission #$this->id";
 
-    html_form_start("$PHP_SELF/$this->id", FALSE, TRUE);
+    if ($this->id > 0)
+      html_form_start("${html_path}dynamo/evereview.php/$this->id", FALSE, TRUE);
+    else
+      html_form_start("${html_path}dynamo/evesubmit.php", FALSE, TRUE);
 
     if ($this->id > 0)
     {
@@ -221,7 +225,7 @@ class submission
 
     // organization_id
     html_form_field_start("+organization_id", "Organization Name", $this->organization_id_valid);
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->id == 0)
       organization_select("organization_id", $this->organization_id, "-- Choose --");
     else
       print(organization_name($this->organization_id));
@@ -273,7 +277,7 @@ class submission
 
     // cert_version
     html_form_field_start("+cert_version", "Self-Certification Manual");
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->id == 0)
       html_form_select("cert_version", $SUBMISSION_VERSIONS, "", $this->cert_version);
     else if (array_key_exists($this->cert_version, $SUBMISSION_VERSIONS))
       print($SUBMISSION_VERSIONS[$this->cert_version]);
@@ -283,7 +287,7 @@ class submission
 
     // used_approved, used_prodready, printed_correctly
     html_form_field_start("+used_approved", "Submission Checklist");
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->id == 0)
     {
       html_form_checkbox("used_approved", "Used PWG self-certification tools.", $this->used_approved, "As supplied on the PWG FTP server.");
       html_form_checkbox("used_prodready", "Used Production-Ready Code.", $this->used_prodready, "Production-Ready Code: Software and/or firmware that is considered ready to be included in products shipped to customers.");
@@ -313,7 +317,7 @@ class submission
 
     // reviewer1_id
     html_form_field_start("+reviewer1_id", "First Reviewer", $this->reviewer1_id_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       user_select("reviewer1_id", $this->reviewer1_id, USER_SELECT_REVIEWER, "-- Choose --");
     else
       print(user_name($this->reviewer1_id));
@@ -331,7 +335,7 @@ class submission
 
     // reviewer2_id
     html_form_field_start("+reviewer2_id", "Second Reviewer", $this->reviewer2_id_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       user_select("reviewer2_id", $this->reviewer2_id, USER_SELECT_REVIEWER, "-- Choose --");
     else
       print(user_name($this->reviewer2_id));
@@ -375,6 +379,16 @@ class submission
         print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/bonjour.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download bonjour.plist ($filesize)</a>");
       else
         print("bonjour.plist ($filesize)");
+      if (($error = $this->validate_file($filename)) != "")
+      {
+        if ($LOGIN_ID == $this->create_id && $this->status == SUBMISSION_STATUS_PENDING)
+        {
+          print("<br>\n");
+	  html_form_file("bonjour_file", "", $error);
+	}
+	else
+          print(" <em>$error</em>");
+      }
       html_form_field_end();
 
       html_form_field_start("+ipp_file", "IPP Test Results");
@@ -384,6 +398,16 @@ class submission
         print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/ipp.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download ipp.plist ($filesize)</a>");
       else
         print("ipp.plist ($filesize)");
+      if (($error = $this->validate_file($filename)) != "")
+      {
+        if ($LOGIN_ID == $this->create_id && $this->status == SUBMISSION_STATUS_PENDING)
+        {
+          print("<br>\n");
+	  html_form_file("ipp_file", "", $error);
+	}
+	else
+          print(" <em>$error</em>");
+      }
       html_form_field_end();
 
       html_form_field_start("+document_file", "Document Data Test Results");
@@ -393,6 +417,16 @@ class submission
         print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/document.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download document.plist ($filesize)</a>");
       else
         print("document.plist ($filesize)");
+      if (($error = $this->validate_file($filename)) != "")
+      {
+        if ($LOGIN_ID == $this->create_id && $this->status == SUBMISSION_STATUS_PENDING)
+        {
+          print("<br>\n");
+	  html_form_file("document_file", "", $error);
+	}
+	else
+          print(" <em>$error</em>");
+      }
       html_form_field_end();
 
       html_form_field_start("exceptions", "Exceptions");
@@ -595,7 +629,7 @@ class submission
     if (array_key_exists("contents", $_POST))
       $message .= "\n" . wordwrap(trim($_POST["contents"])) . "\n";
 
-    $message .= "\nLink: ${SITE_URL}dynamo/evereview.php?U$this->id\n";
+    $message .= "\nLink: ${SITE_URL}dynamo/evereview.php/$this->id\n";
 
     // Send the email notification...
     mail($to, $subject, $message, $headers);
@@ -807,6 +841,42 @@ class submission
     }
 
     return ($valid);
+  }
+
+  //
+  // 'submission::validate_file()' - Validate the content of a submission plist.
+  //
+
+  function				// O - String containing errors or "" for OK
+  validate_file($filename)		// I - File to validate
+  {
+    $tests = array(
+      "org.pwg.ipp-everywhere.20140826.bonjour" => 10,
+      "org.pwg.ipp-everywhere.20140826.document" => 34,
+      "org.pwg.ipp-everywhere.20140826.ipp" => 28
+    );
+
+    if (($plist = plist_read_file($filename)) === FALSE)
+      return ("Unable to parse plist file.");
+
+    if (!array_key_exists("Successful", $plist))
+      return ("Missing Successful in plist file.");
+
+    if (!array_key_exists("Tests", $plist))
+      return ("Missing Tests in plist file.");
+
+    if (!array_key_exists("FileId", $plist["Tests"][0]))
+      return ("Missing FileId in plist file.");
+
+    $fileid = $plist["Tests"][0]["FileId"];
+
+    if (sizeof($plist["Tests"]) != $tests[$fileid])
+      return ("Wrong number of Tests in plist file.");
+
+    if (substr($fileid, 0, 31) != $this->cert_version || !array_key_exists($fileid, $tests))
+      return (htmlspecialchars("Invalid FileId '$fileid'."));
+
+    return ("");
   }
 }
 

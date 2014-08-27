@@ -38,7 +38,7 @@ if ($REQUEST_METHOD == "POST" && $submission->loadform())
     {
       $submission->notify_users("");
 
-      print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Review Self-Certifications</a></p>\n");
+      print("<p><a class=\"btn btn-default\" href=\"${html_path}dynamo/evereview.php\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Review Self-Certifications</a></p>\n");
 
       print("<p>Thank you for submitting your self-certification results. Your submission number is $submission->id. You should receive a response within 25 working days.</p>\n");
       site_footer();

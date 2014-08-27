@@ -84,7 +84,7 @@ switch ($op)
 	  $pf = htmlspecialchars($submission->product_family);
 	  $st = $SUBMISSION_STATUSES[$submission->status];
 	  $lu = html_date($submission->modify_date);
-	  $l  = "<a href=\"$PHP_SELF/$submission->id\">";
+	  $l  = "<a href=\"${html_path}dynamo/evereview.php/$submission->id\">";
 
 	  print("<tr><td>$l$submission->id</a></td>"
 	       ."<td>$l$pf</a></td><td>$l$st</a></td>"
@@ -97,7 +97,7 @@ switch ($op)
       break;
 
   case "U" : // Update
-      print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+      print("<p><a class=\"btn btn-default\" href=\"${html_path}dynamo/evereview.php\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
       $submission = new submission($id);
       if ($submission->id != $id || $id == 0)
@@ -121,6 +121,9 @@ switch ($op)
       {
         if ($submission->save())
         {
+          if ($LOGIN_ID == $submission->create_id && $submission->status == SUBMISSION_STATUS_PENDING)
+            $submission->add_files();
+
           $submission->notify_users();
 
           html_show_info("Changes saved.");
