@@ -183,7 +183,7 @@ class submission
   function
   form()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $PHP_SELF, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
 
 
     print("<h2>Information</h2>\n");
