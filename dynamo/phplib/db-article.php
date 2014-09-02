@@ -293,7 +293,7 @@ class article
 
     $title    = htmlspecialchars($this->title, ENT_QUOTES);
     $contents = html_format($this->contents, FALSE, $level + 1);
-    $date     = html_date($this->modify_date);
+    $date     = html_date($this->create_date);
 
     if ($this->display_until != "" && $this->display_until < date("Y-m-d"))
       $title .= " (concluded)";
