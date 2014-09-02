@@ -328,7 +328,7 @@ class article
 function				// O - Array of article objects
 article_search($search = "",		// I - Search text
                $workgroup_id = -1,	// I - Which workgroup to limit to
-               $order = "-modify_date")	// I - Order of objects
+               $order = "-create_date")	// I - Order of objects
 {
   if ($search != "")
   {
