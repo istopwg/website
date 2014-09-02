@@ -380,6 +380,7 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
 		*last_name = NULL,	/* Last attribute name */
 		*last_member = NULL,	/* Last member attribute */
 		*last_submember = NULL;	/* Last sub-member attribute */
+  char		extname[256];		/* attribute-name(extension) */
 
 
  /*
@@ -531,9 +532,10 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
     }
 
    /*
-    * OK, at this point the current record matches the attribute we are trying to add.
-    * If the syntax doesn't match issue a warning and reset the syntax, otherwise just
-    * return with no changes...
+    * OK, at this point the current record matches the attribute we are trying
+    * to add.  If the syntax doesn't match, treat this as an extension to the
+    * original definition and change the attribute or member name to
+    * "name(extension)" and add it below...
     */
 
     syntax_node = mxmlFindElement(record_node, record_node, "syntax",
@@ -547,18 +549,32 @@ add_attr(mxml_node_t *xml,		/* I - XML registry */
 
     if (compare_strings(mxmlGetOpaque(syntax_node), syntax))
     {
-      fprintf(stderr, "register: Changing syntax for %s to '%s'.\n",
+      fprintf(stderr, "register: Extending syntax for %s to '%s'.\n",
               submembername ? submembername : membername ? membername : attrname, syntax);
-      mxmlSetOpaque(syntax_node, syntax);
-      return (1);
+
+      if (submembername)
+      {
+        snprintf(extname, sizeof(extname), "%s(extension)", submembername);
+        submembername = extname;
+      }
+      else if (membername)
+      {
+        snprintf(extname, sizeof(extname), "%s(extension)", membername);
+        membername = extname;
+      }
+      else
+      {
+        snprintf(extname, sizeof(extname), "%s(extension)", attrname);
+        attrname = extname;
+      }
     }
     else
       return (changed);
   }
 
  /*
-  * If we get here the attribute does not exist.  Build a new record and add it to the
-  * registry in the right place.
+  * If we get here the attribute does not exist.  Build a new record and add it
+  * to the registry in the right place.
   */
 
   node = mxmlNewElement(NULL, "record");
@@ -842,6 +858,7 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
 		*name_node,		/* <name> */
 		*value_node,		/* <value> */
 		*xref_node;		/* <xref> */
+  char		*nodeval;		/* Pointer into node value */
 
 
  /*
@@ -874,10 +891,25 @@ add_status_code(mxml_node_t *xml,	/* I - XML registry */
     }
 
     if ((result = strtol(value, NULL, 0) -
-                  strtol(mxmlGetOpaque(value_node), NULL, 0)) > 0)
+                  strtol(mxmlGetOpaque(value_node), &nodeval, 0)) > 0)
       continue;
     else if (result < 0)
       break;
+
+    if (nodeval && *nodeval == '-')
+    {
+     /*
+      * 0xXXXX-0xXXXX range; update the range to be 1 more than the current
+      * value and then insert the new status code before this one...
+      */
+
+      char	newvalue[256];		/* New value */
+
+      snprintf(newvalue, sizeof(newvalue), "0x%04x%s", (unsigned)strtol(value, NULL, 0) + 1, nodeval);
+      mxmlSetOpaque(value_node, newvalue);
+      changed = 1;
+      break;
+    }
 
    /*
     * OK, at this point the current record matches the value we are trying to add.

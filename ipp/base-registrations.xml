@@ -4,19 +4,11 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2013-12-08 (PWG: 2014-08-22)</updated>
+  <updated>2014-08-26 (PWG: 2014-08-28)</updated>
   <!--
     Pending PWG Registrations and Changes:
-    - Fixed IPP FaxOut registrations: retry-time-out (not retry-timeout), missing cover-sheet-info-default
-    - Moved read-only document-format-varying-attributes, job-settable-attributes-supported, pages-per-minute, pages-per-minute-color, printer-message-from-operator, printer-settable-attributes-supported, xri-authentication-supported, xri-security-supported, and xri-uri-scheme-supported attributes to the Printer Status group.
-    - Moved printer-current-time and printer-xri-supported back to Printer Description group (potentially READ-WRITE according to RFC 3380)
-    - Added missing PWG 5100.13 printer-config-change-date-time/-time attributes.
-    - Added missing PWG 5100.15 and 5107.3 registrations
-    - Fixed the registrations of the PWG 5100.9 xxx-recoverable-storage[-error] keywords (dropped "-error")
-    - Added HP job-password-encryption keywords for SHA-2 algorithms
-    - Added HP output-bin keywords for collator and job-separator, with prohibition for output-bin-actual.
-    - Added Xerox printer-state-reasons xxx-missing keywords for missing supplies
-    - Added Xerox media keywords for Mopria sizes
+    - Normalized extension syntax to be "name(extension)", new attribute type
+      extensions are not registered as extensions to the original spec.
     - Added prototype IPP Shared Infrastructure Extensions (IPPSIX) definitions
     - Added stable IPP Scan Service definitions
     - Added stable IPP Finishings 2.0 (FIN2) definitions
@@ -21628,7 +21620,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc3998" />
     </record>
     <record>
-      <name>Cancel-Current-Job (extension)</name>
+      <name>Cancel-Current-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21640,11 +21632,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Cancel-Job (extension)</name>
+      <name>Cancel-Job(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
-      <name>Cancel-Job (extension)</name>
+      <name>Cancel-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21668,23 +21660,23 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Create-Job (extension)</name>
+      <name>Create-Job(extension)</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Create-Job (extension)</name>
+      <name>Create-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Create-Job (extension)</name>
+      <name>Create-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <name>Create-Job (extension)</name>
+      <name>Create-Job(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <name>Create-Job (extension)</name>
+      <name>Create-Job(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
@@ -21692,7 +21684,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Create-Job-Subscriptions (extension)</name>
+      <name>Create-Job-Subscriptions(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21700,7 +21692,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Create-Printer-Subscriptions (extension)</name>
+      <name>Create-Printer-Subscriptions(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21728,7 +21720,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Get-Documents (extension)</name>
+      <name>Get-Documents(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21740,15 +21732,15 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Get-Jobs (extension)</name>
+      <name>Get-Jobs(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <name>Get-Jobs (extension)</name>
+      <name>Get-Jobs(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <name>Get-Jobs (extension)</name>
+      <name>Get-Jobs(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21760,11 +21752,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Get-Printer-Attributes (extension)</name>
+      <name>Get-Printer-Attributes(extension)</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Get-Printer-Attributes (extension)</name>
+      <name>Get-Printer-Attributes(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21780,7 +21772,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Get-Subscriptions (extension)</name>
+      <name>Get-Subscriptions(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21788,11 +21780,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Hold-Job (extension)</name>
+      <name>Hold-Job(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
-      <name>Hold-Job (extension)</name>
+      <name>Hold-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21808,7 +21800,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Pause-Printer (extension)</name>
+      <name>Pause-Printer(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
@@ -21820,23 +21812,23 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Print-Job (extension)</name>
+      <name>Print-Job(extension)</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Print-Job (extension)</name>
+      <name>Print-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Print-Job (extension)</name>
+      <name>Print-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <name>Print-Job (extension)</name>
+      <name>Print-Job(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <name>Print-Job (extension)</name>
+      <name>Print-Job(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
@@ -21844,23 +21836,23 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Print-URI (extension)</name>
+      <name>Print-URI(extension)</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Print-URI (extension)</name>
+      <name>Print-URI(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Print-URI (extension)</name>
+      <name>Print-URI(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <name>Print-URI (extension)</name>
+      <name>Print-URI(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <name>Print-URI (extension)</name>
+      <name>Print-URI(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
@@ -21872,11 +21864,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Purge-Jobs (extension)</name>
+      <name>Purge-Jobs(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
-      <name>Purge-Jobs (extension)</name>
+      <name>Purge-Jobs(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21888,11 +21880,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Release-Job (extension)</name>
+      <name>Release-Job(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
-      <name>Release-Job (extension)</name>
+      <name>Release-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21904,7 +21896,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc3998" />
     </record>
     <record>
-      <name>Reprocess-Job (extension)</name>
+      <name>Reprocess-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21912,11 +21904,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Restart-Job (extension)</name>
+      <name>Restart-Job(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
-      <name>Restart-Job (extension)</name>
+      <name>Restart-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -21936,7 +21928,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Resume-Printer (extension)</name>
+      <name>Resume-Printer(extension)</name>
       <xref type="rfc" data="rfc3380" />
     </record>
     <record>
@@ -21948,11 +21940,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Send-Document (extension)</name>
+      <name>Send-Document(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Send-Document (extension)</name>
+      <name>Send-Document(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21960,11 +21952,11 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Send-URI (extension)</name>
+      <name>Send-URI(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Send-URI (extension)</name>
+      <name>Send-URI(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
@@ -21992,7 +21984,7 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc3998" />
     </record>
     <record>
-      <name>Suspend-Current-Job (extension)</name>
+      <name>Suspend-Current-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -22004,19 +21996,19 @@ as well on separate lines with the notation "(extension)" after the name.</note>
       <xref type="rfc" data="rfc2911" />
     </record>
     <record>
-      <name>Validate-Job (extension)</name>
+      <name>Validate-Job(extension)</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <name>Validate-Job (extension)</name>
+      <name>Validate-Job(extension)</name>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
-      <name>Validate-Job (extension)</name>
+      <name>Validate-Job(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <name>Validate-Job (extension)</name>
+      <name>Validate-Job(extension)</name>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
   </registry>

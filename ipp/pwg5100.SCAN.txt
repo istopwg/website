@@ -2,6 +2,8 @@ http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippscan10-20140509.pdf
 
 Operation attributes:	Reference
 ---------------------	---------
+compression-accepted (1setOf type2 keyword)	[PWG5100.SCAN]
+document-format-accepted (1setOf mimeMediaType)	[PWG5100.SCAN]
 input-attributes (collection)	[PWG5100.15]
   output-compression-quality-factor (integer(0:100))	[PWG5100.SCAN]
   noise-removal (integer(0:100))	[PWG5100.SCAN]
@@ -16,6 +18,9 @@ noise-removal-supported (rangeOfInteger(0:100))	[PWG5100.SCAN]
 Attributes (attribute syntax)
   Keyword Attribute Value	Reference
   -----------------------	---------
+compression-accepted (1setOf type2 keyword)	[PWG5100.SCAN]
+  < all compression values >	[PWG5100.SCAN]
+
 input-color-mode (type2 keyword)	[PWG5100.15]
   bi-level
   monochrome_4

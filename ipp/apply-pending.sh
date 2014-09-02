@@ -17,3 +17,5 @@ for file in $files; do
 	dst=""
 	echo ""
 done
+sed -e '1,$s/&quot;/"/g' ipp-registrations.xml >ipp-registrations.xml.N
+mv ipp-registrations.xml.N ipp-registrations.xml
