@@ -124,7 +124,7 @@ CREATE TABLE article (
   title VARCHAR(255) NOT NULL,		-- Title
   contents TEXT NOT NULL,		-- Text message
   url VARCHAR(255) NOT NULL,		-- URL to additional content
-  display_until VARCHAR(255) NOT NULL,	-- Expiration date, if any
+  display_until_date VARCHAR(255) NOT NULL,-- Expiration date, if any
   create_date DATETIME NOT NULL,	-- Time/date of creation
   create_id INTEGER NOT NULL,		-- User that posted the article
   modify_date DATETIME NOT NULL,	-- Time/date of last change

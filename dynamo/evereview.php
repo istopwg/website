@@ -52,7 +52,7 @@ switch ($op)
       if ($LOGIN_IS_ADMIN)
 	$results = db_query("SELECT id FROM submission ORDER BY status,modify_date DESC");
       else
-	$results = db_query("SELECT id FROM submission WHERE create_id=$LOGIN_ID OR reviewer1_id=$LOGIN_ID OR reviewer2_id=$LOGIN_ID ORDER BY status,modify_date DESC");
+	$results = db_query("SELECT id FROM submission WHERE create_id=? OR reviewer1_id=? OR reviewer2_id=? ORDER BY status,modify_date DESC", array($LOGIN_ID, $LOGIN_ID, $LOGIN_ID));
 
       if (($count = db_count($results)) == 0)
       {
@@ -94,8 +94,6 @@ switch ($op)
 	}
 	html_end_table();
       }
-
-      db_free($results);
       break;
 
   case "U" : // Update

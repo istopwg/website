@@ -76,7 +76,7 @@ if ($argc)
 
   if ($op != 'B' && $op != 'L' && $op != 'U' && $op != 'X')
   {
-    site_header("Manage Accounts");
+    site_header("Manage Users");
     print("<p>Bad command '$op'.</p>\n");
     accounts_footer();
     exit();
@@ -88,7 +88,7 @@ if ($argc)
 
     if ($user->id != $id)
     {
-      site_header("Manage Accounts");
+      site_header("Manage Users");
       print("<p>Account #$id does not exist.</p>\n");
       accounts_footer();
       exit();
@@ -116,7 +116,7 @@ if ($argc)
 	  }
 	  break;
       default :
-	  site_header("Manage Accounts");
+	  site_header("Manage Users");
 	  print("<p>Bad option '$argv[$i]'.</p>\n");
 	  accounts_footer();
 	  exit();
@@ -175,13 +175,13 @@ switch ($op)
 
   case 'L' : // View/list
       // List accounts...
-      accounts_header("Manage Accounts");
+      accounts_header("Manage Users");
 
       html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
-      html_form_search("search", "Search Accounts", $search);
+      html_form_search("search", "Search Users", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
-      $matches = user_search($search, 0, "name");
+      $matches = user_search($search, -1, "name");
       $count   = sizeof($matches);
 
       if ($count == 0)
@@ -263,7 +263,7 @@ switch ($op)
       print("<p align=\"center\">");
       html_form_select("OP", array("ban" => "Ban", "delete" => "Delete",
                                    "enable" => "Enable"), "-- Choose --");
-      html_form_end(array("SUBMIT" => "--Checked Accounts"));
+      html_form_end(array("SUBMIT" => "--Checked Users"));
       print("</p>\n");
 
       html_paginate($index, $count, $LOGIN_PAGEMAX, "$PHP_SELF?L+I",
@@ -277,7 +277,7 @@ switch ($op)
 
       if ($user->id != $id)
       {
-	site_header("Manage Accounts");
+	site_header("Manage Users");
 	print("<p>Account #$id does not exist.\n");
 	accounts_footer();
 	exit();

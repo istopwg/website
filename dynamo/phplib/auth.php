@@ -61,8 +61,8 @@ auth_current()
     return ("");
 
   // Lookup the username in the user table and compare...
-  $result = db_query("SELECT * FROM user WHERE id=$id AND status=2");
-  if (db_count($result) == 1 && ($row = db_next($result)))
+  $result = db_query("SELECT * FROM user WHERE id=? AND status=2", array($id));
+  if ($row = db_next($result))
   {
     // Compute the session ID...
     $sid = hash("sha256", "$_SERVER[REMOTE_ADDR]:$cookie[0]:$cookie[1]:"
@@ -85,7 +85,7 @@ auth_current()
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
       $LOGIN_TIMEZONE     = $row["timezone"];
 
-      $result = db_query("SELECT id FROM workgroup WHERE chair_id = $LOGIN_ID OR vicechair_id = $LOGIN_ID OR secretary_id = $LOGIN_ID");
+      $result = db_query("SELECT id FROM workgroup WHERE chair_id=? OR vicechair_id=? OR secretary_id=?", array($LOGIN_ID, $LOGIN_ID, $LOGIN_ID));
       if (db_count($result) > 0)
         $LOGIN_IS_OFFICER = 1;
       else
@@ -144,9 +144,7 @@ auth_login($email,			// I - Email
   $LOGIN_TIMEZONE     = "UTC";
 
   // Lookup the username in the database...
-  $result = db_query("SELECT * FROM user WHERE "
-                    ."email='".db_escape($email)."' AND "
-		    ."status=2");
+  $result = db_query("SELECT * FROM user WHERE email LIKE ? AND status=2", array($email));
   if (db_count($result) == 1 && ($row = db_next($result)))
   {
     // Encrypt the password...
@@ -168,7 +166,7 @@ auth_login($email,			// I - Email
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
       $LOGIN_TIMEZONE     = $row["timezone"];
 
-      $result = db_query("SELECT id FROM workgroup WHERE chair_id = $LOGIN_ID OR vicechair_id = $LOGIN_ID OR secretary_id = $LOGIN_ID");
+      $result = db_query("SELECT id FROM workgroup WHERE chair_id=? OR vicechair_id=? OR secretary_id=?", array($LOGIN_ID, $LOGIN_ID, $LOGIN_ID));
       if (db_count($result) > 0)
         $LOGIN_IS_OFFICER = 1;
       else

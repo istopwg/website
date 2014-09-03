@@ -51,8 +51,7 @@ else if (html_form_validate())
   else
   {
     // Check that we have an existing user account...
-    $demail = db_escape($email);
-    $result = db_query("SELECT * FROM user WHERE email='$demail'");
+    $result = db_query("SELECT * FROM user WHERE email LIKE ?", array($email));
 
     if (db_count($result) == 1)
     {
@@ -91,8 +90,6 @@ else if (html_form_validate())
     }
     else
       $usererror = "Email not found.";
-
-    db_free($result);
   }
 }
 else if ($REQUEST_METHOD == "POST")

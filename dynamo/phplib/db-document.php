@@ -6,6 +6,24 @@
 include_once "site.php";
 include_once "db-workgroup.php";
 
+$DOCUMENT_COLUMNS = array(
+  "replaces_id" => PDO::PARAM_INT,
+  "workgroup_id" => PDO::PARAM_INT,
+  "status" => PDO::PARAM_INT,
+  "series" => PDO::PARAM_INT,
+  "number" => PDO::PARAM_INT,
+  "version" => PDO::PARAM_STR,
+  "title" => PDO::PARAM_STR,
+  "contents" => PDO::PARAM_STR,
+  "editable_url" => PDO::PARAM_STR,
+  "clean_url" => PDO::PARAM_STR,
+  "redline_url" => PDO::PARAM_STR,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
+
 define("DOCUMENT_STATUS_OBSOLETE", 0);
 define("DOCUMENT_STATUS_INITIAL_WORKING_DRAFT", 1);
 define("DOCUMENT_STATUS_INTERIM_WORKING_DRAFT", 2);
@@ -118,7 +136,7 @@ class document
   function
   delete()
   {
-    db_query("DELETE FROM document WHERE id=$this->id");
+    db_delete("document", $this->id);
     $this->clear();
   }
 
@@ -316,31 +334,14 @@ class document
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $DOCUMENT_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM document WHERE id = $id");
-    if (db_count($result) != 1)
+    if (!db_load($this, "document", $id, $DOCUMENT_COLUMNS))
       return (FALSE);
 
-    $row = db_next($result);
-    $this->id           = $row["id"];
-    $this->replaces_id  = $row["replaces_id"];
-    $this->workgroup_id = $row["workgroup_id"];
-    $this->status       = $row["status"];
-    $this->series       = $row["series"];
-    $this->number       = $row["number"];
-    $this->version      = $row["version"];
-    $this->title        = $row["title"];
-    $this->contents     = $row["contents"];
-    $this->editable_url = $row["editable_url"];
-    $this->clean_url    = $row["clean_url"];
-    $this->redline_url  = $row["redline_url"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
-
-    db_free($result);
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -430,7 +431,7 @@ class document
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_OFFICER, $PHP_SELF;
+    global $DOCUMENT_COLUMNS, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_OFFICER, $PHP_SELF;
 
 
     $this->modify_date = db_datetime();
@@ -447,11 +448,8 @@ class document
       {
         if ($LOGIN_ID == $document->create_id || $LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER)
         {
-          if (db_query("UPDATE document SET "
-                      ."status = " . DOCUMENT_STATUS_OBSOLETE
-                      .", modify_date='" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $LOGIN_ID"
-                      ." WHERE id = $this->replaces_id") === FALSE)
+          $document->status = DOCUMENT_STATUS_OBSOLETE;
+          if (!db_save($document, "document", $document->id, $DOCUMENT_COLUMNS))
             return (FALSE);
         }
         else
@@ -460,50 +458,15 @@ class document
     }
 
     if ($this->id > 0)
-    {
-      return (db_query("UPDATE document "
-                      ." SET replaces_id = $this->replaces_id"
-                      .", workgroup_id = $this->workgroup_id"
-                      .", status = $this->status"
-                      .", series = $this->series"
-                      .", number = $this->number"
-                      .", version = '" . db_escape($this->version) . "'"
-                      .", title = '" . db_escape($this->title) . "'"
-                      .", contents = '" . db_escape($this->contents) . "'"
-                      .", editable_url = '" . db_escape($this->editable_url) . "'"
-                      .", clean_url = '" . db_escape($this->clean_url) . "'"
-                      .", redline_url = '" . db_escape($this->redline_url) . "'"
-                      .", modify_date = '" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $this->modify_id"
-                      ." WHERE id = $this->id") !== FALSE);
-    }
-    else
-    {
-      $this->create_date = $this->modify_date;
-      $this->create_id   = $this->modify_id;
+      return (db_save($this, "document", $this->id, $DOCUMENT_COLUMNS));
 
-      if (db_query("INSERT INTO document VALUES"
-                  ."(NULL"
-                  .", $this->replaces_id"
-                  .", $this->workgroup_id"
-                  .", $this->status"
-                  .", $this->series"
-                  .", $this->number"
-                  .", '" . db_escape($this->version) . "'"
-                  .", '" . db_escape($this->title) . "'"
-                  .", '" . db_escape($this->contents) . "'"
-                  .", '" . db_escape($this->editable_url) . "'"
-                  .", '" . db_escape($this->clean_url) . "'"
-                  .", '" . db_escape($this->redline_url) . "'"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
-        return (FALSE);
+    $this->create_date = $this->modify_date;
+    $this->create_id   = $this->modify_id;
 
-      $this->id = db_insert_id();
-    }
+    if (($id = db_create($this, "document", $DOCUMENT_COLUMNS)) === FALSE)
+      return (FALSE);
+
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -756,112 +719,20 @@ document_search($search = "",		// I - Search text
                 $max_status = DOCUMENT_STATUS_FULL_STANDARD)
                 			// I - Min and max status
 {
-  if ($search != "")
-  {
-    // Convert the search string to an array of words...
-    $words = html_search_words($search);
-
-    // Loop through the array of words, adding them to the query...
-    if ($workgroup_id >= 0)
-      $query = " WHERE workgroup_id = $workgroup_id AND (";
-    else
-      $query  = " WHERE (";
-
-    $prefix = "";
-    $next   = " OR";
-    $logic  = "";
-
-    reset($words);
-    foreach ($words as $word)
-    {
-      if ($word == "or")
-      {
-	$next = ' OR';
-	if ($prefix != '')
-	  $prefix = ' OR';
-      }
-      else if ($word == "and")
-      {
-	$next = ' AND';
-	if ($prefix != '')
-	  $prefix = ' AND';
-      }
-      else if ($word == "not")
-	$logic = ' NOT';
-      else
-      {
-	$query .= "$prefix$logic (";
-	$subpre = "";
-
-	if (preg_match("/^[0-9]+\$/", $word))
-	{
-	  $query .= "${subpre}id = $word";
-	  $subpre = " OR ";
-	}
-
-	$query .= "${subpre}title LIKE \"%$word%\"";
-	$subpre = " OR ";
-	$query .= "${subpre}number LIKE \"%$word%\"";
-	$query .= "${subpre}version LIKE \"%$word%\"";
-	$query .= "${subpre}contents LIKE \"%$word%\"";
-	$query .= "${subpre}editable_url LIKE \"%$word%\"";
-	$query .= "${subpre}clean_url LIKE \"%$word%\"";
-	$query .= "${subpre}redline_url LIKE \"%$word%\"";
-
-	$query .= ")";
-	$prefix = $next;
-	$logic  = '';
-      }
-    }
-
-    $query .= ")";
-  }
-  else if ($workgroup_id >= 0)
-    $query = " WHERE workgroup_id = $workgroup_id";
-  else
-    $query = "";
+  global $DOCUMENT_COLUMNS;
 
   if ($min_status != DOCUMENT_STATUS_OBSOLETE || $max_status != DOCUMENT_STATUS_FULL_STANDARD)
   {
-    if ($query == "")
-      $query = " WHERE";
-    else
-      $query .= " AND";
-
-    $query .= " status >= $min_status AND status <= $max_status";
+    $keyvals = array("status>=" => $min_status, "status<=" => $max_status);
+    if ($workgroup_id >= 0)
+      $keyvals["workgroup_id"] = $workgroup_id;
   }
+  else if ($workgroup_id >= 0)
+    $keyvals = array("workgroup_id" => $workgroup_id);
+  else
+    $keyvals = null;
 
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-  // Do the query and convert the result to an array of objects...
-  $result  = db_query("SELECT id FROM document$query");
-  $matches = array();
-
-  while ($row = db_next($result))
-    $matches[sizeof($matches)] = $row["id"];
-
-  // Free the query result and return the array...
-  db_free($result);
-
-  return ($matches);
+  return (db_search("document", $DOCUMENT_COLUMNS, $keyvals, $search, $order));
 }
 
 
@@ -888,21 +759,27 @@ document_select(
   if ($editable)
   {
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER)
-      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " ORDER BY status,number,title");
+      $results = db_query("SELECT id, title, series, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " ORDER BY status,number,title");
     else
-      $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND create_id = $LOGIN_ID ORDER BY status,number,title");
+      $results = db_query("SELECT id, title, series, number FROM document WHERE status >= " . DOCUMENT_STATUS_INITIAL_WORKING_DRAFT . " AND create_id = ? ORDER BY status,number,title", array($LOGIN_ID));
   }
   else
-    $results = db_query("SELECT id, title, number FROM document WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER . " ORDER BY status,number,title");
+    $results = db_query("SELECT id, title, series, number FROM document WHERE status >= " . DOCUMENT_STATUS_WHITE_PAPER . " ORDER BY status,number,title");
 
   while ($row = db_next($results))
   {
     $did    = $row["id"];
     $title  = html_abbreviate($row["title"]);
+    $series = $row["series"];
     $number = $row["number"];
 
-    if ($number != "")
-      $name = "PWG $number: $title";
+    if ($series && $number)
+    {
+      if ($series == 5108) // For Pete
+        $name = sprintf("PWG 5108.%02d: %s", $number, $title);
+      else
+        $name = "PWG $series.$number: $title";
+    }
     else
       $name = $title;
 
@@ -911,8 +788,6 @@ document_select(
     else
       print("<option value=\"$did\">$prefix$name</option>");
   }
-
-  db_free($results);
 
   print("</select>");
 }

@@ -8,6 +8,20 @@ include_once "db-document.php";
 include_once "db-workgroup.php";
 
 
+$ISSUE_COLUMNS = array(
+  "parent_id" => PDO::PARAM_INT,
+  "workgroup_id" => PDO::PARAM_INT,
+  "document_id" => PDO::PARAM_INT,
+  "status" => PDO::PARAM_INT,
+  "priority" => PDO::PARAM_INT,
+  "title" => PDO::PARAM_STR,
+  "assigned_id" => PDO::PARAM_INT,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
+
 //
 // Issue constants...
 //
@@ -264,7 +278,7 @@ class issue
       else
 	$contents = "";
 
-      html_form_field_start("comments", "Description", $this->contents_valid);
+      html_form_field_start("comments", "Description");
       html_form_text("contents", "Detailed description of issue.", $contents, "", 12);
       html_form_field_end();
     }
@@ -333,28 +347,14 @@ class issue
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $ISSUE_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM issue WHERE id = $id");
-    if (db_count($result) != 1)
+    if (!db_load($this, "issue", $id, $ISSUE_COLUMNS))
       return (FALSE);
 
-    $row = db_next($result);
-
-    $this->id           = $row["id"];
-    $this->parent_id    = $row["parent_id"];
-    $this->workgroup_id = $row["workgroup_id"];
-    $this->document_id  = $row["document_id"];
-    $this->status       = $row["status"];
-    $this->priority     = $row["priority"];
-    $this->title        = $row["title"];
-    $this->assigned_id  = $row["assigned_id"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
-
-    db_free($result);
+    $this->id = $id;
 
     return ($this->validate());
   }
@@ -487,49 +487,22 @@ class issue
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF;
+    global $ISSUE_COLUMNS, $LOGIN_ID, $PHP_SELF;
 
 
     $this->modify_date = db_datetime();
     $this->modify_id   = $LOGIN_ID;
 
     if ($this->id > 0)
-    {
-      return (db_query("UPDATE issue "
-                      ." SET parent_id = $this->parent_id"
-                      .", workgroup_id = $this->workgroup_id"
-                      .", document_id = $this->document_id"
-                      .", status = $this->status"
-                      .", priority = $this->priority"
-                      .", title = '" . db_escape($this->title) . "'"
-                      .", assigned_id = $this->assigned_id"
-                      .", modify_date = '" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $this->modify_id"
-                      ." WHERE id = $this->id") !== FALSE);
-    }
-    else
-    {
-      $this->create_date = $this->modify_date;
-      $this->create_id   = $this->modify_id;
+      return (db_save($this, "issue", $this->id, $ISSUE_COLUMNS));
 
-      if (db_query("INSERT INTO issue VALUES"
-                  ."(NULL"
-                  .", $this->parent_id"
-                  .", $this->workgroup_id"
-                  .", $this->document_id"
-                  .", $this->status"
-                  .", $this->priority"
-                  .", '" . db_escape($this->title) . "'"
-                  .", $this->assigned_id"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
-        return (FALSE);
+    $this->create_date = $this->modify_date;
+    $this->create_id   = $this->modify_id;
 
-      $this->id = db_insert_id();
-    }
+    if (($id = db_create($this, "issue", $ISSUE_COLUMNS)) === FALSE)
+      return (FALSE);
+
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -625,179 +598,35 @@ issue_search($search = "",		// I - Search buging
 	     $document_id = 0,		// I - Which document
 	     $whose = 0)		// I - Whose
 {
-  global $LOGIN_EMAIL, $LOGIN_IS_ADMIN, $LOGIN_ID;
+  global $ISSUE_COLUMNS, $LOGIN_EMAIL, $LOGIN_IS_ADMIN, $LOGIN_ID;
 
 
-  $query  = "";
-  $prefix = " WHERE ";
+  $keyvals = array();
 
   if ($priority > 0)
-  {
-    $query .= "${prefix}priority = $priority";
-    $prefix = " AND ";
-  }
+    $keyvals["priority"] = $priority;
 
   if ($status > ISSUE_STATUS_ALL_WILDCARD)
-  {
-    $query .= "${prefix}status = $status";
-    $prefix = " AND ";
-  }
+    $keyvals["status"] = $status;
   else if ($status == ISSUE_STATUS_CLOSED_WILDCARD) // Show closed
-  {
-    $query .= "${prefix}status >= " . ISSUE_STATUS_RESOLVED;
-    $prefix = " AND ";
-  }
+    $keyvals["status>="] = ISSUE_STATUS_RESOLVED;
   else if ($status == ISSUE_STATUS_OPEN_WILDCARD) // Show open
-  {
-    $query .= "${prefix}status <= " . ISSUE_STATUS_ACTIVE;
-    $prefix = " AND ";
-  }
+    $keyvals["status<="] = ISSUE_STATUS_ACTIVE;
 
   if ($document_id)
-  {
-    $query .= "${prefix}document_id = $document_id";
-    $prefix = " AND ";
-  }
+    $keyvals["document_id"] = $document_id;
 
   if ($whose)
   {
-    if ($LOGIN_IS_ADMIN)
-    {
-      $query .= "${prefix}(assigned_id = 0 OR assigned_id = $LOGIN_ID)";
-      $prefix = " AND ";
-    }
+    if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR)
+      $keyvals["assigned_id"] = array(0,$LOGIN_ID);
     else if ($LOGIN_ID != 0)
-    {
-      $query .= "${prefix}(create_id = $LOGIN_ID OR assigned_id = $LOGIN_ID)";
-      $prefix = " AND ";
-    }
+      $keyvals["create_id"] = $LOGIN_ID;
   }
 
-  if ($search != "")
-  {
-    // Convert the search buging to an array of words...
-    $words = html_search_words($search);
+  if (sizeof($keyvals) == 0)
+    $keyvals = null;
 
-    // Loop through the array of words, adding them to the query...
-    $query  .= "${prefix}(";
-    $prefix = "";
-    $next   = " OR";
-    $logic  = "";
-
-    foreach ($words as $word)
-    {
-      $word = db_escape($word);
-
-      if ($word == "or")
-      {
-	$next = ' OR';
-	if ($prefix != '')
-	  $prefix = ' OR';
-      }
-      else if ($word == "and")
-      {
-	$next = ' AND';
-	if ($prefix != '')
-	  $prefix = ' AND';
-      }
-      else if ($word == "not")
-	$logic = ' NOT';
-      else if (substr($word, 0, 8) == "creator:")
-      {
-	// TODO: Map creator names to id's
-	$id     = (int)substr($word, 8);
-	$query .= "$prefix$logic create_id = $id";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else if (substr($word, 0, 10) == "developer:")
-      {
-	// TODO: Map developer names to id's
-	$id    = (int)substr($word, 10);
-	$query .= "$prefix$logic assigned_id = $id";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else if (substr($word, 0, 11) == "fixversion:")
-      {
-	$word   = db_escape(substr($word, 11));
-	$query  .= "$prefix$logic fix_version LIKE \"$word%\"";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else if (substr($word, 0, 7) == "number:")
-      {
-	$number = (int)substr($word, 7);
-	$query  .= "$prefix$logic id = $number";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else if (substr($word, 0, 6) == "text:")
-      {
-        // TODO: add search for comments
-/*	$word   = db_escape(substr($word, 5));
-	$query  .= "$prefix$logic contents LIKE \"%$word%\"";
-	$prefix = $next;
-	$logic  = '';*/
-      }
-      else if (substr($word, 0, 6) == "title:")
-      {
-	$word   = db_escape(substr($word, 6));
-	$query  .= "$prefix$logic title LIKE \"%$word%\"";
-	$prefix = $next;
-	$logic  = '';
-      }
-      else
-      {
-	$query .= "$prefix$logic (";
-	$subpre = "";
-
-	if (preg_match("/^[0-9]+\$/", $word))
-	{
-	  $query .= "${subpre}id = $word";
-	  $subpre = " OR ";
-	}
-
-	$word   = db_escape($word);
-	$query .= "${subpre}title LIKE \"%$word%\")";
-	$prefix = $next;
-	$logic  = '';
-      }
-    }
-
-    $query .= ")";
-  }
-
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-  // Do the query and convert the result to an array of objects...
-  $result  = db_query("SELECT id FROM issue$query");
-  $matches = array();
-
-  while ($row = db_next($result))
-    $matches[sizeof($matches)] = $row["id"];
-
-  // Free the query result and return the array...
-  db_free($result);
-
-  return ($matches);
+  return (db_search("issue", $ISSUE_COLUMNS, $keyvals, $search, $order));
 }
 ?>

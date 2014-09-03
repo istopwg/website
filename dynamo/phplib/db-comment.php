@@ -5,6 +5,14 @@
 
 include_once "site.php";
 
+$COMMENT_COLUMNS = array(
+  "ref_id" => PDO::PARAM_STR,
+  "contents" => PDO::PARAM_STR,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
 
 class comment
 {
@@ -61,7 +69,7 @@ class comment
   function
   delete()
   {
-    db_query("DELETE FROM comment WHERE id=$this->id");
+    db_delete("comment", $this->id);
     $this->clear();
   }
 
@@ -73,22 +81,14 @@ class comment
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $COMMENT_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM comment WHERE id = $id");
-    if (db_count($result) != 1)
+    if (!db_load($this, "comment", $id, $COMMENT_COLUMNS))
       return (FALSE);
 
-    $row = db_next($result);
-    $this->id          = $row["id"];
-    $this->ref_id      = $row["ref_id"];
-    $this->contents    = $row["contents"];
-    $this->create_date = $row["create_date"];
-    $this->create_id   = $row["create_id"];
-    $this->modify_date = $row["modify_date"];
-    $this->modify_id   = $row["modify_id"];
-
-    db_free($result);
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -101,39 +101,22 @@ class comment
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF;
+    global $LOGIN_ID, $COMMENT_COLUMNS;
 
 
     $this->modify_date = db_datetime();
     $this->modify_id   = $LOGIN_ID;
 
     if ($this->id > 0)
-    {
-      return (db_query("UPDATE comment "
-                      ." SET ref_id = '" . db_escape($this->ref_id) . "'"
-                      .", contents = '" . db_escape($this->contents) . "'"
-                      .", modify_date = '" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $this->modify_id"
-                      ." WHERE id = $this->id") !== FALSE);
-    }
-    else
-    {
-      $this->create_date = $this->modify_date;
-      $this->create_id   = $this->modify_id;
+      return (db_save($this, "comment", $this->id, $COMMENT_COLUMNS));
 
-      if (db_query("INSERT INTO comment VALUES"
-                  ."(NULL"
-                  .", '" . db_escape($this->ref_id) . "'"
-                  .", '" . db_escape($this->contents) . "'"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
-        return (FALSE);
+    $this->create_date = $this->modify_date;
+    $this->create_id   = $this->modify_id;
 
-      $this->id = db_insert_id();
-    }
+    if (($id = db_create($this, "comment", $COMMENT_COLUMNS)) === FALSE)
+      return (FALSE);
+
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -149,35 +132,8 @@ comment_search($ref_id,			// I - Reference ID
                $search = "",		// I - Search text
                $order = "id")		// I - Ordering
 {
-  $comments = array();
-  $dref_id  = db_escape($ref_id);
-  $query    = "SELECT id FROM comment WHERE ref_id='$dref_id'";
+  global $COMMENT_COLUMNS;
 
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-  $results = db_query($query);
-  while ($row = db_next($results))
-    $comments[sizeof($comments)] = $row["id"];
-  db_free($results);
-
-  return ($comments);
+  return (db_search("comment", $COMMENT_COLUMNS, array("ref_id" => $ref_id), $search, $order));
 }
 ?>

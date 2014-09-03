@@ -63,13 +63,10 @@ if (html_form_validate())
   else
   {
     // Good new account request so far; see if account already exists...
-    $demail = db_escape($email);
-    $result = db_query("SELECT * FROM user WHERE email LIKE '$demail'");
+    $result = db_query("SELECT * FROM user WHERE email LIKE ?", array($email));
     if (db_count($result) == 0)
     {
       // Nope, add unpublished user account and send registration email.
-      db_free($result);
-
       $user                  = new user();
       $user->name            = $name;
       $user->organization_id = $organization_id;
@@ -110,8 +107,6 @@ if (html_form_validate())
 
       $usererror = "Email address already in use for an account.";
     }
-
-    db_free($result);
   }
 }
 else

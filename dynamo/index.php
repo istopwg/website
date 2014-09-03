@@ -15,11 +15,11 @@ for ($i = 0, $count = 0; $i < sizeof($matches); $i ++)
 {
   $article = new article($matches[$i]);
 
-  if ($article->id !== $matches[$i] || $article->display_until == "" || $article->display_until < date("Y-m-d"))
+  if ($article->id !== $matches[$i] || $article->display_until_date == "" || $article->display_until_date < date("Y-m-d"))
     continue;
 
   $count ++;
-  $carousel["D$article->display_until+A$article->id"] = $article;
+  $carousel["D$article->display_until_date+A$article->id"] = $article;
 }
 
 ksort($carousel);
@@ -68,7 +68,7 @@ for ($i = 0, $count = 0; $i < sizeof($matches) && $count < 5; $i ++)
 {
   $article = new article($matches[$i]);
 
-  if ($article->display_until != "")
+  if ($article->display_until_date != "")
     continue;
 
   if ($article->id == $matches[$i])

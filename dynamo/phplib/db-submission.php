@@ -7,6 +7,29 @@ include_once "site.php";
 include_once "db-comment.php";
 include_once "plist.php";
 
+$SUBMISSION_COLUMNS = array(
+  "status" => PDO::PARAM_INT,
+  "organization_id" => PDO::PARAM_INT,
+  "contact_name" => PDO::PARAM_STR,
+  "contact_email" => PDO::PARAM_STR,
+  "product_family" => PDO::PARAM_STR,
+  "models" => PDO::PARAM_STR,
+  "url" => PDO::PARAM_STR,
+  "cert_version" => PDO::PARAM_STR,
+  "used_approved" => PDO::PARAM_BOOL,
+  "used_prodready" => PDO::PARAM_BOOL,
+  "printed_correctly" => PDO::PARAM_BOOL,
+  "exceptions" => PDO::PARAM_STR,
+  "reviewer1_id" => PDO::PARAM_INT,
+  "reviewer1_status" => PDO::PARAM_INT,
+  "reviewer2_id" => PDO::PARAM_INT,
+  "reviewer2_status" => PDO::PARAM_INT,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
+
 define("SUBMISSION_STATUS_PENDING", 0);
 define("SUBMISSION_STATUS_REVIEW", 1);
 define("SUBMISSION_STATUS_APPROVED", 2);
@@ -174,7 +197,7 @@ class submission
   function
   delete()
   {
-    db_query("DELETE FROM submission WHERE id=$this->id");
+    db_delete("submission", $this->id);
     $this->clear();
   }
 
@@ -487,36 +510,14 @@ class submission
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $SUBMISSION_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM submission WHERE id = $id");
-    if (db_count($result) != 1)
+    if (!db_load($this, "submission", $id, $SUBMISSION_COLUMNS))
       return (FALSE);
 
-    $row = db_next($result);
-    $this->id                = $row["id"];
-    $this->status            = $row["status"];
-    $this->organization_id   = $row["organization_id"];
-    $this->contact_name      = $row["contact_name"];
-    $this->contact_email     = $row["contact_email"];
-    $this->product_family    = $row["product_family"];
-    $this->models            = $row["models"];
-    $this->url               = $row["url"];
-    $this->cert_version      = $row["cert_version"];
-    $this->used_approved     = $row["used_approved"];
-    $this->used_prodready    = $row["used_prodready"];
-    $this->printed_correctly = $row["printed_correctly"];
-    $this->exceptions        = $row["exceptions"];
-    $this->reviewer1_id      = $row["reviewer1_id"];
-    $this->reviewer1_status  = $row["reviewer1_status"];
-    $this->reviewer2_id      = $row["reviewer2_id"];
-    $this->reviewer2_status  = $row["reviewer2_status"];
-    $this->create_date       = $row["create_date"];
-    $this->create_id         = $row["create_id"];
-    $this->modify_date       = $row["modify_date"];
-    $this->modify_id         = $row["modify_id"];
-
-    db_free($result);
+    $this->id = $id;
 
     return ($this->validate());
   }
@@ -657,7 +658,7 @@ class submission
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF, $_POST;
+    global $LOGIN_ID, $_POST, $SUBMISSION_COLUMNS;
 
 
     $this->modify_date = db_datetime();
@@ -665,53 +666,18 @@ class submission
 
     if ($this->id > 0)
     {
-      if (db_query("UPDATE submission "
-		  ." SET status = $this->status"
-		  .", contact_name = '" . db_escape($this->contact_name) . "'"
-		  .", contact_email = '" . db_escape($this->contact_email) . "'"
-		  .", product_family = '" . db_escape($this->product_family) . "'"
-		  .", models = '" . db_escape($this->models) . "'"
-		  .", url = '" . db_escape($this->url) . "'"
-		  .", reviewer1_id = $this->reviewer1_id"
-		  .", reviewer1_status = $this->reviewer1_status"
-		  .", reviewer2_id = $this->reviewer2_id"
-		  .", reviewer2_status = $this->reviewer2_status"
-		  .", modify_date = '" . db_escape($this->modify_date) . "'"
-		  .", modify_id = $this->modify_id"
-		  ." WHERE id = $this->id") === FALSE)
-      return (FALSE);
+      if (!db_save($this, "submission", $this->id, $SUBMISSION_COLUMNS))
+        return (FALSE);
     }
     else
     {
       $this->create_date = $this->modify_date;
       $this->create_id   = $this->modify_id;
 
-      if (db_query("INSERT INTO submission VALUES"
-                  ."(NULL"
-		  .", $this->status"
-                  .", $this->organization_id"
-                  .", '" . db_escape($this->contact_name) . "'"
-                  .", '" . db_escape($this->contact_email) . "'"
-                  .", '" . db_escape($this->product_family) . "'"
-                  .", '" . db_escape($this->models) . "'"
-                  .", '" . db_escape($this->url) . "'"
-                  .", '" . db_escape($this->cert_version) . "'"
-                  .", $this->used_approved"
-                  .", $this->used_prodready"
-                  .", $this->printed_correctly"
-                  .", '" . db_escape($this->exceptions) . "'"
-                  .", $this->reviewer1_id"
-                  .", $this->reviewer1_status"
-                  .", $this->reviewer2_id"
-                  .", $this->reviewer2_status"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
+      if (($id = db_create($this, "submission", $SUBMISSION_COLUMNS)) === FALSE)
         return (FALSE);
 
-      $this->id = db_insert_id();
+      $this->id = $id;
     }
 
     if (array_key_exists("contents", $_POST) && ($contents = trim($_POST["contents"])) != "")
@@ -900,6 +866,4 @@ class submission
     return ("");
   }
 }
-
-
 ?>

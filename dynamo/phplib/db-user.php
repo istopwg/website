@@ -6,6 +6,26 @@
 include_once "db-organization.php";
 include_once "site.php";
 
+// DB columns...
+$USER_COLUMNS = array(
+  "status" => PDO::PARAM_INT,
+  "email" => PDO::PARAM_STR,
+  "name" => PDO::PARAM_STR,
+  "organization_id" => PDO::PARAM_INT,
+  "hash" => PDO::PARAM_STR,
+  "is_admin" => PDO::PARAM_BOOL,
+  "is_editor" => PDO::PARAM_BOOL,
+  "is_member" => PDO::PARAM_BOOL,
+  "is_reviewer" => PDO::PARAM_BOOL,
+  "is_submitter" => PDO::PARAM_BOOL,
+  "timezone" => PDO::PARAM_STR,
+  "itemsperpage" => PDO::PARAM_INT,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
+
 // Type of user to select...
 define("USER_SELECT_ANY", 0);
 define("USER_SELECT_ADMIN", 1);
@@ -105,7 +125,7 @@ class user
   function
   delete()
   {
-    db_query("UPDATE user SET status = 3 WHERE id=$this->id");
+    db_query("UPDATE user SET status = 3 WHERE id=?", array($this->id));
   }
 
 
@@ -237,35 +257,17 @@ class user
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $USER_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM user WHERE id = $id");
-    if (db_count($result) != 1)
-      return (FALSE);
+    if (db_load($this, "user", $id, $USER_COLUMNS))
+    {
+      $this->id = $id;
+      return ($this->validate());
+    }
 
-    $row = db_next($result);
-    $this->id              = $row["id"];
-    $this->status          = $row["status"];
-    $this->email           = $row["email"];
-    $this->name            = $row["name"];
-    $this->organization_id = $row["organization_id"];
-    $this->oldhash         = $row["hash"];
-    $this->hash            = $row["hash"];
-    $this->is_admin        = $row["is_admin"];
-    $this->is_editor       = $row["is_editor"];
-    $this->is_member       = $row["is_member"];
-    $this->is_reviewer     = $row["is_reviewer"];
-    $this->is_submitter    = $row["is_submitter"];
-    $this->timezone        = $row["timezone"];
-    $this->itemsperpage    = $row["itemsperpage"];
-    $this->create_date     = $row["create_date"];
-    $this->create_id       = $row["create_id"];
-    $this->modify_date     = $row["modify_date"];
-    $this->modify_id       = $row["modify_id"];
-
-    db_free($result);
-
-    return ($this->validate());
+    return (FALSE);
   }
 
 
@@ -418,7 +420,7 @@ class user
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF;
+    global $LOGIN_ID, $PHP_SELF, $USER_COLUMNS;
 
 
     $this->modify_date = db_datetime();
@@ -427,54 +429,16 @@ class user
     if ($this->hash == "")
       $this->hash = $this->oldhash;
 
-    if ($this->id> 0)
-    {
-      if (db_query("UPDATE user "
-                  ." SET status = $this->status"
-                  .", email = '" . db_escape($this->email) . "'"
-                  .", name = '" . db_escape($this->name) . "'"
-                  .", organization_id = $this->organization_id"
-                  .", hash = '" . db_escape($this->hash) . "'"
-                  .", is_admin = $this->is_admin"
-                  .", is_editor = $this->is_editor"
-                  .", is_member = $this->is_member"
-                  .", is_reviewer = $this->is_reviewer"
-                  .", is_submitter = $this->is_submitter"
-                  .", timezone = '" . db_escape($this->timezone) . "'"
-                  .", itemsperpage = $this->itemsperpage"
-                  .", modify_date = '" . db_escape($this->modify_date) . "'"
-                  .", modify_id = $this->modify_id"
-                  ." WHERE id = $this->id") === FALSE)
-        return (FALSE);
-    }
-    else
-    {
-      $this->create_date = $this->modify_date;
-      $this->create_id   = $this->modify_id;
+    if ($this->id > 0)
+      return (db_save($this, "user", $this->id, $USER_COLUMNS));
 
-      if (db_query("INSERT INTO user VALUES"
-                  ."(NULL"
-                  .", $this->status"
-                  .", '" . db_escape($this->email) . "'"
-                  .", '" . db_escape($this->name) . "'"
-                  .", $this->organization_id"
-                  .", '" . db_escape($this->hash) . "'"
-                  .", $this->is_admin"
-                  .", $this->is_editor"
-                  .", $this->is_member"
-                  .", $this->is_reviewer"
-                  .", $this->is_submitter"
-                  .", '" . db_escape($this->timezone) . "'"
-                  .", $this->itemsperpage"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
-        return (FALSE);
+    $this->create_date = $this->modify_date;
+    $this->create_id   = $this->modify_id;
 
-      $this->id = db_insert_id();
-    }
+    if (($id = db_create($this, "user", $USER_COLUMNS)) === FALSE)
+      return (FALSE);
+
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -552,16 +516,11 @@ user_email($id)				// I - User ID
   if (array_key_exists("u$id", $USER_EMAILS))
     return ($USER_EMAILS["u$id"]);
 
-  $result = db_query("SELECT email FROM user WHERE id=$id;");
-  if (db_count($result) == 1)
-  {
-    $row   = db_next($result);
+  $result = db_query("SELECT email FROM user WHERE id=?", array($id));
+  if ($row = db_next($result))
     $email = $row["email"];
-  }
   else
     $email = "";
-
-  db_free($result);
 
   $USER_EMAILS["u$id"] = $email;
 
@@ -584,16 +543,11 @@ user_name($id)				// I - User ID
   if (array_key_exists("u$id", $USER_NAMES))
     return ($USER_NAMES["u$id"]);
 
-  $result = db_query("SELECT name FROM user WHERE id=$id;");
-  if (db_count($result) == 1)
-  {
-    $row  = db_next($result);
+  $result = db_query("SELECT name FROM user WHERE id=?", array($id));
+  if ($row = db_next($result))
     $name = htmlspecialchars($row["name"], ENT_QUOTES);
-  }
   else
     $name = "";
-
-  db_free($result);
 
   $USER_NAMES["u$id"] = $name;
 
@@ -615,16 +569,11 @@ user_organization($id)			// I - User ID
 
   if (!array_key_exists("u$id", $USER_ORGS))
   {
-    $result = db_query("SELECT organization_id FROM user WHERE id=$id;");
-    if (db_count($result) == 1)
-    {
-      $row             = db_next($result);
+    $result = db_query("SELECT organization_id FROM user WHERE id=?", array($id));
+    if ($row = db_next($result))
       $organization_id = (int)$row["organization_id"];
-    }
     else
       $organization = 0;
-
-    db_free($result);
 
     $USER_ORGS["u$id"] = organization_name($organization_id);
   }
@@ -639,102 +588,17 @@ user_organization($id)			// I - User ID
 
 function				// O - Array of user IDs
 user_search($search = "",		// I - Search string
-            $organization_id = 0,	// I - Organization
+            $organization_id = -1,	// I - Organization
             $order = "")		// I - Order fields
 {
-  if ($search != "")
-  {
-    // Convert the search string to an array of words...
-    $words = html_search_words($search);
+  global $USER_COLUMNS;
 
-    // Loop through the array of words, adding them to the query...
-    $query  = " WHERE (";
-    $prefix = "";
-    $next   = " OR";
-    $logic  = "";
-
-    reset($words);
-    foreach ($words as $word)
-    {
-      if ($word == "or")
-      {
-	$next = ' OR';
-	if ($prefix != '')
-	  $prefix = ' OR';
-      }
-      else if ($word == "and")
-      {
-	$next = ' AND';
-	if ($prefix != '')
-	  $prefix = ' AND';
-      }
-      else if ($word == "not")
-	$logic = ' NOT';
-      else
-      {
-	$query .= "$prefix$logic (";
-	$subpre = "";
-
-	if (preg_match("/^[0-9]+\$/", $word))
-	{
-	  $query .= "${subpre}id = $word";
-	  $subpre = " OR ";
-	}
-
-	$query .= "${subpre}name LIKE \"%$word%\"";
-	$subpre = " OR ";
-	$query .= "${subpre}email LIKE \"%$word%\"";
-
-	$query .= ")";
-	$prefix = $next;
-	$logic  = '';
-      }
-    }
-
-    $query .= ")";
-  }
+  if ($organization_id >= 0)
+    $keyvals = array("organization_id" => $organization_id);
   else
-    $query = "";
+    $keyvals = null;
 
-  if ($organization_id != 0)
-  {
-    if ($query == "")
-      $query = " WHERE organization_id = $organization_id";
-    else
-      $query .= " AND organization_id = $organization_id";
-  }
-
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-  // Do the query and convert the result to an array of objects...
-  $result  = db_query("SELECT id FROM user$query");
-  $matches = array();
-
-  while ($row = db_next($result))
-    $matches[sizeof($matches)] = $row["id"];
-
-  // Free the query result and return the array...
-  db_free($result);
-
-  return ($matches);
+  return (db_search("user", $USER_COLUMNS, $keyvals, $search, $order));
 }
 
 
@@ -804,8 +668,6 @@ user_select(
     $USER_NAMES["u$row[id]"] = $name;
     $USER_ORGS["u$row[id]"]  = $organization;
   }
-
-  db_free($results);
 
   print("</select>");
 }

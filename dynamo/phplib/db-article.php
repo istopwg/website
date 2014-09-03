@@ -6,6 +6,18 @@
 include_once "site.php";
 include_once "db-workgroup.php";
 
+$ARTICLE_COLUMNS = array(
+  "workgroup_id" => PDO::PARAM_INT,
+  "title" => PDO::PARAM_STR,
+  "contents" => PDO::PARAM_STR,
+  "url" => PDO::PARAM_STR,
+  "display_until_date" => PDO::PARAM_STR,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
+
 
 class article
 {
@@ -18,7 +30,7 @@ class article
   var $title, $title_valid;
   var $contents, $contents_valid;
   var $url, $url_valid;
-  var $display_until, $display_until_valid;
+  var $display_until_date, $display_until_date_valid;
   var $create_date;
   var $create_id;
   var $modify_date;
@@ -53,7 +65,7 @@ class article
     $this->title         = "";
     $this->contents      = "";
     $this->url           = "";
-    $this->display_until = "";
+    $this->display_until_date = "";
     $this->create_date   = "";
     $this->create_id     = $LOGIN_ID;
     $this->modify_date   = "";
@@ -68,7 +80,7 @@ class article
   function
   delete()
   {
-    db_query("DELETE FROM article WHERE id=$this->id");
+    db_delete("article", $this->id);
     $this->clear();
   }
 
@@ -90,8 +102,8 @@ class article
 
     html_form_start("$PHP_SELF?U$this->id$options");
 
-    html_form_field_start("display_until", "Display Until", $this->display_until_valid);
-    html_form_text("display_until", "YYYY-MM-DD", $this->display_until);
+    html_form_field_start("display_until_date", "Display Until", $this->display_until_date_valid);
+    html_form_text("display_until_date", "YYYY-MM-DD", $this->display_until_date);
     html_form_field_end();
 
     html_form_field_start("title", "Title", $this->title_valid);
@@ -131,27 +143,17 @@ class article
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $ARTICLE_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM article WHERE id = $id");
-    if (db_count($result) != 1)
+    if (db_load($this, "article", $id, $ARTICLE_COLUMNS))
+    {
+      $this->id = $id;
+      return (TRUE);
+    }
+    else
       return (FALSE);
-
-    $row = db_next($result);
-    $this->id            = $row["id"];
-    $this->workgroup_id  = $row["workgroup_id"];
-    $this->title         = $row["title"];
-    $this->contents      = $row["contents"];
-    $this->url           = $row["url"];
-    $this->display_until = $row["display_until"];
-    $this->create_date   = $row["create_date"];
-    $this->create_id     = $row["create_id"];
-    $this->modify_date   = $row["modify_date"];
-    $this->modify_id     = $row["modify_id"];
-
-    db_free($result);
-
-    return (TRUE);
   }
 
 
@@ -177,8 +179,8 @@ class article
     if (array_key_exists("url", $_POST))
       $this->url = trim($_POST["url"]);
 
-    if (array_key_exists("display_until", $_POST))
-      $this->display_until = trim($_POST["display_until"]);
+    if (array_key_exists("display_until_date", $_POST))
+      $this->display_until_date = trim($_POST["display_until_date"]);
 
     if (array_key_exists("workgroup_id", $_POST))
       $this->workgroup_id = (int)$_POST["workgroup_id"];
@@ -194,45 +196,22 @@ class article
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF;
+    global $ARTICLE_COLUMNS, $LOGIN_ID, $PHP_SELF;
 
 
     $this->modify_date = db_datetime();
     $this->modify_id   = $LOGIN_ID;
 
     if ($this->id > 0)
-    {
-      return (db_query("UPDATE article "
-                      ." SET workgroup_id = $this->workgroup_id"
-                      .", title = '" . db_escape($this->title) . "'"
-                      .", contents = '" . db_escape($this->contents) . "'"
-                      .", url = '" . db_escape($this->url) . "'"
-                      .", display_until = '" . db_escape($this->display_until) . "'"
-                      .", modify_date = '" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $this->modify_id"
-                      ." WHERE id = $this->id") !== FALSE);
-    }
-    else
-    {
-      $this->create_date = $this->modify_date;
-      $this->create_id   = $this->modify_id;
+      return (db_save($this, "article", $this->id, $ARTICLE_COLUMNS));
 
-      if (db_query("INSERT INTO article VALUES"
-                  ."(NULL"
-                  .", $this->workgroup_id"
-                  .", '" . db_escape($this->title) . "'"
-                  .", '" . db_escape($this->contents) . "'"
-                  .", '" . db_escape($this->url) . "'"
-                  .", '" . db_escape($this->display_until) . "'"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
-        return (FALSE);
+    $this->create_date = $this->modify_date;
+    $this->create_id   = $this->modify_id;
 
-      $this->id = db_insert_id();
-    }
+    if (($id = db_create($obj, "article", $ARTICLE_COLUMNS)) === FALSE)
+      return (FALSE);
+
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -270,13 +249,13 @@ class article
     if (!$this->url_valid)
       $valid = FALSE;
 
-    if ($this->display_until != "" && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])\$/", $this->display_until))
+    if ($this->display_until_date != "" && !preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[01])\$/", $this->display_until_date))
     {
-      $this->display_until_valid = FALSE;
+      $this->display_until_date_valid = FALSE;
       $valid = FALSE;
     }
     else
-      $this->display_until_valid = TRUE;
+      $this->display_until_date_valid = TRUE;
 
     return ($valid);
   }
@@ -295,7 +274,7 @@ class article
     $contents = html_format($this->contents, FALSE, $level + 1);
     $date     = html_date($this->create_date);
 
-    if ($this->display_until != "" && $this->display_until < date("Y-m-d"))
+    if ($this->display_until_date != "" && $this->display_until_date < date("Y-m-d"))
       $title .= " (concluded)";
 
     if (validate_url($this->url))
@@ -330,97 +309,13 @@ article_search($search = "",		// I - Search text
                $workgroup_id = -1,	// I - Which workgroup to limit to
                $order = "-create_date")	// I - Order of objects
 {
-  if ($search != "")
-  {
-    // Convert the search string to an array of words...
-    $words = html_search_words($search);
+  global $ARTICLE_COLUMNS;
 
-    // Loop through the array of words, adding them to the query...
-    if ($workgroup_id >= 0)
-      $query = " WHERE workgroup_id = $workgroup_id AND (";
-    else
-      $query  = " WHERE (";
-
-    $prefix = "";
-    $next   = " OR";
-    $logic  = "";
-
-    reset($words);
-    foreach ($words as $word)
-    {
-      if ($word == "or")
-      {
-	$next = ' OR';
-	if ($prefix != '')
-	  $prefix = ' OR';
-      }
-      else if ($word == "and")
-      {
-	$next = ' AND';
-	if ($prefix != '')
-	  $prefix = ' AND';
-      }
-      else if ($word == "not")
-	$logic = ' NOT';
-      else
-      {
-	$query .= "$prefix$logic (";
-	$subpre = "";
-
-	if (preg_match("/^[0-9]+\$/", $word))
-	{
-	  $query .= "${subpre}id = $word";
-	  $subpre = " OR ";
-	}
-
-	$query .= "${subpre}title LIKE \"%$word%\"";
-	$subpre = " OR ";
-	$query .= "${subpre}contents LIKE \"%$word%\"";
-	$query .= "${subpre}url LIKE \"%$word%\"";
-
-	$query .= ")";
-	$prefix = $next;
-	$logic  = '';
-      }
-    }
-
-    $query .= ")";
-  }
-  else if ($workgroup_id >= 0)
-    $query = " WHERE workgroup_id = $workgroup_id";
+  if ($workgroup_id >= 0)
+    $keyvals = array("workgroup_id" => $workgroup_id);
   else
-    $query = "";
+    $keyvals = null;
 
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-  // Do the query and convert the result to an array of objects...
-  $result  = db_query("SELECT id FROM article$query");
-  $matches = array();
-
-  while ($row = db_next($result))
-    $matches[sizeof($matches)] = $row["id"];
-
-  // Free the query result and return the array...
-  db_free($result);
-
-  return ($matches);
+  return (db_search("article", $ARTICLE_COLUMNS, $keyvals, $search, $order));
 }
 ?>

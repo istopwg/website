@@ -29,8 +29,7 @@ if (html_form_validate())
   {
     // Good "forgot account/password" request so far; see if account already
     // exists...
-    $demail = db_escape($email);
-    $result = db_query("SELECT * FROM user WHERE email LIKE '$demail'");
+    $result = db_query("SELECT * FROM user WHERE email LIKE ?", array($email));
 
     if (db_count($result) == 1)
     {
@@ -40,8 +39,6 @@ if (html_form_validate())
       $email    = $row["email"];
       $register = substr(hash("sha256", "$row[id]:$date:$row[hash]"), 0, 8);
 
-      db_free($result);
-
       site_header("Forgot Password");
 
       if ($row["status"] == USER_STATUS_BANNED)
@@ -49,7 +46,7 @@ if (html_form_validate())
 	     ."more information.</p>\n");
       else
       {
-	db_query("UPDATE user SET modify_date = '$date' WHERE id = $row[id]");
+	db_query("UPDATE user SET modify_date = ? WHERE id = ?", array($date, (int)$row["id"]));
 
 	$url = "https://$_SERVER[SERVER_NAME]$html_path/dynamo/enable.php?email=" .
 	       urlencode($email) . "&register=$register";
@@ -77,8 +74,6 @@ if (html_form_validate())
 
     // Account and email not found...
     $usererror = "No matching email address was found.";
-
-    db_free($result);
   }
 }
 else

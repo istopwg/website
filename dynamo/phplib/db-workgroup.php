@@ -5,6 +5,22 @@
 
 include_once "site.php";
 
+$WORKGROUP_COLUMNS = array(
+  "status" => PDO::PARAM_INT,
+  "name" => PDO::PARAM_STR,
+  "wwwdir" => PDO::PARAM_STR,
+  "ftpdir" => PDO::PARAM_STR,
+  "list" => PDO::PARAM_STR,
+  "contents" => PDO::PARAM_STR,
+  "chair_id" => PDO::PARAM_INT,
+  "vicechair_id" => PDO::PARAM_INT,
+  "secretary_id" => PDO::PARAM_INT,
+  "create_date" => PDO::PARAM_STR,
+  "create_id" => PDO::PARAM_INT,
+  "modify_date" => PDO::PARAM_STR,
+  "modify_id" => PDO::PARAM_INT
+);
+
 define("WORKGROUP_STATUS_INACTIVE", 0);
 define("WORKGROUP_STATUS_ACTIVE_BOF", 1);
 define("WORKGROUP_STATUS_ACTIVE_WG", 2);
@@ -85,7 +101,7 @@ class workgroup
   function
   delete()
   {
-    db_query("DELETE FROM workgroup WHERE id=$this->id");
+    db_delete("workgroup", $this->id);
     $this->clear();
   }
 
@@ -166,29 +182,14 @@ class workgroup
   function				// O - TRUE if OK, FALSE otherwise
   load($id)				// I - Object ID
   {
+    global $WORKGROUP_COLUMNS;
+
     $this->clear();
 
-    $result = db_query("SELECT * FROM workgroup WHERE id = $id");
-    if (db_count($result) != 1)
+    if (!db_load($this, "workgroup", $id, $WORKGROUP_COLUMNS))
       return (FALSE);
 
-    $row = db_next($result);
-    $this->id           = $row["id"];
-    $this->status       = $row["status"];
-    $this->name         = $row["name"];
-    $this->wwwdir       = $row["wwwdir"];
-    $this->ftpdir       = $row["ftpdir"];
-    $this->list         = $row["list"];
-    $this->contents     = $row["contents"];
-    $this->chair_id     = $row["chair_id"];
-    $this->vicechair_id = $row["vicechair_id"];
-    $this->secretary_id = $row["secretary_id"];
-    $this->create_date  = $row["create_date"];
-    $this->create_id    = $row["create_id"];
-    $this->modify_date  = $row["modify_date"];
-    $this->modify_id    = $row["modify_id"];
-
-    db_free($result);
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -245,53 +246,22 @@ class workgroup
   function				// O - TRUE if OK, FALSE otherwise
   save()
   {
-    global $LOGIN_ID, $PHP_SELF;
+    global $LOGIN_ID, $WORKGROUP_COLUMNS;
 
 
     $this->modify_date = db_datetime();
     $this->modify_id   = $LOGIN_ID;
 
     if ($this->id > 0)
-    {
-      return (db_query("UPDATE workgroup "
-                      ." SET status = $this->status"
-                      .", name = '" . db_escape($this->name) . "'"
-                      .", wwwdir = '" . db_escape($this->wwwdir) . "'"
-                      .", ftpdir = '" . db_escape($this->ftpdir) . "'"
-                      .", list = '" . db_escape($this->list) . "'"
-                      .", contents = '" . db_escape($this->contents) . "'"
-                      .", chair_id = $this->chair_id"
-                      .", vicechair_id = $this->vicechair_id"
-                      .", secretary_id = $this->secretary_id"
-                      .", modify_date = '" . db_escape($this->modify_date) . "'"
-                      .", modify_id = $this->modify_id"
-                      ." WHERE id = $this->id") !== FALSE);
-    }
-    else
-    {
-      $this->create_date = $this->modify_date;
-      $this->create_id   = $this->modify_id;
+      return (db_save($this, "workgroup", $this->id, $WORKGROUP_COLUMNS));
 
-      if (db_query("INSERT INTO workgroup VALUES"
-                  ."(NULL"
-                  .", $this->status"
-                  .", '" . db_escape($this->name) . "'"
-                  .", '" . db_escape($this->wwwdir) . "'"
-                  .", '" . db_escape($this->ftpdir) . "'"
-                  .", '" . db_escape($this->list) . "'"
-                  .", '" . db_escape($this->contents) . "'"
-                  .", $this->chair_id"
-                  .", $this->vicechair_id"
-                  .", $this->secretary_id"
-                  .", '" . db_escape($this->create_date) . "'"
-                  .", $this->create_id"
-                  .", '" . db_escape($this->modify_date) . "'"
-                  .", $this->modify_id"
-                  .")") === FALSE)
-        return (FALSE);
+    $this->create_date = $this->modify_date;
+    $this->create_id   = $this->modify_id;
 
-      $this->id = db_insert_id();
-    }
+    if (($id = db_create($this, "workgroup", $WORKGROUP_COLUMNS)) === FALSE)
+      return (FALSE);
+
+    $this->id = $id;
 
     return (TRUE);
   }
@@ -359,16 +329,11 @@ workgroup_name($id)			// I - Organization ID
   if (array_key_exists("w$id", $WORKGROUP_NAMES))
     return ($WORKGROUP_NAMES["w$id"]);
 
-  $result = db_query("SELECT name FROM workgroup WHERE id=$id;");
-  if (db_count($result) == 1)
-  {
-    $row  = db_next($result);
+  $result = db_query("SELECT name FROM workgroup WHERE id=?", array($id));
+  if ($row = db_next($result))
     $name = htmlspecialchars($row["name"], ENT_QUOTES);
-  }
   else
     $name = "";
-
-  db_free($result);
 
   $WORKGROUP_NAMES["w$id"] = $name;
 
@@ -384,93 +349,9 @@ function				// O - Array of workgroup IDs
 workgroup_search($search = "",		// I - Search string
                  $order = "")		// I - Order fields
 {
-  if ($search != "")
-  {
-    // Convert the search string to an array of words...
-    $words = html_search_words($search);
+  global $WORKGROUP_COLUMNS;
 
-    // Loop through the array of words, adding them to the query...
-    $query  = " WHERE (";
-    $prefix = "";
-    $next   = " OR";
-    $logic  = "";
-
-    reset($words);
-    foreach ($words as $word)
-    {
-      if ($word == "or")
-      {
-	$next = ' OR';
-	if ($prefix != '')
-	  $prefix = ' OR';
-      }
-      else if ($word == "and")
-      {
-	$next = ' AND';
-	if ($prefix != '')
-	  $prefix = ' AND';
-      }
-      else if ($word == "not")
-	$logic = ' NOT';
-      else
-      {
-	$query .= "$prefix$logic (";
-	$subpre = "";
-
-	if (preg_match("/^[0-9]+\$/", $word))
-	{
-	  $query .= "${subpre}id = $word";
-	  $subpre = " OR ";
-	}
-
-	$query .= "${subpre}name LIKE \"%$word%\"";
-	$subpre = " OR ";
-	$query .= "${subpre}wwwdir LIKE \"%$word%\"";
-	$query .= "${subpre}ftpdir LIKE \"%$word%\"";
-	$query .= "${subpre}list LIKE \"%$word%\"";
-
-	$query .= ")";
-	$prefix = $next;
-	$logic  = '';
-      }
-    }
-
-    $query .= ")";
-  }
-  else
-    $query = "";
-
-  if ($order != "")
-  {
-    // Separate order into array...
-    $fields = explode(" ", $order);
-    $prefix = " ORDER BY ";
-
-    // Add ORDER BY stuff...
-    foreach ($fields as $field)
-    {
-      if ($field[0] == '+')
-	$query .= "${prefix}" . substr($field, 1);
-      else if ($field[0] == '-')
-	$query .= "${prefix}" . substr($field, 1) . " DESC";
-      else
-	$query .= "${prefix}$field";
-
-      $prefix = ", ";
-    }
-  }
-
-  // Do the query and convert the result to an array of objects...
-  $result  = db_query("SELECT id FROM workgroup$query");
-  $matches = array();
-
-  while ($row = db_next($result))
-    $matches[sizeof($matches)] = $row["id"];
-
-  // Free the query result and return the array...
-  db_free($result);
-
-  return ($matches);
+  return (db_search("workgroup", $WORKGROUP_COLUMNS, null, $search, $order));
 }
 
 
@@ -506,8 +387,6 @@ workgroup_select(
 
     $WORKGROUP_NAMES["w$row[id]"] = $name;
   }
-
-  db_free($results);
 
   print("</select>");
 }
