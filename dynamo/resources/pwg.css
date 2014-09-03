@@ -2,8 +2,8 @@
 /* PWG logo color is #4b5aa8, highlight is #b8c3ff, lowlight is #262d54 */
 
 body {
-  background: #f0f0e8;
-  color: black;
+  background-color: #fff;
+  color: #000;
   font-family: lucida grande, geneva, helvetica, arial, sans-serif;
   font-size: 16px;
   margin: 0px;
@@ -42,7 +42,7 @@ h1, .jumbotron h1 {
 }
 
 h1.pwg-title {
-  margin: 0;
+  margin: 0px 0px 20px;
 }
 
 h1 small {
@@ -325,9 +325,6 @@ a.gsc-trailing-more-results:link {
 
 /* Body content */
 #pwg-body {
-  background-color: #fff;
-  border: solid thin #fff;
-  color: #000;
   margin: 0px 10px;
   padding: 60px 10px 50px; /* top right+left bottom */
 }
@@ -390,10 +387,6 @@ a.gsc-trailing-more-results:link {
 
   h1 {
     font-size: 150%;
-  }
-
-  h1.pwg-title {
-    margin-bottom: 10px;
   }
 
   h1.pwg-title small {
