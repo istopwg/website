@@ -40,7 +40,7 @@ foreach ($matches as $id)
 
     $series = $doc->series;
 
-    print("<li$actice><a data-toggle=\"tab\" href=\"#s$series\">$series.x</a></li>\n");
+    print("<li$active><a data-toggle=\"tab\" href=\"#s$series\">$series.x</a></li>\n");
   }
 }
 print("</ul>\n");

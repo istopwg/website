@@ -102,8 +102,8 @@ site_header($title = "",		// I - Additional document title
   else
     $html_title = "";
 
-  if ($subtitle == "")
-    $subtitle = "&nbsp;";
+  if ($subtitle != "")
+    $subtitle = "<br><small>$subtitle</small>";
 
   if (array_key_exists("Q", $_GET))
     $q = htmlspecialchars($_GET["Q"], ENT_QUOTES);
@@ -159,13 +159,13 @@ site_header($title = "",		// I - Additional document title
   }
 
   print("<title>$html_title Printer Working Group</title>\n"
-       ."<link rel=\"stylesheet\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
-       ."<link rel=\"stylesheet\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
-       ."<link rel=\"stylesheet\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
+       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
+       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
+       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/pwg.css\">\n"
        ."<link rel=\"alternate\" title=\"Printer Working Group RSS\" "
        ."type=\"application/rss+xml\" href=\"${html_path}rss/index.rss\">\n"
-       ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg.png\" "
+       ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg@2x.png\" "
        ."type=\"image/png\">\n"
        ."</head>\n");
 
@@ -174,17 +174,16 @@ site_header($title = "",		// I - Additional document title
   else
     print("<body>\n");
 
-  print("<nav class=\"navbar navbar-inverse pwg-navbar\" role=\"navigation\">\n"
+  print("<nav class=\"navbar navbar-inverse navbar-fixed-top pwg-navbar\" role=\"navigation\">\n"
        ."  <div class=\"container-fluid\">\n"
        ."    <div class=\"navbar-header\">\n"
        ."      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#pwg-nav-collapsible\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n"
-       ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg.png\" alt=\"PWG Logo\" "
-       ."height=\"78\" width=\"75\"></a>\n"
+       ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg-4dark.png\" alt=\"PWG Logo\" "
+       ."height=\"27\" width=\"28\"></a>\n"
        ."    </div>\n");
   if (!$html_is_phone)
     print("    <div id=\"pwg-search-form\">Google Custom Search</div>\n");
-  print("    <div class=\"pwg-navbar-title\">$title<br><p>$subtitle</p></div>\n"
-       ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
+  print("    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
        ."      <ul class=\"nav navbar-nav\">\n"
        ."        $userlogin\n"
        ."        <li><a href=\"${html_path}index.html\">Home</a></li>\n"
@@ -228,7 +227,8 @@ site_header($title = "",		// I - Additional document title
        ."<div id=\"pwg-body\">\n");
   if (!$html_is_phone)
     print("  <div id=\"pwg-search-results\"></div>\n");
-  print("  <div id=\"pwg-content\">\n");
+  print("  <div id=\"pwg-content\">\n"
+       ."    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
 }
 
 
