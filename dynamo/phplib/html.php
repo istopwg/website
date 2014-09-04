@@ -102,11 +102,11 @@ html_date($datetime = "")		// I - DATETIME value
   $secstoday = mktime(0, 0, 0);
   $days      = (int)ceil(($secstoday - $seconds) / 86400);
 
-  if ($seconds >= $secstoday)
+  if ($seconds >= $secstoday && $days == 0)
     return ("Today @ " . date("H:i", $seconds));
   else if ($days == 1)
     return ("Yesterday");
-  else if ($days < 11)
+  else if ($days < 11 && $days > 0)
     return ("$days Days Ago");
   else
     return (date("M j, Y", $seconds));

@@ -8,7 +8,7 @@
 --
 -- Site Features:
 --
---   - Users (in pwg-user.sql now)
+--   - Users
 --   - News/announcements
 --   - Issues
 --   - Certified printers
@@ -16,6 +16,41 @@
 --   - Comments (attached to pretty much anything, although initially just for
 --     issues and certification stuff)
 --
+
+
+--
+-- Schema for table 'user'
+--
+-- This table lists the registered users for the site.  Various pages use
+-- this table when doing login/logout stuff and when listing the available
+-- users to assign stuff to.
+--
+
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,-- ID
+  status INTEGER DEFAULT 1,		-- 0 = banned, 1 = pending, 2 = enabled, 3 = deleted
+  email VARCHAR(255) UNIQUE NOT NULL,	-- Email address
+  name VARCHAR(255) NOT NULL,		-- Real name
+  organization_id INTEGER NOT NULL,	-- Organization
+  hash CHAR(128) NOT NULL,		-- crypt(password,sha512salt)
+  is_admin BOOLEAN DEFAULT FALSE,	-- FALSE/0 = user, TRUE/1 = admin
+  is_editor BOOLEAN DEFAULT FALSE,	-- FALSE/0 = not editor, TRUE/1 = editor
+  is_member BOOLEAN DEFAULT FALSE,	-- FALSE/0 = not PWG member, TRUE/1 = PWG member
+  is_reviewer BOOLEAN DEFAULT FALSE,	-- FALSE/0 = cannot review, TRUE/1 = can review
+  is_submitter BOOLEAN DEFAULT FALSE,	-- FALSE/0 = cannot submit, TRUE/1 = can submit
+  timezone VARCHAR(255) NOT NULL,	-- Timezone for user
+  itemsperpage INTEGER DEFAULT 10 NOT NULL,
+					-- Default items per page
+  create_date DATETIME NOT NULL,	-- Time/date of creation
+  create_id INTEGER,			-- User that created the user
+  modify_date DATETIME NOT NULL,	-- Time/date of last change
+  modify_id INTEGER,			-- User that made the last change
+
+  INDEX(organization_id),
+  INDEX(create_id),
+  INDEX(modify_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -161,7 +196,7 @@ INSERT INTO article VALUES(NULL,1,'Interview with Paul Tykodi','Watch Paul Tykod
 INSERT INTO article VALUES(NULL,1,'August 2014 Face-to-Face Meeting','The joint PWG-OpenPrinting meeting will be held on August 12-15, 2014 at the Hilton Garden Inn in Toronto/Mississauga. Please register to attend before August 1, 2014.','chair/meeting-info/august_2014_toronto.html','2014-08-15','2014-06-25 20:08:17',1,'2014-06-25 20:08:17',1);
 INSERT INTO article VALUES(NULL,2,'PWG Last Call: IPP Finishings 2.0','The PWG Last Call of IPP Finishings 2.0 (FIN2) has begun. This specification defines new "finishings" and "finishings-col" Job Template attribute values to specify additional finishing intent, including the placement of finishings with respect to the corners and edges of portrait and landscape documents.','http://www.pwg.org/archives/pwg-announce/2014/003621.html','2014-09-122','2014-07-28 12:00:00',1,'2014-08-24 12:00:00',1);
 INSERT INTO article VALUES(NULL,1,'Summary of PWG Face-to-Face Meeting in Toronto, ON','The Printer Working Group recently held a face-to-face meeting on August 12-15, 2014 in Toronto, Ontario. We discussed current and future liaison''s with other standards groups, discussed OpenPrinting work including a new implementation of IPP USB for Linux, reviewed several drafts of in-progress specifications, and held our first 3D Printing BOF.','blog/august-2014-summary.html','','2014-08-18 12:00:00',1,'2014-08-18 12:00:00',1);
-INSERT INTO article VALUES(NULL,2,'IPP Everywhere Printer Self-Certifications Tools Now Available','The first public beta versions of the IPP Everywhere Printer Self-Certification tools are now available for Mac OS X 10.9 and later, Red Hat Enterprise Linux 7 and later, Ubuntu LTS 14.04 and later, and Windows 7 and later. Please contact [mailto:chair@pwg.org|Michael Sweet] if you would like to also test the submission portal on the new PWG web site.','ipp/everywhere.html','','2014-09-02 10:30:00',1,'2014-09-02 10:30:00',1);
+INSERT INTO article VALUES(NULL,2,'IPP Everywhere Printer Self-Certifications Tools Now Available','The first public beta versions of the IPP Everywhere Printer Self-Certification tools are now available for Mac OS X 10.9 and later, Red Hat Enterprise Linux 7 and later, Ubuntu LTS 14.04 and later, and Windows 7 and later. Please contact [[mailto:chair@pwg.org|Michael Sweet]] if you would like to also test the submission portal on the new PWG web site.','ipp/everywhere.html','','2014-09-02 10:30:00',1,'2014-09-02 10:30:00',1);
 
 
 --
@@ -388,7 +423,9 @@ CREATE TABLE issue (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+INSERT INTO issue VALUES(1,0,2,2,2,3,'Drop "media-input-tray-check-default" attribute',0,'2014-07-30 12:00:00',1,'2014-07-31 12:00:00',1);
+INSERT INTO issue VALUES(2,0,2,3,1,4,'Allow rangeOfInteger values for "y-dimension" in "media-col-ready" attribute',0,'2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
+INSERT INTO issue VALUES(3,0,6,36,1,1,'Drop -error from "printer-state-reasons" keywords',0,'2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
 
 --
 -- Schema for table 'comment'
@@ -411,7 +448,10 @@ CREATE TABLE comment (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+INSERT INTO comment VALUES(1,'issue_1','Defaults don''t make sense for "media-input-tray-check".','2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
+INSERT INTO comment VALUES(2,'issue_1','"media-input-tray-check-default" should not exist for the same reason that "compression-default" and "page-ranges-default" do not exist - defaults don''t make sense for "media-input-tray-check".','2014-07-31 12:00:00',1,'2014-07-31 12:00:00',1);
+INSERT INTO comment VALUES(3,'issue_2','PWG 5100.13 allows the "y-dimension" member attribute of "media-col-ready" to use rangeOfInteger values for roll-fed media. This tells the Client how much roll is left as well as the range of allowed lengths in a Job Ticket.','2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
+INSERT INTO comment VALUES(4,'issue_3','PWG 5107.3 incorrectly registers "printer-state-reasons" keyword values with the "-error" suffix, which is assigned based on the state of the Printer. The ''xxx-recoverable-storage-error'' reasons should have the suffix dropped since it is conceivable a Printer can still be in the ''idle'' or ''processing'' states with a recoverable storage issue. The ''xxx-unrecoverable-storage-error'' reasons can remain as-is since, by definition, an unrecoverable error means that the Printer will be in the ''stopped'' state, allowing the suffix "-error".','2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
 
 --
 -- Schema for table 'submission'
@@ -420,11 +460,13 @@ CREATE TABLE comment (
 --
 
 DROP TABLE IF EXISTS submission;
+DROP TABLE IF EXISTS exception;
 CREATE TABLE submission (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,-- Submission ID
   status INTEGER NOT NULL,		-- Overall status: 0 = pending,
 					-- 1 = review, 2 = approved,
-					-- 3 = rejected, 4 = appealed
+					-- 3 = rejected, 4 = appealed,
+					-- 5 = appeal rejected
   organization_id INTEGER,		-- Organization ID
   contact_name VARCHAR(255) NOT NULL,	-- Person to contact
   contact_email VARCHAR(255) NOT NULL,	-- That person's email
@@ -455,7 +497,6 @@ CREATE TABLE submission (
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS exception;
 
 --
 -- Schema for table 'printer'
@@ -492,8 +533,3 @@ CREATE TABLE printer (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
---
--- End of "pwg.sql".
---

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- Bad because the IPPS values test failed -->
+<dict>
+<key>Tests</key><array>
+<dict><key>Name</key><string>B-1. IPP Browse test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-2. IPP TXT keys test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-3. IPP Resolve test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-4. IPP TXT values test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-5. TLS tests</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-5.1 HTTP Upgrade test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-5.2 IPPS Browse test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-5.3 IPPS TXT keys test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-5.4 IPPS Resolve test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><true />
+</dict>
+<dict><key>Name</key><string>B-5.5 IPPS TXT values test</string>
+<key>FileId</key><string>org.pwg.ipp-everywhere.20140826.bonjour</string>
+<key>Successful</key><false />
+</dict>
+</array>
+<key>Successful</key>
+<false />
+</dict>
+</plist>

@@ -35,13 +35,15 @@ define("SUBMISSION_STATUS_REVIEW", 1);
 define("SUBMISSION_STATUS_APPROVED", 2);
 define("SUBMISSION_STATUS_REJECTED", 3);
 define("SUBMISSION_STATUS_APPEALED", 4);
+define("SUBMISSION_STATUS_APPEAL_FAILED", 5);
 
 $SUBMISSION_STATUSES = array(
   SUBMISSION_STATUS_PENDING => "Pending",
   SUBMISSION_STATUS_REVIEW => "SC Review",
   SUBMISSION_STATUS_APPROVED => "Approved",
   SUBMISSION_STATUS_REJECTED => "Rejected",
-  SUBMISSION_STATUS_APPEALED => "Appealed"
+  SUBMISSION_STATUS_APPEALED => "Appealed",
+  SUBMISSION_STATUS_APPEAL_FAILED => "Appeal Failed"
 );
 
 $SUBMISSION_VERSIONS = array(
@@ -209,7 +211,7 @@ class submission
   function
   form()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
 
 
     print("<h2>Information</h2>\n");
@@ -242,7 +244,7 @@ class submission
 
     // status
     html_form_field_start("status", "Status");
-    if ($LOGIN_IS_ADMIN && $this->status != SUBMISSION_STATUS_APPROVED)
+    if ($LOGIN_IS_ADMIN && $this->status != SUBMISSION_STATUS_APPROVED && $this->status != SUBMISSION_STATUS_APPEAL_FAILED)
       html_form_select("status", $SUBMISSION_STATUSES, "", $this->status);
     else
       print($SUBMISSION_STATUSES[$this->status]);
@@ -843,27 +845,29 @@ class submission
       "org.pwg.ipp-everywhere.20140826.ipp" => 28
     );
 
-    if (($plist = plist_read_file($filename)) === FALSE)
+    if ($plist = plist_read_file($filename))
+    {
+      if (!array_key_exists("Successful", $plist))
+	return ("Missing Successful in plist file.");
+
+      if (!array_key_exists("Tests", $plist))
+	return ("Missing Tests in plist file.");
+
+      if (!array_key_exists("FileId", $plist["Tests"][0]))
+	return ("Missing FileId in plist file.");
+
+      $fileid = $plist["Tests"][0]["FileId"];
+
+      if (substr($fileid, 0, 31) != $this->cert_version || !array_key_exists($fileid, $tests))
+	return (htmlspecialchars("Invalid FileId '$fileid'."));
+
+      if (sizeof($plist["Tests"]) != $tests[$fileid])
+	return ("Wrong number of Tests in plist file.");
+
+      return ("");
+    }
+    else
       return ("Unable to parse plist file.");
-
-    if (!array_key_exists("Successful", $plist))
-      return ("Missing Successful in plist file.");
-
-    if (!array_key_exists("Tests", $plist))
-      return ("Missing Tests in plist file.");
-
-    if (!array_key_exists("FileId", $plist["Tests"][0]))
-      return ("Missing FileId in plist file.");
-
-    $fileid = $plist["Tests"][0]["FileId"];
-
-    if (sizeof($plist["Tests"]) != $tests[$fileid])
-      return ("Wrong number of Tests in plist file.");
-
-    if (substr($fileid, 0, 31) != $this->cert_version || !array_key_exists($fileid, $tests))
-      return (htmlspecialchars("Invalid FileId '$fileid'."));
-
-    return ("");
   }
 }
 ?>

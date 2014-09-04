@@ -195,6 +195,28 @@ db_next($stmt)				// I - Statement
 }
 
 
+// Convert params array to a string for debug output...
+function _db_param_string($params)
+{
+  if ($params)
+  {
+    $prefix = " {";
+    $text   = "";
+    foreach ($params as $value)
+    {
+      if (is_string($value))
+        $text .= "$prefix'" . htmlspecialchars($value, ENT_QUOTES) . "'";
+      else
+        $text .= "$prefix$value";
+      $prefix = ",";
+    }
+    return ("$text}");
+  }
+  else
+    return ("");
+}
+
+
 //
 // 'db_query()' - Run a SQL query and return the executed statement.
 //
@@ -212,7 +234,7 @@ db_query($sql,				// I - SQL query string
     if ($DB_DEBUG > 1)
     {
       $count = $stmt->rowCount();
-      print("<p>SQL query \"" . htmlspecialchars($sql) . "\" returned "
+      print("<p>SQL query \"" . htmlspecialchars($sql) . _db_param_string($params) . "\" returned "
 	   ."$count row(s).</p>\n");
     }
 
@@ -221,7 +243,7 @@ db_query($sql,				// I - SQL query string
   else if ($DB_DEBUG > 0)
   {
     $error = $stmt->errorInfo();
-    print("<p>SQL query \"" . htmlspecialchars($sql) . "\" failed: " .
+    print("<p>SQL query \"" . htmlspecialchars($sql) . _db_param_string($params) . "\" failed: " .
           htmlspecialchars($error[0]) . ":" .
           htmlspecialchars($error[2]) . "</p>\n");
   }
