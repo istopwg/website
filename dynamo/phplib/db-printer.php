@@ -168,7 +168,7 @@ printer_search($search = "",		// I - Search string
     if ($duplex >= 0)
       $keyvals["duplex_supported"] = $duplex;
     if ($finishings >= 0)
-      $keyvals["finishings_supported"] = $finisings;
+      $keyvals["finishings_supported"] = $finishings;
   }
   else
     $keyvals = null;

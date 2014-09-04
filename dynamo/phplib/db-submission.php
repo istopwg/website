@@ -46,6 +46,13 @@ $SUBMISSION_STATUSES = array(
   SUBMISSION_STATUS_APPEAL_FAILED => "Appeal Failed"
 );
 
+$REVIEWER_STATUSES = array(
+  SUBMISSION_STATUS_PENDING => "Pending",
+  SUBMISSION_STATUS_REVIEW => "SC Review",
+  SUBMISSION_STATUS_APPROVED => "Approved",
+  SUBMISSION_STATUS_REJECTED => "Rejected"
+);
+
 $SUBMISSION_VERSIONS = array(
   "org.pwg.ipp-everywhere.20140826" => "1.0 Draft (August 26, 2014)"
 );
@@ -211,7 +218,7 @@ class submission
   function
   form()
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $REVIEWER_STATUSES, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
 
 
     print("<h2>Information</h2>\n");
@@ -364,7 +371,7 @@ class submission
     {
       html_form_field_start("+reviewer1_status", "First Status");
       if ($this->reviewer1_id == $LOGIN_ID)
-	html_form_select("reviewer1_status", $SUBMISSION_STATUSES, "", $this->reviewer1_status);
+	html_form_select("reviewer1_status", $REVIEWER_STATUSES, "", $this->reviewer1_status);
       else
 	print($SUBMISSION_STATUSES[$this->reviewer1_status]);
       html_form_field_end();
@@ -382,7 +389,7 @@ class submission
     {
       html_form_field_start("+reviewer2_status", "Second Status");
       if ($this->reviewer2_id == $LOGIN_ID)
-	html_form_select("reviewer2_status", $SUBMISSION_STATUSES, "", $this->reviewer2_status);
+	html_form_select("reviewer2_status", $REVIEWER_STATUSES, "", $this->reviewer2_status);
       else
 	print($SUBMISSION_STATUSES[$this->reviewer2_status]);
       html_form_field_end();
@@ -401,10 +408,6 @@ class submission
 
       html_form_field_start("+document_file", "Document Data Test Results");
       html_form_file("document_file", "", $this->bonjour_file_error);
-      html_form_field_end();
-
-      html_form_field_start("exceptions", "Exceptions");
-      print("EXCEPTION UI HERE");
       html_form_field_end();
     }
     else
@@ -538,8 +541,12 @@ class submission
     if (!html_form_validate())
       return (FALSE);
 
-    if ($LOGIN_IS_ADMIN && $this->status != SUBMISSION_STATUS_APPROVED && array_key_exists("status", $_POST))
+    $status_set = FALSE;
+    if ($LOGIN_IS_ADMIN && $this->status != SUBMISSION_STATUS_APPROVED && $this->status != SUBMISSION_STATUS_APPEAL_FAILED && array_key_exists("status", $_POST))
+    {
       $this->status = (int)$_POST["status"];
+      $status_set   = FALSE;
+    }
 
     if ($this->id == 0)
     {
@@ -594,11 +601,31 @@ class submission
 	$this->reviewer2_id = (int)$_POST["reviewer2_id"];
     }
 
-    if ($LOGIN_ID == $this->reviewer1_id && array_key_exists("reviewer1_status", $_POST))
-      $this->reviewer1_status = (int)$_POST["reviewer1_status"];
+    $reviewer_changed = FALSE;
 
-    if ($LOGIN_ID == $this->reviewer2_id && array_key_exists("reviewer2_status", $_POST))
-      $this->reviewer2_status = (int)$_POST["reviewer2_status"];
+    if ($LOGIN_ID == $this->reviewer1_id && $this->status == SUBMISSION_STATUS_PENDING && array_key_exists("reviewer1_status", $_POST))
+    {
+      $rstatus                = (int)$_POST["reviewer1_status"];
+      $reviewer_changed       = $rstatus != $this->reviewer1_status;
+      $this->reviewer1_status = $rstatus;
+    }
+
+    if ($LOGIN_ID == $this->reviewer2_id && $this->status == SUBMISSION_STATUS_PENDING && array_key_exists("reviewer2_status", $_POST))
+    {
+      $rstatus                = (int)$_POST["reviewer2_status"];
+      $reviewer_changed       = $rstatus != $this->reviewer2_status;
+      $this->reviewer2_status = $rstatus;
+    }
+
+    if ($reviewer_changed && !$status_set && $this->reviewer1_status >= SUBMISSION_STATUS_SCREVIEW && $this->reviewer2_status >= SUBMISSION_STATUS_SCREVIEW)
+    {
+      if ($this->reviewer1_status == SUBMISSION_STATUS_APPROVED && $this->reviewer2_status == SUBMISSION_STATUS_APPROVED)
+        $this->status = SUBMISSION_STATUS_APPROVED;
+      else if ($this->reviewer1_status == SUBMISSION_STATUS_SCREVIEW || $this->reviewer2_status == SUBMISSION_STATUS_SCREVIEW)
+        $this->status = SUBMISSION_STATUS_SCREVIEW;
+      else
+        $this->status = SUBMISSION_STATUS_REJECTED;
+    }
 
     return ($this->validate());
   }
@@ -654,6 +681,16 @@ class submission
 
 
   //
+  // 'submission::publish_printers()' - Publish printers of an approved submission.
+  //
+
+  function
+  publish_printers()
+  {
+  }
+
+
+  //
   // 'submission::save()' - Save a submission object.
   //
 
@@ -668,8 +705,13 @@ class submission
 
     if ($this->id > 0)
     {
+      $submission = new submission($this->id);
+
       if (!db_save($this, "submission", $this->id, $SUBMISSION_COLUMNS))
         return (FALSE);
+
+      if ($submission->status != $this->status && $this->status == SUBMISSION_STATUS_APPROVED)
+        $this->publish_printers();
     }
     else
     {

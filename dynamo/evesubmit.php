@@ -19,7 +19,7 @@ if (!$LOGIN_ID)
   exit(0);
 }
 
-site_header("IPP Everywhere", "Submit Self-Certification");
+site_header("Submit IPP Everywhere Self-Certification");
 
 if (!$LOGIN_IS_SUBMITTER)
 {

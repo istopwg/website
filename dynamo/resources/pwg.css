@@ -209,7 +209,8 @@ P.PWGList A {
 #pwg-search-form {
   float: right;
   margin-top: 15px;
-  width: 25%;
+  max-width: 130px;
+  width: 15%;
 }
 
 .pwg-navbar .navbar-nav > li > a, .pwg-navbar .navbar-nav > li > a:visited {
@@ -240,6 +241,9 @@ P.PWGList A {
 .cse .gsc-tabsArea,
 .gsc-tabsArea {
   display: none;
+}
+td.gsc-input {
+  padding-right: 0px !important;
 }
 input.gsc-input {
   border-color: #BCCDF0;

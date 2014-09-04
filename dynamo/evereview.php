@@ -20,7 +20,7 @@ if (!$LOGIN_ID)
   exit(0);
 }
 
-site_header("IPP Everywhere", "Review Self-Certifications");
+site_header("Review IPP Everywhere Self-Certifications");
 
 // Get command-line options...
 //
