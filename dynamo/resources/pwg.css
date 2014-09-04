@@ -24,6 +24,10 @@ h1, h2, h3, h4, h5, h6, p, td, th {
   height: 300px;
 }
 
+.form-horizontal .control-label {
+  padding-top: 0px;
+}
+
 #pwg-rolling ol.carousel-indicators {
   bottom: 10px;
 }
@@ -325,7 +329,7 @@ a.gsc-trailing-more-results:link {
 
 /* Body content */
 #pwg-body {
-  margin: 0px 10px;
+  margin: 0px;
   padding: 60px 10px 50px; /* top right+left bottom */
 }
 
