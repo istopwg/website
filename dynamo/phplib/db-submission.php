@@ -5,6 +5,7 @@
 
 include_once "site.php";
 include_once "db-comment.php";
+include_once "db-printer.php";
 include_once "plist.php";
 
 $SUBMISSION_COLUMNS = array(
@@ -370,7 +371,7 @@ class submission
     if ($this->id)
     {
       html_form_field_start("+reviewer1_status", "First Status");
-      if ($this->reviewer1_id == $LOGIN_ID)
+      if ($this->reviewer1_id == $LOGIN_ID && $this->status == SUBMISSION_STATUS_PENDING)
 	html_form_select("reviewer1_status", $REVIEWER_STATUSES, "", $this->reviewer1_status);
       else
 	print($SUBMISSION_STATUSES[$this->reviewer1_status]);
@@ -388,7 +389,7 @@ class submission
     if ($this->id)
     {
       html_form_field_start("+reviewer2_status", "Second Status");
-      if ($this->reviewer2_id == $LOGIN_ID)
+      if ($this->reviewer2_id == $LOGIN_ID && $this->status == SUBMISSION_STATUS_PENDING)
 	html_form_select("reviewer2_status", $REVIEWER_STATUSES, "", $this->reviewer2_status);
       else
 	print($SUBMISSION_STATUSES[$this->reviewer2_status]);
@@ -617,12 +618,12 @@ class submission
       $this->reviewer2_status = $rstatus;
     }
 
-    if ($reviewer_changed && !$status_set && $this->reviewer1_status >= SUBMISSION_STATUS_SCREVIEW && $this->reviewer2_status >= SUBMISSION_STATUS_SCREVIEW)
+    if ($reviewer_changed && !$status_set && $this->reviewer1_status >= SUBMISSION_STATUS_REVIEW && $this->reviewer2_status >= SUBMISSION_STATUS_REVIEW)
     {
       if ($this->reviewer1_status == SUBMISSION_STATUS_APPROVED && $this->reviewer2_status == SUBMISSION_STATUS_APPROVED)
         $this->status = SUBMISSION_STATUS_APPROVED;
-      else if ($this->reviewer1_status == SUBMISSION_STATUS_SCREVIEW || $this->reviewer2_status == SUBMISSION_STATUS_SCREVIEW)
-        $this->status = SUBMISSION_STATUS_SCREVIEW;
+      else if ($this->reviewer1_status == SUBMISSION_STATUS_REVIEW || $this->reviewer2_status == SUBMISSION_STATUS_REVIEW)
+        $this->status = SUBMISSION_STATUS_REVIEW;
       else
         $this->status = SUBMISSION_STATUS_REJECTED;
     }
@@ -687,6 +688,39 @@ class submission
   function
   publish_printers()
   {
+    global $SUBMISSION_DIR;
+
+    $models     = explode("\n", $this->models);
+    $color      = 0;
+    $duplex     = 0;
+    $finishings = 0;
+
+    if ($plist = plist_read_file("$SUBMISSION_DIR/$this->id/ipp.plist"))
+    {
+      $response = $plist["Tests"][8]["ResponseAttributes"][1];
+      if (array_key_exists("color-supported", $response))
+        $color = $response["color-supported"];
+      if (array_key_exists("finishings-supported", $response))
+        $finishings = is_array($response["finishings-supported"]);
+      if (array_key_exists("sides-supported", $response))
+        $duplex = is_array($response["sides-supported"]);
+    }
+
+    foreach ($models as $model)
+    {
+      $printer = new printer();
+      $printer->submission_id        = $this->id;
+      $printer->organization_id      = $this->organization_id;
+      $printer->product_family       = $this->product_family;
+      $printer->model                = trim($model);
+      $printer->url                  = $this->url;
+      $printer->cert_version         = $this->cert_version;
+      $printer->color_supported      = $color;
+      $printer->duplex_supported     = $duplex;
+      $printer->finishings_supported = $finishings;
+
+      $printer->save();
+    }
   }
 
 

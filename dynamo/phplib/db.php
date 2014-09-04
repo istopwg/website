@@ -262,7 +262,7 @@ db_save($obj,				// I - Object
         $id,				// I - Object ID
         $columns)			// I - Associative columns array (name => type)
 {
-  global $_DB;
+  global $_DB, $DB_DEBUG;
 
   $query  = "UPDATE $table";
   $prefix = " SET ";
@@ -271,9 +271,11 @@ db_save($obj,				// I - Object
     $query .= "$prefix$name=:$name";
     $prefix = ",";
   }
-  $query .= "WHERE id=:id;";
+  $query .= " WHERE id=:id;";
 
   $stmt = $_DB->prepare($query);
+  if ($DB_DEBUG > 1)
+    print("<p>SQL query \"" . htmlspecialchars($query) . "\"</p>\n");
   $stmt->bindValue(":id", $obj->id, PDO::PARAM_INT);
   foreach ($columns as $name => $type)
     $stmt->bindValue(":$name", $obj->$name, $type);
