@@ -78,7 +78,7 @@ site_header($title = "",		// I - Additional document title
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
-  global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME;
+  global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME, $SITE_SHOW_BETA;
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
@@ -130,11 +130,14 @@ site_header($title = "",		// I - Additional document title
     if ($LOGIN_IS_EDITOR)
       $userlogin .= "            <li><a href=\"${html_path}dynamo/issues.php\">Review Issues</a></li>\n";
 
-    if ($LOGIN_IS_ADMIN || $LOGIN_IS_REVIEWER || $LOGIN_IS_SUBMITTER)
-      $userlogin .= "            <li><a href=\"${html_path}dynamo/evereview.php\">Review Self-Certifications</a></li>\n";
+    if ($SITE_SHOW_BETA)
+    {
+      if ($LOGIN_IS_ADMIN || $LOGIN_IS_REVIEWER || $LOGIN_IS_SUBMITTER)
+	$userlogin .= "            <li><a href=\"${html_path}dynamo/evereview.php\">Review Self-Certifications</a></li>\n";
 
-    if ($LOGIN_IS_SUBMITTER)
-      $userlogin .= "            <li><a href=\"${html_path}dynamo/evesubmit.php\">Submit Self-Certification</a></li>\n";
+      if ($LOGIN_IS_SUBMITTER)
+	$userlogin .= "            <li><a href=\"${html_path}dynamo/evesubmit.php\">Submit Self-Certification</a></li>\n";
+    }
 
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_SUBMITTER || $LOGIN_IS_REVIEWER)
       $userlogin .= "            <li class=\"divider\"></li>\n";
@@ -209,8 +212,11 @@ site_header($title = "",		// I - Additional document title
        ."        </li>\n"
        ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Technologies <span class=\"caret\"></span></a>\n"
        ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
-       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>TM</sup></a></li>\n"
-       ."          </ul>\n"
+       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>TM</sup></a></li>\n");
+
+  if ($SITE_SHOW_BETA)
+    print("            <li><a href=\"${html_path}dynamo/eveprinters.php\">IPP Everywhere<sup>TM</sup> Printers</a></li>\n");
+  print("          </ul>\n"
        ."        </li>\n"
        ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Workgroups <span class=\"caret\"></span></a>\n"
        ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
