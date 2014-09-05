@@ -374,10 +374,6 @@ a.gsc-trailing-more-results:link {
 /* iPhone/iPod touch overrides */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px),
        only screen and (min-device-width: 320px) and (max-device-width: 568px) {
-  .navbar-brand {
-    display: none !important;
-  }
-
   .pwg-navbar {
     position: relative;
   }
