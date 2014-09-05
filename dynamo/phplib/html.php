@@ -1083,7 +1083,7 @@ html_form_end($buttons = FALSE)		// I - Array of buttons
     }
     else
     {
-      print("<div class=\"form-group\"><div class=\"col-sm-offset-2 col-sm-10\">");
+      print("<div class=\"form-group\"><div class=\"col-sm-10 col-sm-offset-2\">");
       html_form_buttons($buttons);
       print("</div></div>\n");
     }

@@ -71,8 +71,8 @@ html_form_password("+password", "", "", TRUE);
 html_form_field_end();
 html_form_end(array("SUBMIT" => "+Login"));
 
-print("<p><a href=\"newaccount.php\">New Account</a><br>\n"
-     ."<a href=\"forgot.php\">Forgot Password</a></p>\n");
+print("<p><a class=\"btn btn-default btn-xs\" href=\"newaccount.php\">New Account</a> "
+     ."<a <a class=\"btn btn-default btn-xs\" href=\"forgot.php\">Forgot Password</a></p>\n");
 
 site_footer();
 
