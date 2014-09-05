@@ -209,14 +209,13 @@ P.PWGList A {
 #pwg-search-form {
   float: right;
   margin-top: 15px;
-  max-width: 130px;
-  width: 15%;
+  width: 130px;
 }
 
 .pwg-navbar .navbar-nav > li > a, .pwg-navbar .navbar-nav > li > a:visited {
   color: #ccccc0;
   font-size: 14px;
-  padding-top: 0px;
+  padding: 0px 10px 15px;
 }
 
 #pwg-nav-collapsible {

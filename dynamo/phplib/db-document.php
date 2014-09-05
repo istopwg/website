@@ -674,7 +674,7 @@ class document
   function
   view($options = "", $level = 2, $links = TRUE, $btnclass = "btn-xs")
   {
-    global $html_path, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_OFFICER;
+    global $html_path, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_OFFICER, $html_login_url;
 
 
     $title    = $this->display_name();
@@ -697,10 +697,32 @@ class document
     if ($url != "" || ($links && ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID)))
     {
       print("<p>");
-      if ($links && ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID))
-	print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/documents.php?U$this->id$options\">Edit</a>\n");
+
       if ($url != "")
 	print("<a class=\"btn btn-primary $btnclass\" href=\"$url\">View</a>\n");
+
+      if ($links && ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER || $this->create_id == $LOGIN_ID))
+	print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/documents.php?U$this->id$options\">Edit</a>\n");
+
+      $stmt  = db_query("SELECT id FROM issue WHERE document_id=?", array($this->id));
+      $count = db_count($stmt);
+      if ($count == 0)
+      {
+        if ($LOGIN_ID)
+	{
+	  print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/issues.php?U+Z$this->id\">Report Issue</a>\n");
+        }
+        else
+        {
+          $url = "$html_login_url?PAGE=" . urlencode("${html_path}dynamo/issues.php?U+Z$this->id");
+	  print("<a class=\"btn btn-default $btnclass\" href=\"$url\">Login to Report Issue</a>\n");
+        }
+      }
+      else if ($count == 1)
+	print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/issues.php?L+Z$this->id\">1 Reported Issue</a>\n");
+      else
+	print("<a class=\"btn btn-default $btnclass\" href=\"${html_path}dynamo/issues.php?L+Z$this->id\">$count Reported Issues</a>\n");
+
       print("</p>\n");
     }
   }
