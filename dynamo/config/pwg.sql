@@ -423,7 +423,7 @@ CREATE TABLE issue (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO issue VALUES(1,0,2,2,2,3,'Drop "media-input-tray-check-default" attribute',0,'2014-07-30 12:00:00',1,'2014-07-31 12:00:00',1);
+INSERT INTO issue VALUES(1,0,2,3,2,3,'Drop "media-input-tray-check-default" attribute',0,'2014-07-30 12:00:00',1,'2014-07-31 12:00:00',1);
 INSERT INTO issue VALUES(2,0,2,3,1,4,'Allow rangeOfInteger values for "y-dimension" in "media-col-ready" attribute',0,'2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
 INSERT INTO issue VALUES(3,0,6,36,1,1,'Drop -error from "printer-state-reasons" keywords',0,'2014-07-30 12:00:00',1,'2014-07-30 12:00:00',1);
 
