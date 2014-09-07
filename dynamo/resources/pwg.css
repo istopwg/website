@@ -192,6 +192,20 @@ P.PWGList A {
   white-space: nowrap;
 }
 
+.pwg-logo {
+  height: 190px;
+  margin: -15px 15px 0px -20px; /* top right bottom left */
+  width: 181px;
+}
+
+.pwg-logo-right {
+  float: right;
+}
+
+.panel-heading {
+  font-weight: bold;
+}
+
 /* Appearance tweaks for navigation bar */
 .pwg-navbar {
   border-bottom-left-radius: 8px;

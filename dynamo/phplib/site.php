@@ -235,8 +235,9 @@ site_header($title = "",		// I - Additional document title
        ."<div id=\"pwg-body\">\n");
   if (!$html_is_phone)
     print("  <div id=\"pwg-search-results\"></div>\n");
-  print("  <div id=\"pwg-content\">\n"
-       ."    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
+  print("  <div id=\"pwg-content\">\n");
+  if ($title != "")
+    print("    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
 }
 
 
