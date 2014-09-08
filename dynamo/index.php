@@ -6,79 +6,114 @@
 include_once "phplib/site.php";
 include_once "phplib/db-article.php";
 
-site_header("Printer Working Group", "Making printers, multi-function devices, and software better with public standards.");
+site_header("");
 
-$matches  = article_search();
-$carousel = array();
+$matches = article_search();
 
-for ($i = 0, $count = 0; $i < sizeof($matches); $i ++)
+
+?>
+
+<div class="jumbotron">
+  <h1><img class="pwg-logo pwg-right hidden-xs" src="<?print($html_path);?>dynamo/resources/pwg-medium@2x.png">The Printer Working Group</h1>
+  <p>Our members include printer and multi-function device manufacturers, print server developers, operating system providers, print management application developers, and industry experts. We make printers, multi-function devices, and the applications and operating systems supporting them work together better.</p>
+  <p><a class="btn btn-primary btn-lg" href="<?print($html_path);?>about.html">More Info</a></p>
+</div>
+
+<?
+
+$firsttime = TRUE;
+
+for ($i = 0; $i < sizeof($matches); $i ++)
 {
   $article = new article($matches[$i]);
 
-  if ($article->id !== $matches[$i] || $article->display_until_date == "" || $article->display_until_date < date("Y-m-d"))
+  if ($article->display_until_date == "" || $article->display_until_date < date("Y-m-d") || $article->id != $matches[$i])
     continue;
 
-  $count ++;
-  $carousel["D$article->display_until_date+A$article->id"] = $article;
-}
-
-ksort($carousel);
-$carousel = array_values($carousel);
-
-print("<div class=\"jumbotron\">\n");
-if (sizeof($carousel) > 0)
-{
-  print("<div id=\"pwg-rolling\" class=\"carousel slide\" data-ride=\"carousel\">\n"
-       ."<ol class=\"carousel-indicators\">\n"
-       ."<li class=\"active\" data-target=\"#pwg-rolling\" data-slide-to=\"$i\"></li>\n");
-  for ($i = 1; $i <= sizeof($carousel); $i ++)
-    print("<li data-target=\"#pwg-rolling\" data-slide-to=\"$i\"></li>\n");
-  print("</ol>\n"
-       ."<div class=\"carousel-inner\">\n");
-  for ($i = 0; $i < sizeof($carousel); $i ++)
+  if ($firsttime)
   {
-    if ($i == 0)
-      print("<div class=\"item active\">");
-    else
-      print("<div class=\"item\">");
-
-    $article = $carousel[$i];
-    $article->view("", 1, FALSE, "btn-lg");
-    print("</div>\n");
+    print("<div class=\"panel-group\" id=\"pwg-display-until\">\n");
+    $firsttime = FALSE;
   }
 
-  print("<div class=\"item\">");
+  $title    = htmlspecialchars($article->title);
+  $contents = html_format($article->contents);
+  $url      = htmlspecialchars($article->url, ENT_QUOTES);
+
+  print("<div class=\"panel panel-default pwg-alert-panel\">\n"
+       ."  <div class=\"panel-heading\"><a class=\"pwg-right\" href=\"#a$article->id\" data-toggle=\"collapse\" data-parent=\"#pwg-display-until\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a><a href=\"#a$article->id\" data-toggle=\"collapse\" data-parent=\"#pwg-display-until\">$title</a></div>\n"
+       ."  <div id=\"a$article->id\" class=\"panel-collapse collapse\">\n"
+       ."    <div class=\"panel-body\">$contents\n"
+       ."      <p><a class=\"btn btn-default btn-sm\" href=\"$url\">More Info</a></p>\n"
+       ."    </div>\n"
+       ."  </div>\n"
+       ."</div>\n");
 }
 
-print("<h1>The Printer Working Group</h1>\n"
-     ."<p>Our members include printer and multi-function device manufacturers, print server developers, operating system providers, print management application developers, and industry experts. We make printers, multi-function devices, and the applications and operating systems supporting them work together better.</p>\n"
-     ."<p><a class=\"btn btn-primary btn-lg\" href=\"${html_path}about.html\">More Info</a></p>\n");
-
-if (sizeof($carousel) > 0)
-  print("</div>\n"
-       ."</div>\n"
-       ."</div>\n"
-       ."</div>\n");
-else
+if (!$firsttime)
   print("</div>\n");
 
-print("<h1>PWG News</h1>\n");
+?>
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Standards</div>
+      <div class="panel-body">
+        <p>PWG Standards define all of the common network protocols used by your printer.</p>
+        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>standards.html">More Info</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">IPP Everywhere</div>
+      <div class="panel-body">
+	<p>Print to any network or USB printer without using special software from the manufacturer.</p>
+	<p><a class="btn btn-default btn-sm" href="<?print($html_path);?>ipp/everywhere.html">More Info</a><?
+	  if ($SITE_SHOW_BETA)
+	    print(" <a class=\"btn btn-default btn-sm\" href=\"${html_path}dynamo/eveprinters.php\">Find Printers</a>\n");?></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">PWG Semantic Model</div>
+      <div class="panel-body">
+        <p>Support multiple network protocols and job ticket formats using our abstract model.</p>
+        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>sm/index.html">More Info</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">SNMP MIBs</div>
+      <div class="panel-body">
+        <p>Monitor jobs, status, and supplies, and manage your printers remotely using SNMP.</p>
+        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>wims/index.html">More Info</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-12">
+  <div class="panel panel-default"><div class="panel-heading">PWG News</div>
+  <div class="panel-body">
+<?
 
 for ($i = 0, $count = 0; $i < sizeof($matches) && $count < 5; $i ++)
 {
   $article = new article($matches[$i]);
 
-  if ($article->display_until_date != "")
-    continue;
-
   if ($article->id == $matches[$i])
   {
     $count ++;
-    $article->view("", 2, FALSE);
+    $article->view("", 3, FALSE);
   }
 }
 
-print("<p><a class=\"btn btn-default btn-xs\" href=\"${html_path}/dynamo/articles.php\">View Older Articles</a></p>\n");
+print("<p><a class=\"btn btn-default btn-xs\" href=\"${html_path}/dynamo/articles.php\">View Older Articles</a></p>\n"
+     ."</div></div>\n"
+     ."</div></div>\n");
 
 if (sizeof($carousel) > 0)
   site_footer("pwg-rolling.js");

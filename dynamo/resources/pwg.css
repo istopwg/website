@@ -15,12 +15,12 @@ h1, h2, h3, h4, h5, h6, p, td, th {
 
 .jumbotron {
   border-radius: 8px;
-  padding: 20px;
-  padding-bottom: 20px;
-  padding-top: 1px;
+  padding: 1px 20px 10px;
+/*  padding-bottom: 20px;
+  padding-top: 1px;*/
 }
 
-.jumbotron, #pwg-rolling, #pwg-rolling .carousel-inner {
+#pwg-rolling, #pwg-rolling .carousel-inner {
   height: 300px;
 }
 
@@ -145,6 +145,34 @@ input[type="checkbox"] {
   height: 16px !important;
 }
 
+.pwg-logo {
+  height: 190px;
+  margin: -15px 15px 0px -20px; /* top right bottom left */
+  width: 181px;
+}
+
+.pwg-right {
+  float: right;
+}
+
+.panel-heading {
+  font-weight: bold;
+}
+
+.pwg-alert-panel {
+  border-left: 5px solid #4b5aa8;
+  border-right: 5px solid #4b5aa8;
+}
+
+.pwg-alert-panel a {
+  color: black;
+}
+
+.pwg-alert-panel a:hover  {
+  color: #4b5aa8;
+  text-decoration: none;
+}
+
 /* Some old site styles we are keeping around for now... */
 #PWGInfo TD {
   padding-right: 10px;
@@ -190,20 +218,6 @@ P.PWGHanging {
 
 P.PWGList A {
   white-space: nowrap;
-}
-
-.pwg-logo {
-  height: 190px;
-  margin: -15px 15px 0px -20px; /* top right bottom left */
-  width: 181px;
-}
-
-.pwg-logo-right {
-  float: right;
-}
-
-.panel-heading {
-  font-weight: bold;
 }
 
 /* Appearance tweaks for navigation bar */
