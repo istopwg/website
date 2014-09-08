@@ -111,13 +111,10 @@ for ($i = 0, $count = 0; $i < sizeof($matches) && $count < 5; $i ++)
   }
 }
 
-print("<p><a class=\"btn btn-default btn-xs\" href=\"${html_path}/dynamo/articles.php\">View Older Articles</a></p>\n"
+print("<p><a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/articles.php\">View Older Articles</a></p>\n"
      ."</div></div>\n"
      ."</div></div>\n");
 
-if (sizeof($carousel) > 0)
-  site_footer("pwg-rolling.js");
-else
-  site_footer();
+site_footer();
 
 ?>
