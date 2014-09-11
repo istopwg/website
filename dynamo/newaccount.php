@@ -77,7 +77,7 @@ if (html_form_validate())
       {
 	$register = substr(hash("sha256", "$user->id:$user->modify_date:$user->hash"), 0, 8);
 
-	$url = "https://$_SERVER[SERVER_NAME]$html_path/enable.php?email=" .
+	$url = "https://$_SERVER[SERVER_NAME]/dynamo/enable.php?email=" .
 	       urlencode($email) . "&register=$register";
 	$msg = wordwrap("Thank you for requesting an account on the "
 		       ."$SITE_NAME web site.  To complete your "
