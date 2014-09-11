@@ -139,6 +139,12 @@ site_header($title = "",		// I - Additional document title
 	$userlogin .= "            <li><a href=\"${html_path}dynamo/evesubmit.php\">Submit Self-Certification</a></li>\n";
     }
 
+    if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
+    {
+      $userlogin .= "            <li><a href=\"${html_path}usage\">View HTTP Usage</a></li>\n";
+      $userlogin .= "            <li><a href=\"${html_path}ftp-usage\">View FTP Usage</a></li>\n";
+    }
+
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_SUBMITTER || $LOGIN_IS_REVIEWER)
       $userlogin .= "            <li class=\"divider\"></li>\n";
 
