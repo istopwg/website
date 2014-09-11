@@ -263,7 +263,9 @@ class user
 
     if (db_load($this, "user", $id, $USER_COLUMNS))
     {
-      $this->id = $id;
+      $this->id      = $id;
+      $this->oldhash = $this->hash;
+
       return ($this->validate());
     }
 
@@ -367,7 +369,7 @@ class user
 
     if ($LOGIN_IS_ADMIN && $LOGIN_ID != $this->id)
     {
-      $results    = db_query("SELECT hash FROM user WHERE id = $LOGIN_ID");
+      $results    = db_query("SELECT hash FROM user WHERE id=?", array($LOGIN_ID));
       $row        = db_next($results);
       $match_hash = $row["hash"];
     }

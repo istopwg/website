@@ -27,11 +27,9 @@ if ($REQUEST_METHOD == "POST")
   {
     $user->save();
     html_show_info("Changes saved.");
-    site_footer();
-    exit();
   }
-
-  html_show_error("Please correct the highlighted fields.");
+  else
+    html_show_error("Please correct the highlighted fields.");
 }
 $user->form();
 
