@@ -33,20 +33,20 @@ else if (file_exists($PATH_TRANSLATED))
 {
   $contents = file_get_contents($PATH_TRANSLATED);
 
-  if (($start = strpos($contents, "<style type=\"text/css\">")) !== FALSE)
+  if (($start = stripos($contents, "<style type=\"text/css\">")) !== FALSE)
   {
-    $end = strpos($contents, "</style>", $start);
+    $end = stripos($contents, "</style>", $start);
     $css = substr($contents, $start, $end - $start + 8);
   }
-  else if (($start = strpos($contents, "<style>")) !== FALSE)
+  else if (($start = stripos($contents, "<style>")) !== FALSE)
   {
-    $end = strpos($contents, "</style>", $start);
+    $end = stripos($contents, "</style>", $start);
     $css = substr($contents, $start, $end - $start + 8);
   }
 
-  if (($start = strpos($contents, "<title>")) !== FALSE)
+  if (($start = stripos($contents, "<title>")) !== FALSE)
   {
-    $end   = strpos($contents, "</title>", $start);
+    $end   = stripos($contents, "</title>", $start);
     $title = trim(str_replace("- Printer Working Group", "", substr($contents, $start + 7, $end - $start - 7)));
   }
 
@@ -56,15 +56,15 @@ else if (file_exists($PATH_TRANSLATED))
     $subtitle = trim(substr($contents, $start + 13, $end - $start - 13));
   }
 
-  if (($start = strpos($contents, "<div id=\"PWGContentBody\">")) !== FALSE)
+  if (($start = stripos($contents, "<div id=\"PWGContentBody\">")) !== FALSE)
   {
-    $end = strpos($contents, "<div id=\"PWGFooter\">", $start);
-    $end = strpos($contents, "</div>", $end - 45);
+    $end = stripos($contents, "<div id=\"PWGFooter\">", $start);
+    $end = stripos($contents, "</div>", $end - 45);
     $contents = substr($contents, $start + 25, $end - $start - 25);
   }
-  else if (($start = strpos($contents, "<body>")) !== FALSE)
+  else if (($start = stripos($contents, "<body>")) !== FALSE)
   {
-    $end = strpos($contents, "</body>", $start);
+    $end = stripos($contents, "</body>", $start);
     $contents = substr($contents, $start + 6, $end - $start - 6);
   }
 }
