@@ -82,8 +82,6 @@ site_header($title = "",		// I - Additional document title
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
-  $title = str_replace(array("(tm)", "(r)"), array("<sup>TM</sup>", "&reg;"), htmlspecialchars($title));
-
   if ($LOGIN_ID != "")
     header("Cache-Control: no-cache");
 
@@ -98,9 +96,11 @@ site_header($title = "",		// I - Additional document title
 
   // Title...
   if ($title != "" && $title != "Printer Working Group")
-    $html_title = "$title -";
+    $html_title = htmlspecialchars("$title -");
   else
     $html_title = "";
+
+  $title = str_replace(array("(tm)", "(r)"), array("<sup>TM</sup>", "&reg;"), htmlspecialchars($title));
 
   if ($subtitle != "")
     $subtitle = "<br><small>$subtitle</small>";
