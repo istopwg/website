@@ -425,7 +425,13 @@ class issue
     // Send the email to either the assigned user or create user, depending
     // on who modified the Issue...
     if ($this->assigned_id == 0)
-      $to = $SITE_EMAIL;
+    {
+      $workgroup = new workgroup($this->workgroup_id);
+      if ($workgroup->id && $workgroup->id == $this->workgroup_id)
+        $to = $workgroup->list;
+      else
+        $to = $SITE_EMAIL;
+    }
     else if ($this->modify_id != $this->assigned_id)
       $to = user_email($this->assigned_id);
     else
@@ -454,7 +460,7 @@ class issue
 	       ."\n"
 	       . wordwrap(trim($contents)) . "\n"
 	       ."\n"
-	       ."Link: ${SITE_URL}dynamo/issues.php?U$this->id\n";
+	       ."Link: ${SITE_URL}/issues/$this->id\n";
 
     // Set message ID to track this bug...
     if ($this->create_date == $this->modify_date)

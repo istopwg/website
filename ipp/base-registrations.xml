@@ -4,11 +4,12 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2014-08-26 (PWG: 2014-08-28)</updated>
+  <updated>2014-08-26 (PWG: 2014-09-13)</updated>
   <!--
     Pending PWG Registrations and Changes:
+    - subscription-uuid (JPS3) now notify-subscription-uuid.
     - Normalized extension syntax to be "name(extension)", new attribute type
-      extensions are not registered as extensions to the original spec.
+      extensions are now registered as extensions to the original spec.
     - Added prototype IPP Shared Infrastructure Extensions (IPPSIX) definitions
     - Added stable IPP Scan Service definitions
     - Added stable IPP Finishings 2.0 (FIN2) definitions
@@ -5541,7 +5542,7 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Subscription Status</collection>
-      <name>subscription-uuid</name>
+      <name>notify-subscription-uuid</name>
       <syntax>uri</syntax>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>

@@ -373,12 +373,12 @@ switch ($op)
         $havedata = 0;
       }
 
+      site_header($title);
+
       if ($havedata)
       {
         if (!$issue->save())
 	{
-	  site_header($title);
-
 	  print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	  html_show_error("Unable to save issue.");
@@ -392,8 +392,6 @@ switch ($op)
 	  // Add text...
 	  if (($contents = $issue->add_comment()) === FALSE)
 	  {
-	    site_header($title);
-
 	    print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	    html_show_error("Unable to save comment to issue.");
@@ -419,21 +417,23 @@ switch ($op)
 	else
 	  $issue->notify_users($contents);
 
-	header("Location: $PHP_SELF?U$issue->id$options");
+	print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a> <a class=\"btn btn-default\" href=\"$PHP_SELF?U$options\">Create Another</a></p>\n");
+
+	html_show_info("Issue saved.");
+
+	$action = "Save Issue #$issue->id";
       }
       else
       {
-        site_header($title);
-
 	print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
 
 	if ($REQUEST_METHOD == "POST")
 	  html_show_error("Please correct the highlighted fields.");
-
-        $issue->form($action, $options);
-
-	site_footer();
       }
+
+      $issue->form($action, $options);
+
+      site_footer();
       break;
 }
 
