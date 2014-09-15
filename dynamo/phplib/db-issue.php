@@ -444,9 +444,18 @@ class issue
     else
       $replyto = $SITE_EMAIL;
 
+    $document = new document($this->document_id);
+    if ($document->series == 5108)
+      $docname = sprintf("PWG5108.%02d", $document->number);
+    else if ($document->series > 0)
+      $docname = sprintf("PWG%d.%d", $document->series, $document->number);
+    else if (strlen($document->title) > 20)
+      $docname = substr($document->title, 0, 17) . "...";
+    else
+      $docname = $document->title;
+
     // Setup the message and headers...
-    $subject  = "${what}[" . $ISSUE_PRIORITY_SHORT["$this->priority"]
-	       ."] Issue #$this->id: $this->title";
+    $subject  = "${what}[$docname] Issue #$this->id: $this->title";
     $headers  = "From: $from\n"
 	       ."Reply-To: $replyto\n";
 
