@@ -208,7 +208,7 @@ class article
     $this->create_date = $this->modify_date;
     $this->create_id   = $this->modify_id;
 
-    if (($id = db_create($obj, "article", $ARTICLE_COLUMNS)) === FALSE)
+    if (($id = db_create($this, "article", $ARTICLE_COLUMNS)) === FALSE)
       return (FALSE);
 
     $this->id = $id;

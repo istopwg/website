@@ -226,11 +226,14 @@ switch ($op)
       }
       else
       {
-        article_header("Modify Article", $id);
+        if ($id == 0)
+          article_header("Create Article");
+        else
+          article_header("Modify Article", $id);
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
-        if ($REQUEST_METHOD == "POST")
+        if ($REQUEST_METHOD == "POST" && array_key_exists("SUBMIT", $_POST))
           html_show_error("Please correct the highlighted fields.");
 
 	$article->form($options);
