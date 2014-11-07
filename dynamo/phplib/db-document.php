@@ -398,29 +398,37 @@ class document
     if (array_key_exists("workgroup_id", $_POST))
       $this->workgroup_id = (int)$_POST["workgroup_id"];
 
-    if (array_key_exists("editable_file", $_FILES) && $_FILES["editable_file"]["tmp_name"])
+    if (array_key_exists("editable_file", $_FILES) && $_FILES["editable_file"]["tmp_name"] != "")
+    {
       if ($url = $this->upload($_FILES["editable_file"], $error))
         $this->editable_url = $url;
       else
         return (FALSE);
+    }
 
-    if (array_key_exists("redline_file", $_FILES) && $_FILES["redline_file"]["tmp_name"])
+    if (array_key_exists("redline_file", $_FILES) && $_FILES["redline_file"]["tmp_name"] != "")
+    {
       if ($url = $this->upload($_FILES["redline_file"], $error))
         $this->redline_url = $url;
       else
         return (FALSE);
+    }
 
-    if (array_key_exists("clean_file", $_FILES) && $_FILES["clean_file"]["tmp_name"])
+    if (array_key_exists("clean_file", $_FILES) && $_FILES["clean_file"]["tmp_name"] != "")
+    {
       if ($url = $this->upload($_FILES["clean_file"], $error))
         $this->clean_url = $url;
       else
         return (FALSE);
+    }
 
     if (!$this->validate())
     {
       $error = "Please correct the highlighted fields.";
       return (FALSE);
     }
+
+    return (TRUE);
   }
 
 
