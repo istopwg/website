@@ -4,16 +4,16 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2014-08-26 (PWG: 2014-09-15)</updated>
+  <updated>2014-08-26 (PWG: 2014-11-12)</updated>
   <!--
     Pending PWG Registrations and Changes:
     - subscription-uuid (JPS3) now notify-subscription-uuid.
     - Added missing attributes from RFC 3995 and 3996.
     - Normalized extension syntax to be "name(extension)", new attribute type
       extensions are now registered as extensions to the original spec.
-    - Added prototype IPP Shared Infrastructure Extensions (IPPSIX) definitions
-    - Added stable IPP Scan Service definitions
-    - Added stable IPP Finishings 2.0 (FIN2) definitions
+    - Added published IPP Scan Service (PWG 5100.17) definitions
+    - Added stable IPP Finishings 2.0 (FIN) definitions
+    - Added stable IPP Shared Infrastructure Extensions (INFRA) definitions
   -->
   <registry id="ipp-registrations-1">
     <title>Objects</title>
