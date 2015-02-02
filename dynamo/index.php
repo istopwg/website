@@ -106,7 +106,7 @@ for ($i = 0, $count = 0; $i < sizeof($matches) && $count < 5; $i ++)
 {
   $article = new article($matches[$i]);
 
-  if (($article->display_until_date != "" && $article->display_until_date < $today) || $article->id != $matches[$i])
+  if (($article->display_until_date != "" && $article->display_until_date >= $today) || $article->id != $matches[$i])
     continue;
 
   $count ++;
