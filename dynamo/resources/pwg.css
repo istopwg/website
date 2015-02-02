@@ -147,7 +147,7 @@ input[type="checkbox"] {
 
 .pwg-logo {
   height: 190px;
-  margin: -15px 15px 0px -20px; /* top right bottom left */
+  margin: -15px 15px 0px -10px; /* top right bottom left */
   width: 181px;
 }
 

@@ -16,18 +16,20 @@ $matches = article_search();
 <div class="jumbotron">
   <h1><img class="pwg-logo pwg-right hidden-xs" src="<?print($html_path);?>dynamo/resources/pwg-medium@2x.png">The Printer Working Group</h1>
   <p>Our members include printer and multi-function device manufacturers, print server developers, operating system providers, print management application developers, and industry experts. We make printers, multi-function devices, and the applications and operating systems supporting them work together better.</p>
-  <p><a class="btn btn-primary btn-lg" href="<?print($html_path);?>about.html">More Info</a></p>
+  <p><a class="btn btn-primary btn-lg" href="<?print($html_path);?>about.html">More Info</a>
+  <a class="btn btn-default btn-lg" href="#NEWS">Recent News</a></p>
 </div>
 
 <?
 
 $firsttime = TRUE;
+$today     = date("Y-m-d");
 
 for ($i = 0; $i < sizeof($matches); $i ++)
 {
   $article = new article($matches[$i]);
 
-  if ($article->display_until_date == "" || $article->display_until_date < date("Y-m-d") || $article->id != $matches[$i])
+  if ($article->display_until_date == "" || $article->display_until_date < $today || $article->id != $matches[$i])
     continue;
 
   if ($firsttime)
@@ -96,7 +98,7 @@ if (!$firsttime)
 </div>
 <div class="row">
 <div class="col-md-12">
-  <div class="panel panel-default"><div class="panel-heading">PWG News</div>
+  <div class="panel panel-default"><div class="panel-heading"><a name="NEWS">PWG News</a></div>
   <div class="panel-body">
 <?
 
@@ -104,11 +106,11 @@ for ($i = 0, $count = 0; $i < sizeof($matches) && $count < 5; $i ++)
 {
   $article = new article($matches[$i]);
 
-  if ($article->id == $matches[$i])
-  {
-    $count ++;
-    $article->view("", 3, FALSE);
-  }
+  if (($article->display_until_date != "" && $article->display_until_date < $today) || $article->id != $matches[$i])
+    continue;
+
+  $count ++;
+  $article->view("", 3, FALSE);
 }
 
 print("<p><a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/articles.php\">View Older Articles</a></p>\n"
