@@ -136,7 +136,7 @@ class user
   function
   form($options = "")			// I - Page options
   {
-    global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $PHP_SELF;
+    global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $PHP_SELF, $html_path;
 
 
     if ($this->id <= 0)
@@ -201,6 +201,9 @@ class user
 
       if (!$this->is_admin && !$this->is_editor && !$this->is_member && !$this->is_reviewer && !$this->is_submitter)
         print("None");
+
+      if (!$this->is_editor || !$this->is_member || !$this->is_reviewer || !$this->is_submitter)
+	print("\n<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/request.php\">Request Additional Roles</a>");
     }
     html_form_field_end();
 
