@@ -275,7 +275,7 @@ class submission
     html_form_field_end();
 
     // contact_email
-    html_form_field_start("+contact_email", "Contact Name", $this->contact_email_valid);
+    html_form_field_start("+contact_email", "Contact Email", $this->contact_email_valid);
     if ($this->create_id == $LOGIN_ID)
       html_form_email("contact_email", "name@example.com", $this->contact_email);
     else
