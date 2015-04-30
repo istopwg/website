@@ -285,7 +285,7 @@ class submission
 
     // product_family
     html_form_field_start("+product_family", "Product Family Name", $this->product_family_valid);
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       html_form_text("product_family", "Name of product family being submitted", $this->product_family);
     else
       print(htmlspecialchars($this->product_family));
@@ -293,7 +293,7 @@ class submission
 
     // url
     html_form_field_start("url", "Product Family URL", $this->url_valid);
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       html_form_url("url", "http://www.example.com/products", $this->url);
     else
     {
@@ -304,7 +304,7 @@ class submission
 
     // models
     html_form_field_start("+models", "Models", $this->models_valid);
-    if ($this->create_id == $LOGIN_ID)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       html_form_text("models", "Make Model\nMake Model\n...", $this->models,
                    "List the make and model of every printer in the product family, one per line.", 20);
     else
@@ -353,7 +353,7 @@ class submission
 
     // exceptions
     html_form_field_start("exceptions", "Requested Exceptions");
-    if ($this->id == 0)
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       html_form_text("exceptions", "Test number + reasons\nTest number + reasons\n...", $this->exceptions, "List the exceptions you are requesting, if any.", 20);
     else if ($this->exceptions != "")
       print(html_text($this->exceptions));
@@ -431,6 +431,9 @@ class submission
 	else
           print(" <em>$error</em>");
       }
+      else
+        print(" " . $this->summarize_file($filename));
+
       html_form_field_end();
 
       html_form_field_start("+ipp_file", "IPP Test Results");
@@ -450,6 +453,9 @@ class submission
 	else
           print(" <em>$error</em>");
       }
+      else
+        print(" " . $this->summarize_file($filename));
+
       html_form_field_end();
 
       html_form_field_start("+document_file", "Document Data Test Results");
@@ -469,6 +475,9 @@ class submission
 	else
           print(" <em>$error</em>");
       }
+      else
+        print(" " . $this->summarize_file($filename));
+
       html_form_field_end();
     }
 
@@ -910,6 +919,56 @@ class submission
   }
 
   //
+  // 'submission::summarize_file()' - Summarize the content of a submission plist.
+  //
+
+  function				// O - String containing summary
+  summarize_file($filename)		// I - File to summarize
+  {
+    if ($plist = plist_read_file($filename))
+    {
+      if (!array_key_exists("Successful", $plist))
+	return ("Error: Missing Successful key in plist file.");
+
+      if (!array_key_exists("Tests", $plist))
+	return ("Error: Missing Tests key in plist file.");
+
+      if (!array_key_exists("FileId", $plist["Tests"][0]))
+	return ("Error: Missing FileId key in plist file.");
+
+      $total   = sizeof($plist["Tests"]);
+      $passed  = 0;
+      $failed  = 0;
+      $skipped = 0;
+      $list    = "";
+
+      foreach ($plist["Tests"] as $test)
+      {
+        if (!array_key_exists("Name", $test))
+          return ("Error: Missing Name key for test in plist file.");
+
+        if (!array_key_exists("Successful", $test))
+          return ("Error: Missing Successful key for test in plist file.");
+
+        $name = htmlspecialchars($test["Name"]);
+        if (array_key_exists("Skipped", $test) && $test["Skipped"])
+          $skipped ++;
+        else if ($test["Successful"])
+          $passed ++;
+        else
+        {
+          $failed ++;
+          $list .= "<br>\nFailed: " . htmlspecialchars($test["Name"]);
+        }
+      }
+
+      return ("$total tests, $passed passed, $skipped skipped, $failed failed$list");
+    }
+    else
+      return ("Error: Unable to parse plist file.");
+  }
+
+  //
   // 'submission::validate_file()' - Validate the content of a submission plist.
   //
 
@@ -919,19 +978,31 @@ class submission
     $tests = array(
       "org.pwg.ipp-everywhere.20140826.bonjour" => 10,
       "org.pwg.ipp-everywhere.20140826.document" => 34,
-      "org.pwg.ipp-everywhere.20140826.ipp" => 28
+      "org.pwg.ipp-everywhere.20140826.ipp" => 28,
+      "org.pwg.ipp-everywhere.20150415.bonjour" => 10,
+      "org.pwg.ipp-everywhere.20150415.document" => 34,
+      "org.pwg.ipp-everywhere.20150415.ipp" => 28
     );
 
     if ($plist = plist_read_file($filename))
     {
       if (!array_key_exists("Successful", $plist))
-	return ("Missing Successful in plist file.");
+	return ("Missing Successful key in plist file.");
 
       if (!array_key_exists("Tests", $plist))
-	return ("Missing Tests in plist file.");
+	return ("Missing Tests key in plist file.");
 
-      if (!array_key_exists("FileId", $plist["Tests"][0]))
-	return ("Missing FileId in plist file.");
+      foreach ($plist["Tests"] as $test)
+      {
+        if (!array_key_exists("Name", $test))
+          return ("Error: Missing Name key for test in plist file.");
+
+        if (!array_key_exists("Successful", $test))
+          return ("Error: Missing Successful key for test in plist file.");
+
+        if (!array_key_exists("FileId", $test))
+	  return ("Error: Missing FileId key in plist file.");
+      }
 
       $fileid = $plist["Tests"][0]["FileId"];
 
