@@ -40,6 +40,8 @@ static ipp_loc_t	strings[] =
   { "document-state-reasons", "Detailed Document State" },
   { "font-name-requested", "Font Name" },
   { "font-size-requested", "Font Size" },
+  { "input-color-mode.bi-level", "Bi-Level" },
+  { "ipp-attribute-fidelity", "Attribute Fidelity" },
   { "job-hold-until", "Hold Until" },
   { "job-hold-until.indefinite", "Released" },
   { "job-sheets", "Banner Page" },
@@ -49,10 +51,14 @@ static ipp_loc_t	strings[] =
   { "job-sheets.job-end-sheet", "End Sheet" },
   { "job-sheets.job-start-sheet", "Start Sheet" },
   { "job-state-reasons", "Detailed Job State" },
+  { "media-grain.x-direction", "Cross-Feed Direction" },
+  { "media-grain.y-direction", "Feed Direction" },
   { "media-pre-printed.blank", "Blank" },
   { "media-pre-printed.letter-head", "Letterhead" },
   { "media-pre-printed.pre-printed", "Preprinted" },
   { "media-pre-printed", "Media Preprinted" },
+  { "media-type.cd", "CD" },
+  { "media-type.dvd", "DVD" },
   { "media-type.photographic-film", "Photographic (Film)" },
   { "media-type.photographic-glossy", "Photographic (Glossy)" },
   { "media-type.photographic-high-gloss", "Photographic (High Gloss)" },
@@ -133,6 +139,18 @@ static ipp_loc_t	strings[] =
   { "notify-subscribed-event", "Notify Event" },
   { "number-up", "Number-Up" },
   { "orientation-requested", "Orientation" },
+  { "pdf-versions-supported.iso-15930-1_2001", "ISO 15930-1:2001" },
+  { "pdf-versions-supported.iso-15930-3_2002", "ISO 15930-3:2002" },
+  { "pdf-versions-supported.iso-15930-4_2003", "ISO 15930-4:2003" },
+  { "pdf-versions-supported.iso-15930-6_2003", "ISO 15930-6:2003" },
+  { "pdf-versions-supported.iso-15930-7_2010", "ISO 15930-7:2010" },
+  { "pdf-versions-supported.iso-15930-8_2010", "ISO 15930-8:2010" },
+  { "pdf-versions-supported.iso-16612-2_2010", "ISO 16612-2:2010" },
+  { "pdf-versions-supported.iso-19005-1_2005", "ISO 19005-1:2005" },
+  { "pdf-versions-supported.iso-19005-2_2011", "ISO 19005-2:2011" },
+  { "pdf-versions-supported.iso-19005-3_2012", "ISO 19005-3:2012" },
+  { "pdf-versions-supported.iso-32000-1_2008", "ISO 32000-1:2008" },
+  { "pdf-versions-supported.pwg-5102.3", "PWG 5102.3" },
   { "presentation-direction-number-up", "Number-Up Layout" },
   { "presentation-direction-number-up.tobottom-toleft", "Top-Bottom, Right-Left" },
   { "presentation-direction-number-up.tobottom-toright", "Top-Bottom, Left-Right" },
@@ -149,6 +167,8 @@ static ipp_loc_t	strings[] =
   { "print-content-optimize.text-and-graphic", "Text And Graphics" },
   { "print-rendering-intent.relative-bpc", "Relative w/Black Point Compensation" },
   { "printer-state-reasons", "Detailed Printer State" },
+  { "printer-up-time", "Printer Uptime" },
+  { "profile-uri-actual", "Actual Profile URI" },
   { "sheet-collate", "Collate Copies" },
   { "sheet-collate.collated", "Yes" },
   { "sheet-collate.uncollated", "No" },
@@ -365,11 +385,15 @@ get_localized(const char *attribute,	/* I - Attribute */
   }
 
  /*
-  * "auto"?
+  * Common words?
   */
 
   if (!strcmp(name, "auto"))
     return ("Automatic");
+  else if (!strcmp(name, "semi-gloss"))
+    return ("Semi-Gloss");
+  else if (!strcmp(name, "multi-color"))
+    return ("Multi-Color");
 
  /*
   * Nope, make one from the keyword/name...
@@ -380,6 +404,43 @@ get_localized(const char *attribute,	/* I - Attribute */
 
   while (*name && bufptr < bufend)
   {
+    if (!strncmp(name, "jdf-", 4))
+    {
+      name += 4;
+      strlcpy(bufptr, "JDF ", bufend - bufptr + 1);
+      bufptr += strlen(bufptr);
+
+      if (!*name)
+        break;
+    }
+    else if (!strncmp(name, "rgb_", 4))
+    {
+      name += 4;
+      strlcpy(bufptr, "RGB ", bufend - bufptr + 1);
+      bufptr += strlen(bufptr);
+
+      if (!*name)
+        break;
+    }
+    else if (!strncmp(name, "rgba_", 5))
+    {
+      name += 5;
+      strlcpy(bufptr, "RGBA ", bufend - bufptr + 1);
+      bufptr += strlen(bufptr);
+
+      if (!*name)
+        break;
+    }
+    else if (!strncmp(name, "cmyk_", 5))
+    {
+      name += 5;
+      strlcpy(bufptr, "CMYK ", bufend - bufptr + 1);
+      bufptr += strlen(bufptr);
+
+      if (!*name)
+        break;
+    }
+
     *bufptr++ = toupper(*name++ & 255);
 
     while (*name && bufptr < bufend)
@@ -395,6 +456,11 @@ get_localized(const char *attribute,	/* I - Attribute */
 	strlcpy(bufptr, " ID", bufend - bufptr + 1);
 	bufptr += strlen(bufptr);
 	break;
+      }
+      else if (!strcmp(name, "-requested"))
+      {
+        name += 10;
+        break;
       }
       else if (!strcmp(name, "-uri"))
       {

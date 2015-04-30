@@ -55,6 +55,7 @@ $REVIEWER_STATUSES = array(
 );
 
 $SUBMISSION_VERSIONS = array(
+  "org.pwg.ipp-everywhere.20150415" => "1.0 Draft (April 15, 2015)"
   "org.pwg.ipp-everywhere.20140826" => "1.0 Draft (August 26, 2014)"
 );
 
