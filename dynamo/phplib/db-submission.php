@@ -280,7 +280,10 @@ class submission
     if ($this->create_id == $LOGIN_ID)
       html_form_email("contact_email", "name@example.com", $this->contact_email);
     else
-      print(htmlspecialchars($this->contact_email));
+    {
+      $email = htmlspecialchars($this->contact_email);
+      print("<a href=\"mailto:$email\">$email</a>");
+    }
     html_form_field_end();
 
     // product_family
@@ -295,6 +298,8 @@ class submission
     html_form_field_start("url", "Product Family URL", $this->url_valid);
     if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
       html_form_url("url", "http://www.example.com/products", $this->url);
+    else if ($this->url == "")
+      print("<em>None</em>");
     else
     {
       $temp = htmlspecialchars($this->url, ENT_QUOTES);
