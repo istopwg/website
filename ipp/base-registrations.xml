@@ -4,16 +4,13 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2014-08-26 (PWG: 2015-01-06)</updated>
+  <updated>2015-01-09 (PWG: 2015-05-05)</updated>
   <!--
     Pending PWG Registrations and Changes:
-    - Added missing printer-strings-languages-supported, and printer-strings-uri attributes from JPS3
-    - Changed subscription-uuid to notify-subscription-uuid (JPS3)
-    - Added missing attributes from RFC 3995 and 3996.
-    - Normalized extension syntax to be "name(extension)", new attribute type
-      extensions are now registered as extensions to the original spec.
-    - Added published IPP Scan Service (PWG 5100.17) definitions
-    - Added published IPP Finishings 2.0 (FIN - PWG 5100.1-2014) definitions
+    - Moved notify-xxx-default and notify-xxx-supported to Printer Description
+      group.
+    - Added job-uuid and notify-subscription-uuid to Event Notifications group for PWG 5100.13.
+    - Added missing document-number (integer(1:MAX)) from PWG 5100.5 to operation group
     - Added stable IPP Shared Infrastructure Extensions (INFRA) definitions
   -->
   <registry id="ipp-registrations-1">
@@ -972,6 +969,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Event Notifications</collection>
+      <name>job-uuid</name>
+      <syntax>uri</syntax>
+      <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
+    </record>
+    <record>
+      <collection>Event Notifications</collection>
       <name>notify-charset</name>
       <syntax>charset</syntax>
       <xref type="rfc" data="rfc3996" />
@@ -1005,6 +1008,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <name>notify-subscription-id</name>
       <syntax>integer(1:MAX)</syntax>
       <xref type="rfc" data="rfc3996" />
+    </record>
+    <record>
+      <collection>Event Notifications</collection>
+      <name>notify-subscription-uuid</name>
+      <syntax>uri</syntax>
+      <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
       <collection>Event Notifications</collection>
@@ -3353,6 +3362,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Operation</collection>
+      <name>document-number</name>
+      <syntax>integer(1:MAX)</syntax>
+      <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
+    </record>
+    <record>
+      <collection>Operation</collection>
       <name>document-password</name>
       <syntax>octetString(1023)</syntax>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -5170,6 +5185,42 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Printer Description</collection>
+      <name>notify-events-default</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="rfc" data="rfc3995" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>notify-events-supported</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="rfc" data="rfc3995" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>notify-lease-duration-default</name>
+      <syntax>integer(0:67108863)</syntax>
+      <xref type="rfc" data="rfc3995" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>notify-lease-duration-supported</name>
+      <syntax>1setOf (integer(0: 67108863) | rangeOfInteger(0:67108863))</syntax>
+      <xref type="rfc" data="rfc3995" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>notify-pull-method-supported</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="rfc" data="rfc3995" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>notify-schemes-supported</name>
+      <syntax>1setOf uriScheme</syntax>
+      <xref type="rfc" data="rfc3995" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
       <name>number-of-retries-default</name>
       <syntax>integer(0:MAX)</syntax>
       <xref data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -6288,32 +6339,8 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Subscription Template</collection>
-      <name>notify-events-default</name>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="rfc" data="rfc3995" />
-    </record>
-    <record>
-      <collection>Subscription Template</collection>
-      <name>notify-events-supported</name>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="rfc" data="rfc3995" />
-    </record>
-    <record>
-      <collection>Subscription Template</collection>
       <name>notify-lease-duration</name>
       <syntax>integer(0:67108863)</syntax>
-      <xref type="rfc" data="rfc3995" />
-    </record>
-    <record>
-      <collection>Subscription Template</collection>
-      <name>notify-lease-duration-default</name>
-      <syntax>integer(0:67108863)</syntax>
-      <xref type="rfc" data="rfc3995" />
-    </record>
-    <record>
-      <collection>Subscription Template</collection>
-      <name>notify-lease-duration-supported</name>
-      <syntax>1setOf (integer(0: 67108863) | rangeOfInteger(0:67108863))</syntax>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
@@ -6336,20 +6363,8 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Subscription Template</collection>
-      <name>notify-pull-method-supported</name>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="rfc" data="rfc3995" />
-    </record>
-    <record>
-      <collection>Subscription Template</collection>
       <name>notify-recipient-uri</name>
       <syntax>uri</syntax>
-      <xref type="rfc" data="rfc3995" />
-    </record>
-    <record>
-      <collection>Subscription Template</collection>
-      <name>notify-schemes-supported</name>
-      <syntax>1setOf uriScheme</syntax>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>

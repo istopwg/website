@@ -1057,6 +1057,11 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
         continue;
       else if (result < 0)
         break;
+      else if (result == 0 && strstr(keyword, "(deprecated)") != NULL)
+      {
+	record_node = mxmlFindElement(record_node, registry_node, "record", NULL, NULL, MXML_NO_DESCEND);
+        break;
+      }
     }
     else if ((result = compare_strings(keyword, mxmlGetOpaque(value_node))) > 0)
       continue;
@@ -1087,7 +1092,10 @@ add_value(mxml_node_t *xml,		/* I - XML registry */
       if (!name)
         mxmlNewOpaque(name_node, keyword);
       else
+      {
+        fprintf(stderr, "register: Renaming keyword for enum record '%s' for attribute %s.\n", enumval, attrname);
         mxmlSetOpaque(name_node, keyword);
+      }
 
       return (1);
     }
