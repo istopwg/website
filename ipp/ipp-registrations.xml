@@ -4,13 +4,9 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2015-01-09 (PWG: 2015-05-05)</updated>
+  <updated>2015-06-11 (PWG: 2015-06-15)</updated>
   <!--
     Pending PWG Registrations and Changes:
-    - Moved notify-xxx-default and notify-xxx-supported to Printer Description
-      group.
-    - Added job-uuid and notify-subscription-uuid to Event Notifications group for PWG 5100.13.
-    - Added missing document-number (integer(1:MAX)) from PWG 5100.5 to operation group
     - Added stable IPP Shared Infrastructure Extensions (INFRA) definitions
   -->
   <registry id="ipp-registrations-1">
