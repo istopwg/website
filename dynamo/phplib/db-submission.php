@@ -119,6 +119,9 @@ class submission
     $filetype = $srcfile["type"];	// File type as reported by browser
     $tmp_name = $srcfile["tmp_name"];	// Local temporary file
 
+    if ($tmp_name == "")
+      return;
+
     if (!preg_match("/\\.plist\$/", $filename))
       return (htmlspecialchars("Expected a plist file, got '$filename'."));
 
@@ -222,6 +225,8 @@ class submission
   {
     global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_NAME, $REVIEWER_STATUSES, $SUBMISSION_DIR, $SUBMISSION_STATUSES, $SUBMISSION_VERSIONS, $_POST, $html_path;
 
+    $new_submission = $this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING;
+    $create_user = new user($this->create_id);
 
     print("<h2>Information</h2>\n");
 
@@ -261,8 +266,8 @@ class submission
 
     // organization_id
     html_form_field_start("+organization_id", "Organization Name", $this->organization_id_valid);
-    if ($this->id == 0)
-      organization_select("organization_id", $this->organization_id, "-- Choose --");
+    if ($new_submission)
+      organization_select("organization_id", $this->organization_id, "-- Choose --", "", "", "", 1);
     else
       print(organization_name($this->organization_id));
     html_form_field_end();
@@ -288,7 +293,7 @@ class submission
 
     // product_family
     html_form_field_start("+product_family", "Product Family Name", $this->product_family_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
+    if ($new_submission)
       html_form_text("product_family", "Name of product family being submitted", $this->product_family);
     else
       print(htmlspecialchars($this->product_family));
@@ -296,7 +301,7 @@ class submission
 
     // url
     html_form_field_start("url", "Product Family URL", $this->url_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
+    if ($new_submission)
       html_form_url("url", "http://www.example.com/products", $this->url);
     else if ($this->url == "")
       print("<em>None</em>");
@@ -309,7 +314,7 @@ class submission
 
     // models
     html_form_field_start("+models", "Models", $this->models_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
+    if ($new_submission)
       html_form_text("models", "Make Model\nMake Model\n...", $this->models,
                    "List the make and model of every printer in the product family, one per line.", 20);
     else
@@ -318,7 +323,7 @@ class submission
 
     // cert_version
     html_form_field_start("+cert_version", "Self-Certification Manual");
-    if ($this->id == 0)
+    if ($new_submission)
       html_form_select("cert_version", $SUBMISSION_VERSIONS, "", $this->cert_version);
     else if (array_key_exists($this->cert_version, $SUBMISSION_VERSIONS))
       print($SUBMISSION_VERSIONS[$this->cert_version]);
@@ -328,7 +333,7 @@ class submission
 
     // used_approved, used_prodready, printed_correctly
     html_form_field_start("+used_approved", "Submission Checklist");
-    if ($this->id == 0)
+    if ($new_submission)
     {
       html_form_checkbox("used_approved", "Used PWG self-certification tools.", $this->used_approved, "As supplied on the PWG FTP server.");
       html_form_checkbox("used_prodready", "Used Production-Ready Code.", $this->used_prodready, "Production-Ready Code: Software and/or firmware that is considered ready to be included in products shipped to customers.");
@@ -358,7 +363,7 @@ class submission
 
     // exceptions
     html_form_field_start("exceptions", "Requested Exceptions");
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
+    if ($new_submission)
       html_form_text("exceptions", "Test number + reasons\nTest number + reasons\n...", $this->exceptions, "List the exceptions you are requesting, if any.", 20);
     else if ($this->exceptions != "")
       print(html_text($this->exceptions));
@@ -368,8 +373,8 @@ class submission
 
     // reviewer1_id
     html_form_field_start("+reviewer1_id", "First Reviewer", $this->reviewer1_id_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
-      user_select("reviewer1_id", $this->reviewer1_id, USER_SELECT_REVIEWER, "-- Choose --");
+    if ($new_submission)
+      user_select("reviewer1_id", $this->reviewer1_id, USER_SELECT_REVIEWER, "-- Choose --", "", $create_user->organization_id);
     else
       print(user_name($this->reviewer1_id));
     html_form_field_end();
@@ -386,8 +391,8 @@ class submission
 
     // reviewer2_id
     html_form_field_start("+reviewer2_id", "Second Reviewer", $this->reviewer2_id_valid);
-    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
-      user_select("reviewer2_id", $this->reviewer2_id, USER_SELECT_REVIEWER, "-- Choose --");
+    if ($new_submission)
+      user_select("reviewer2_id", $this->reviewer2_id, USER_SELECT_REVIEWER, "-- Choose --", "", $create_user->organization_id);
     else
       print(user_name($this->reviewer2_id));
     html_form_field_end();
@@ -403,88 +408,68 @@ class submission
     }
 
     // files
-    if ($this->id == 0)
-    {
-      html_form_field_start("+bonjour_file", "Bonjour Test Results");
+    html_form_field_start("+bonjour_file", "Bonjour Test Results");
+    if ($new_submission)
       html_form_file("bonjour_file", "", $this->bonjour_file_error);
-      html_form_field_end();
-
-      html_form_field_start("+ipp_file", "IPP Test Results");
-      html_form_file("ipp_file", "", $this->bonjour_file_error);
-      html_form_field_end();
-
-      html_form_field_start("+document_file", "Document Data Test Results");
-      html_form_file("document_file", "", $this->bonjour_file_error);
-      html_form_field_end();
-    }
-    else
+    $filename = "$SUBMISSION_DIR/$this->id/bonjour.plist";
+    if (file_exists($filename))
     {
-      html_form_field_start("+bonjour_file", "Bonjour Test Results");
-      $filename = "$SUBMISSION_DIR/$this->id/bonjour.plist";
+      if ($new_submission)
+        print("<br>\n");
+
       $filesize = sprintf("%.1fk", filesize($filename) / 1024);
       if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
-        print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/bonjour.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download bonjour.plist ($filesize)</a>");
+	print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/bonjour.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download bonjour.plist ($filesize)</a>");
       else
-        print("bonjour.plist ($filesize)");
+	print("bonjour.plist ($filesize)");
       if (($error = $this->validate_file($filename)) != "")
-      {
-        if ($LOGIN_ID == $this->create_id && $this->status == SUBMISSION_STATUS_PENDING)
-        {
-          print("<br>\n");
-	  html_form_file("bonjour_file", "", $error);
-	}
-	else
-          print(" <em>$error</em>");
-      }
+	print(" <em>$error</em>");
       else
-        print(" " . $this->summarize_file($filename));
+	print(" " . $this->summarize_file($filename));
+    }
+    html_form_field_end();
 
-      html_form_field_end();
+    html_form_field_start("+ipp_file", "IPP Test Results");
+    if ($new_submission)
+      html_form_file("ipp_file", "", $this->ipp_file_error);
+    $filename = "$SUBMISSION_DIR/$this->id/ipp.plist";
+    if (file_exists($filename))
+    {
+      if ($new_submission)
+        print("<br>\n");
 
-      html_form_field_start("+ipp_file", "IPP Test Results");
-      $filename = "$SUBMISSION_DIR/$this->id/ipp.plist";
       $filesize = sprintf("%.1fk", filesize($filename) / 1024);
       if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
         print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/ipp.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download ipp.plist ($filesize)</a>");
       else
         print("ipp.plist ($filesize)");
       if (($error = $this->validate_file($filename)) != "")
-      {
-        if ($LOGIN_ID == $this->create_id && $this->status == SUBMISSION_STATUS_PENDING)
-        {
-          print("<br>\n");
-	  html_form_file("ipp_file", "", $error);
-	}
-	else
-          print(" <em>$error</em>");
-      }
+	print(" <em>$error</em>");
       else
         print(" " . $this->summarize_file($filename));
+    }
+    html_form_field_end();
 
-      html_form_field_end();
+    html_form_field_start("+document_file", "Document Data Test Results");
+    if ($new_submission)
+      html_form_file("document_file", "", $this->document_file_error);
+    $filename = "$SUBMISSION_DIR/$this->id/document.plist";
+    if (file_exists($filename))
+    {
+      if ($new_submission)
+        print("<br>\n");
 
-      html_form_field_start("+document_file", "Document Data Test Results");
-      $filename = "$SUBMISSION_DIR/$this->id/document.plist";
       $filesize = sprintf("%.1fk", filesize($filename) / 1024);
       if ($LOGIN_ID == $this->create_id || $LOGIN_ID == $this->reviewer1_id || $LOGIN_ID == $this->reviewer2_id)
         print("<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/evefile.php/$this->id/document.plist\"><span class=\"glyphicon glyphicon-download\"></span> Download document.plist ($filesize)</a>");
       else
         print("document.plist ($filesize)");
       if (($error = $this->validate_file($filename)) != "")
-      {
-        if ($LOGIN_ID == $this->create_id && $this->status == SUBMISSION_STATUS_PENDING)
-        {
-          print("<br>\n");
-	  html_form_file("document_file", "", $error);
-	}
-	else
-          print(" <em>$error</em>");
-      }
+	print(" <em>$error</em>");
       else
         print(" " . $this->summarize_file($filename));
-
-      html_form_field_end();
     }
+    html_form_field_end();
 
     // Submit
     html_form_buttons(array("SUBMIT" => "+$action"));
@@ -564,11 +549,29 @@ class submission
       $status_set   = FALSE;
     }
 
-    if ($this->id == 0)
+    if ($this->create_id == $LOGIN_ID)
+    {
+      if (array_key_exists("contact_name", $_POST))
+	$this->contact_name = trim($_POST["contact_name"]);
+
+      if (array_key_exists("contact_email", $_POST))
+	$this->contact_email = trim($_POST["contact_email"]);
+    }
+
+    if ($this->create_id == $LOGIN_ID && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && $this->status == SUBMISSION_STATUS_PENDING)
     {
       if (array_key_exists("organization_id", $_POST) &&
 	  preg_match("/^o[0-9]+\$/", $_POST["organization_id"]))
 	$this->organization_id = (int)substr($_POST["organization_id"], 1);
+
+      if (array_key_exists("product_family", $_POST))
+	$this->product_family = trim($_POST["product_family"]);
+
+      if (array_key_exists("url", $_POST))
+	$this->url = trim($_POST["url"]);
+
+      if (array_key_exists("models", $_POST))
+	$this->models = trim($_POST["models"]);
 
       if (array_key_exists("cert_version", $_POST))
 	$this->cert_version = trim($_POST["cert_version"]);
@@ -591,29 +594,10 @@ class submission
       if (array_key_exists("exceptions", $_POST))
 	$this->exceptions = trim($_POST["exceptions"]);
 
-    }
-
-    if ($this->create_id == $LOGIN_ID)
-    {
-      if (array_key_exists("contact_name", $_POST))
-	$this->contact_name = trim($_POST["contact_name"]);
-
-      if (array_key_exists("contact_email", $_POST))
-	$this->contact_email = trim($_POST["contact_email"]);
-
-      if (array_key_exists("product_family", $_POST))
-	$this->product_family = trim($_POST["product_family"]);
-
-      if (array_key_exists("models", $_POST))
-	$this->models = trim($_POST["models"]);
-
-      if (array_key_exists("url", $_POST))
-	$this->url = trim($_POST["url"]);
-
-      if ($this->status == SUBMISSION_STATUS_PENDING && $this->reviewer1_status == SUBMISSION_STATUS_PENDING && array_key_exists("reviewer1_id", $_POST))
+      if (array_key_exists("reviewer1_id", $_POST))
 	$this->reviewer1_id = (int)$_POST["reviewer1_id"];
 
-      if ($this->status == SUBMISSION_STATUS_PENDING && $this->reviewer2_status == SUBMISSION_STATUS_PENDING && array_key_exists("reviewer2_id", $_POST))
+      if (array_key_exists("reviewer2_id", $_POST))
 	$this->reviewer2_id = (int)$_POST["reviewer2_id"];
     }
 
@@ -967,7 +951,12 @@ class submission
         }
       }
 
-      return ("$total tests, $passed passed, $skipped skipped, $failed failed$list");
+      if ($failed > 0)
+        $glyph = "<span class=\"glyphicon glyphicon-thumbs-down\"></span>";
+      else
+        $glyph = "<span class=\"glyphicon glyphicon-thumbs-up\"></span>";
+
+      return ("$glyph $total tests, $passed passed, $skipped skipped, $failed failed$list");
     }
     else
       return ("Error: Unable to parse plist file.");

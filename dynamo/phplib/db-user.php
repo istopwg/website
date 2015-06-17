@@ -617,7 +617,8 @@ user_select(
     $id = 0,				// I - Currently selected user, if any
     $which = USER_SELECT_MEMBER,	// I - Which kind of user to select?
     $any_id = "",			// I - Allow "any user"?
-    $prefix = "")			// I - Prefix on values
+    $prefix = "",			// I - Prefix on values
+    $except_organization_id = 0)	// I - Organization to exclude, if any
 {
   global $USER_NAMES, $USER_ORGS;
 
@@ -651,6 +652,8 @@ user_select(
   }
   if ($where != "WHERE")
     $where .= ") AND";
+  if ($except_organization_id > 0)
+    $where .= " organization_id <> $except_organization_id AND";
 
   $results = db_query("SELECT id, name, organization_id FROM user $where status = 2 "
 		     ."ORDER BY name, organization_id");

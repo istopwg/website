@@ -314,7 +314,8 @@ organization_select(
     $any_id = "",			// I - Allow "any organization"?
     $prefix = "",			// I - Prefix on values
     $other_id = "",			// I - Allow "other organization"?
-    $other_name = "")			// I - Form name for other field
+    $other_name = "",			// I - Form name for other field
+    $is_everywhere = 0)			// I - Signed IPP Everywhere agreement?
 {
   global $ORGANIZATION_NAMES, $_POST;
 
@@ -324,11 +325,14 @@ organization_select(
   if ($any_id != "")
     print("<option value=\"0\">$prefix$any_id</option>");
 
-  $results = db_query("SELECT id, name FROM organization WHERE status < " . ORGANIZATION_STATUS_DELETED . " ORDER BY name");
+  $results = db_query("SELECT id, name, is_everywhere FROM organization WHERE status < " . ORGANIZATION_STATUS_DELETED . " ORDER BY name");
   while ($row = db_next($results))
   {
     $oid          = $row["id"];
     $name         = htmlspecialchars($row["name"]);
+
+    if ($is_everywhere && !$row["is_everywhere"])
+      continue;
 
     if ($oid == $id)
       print("<option value=\"$oid\" selected>$prefix$name</option>");
