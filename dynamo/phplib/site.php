@@ -218,9 +218,9 @@ site_header($title = "",		// I - Additional document title
        ."            <li><a href=\"${html_path}standards.html\">Standards</a></li>\n"
        ."            <li class=\"divider\"></li>\n"
        ."            <li class=\"dropdown-header\" role=\"presentation\">Technologies</li>\n"
-       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>TM</sup></a></li>\n");
+       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>&reg;</sup></a></li>\n");
   if ($SITE_SHOW_BETA)
-    print("            <li><a href=\"${html_path}dynamo/eveprinters.php\">&nbsp;&nbsp;&nbsp;&nbsp;IPP Everywhere<sup>TM</sup> Printers</a></li>\n");
+    print("            <li><a href=\"${html_path}dynamo/eveprinters.php\">&nbsp;&nbsp;&nbsp;&nbsp;IPP Everywhere<sup>&reg;</sup> Printers</a></li>\n");
   print("          </ul>\n"
        ."        </li>\n"
        ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Workgroups <span class=\"caret\"></span></a>\n"
