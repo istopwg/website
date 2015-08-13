@@ -96,7 +96,12 @@ site_header($title = "",		// I - Additional document title
 
   // Title...
   if ($title != "" && $title != "Printer Working Group")
-    $html_title = htmlspecialchars("$title -");
+  {
+    if ($title[0] == "-")
+      $html_title = htmlspecialchars(substr($title, 1) . " -");
+    else
+      $html_title = htmlspecialchars("$title -");
+  }
   else
     $html_title = "";
 
@@ -243,7 +248,7 @@ site_header($title = "",		// I - Additional document title
   if (!$html_is_phone)
     print("  <div id=\"pwg-search-results\"></div>\n");
   print("  <div id=\"pwg-content\">\n");
-  if ($title != "")
+  if ($title != "" && $title[0] != "-")
     print("    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
 }
 

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>-3D Printing</title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-md-9 col-sm-12">
+	<div class="jumbotron">
+	  <h1><img class="pwg-logo pwg-right hidden-xs" src="pwg-3d-medium@2x.png">3D Printing</h1>
+	  <p>The Printer Working Group is investigating standardization of 3D Printing using the <a href="../ipp">Internet Printing Protocol</a> and <a href="../sm">PWG Semantic Model</a> for the underlying network protocol and Job Ticket formats, and one or more existing high-level 3D file formats to describe the objects to print.</p>
+	  <p><a class="btn btn-primary btn-lg" href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20150812.pdf">Current White Paper<br><small><em>August 12, 2015</em></small></a></p>
+	</div>
+      </div>
+      <div class="col-md-3 col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">Previous Meetings</div>
+          <div class="panel-body">
+	    <p><b>August 11, 2015</b><br>
+	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-august-2015.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20150729-rev.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20150811.pdf">Minutes</a></p>
+
+	    <p><b>April 28, 2015</b><br>
+	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-april-2015.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20150413-rev.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20150428.pdf">Minutes</a></p>
+
+	    <p><b>February 4, 2015</b><br>
+	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20150123.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20150204.pdf">Minutes</a></p>
+
+	    <p><b>August 13, 2014</b><br>
+	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-august-2014.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20140813.pdf">Minutes</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Summary of Work</h2>
+
+    <p>All of our work to date has been conducted through "Birds of a Feather" (BOF) sessions at our face-to-face meetings and on the <a href="http://www.pwg.org/mailman/listinfo/3d-printing">3d-printing</a> mailing list we host. A white paper has also been produced outlining our approach which may lead to the formation of a new workgroup or changes to an existing workgroup charter. While IPP and the PWG Semantic Model can be easily adapted to 3D printing, adapting the existing 3D file formats is proving to be more of a challenge.</p>
+
+    <h2>3D File Formats</h2>
+
+    <p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a slightly more compact XML format than AMF with physical dimensions, named materials, and shared vertices. The OPC (ZIP) format it uses may pose resource issues for low-end printer controllers, and little existing 3D software supports the format.<br>
+    <a target="_blank" href="http://www.3mf.io/"><em>More Information</em></a></p>
+
+    <p><b>Additive Manufacturing File Format (AMF)</b>: AMF is an ISO standard XML format that supports physical dimensions, named materials, and shared vertices. It is generally considered to be the replacement for STL and is supported by some 3D software. The lack of a freely-available version of the standard has limited its use in 3D printing.<br>
+    <a target="_blank" href="https://en.wikipedia.org/wiki/Additive_Manufacturing_File_Format"><em>More Information</em></a></p>
+
+    <p><b>Collada (DAE)</b>: Collada is an XML format for 3D assets that is widely used in gaming. While it does offer shared vertices, it does not provide a way to name materials or define physical units.<br>
+    <a target="_blank" href="https://www.khronos.org/collada/"><em>More Information</em></a></p>
+
+    <p><b>Stereo Lithography File Format (STL)</b>: STL is the current defacto-standard file format with both plain text and binary encodings. While it is the most widely used and supported file format for 3D printing, it lacks support for physical dimensions, named materials, or shared vertices.<br>
+    <a target="_blank" href="https://en.wikipedia.org/wiki/STL_(file_format)"><em>More Information</em></a></p>
+  </body>
+</html>
