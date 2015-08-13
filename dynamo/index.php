@@ -17,7 +17,7 @@ $matches = article_search();
   <h1><img class="pwg-logo pwg-right hidden-xs" src="<?print($html_path);?>dynamo/resources/pwg-medium@2x.png">The Printer Working Group</h1>
   <p>Our members include printer and multi-function device manufacturers, print server developers, operating system providers, print management application developers, and industry experts. We make printers, multi-function devices, and the applications and operating systems supporting them work together better.</p>
   <p><a class="btn btn-primary btn-lg" href="<?print($html_path);?>about.html">More Info</a>
-  <a class="btn btn-default btn-lg" href="#NEWS">Recent News</a></p>
+  &nbsp;<a class="btn btn-default btn-lg" href="#NEWS">Recent News</a></p>
 </div>
 
 <?
@@ -59,10 +59,10 @@ if (!$firsttime)
 <div class="row">
   <div class="col-md-3 col-sm-6">
     <div class="panel panel-default">
-      <div class="panel-heading">Standards</div>
+      <div class="panel-heading">3D Printing</div>
       <div class="panel-body">
-        <p>PWG Standards define all of the common network protocols used by your printer.</p>
-        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>standards.html">More Info</a></p>
+        <p>The PWG is investigating standardization of 3D printing using IPP and standard formats.</p>
+        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>3d">More Info</a></p>
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@ if (!$firsttime)
 	<p>Print to any network or USB printer without using special software from the manufacturer.</p>
 	<p><a class="btn btn-default btn-sm" href="<?print($html_path);?>ipp/everywhere.html">More Info</a><?
 	  if ($SITE_SHOW_BETA)
-	    print(" <a class=\"btn btn-default btn-sm\" href=\"${html_path}dynamo/eveprinters.php\">Find Printers</a>\n");?></p>
+	    print(" &nbsp;<a class=\"btn btn-default btn-sm\" href=\"${html_path}dynamo/eveprinters.php\">Find Printers</a>\n");?></p>
       </div>
     </div>
   </div>
@@ -88,13 +88,22 @@ if (!$firsttime)
   </div>
   <div class="col-md-3 col-sm-6">
     <div class="panel panel-default">
+      <div class="panel-heading">Standards</div>
+      <div class="panel-body">
+        <p>PWG Standards define all of the common network protocols used by your printer.</p>
+        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>standards.html">More Info</a></p>
+      </div>
+    </div>
+  </div>
+<!--  <div class="col-md-3 col-sm-6">
+    <div class="panel panel-default">
       <div class="panel-heading">SNMP MIBs</div>
       <div class="panel-body">
         <p>Monitor jobs, status, and supplies, and manage your printers remotely using SNMP.</p>
         <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>wims/index.html">More Info</a></p>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 <div class="row">
 <div class="col-md-12">
