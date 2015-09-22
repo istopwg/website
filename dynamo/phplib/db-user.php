@@ -154,8 +154,8 @@ class user
     organization_select("organization_id", $this->organization_id, "None", "", "Other...", "other_organization");
     html_form_field_end();
 
-    html_form_field_start("email2", "EMail", $this->email_valid);
-    html_form_email("email2", "name@example.com", $this->email);
+    html_form_field_start("account_email", "EMail", $this->email_valid);
+    html_form_email("account_email", "name@example.com", $this->email);
     html_form_field_end();
 
     if ($LOGIN_IS_ADMIN && $LOGIN_ID != $this->id)
@@ -344,8 +344,8 @@ class user
       }
     }
 
-    if (array_key_exists("email2", $_POST))
-      $this->email = trim($_POST["email2"]);
+    if (array_key_exists("account_email", $_POST))
+      $this->email = trim($_POST["account_email"]);
 
     if (array_key_exists("oldpassword", $_POST))
       $oldpassword = trim($_POST["oldpassword"]);
