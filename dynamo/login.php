@@ -67,7 +67,7 @@ html_form_field_start("email", "EMail");
 html_form_email("+email", "name@example.com", $email);
 html_form_field_end();
 html_form_field_start("password", "Password");
-html_form_password("+password", "", "", TRUE);
+html_form_password("+password");
 html_form_field_end();
 html_form_end(array("SUBMIT" => "+Login"));
 
