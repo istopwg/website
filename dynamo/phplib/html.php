@@ -1234,7 +1234,8 @@ function
 html_form_email($name,			// I - Field name
                 $placeholder,		// I - Placeholder text
                 $value = "",		// I - Current value
-                $help = "")		// I - Help, if any
+                $help = "",		// I - Help, if any
+                $autofill = TRUE)	// I - Allow auto-fill?
 {
   global $html_input_width;
 
@@ -1252,13 +1253,18 @@ html_form_email($name,			// I - Field name
   else
     $required = "";
 
+  if ($autofill)
+    $readonly = " autocomplete=\"on\"";
+  else
+    $readonly = " autocomplete=\"off\" readonly onfocus=\"this.removeAttribute('readonly');\"";
+
   $name        = htmlspecialchars($name, ENT_QUOTES);
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
   $value       = htmlspecialchars($value, ENT_QUOTES);
 
   print("<input class=\"form-control\" type=\"email\" name=\"$name\" size=\"$email_width\" "
        ."placeholder=\"$placeholder\" maxlength=\"255\"$required "
-       ."value=\"$value\">");
+       ."value=\"$value\"$readonly>");
 
   if ($help != "")
   {
@@ -1367,7 +1373,7 @@ function
 html_form_password($name,		// I - Field name
                    $placeholder = "",	// I - Placeholder text
 		   $help = "",		// I - Help, if any
-		   $fill = FALSE)	// I - Allow autocomplete?
+		   $autofill = TRUE)	// I - Allow autocomplete?
 {
   if ($name[0] == "+")
   {
@@ -1377,17 +1383,15 @@ html_form_password($name,		// I - Field name
   else
     $required = "";
 
-  if ($fill)
-    $autocomplete = " autocomplete=\"on\"";
+  if ($autofill)
+    $readonly = " type=\"password\" autocomplete=\"on\"";
   else
-    $autocomplete = " autocomplete=\"off\"";
+    $readonly = " autocomplete=\"off\" onfocus=\"this.setAttribute('type', 'password');\"";
 
   $name        = htmlspecialchars($name, ENT_QUOTES);
   $placeholder = htmlspecialchars($placeholder, ENT_QUOTES);
 
-  print("<input class=\"form-control\" type=\"password\" name=\"$name\" size=\"20\" "
-       ."placeholder=\"$placeholder\" maxlength=\"255\""
-       ."$autocomplete$required>");
+  print("<input class=\"form-control\" name=\"$name\" size=\"20\" placeholder=\"$placeholder\" maxlength=\"255\"$required$readonly>");
 
   if ($help != "")
   {
