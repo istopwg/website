@@ -34,7 +34,7 @@ if (html_form_validate() && (array_key_exists("editor", $_POST) || array_key_exi
   if (array_key_exists("submitter", $_POST))
     $message .= " Submitter";
 
-  $message .= "\n\nLink: ${SITE_URL}/dynamo.php/accounts.php?U$user->id\n";
+  $message .= "\n\nLink: ${SITE_URL}/dynamo/accounts.php?U$user->id\n";
 
   mail($SITE_EMAIL, "PWG.org Access Request", wordwrap($message), "From: $LOGIN_EMAIL\n");
 
