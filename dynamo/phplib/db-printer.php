@@ -8,7 +8,6 @@ include_once "db.php";
 
 
 $PRINTER_COLUMNS = array(
-  "submission_id" => PDO::PARAM_INT,
   "organization_id" => PDO::PARAM_INT,
   "product_family" => PDO::PARAM_STR,
   "model" => PDO::PARAM_STR,
@@ -18,9 +17,7 @@ $PRINTER_COLUMNS = array(
   "duplex_supported" => PDO::PARAM_BOOL,
   "finishings_supported" => PDO::PARAM_BOOL,
   "create_date" => PDO::PARAM_STR,
-  "create_id" => PDO::PARAM_INT,
-  "modify_date" => PDO::PARAM_STR,
-  "modify_id" => PDO::PARAM_INT
+  "create_id" => PDO::PARAM_INT
 );
 
 
@@ -31,7 +28,6 @@ class printer
   //
 
   var $id;
-  var $submission_id;
   var $organization_id;
   var $product_family;
   var $model;
@@ -42,8 +38,6 @@ class printer
   var $finishings_supported;
   var $create_date;
   var $create_id;
-  var $modify_date;
-  var $modify_id;
 
 
   //
@@ -70,7 +64,6 @@ class printer
     global $LOGIN_ID;
 
     $this->id                   = 0;
-    $this->submission_id        = 0;
     $this->organization_id      = 0;
     $this->product_family       = "";
     $this->model                = "";
@@ -81,8 +74,6 @@ class printer
     $this->finishings_supported = 0;
     $this->create_date          = "";
     $this->create_id            = $LOGIN_ID;
-    $this->modify_date          = "";
-    $this->modify_id            = $LOGIN_ID;
   }
 
 
@@ -128,14 +119,11 @@ class printer
     global $LOGIN_ID, $PRINTER_COLUMNS;
 
 
-    $this->modify_date = db_datetime();
-    $this->modify_id   = $LOGIN_ID;
-
     if ($this->id > 0)
       return (db_save($this, "printer", $this->id, $PRINTER_COLUMNS));
 
-    $this->create_date = $this->modify_date;
-    $this->create_id   = $this->modify_id;
+    $this->create_date = db_datetime();
+    $this->create_id   = $LOGIN_ID;
 
     if (($id = db_create($this, "printer", $PRINTER_COLUMNS)) === FALSE)
       return (FALSE);
