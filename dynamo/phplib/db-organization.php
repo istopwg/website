@@ -9,7 +9,6 @@ $ORGANIZATION_COLUMNS = array(
   "status" => PDO::PARAM_INT,
   "name" => PDO::PARAM_STR,
   "domain" => PDO::PARAM_STR,
-  "is_everywhere" => PDO::PARAM_BOOL,
   "create_date" => PDO::PARAM_INT,
   "create_id" => PDO::PARAM_STR,
   "modify_date" => PDO::PARAM_INT,
@@ -76,7 +75,6 @@ class organization
     $this->status        = ORGANIZATION_STATUS_NON_MEMBER;
     $this->name          = "";
     $this->domain        = "";
-    $this->is_everywhere = 0;
     $this->create_date   = "";
     $this->create_id     = $LOGIN_ID;
     $this->modify_date   = "";
@@ -123,7 +121,6 @@ class organization
     // status
     html_form_field_start("", "Status");
     html_form_select("status", $ORGANIZATION_STATUSES, "", $this->status);
-    html_form_checkbox("is_everywhere", "Signed IPP Everywhere Printer Self-Certification Agreement", $this->is_everywhere);
     html_form_field_end();
 
     // Submit
@@ -167,11 +164,6 @@ class organization
 
     if (array_key_exists("status", $_POST))
       $this->status = (int)$_POST["status"];
-
-    if (array_key_exists("is_everywhere", $_POST))
-      $this->is_everywhere = 1;
-    else
-      $this->is_everywhere = 0;
 
     if (array_key_exists("name", $_POST))
       $this->name = trim($_POST["name"]);
@@ -314,8 +306,7 @@ organization_select(
     $any_id = "",			// I - Allow "any organization"?
     $prefix = "",			// I - Prefix on values
     $other_id = "",			// I - Allow "other organization"?
-    $other_name = "",			// I - Form name for other field
-    $is_everywhere = 0)			// I - Signed IPP Everywhere agreement?
+    $other_name = "")			// I - Form name for other field
 {
   global $ORGANIZATION_NAMES, $_POST;
 
@@ -325,14 +316,11 @@ organization_select(
   if ($any_id != "")
     print("<option value=\"0\">$prefix$any_id</option>");
 
-  $results = db_query("SELECT id, name, is_everywhere FROM organization WHERE status < " . ORGANIZATION_STATUS_DELETED . " ORDER BY name");
+  $results = db_query("SELECT id, name FROM organization WHERE status < " . ORGANIZATION_STATUS_DELETED . " ORDER BY name");
   while ($row = db_next($results))
   {
-    $oid          = $row["id"];
-    $name         = htmlspecialchars($row["name"]);
-
-    if ($is_everywhere && !$row["is_everywhere"])
-      continue;
+    $oid  = $row["id"];
+    $name = htmlspecialchars($row["name"]);
 
     if ($oid == $id)
       print("<option value=\"$oid\" selected>$prefix$name</option>");

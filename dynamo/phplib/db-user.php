@@ -16,8 +16,6 @@ $USER_COLUMNS = array(
   "is_admin" => PDO::PARAM_BOOL,
   "is_editor" => PDO::PARAM_BOOL,
   "is_member" => PDO::PARAM_BOOL,
-  "is_reviewer" => PDO::PARAM_BOOL,
-  "is_submitter" => PDO::PARAM_BOOL,
   "timezone" => PDO::PARAM_STR,
   "itemsperpage" => PDO::PARAM_INT,
   "create_date" => PDO::PARAM_STR,
@@ -32,7 +30,6 @@ define("USER_SELECT_ADMIN", 1);
 define("USER_SELECT_EDITOR", 2);
 define("USER_SELECT_MEMBER", 4);
 define("USER_SELECT_OFFICER", 8);
-define("USER_SELECT_REVIEWER", 16);
 
 // Status values in user table...
 define("USER_STATUS_BANNED", 0);
@@ -65,7 +62,7 @@ class user
   var $organization_id, $organization_id_valid;
   var $oldhash, $oldhash_valid;
   var $hash, $hash_valid;
-  var $is_admin, $is_editor, $is_member, $is_reviewer, $is_submitter;
+  var $is_admin, $is_editor, $is_member;
   var $timezone, $timezone_valid;
   var $itemsperpage, $itemsperpage_valid;
   var $create_date;
@@ -107,8 +104,6 @@ class user
     $this->is_admin        = 0;
     $this->is_editor       = 0;
     $this->is_member       = 0;
-    $this->is_reviewer     = 0;
-    $this->is_submitter    = 0;
     $this->timezone        = $SITE_TIMEZONE;
     $this->itemsperpage    = 10;
     $this->create_date     = "";
@@ -182,8 +177,6 @@ class user
       html_form_checkbox("is_admin", "Administrator", $this->is_admin);
       html_form_checkbox("is_editor", "Document Editor", $this->is_editor);
       html_form_checkbox("is_member", "PWG Member", $this->is_member);
-      html_form_checkbox("is_reviewer", "IPP Everywhere Reviewer", $this->is_reviewer);
-      html_form_checkbox("is_submitter", "IPP Everywhere Submitter", $this->is_submitter);
     }
     else
     {
@@ -193,15 +186,11 @@ class user
         print("Document Editor<br>\n");
       if ($this->is_member)
         print("PWG Member<br>\n");
-      if ($this->is_reviewer)
-        print("IPP Everywhere Reviewer<br>\n");
-      if ($this->is_submitter)
-        print("IPP Everywhere Submitter<br>\n");
 
-      if (!$this->is_admin && !$this->is_editor && !$this->is_member && !$this->is_reviewer && !$this->is_submitter)
+      if (!$this->is_admin && !$this->is_editor && !$this->is_member)
         print("None");
 
-      if (!$this->is_editor || !$this->is_member || !$this->is_reviewer || !$this->is_submitter)
+      if (!$this->is_editor || !$this->is_member)
 	print("\n<a class=\"btn btn-default btn-xs\" href=\"${html_path}dynamo/request.php\">Request Additional Roles</a>");
     }
     html_form_field_end();
@@ -307,16 +296,6 @@ class user
         $this->is_member = 1;
       else
         $this->is_member= 0;
-
-      if (array_key_exists("is_reviewer", $_POST))
-        $this->is_reviewer = 1;
-      else
-        $this->is_reviewer = 0;
-
-      if (array_key_exists("is_submitter", $_POST))
-        $this->is_submitter = 1;
-      else
-        $this->is_submitter = 0;
     }
 
     if (array_key_exists("name", $_POST))
@@ -642,11 +621,6 @@ user_select(
   if ($which & USER_SELECT_MEMBER)
   {
     $where  .= "$qprefix is_member = 1";
-    $qprefix = " OR";
-  }
-  if ($which & USER_SELECT_REVIEWER)
-  {
-    $where  .= "$qprefix is_reviewer = 1";
     $qprefix = " OR";
   }
   if ($where != "WHERE")

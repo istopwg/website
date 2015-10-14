@@ -5,6 +5,8 @@
 --
 
 
+DROP TABLE IF EXISTS submission;
+
 --
 -- Schema for table 'printer'
 --
@@ -24,6 +26,7 @@ CREATE TABLE printer (
 					-- FALSE/0 = simplex, TRUE/1 = duplex
   finishings_supported BOOLEAN DEFAULT FALSE,
 					-- FALSE/0 = no finishers, TRUE/1 = has finishers
+  ipps_supported BOOLEAN DEFAULT FALSE,	-- FALSE/0 = no TLS support, TRUE/1 = has TLS support
   create_date DATETIME NOT NULL,	-- Time/date of creation
   create_id INTEGER NOT NULL,		-- User that submitted the printer
 
@@ -33,5 +36,5 @@ CREATE TABLE printer (
   INDEX(color_supported),
   INDEX(duplex_supported),
   INDEX(finishings_supported),
-  INDEX(create_id),
+  INDEX(create_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

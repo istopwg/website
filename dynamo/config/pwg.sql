@@ -37,8 +37,6 @@ CREATE TABLE user (
   is_admin BOOLEAN DEFAULT FALSE,	-- FALSE/0 = user, TRUE/1 = admin
   is_editor BOOLEAN DEFAULT FALSE,	-- FALSE/0 = not editor, TRUE/1 = editor
   is_member BOOLEAN DEFAULT FALSE,	-- FALSE/0 = not PWG member, TRUE/1 = PWG member
-  is_reviewer BOOLEAN DEFAULT FALSE,	-- FALSE/0 = cannot review, TRUE/1 = can review
-  is_submitter BOOLEAN DEFAULT FALSE,	-- FALSE/0 = cannot submit, TRUE/1 = can submit
   timezone VARCHAR(255) NOT NULL,	-- Timezone for user
   itemsperpage INTEGER DEFAULT 10 NOT NULL,
 					-- Default items per page
@@ -66,7 +64,6 @@ CREATE TABLE organization (
   status INTEGER NOT NULL,		-- 0 = non-member, 1 = non-voting member, 2 = small voting member, 3 = large voting member
   name VARCHAR(255) NOT NULL,		-- Organization name
   domain VARCHAR(255) NOT NULL,		-- Domain name
-  is_everywhere BOOLEAN NOT NULL,	-- FALSE/0 = not IPP Everywhere, TRUE/1 = IPP Everywhere
   create_date DATETIME NOT NULL,	-- Time/date of creation
   create_id INTEGER NOT NULL,		-- User that submitted the printer
   modify_date DATETIME NOT NULL,	-- Time/date of last change
@@ -75,40 +72,40 @@ CREATE TABLE organization (
   INDEX(create_id),
   INDEX(modify_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO organization VALUES(1,3,'Printer Working Group','pwg.org',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(2,3,'Apple Inc.','apple.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(3,3,'Brother Industries Ltd','brother.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(4,3,'Canon Inc.','canon.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(5,2,'Conexant','conexant.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(6,2,'CSR','csr.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(7,3,'Dell','dell.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(8,2,'Digital Imaging Technology','itekus.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(9,3,'Epson','epson.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(10,2,'Fenestrae','udocx.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(11,3,'Fuji Xerox Co Ltd','fujixerox.co.jp',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(12,3,'Hewlett Packard Company','hp.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(13,2,'High North Inc.','',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(14,3,'Konica Minolta','konicaminolta.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(15,3,'Kyocera Document Solutions Inc.','kyocera.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(16,3,'Lexmark','lexmark.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(17,2,'Meteor Networks','meteornetworks.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(18,3,'Microsoft','microsoft.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(19,2,'MPI Tech','mpitech.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(20,2,'MWA Intelligence Inc.','mwaintelligence.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(21,2,'Northlake Software Inc.','nls.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(22,3,'Oki Data Americas Inc.','okidata.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(23,3,'Ricoh','ricoh.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(24,2,'Quality Logic Inc.','qualitylogic.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(25,3,'Samsung Electronics Corporation','samsung.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(26,3,'Sharp','sharp.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(27,1,'Technical Interface Consulting','',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(28,2,'Thinxtream Technologies','thinxtream.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(29,2,'Tykodi Consulting Services LLC','',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(30,3,'Toshiba','toshiba.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(31,3,'Xerox Corporation','xerox.com',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(32,2,'Individual: Daniel Brennan','',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(33,1,'Individual: Daniel Dressler','',0,'2014-07-20',1,'2014-07-20',1);
-INSERT INTO organization VALUES(34,2,'Individual: Nancy Chen','',0,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(1,3,'Printer Working Group','pwg.org','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(2,3,'Apple Inc.','apple.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(3,3,'Brother Industries Ltd','brother.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(4,3,'Canon Inc.','canon.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(5,2,'Conexant','conexant.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(6,2,'CSR','csr.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(7,3,'Dell','dell.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(8,2,'Digital Imaging Technology','itekus.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(9,3,'Epson','epson.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(10,2,'Fenestrae','udocx.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(11,3,'Fuji Xerox Co Ltd','fujixerox.co.jp','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(12,3,'HP Inc.','hp.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(13,2,'High North Inc.','','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(14,3,'Konica Minolta','konicaminolta.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(15,3,'Kyocera Document Solutions Inc.','kyocera.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(16,3,'Lexmark','lexmark.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(17,2,'Meteor Networks','meteornetworks.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(18,3,'Microsoft','microsoft.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(19,2,'MPI Tech','mpitech.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(20,2,'MWA Intelligence Inc.','mwaintelligence.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(21,2,'Northlake Software Inc.','nls.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(22,3,'Oki Data Americas Inc.','okidata.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(23,3,'Ricoh','ricoh.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(24,2,'Quality Logic Inc.','qualitylogic.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(25,3,'Samsung Electronics Corporation','samsung.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(26,3,'Sharp','sharp.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(27,1,'Technical Interface Consulting','','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(28,2,'Thinxtream Technologies','thinxtream.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(29,2,'Tykodi Consulting Services LLC','','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(30,3,'Toshiba','toshiba.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(31,3,'Xerox Corporation','xerox.com','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(32,2,'Individual: Daniel Brennan','','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(33,1,'Individual: Daniel Dressler','','2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(34,2,'Individual: Nancy Chen','','2014-07-20',1,'2014-07-20',1);
 
 
 --

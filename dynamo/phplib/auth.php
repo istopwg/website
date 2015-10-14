@@ -18,8 +18,6 @@ $LOGIN_IS_ADMIN     = 0;
 $LOGIN_IS_EDITOR    = 0;
 $LOGIN_IS_MEMBER    = 0;
 $LOGIN_IS_OFFICER   = 0;
-$LOGIN_IS_REVIEWER  = 0;
-$LOGIN_IS_SUBMITTER = 0;
 $LOGIN_NAME         = "";
 $LOGIN_ORGANIZATION = 0;
 $LOGIN_PAGEMAX      = 10;
@@ -36,7 +34,7 @@ function				// O - Current user ID or ""
 auth_current()
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
-         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER,
          $LOGIN_NAME, $LOGIN_ORGANIZATION, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
@@ -78,8 +76,6 @@ auth_current()
       $LOGIN_IS_ADMIN     = $row["is_admin"];
       $LOGIN_IS_EDITOR    = $row["is_editor"];
       $LOGIN_IS_MEMBER    = $row["is_member"];
-      $LOGIN_IS_REVIEWER  = $row["is_reviewer"];
-      $LOGIN_IS_SUBMITTER = $row["is_submitter"];
       $LOGIN_NAME         = $row["name"];
       $LOGIN_ORGANIZATION = $row["organization_id"];
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
@@ -125,7 +121,7 @@ auth_login($email,			// I - Email
            $remember = FALSE)		// I - Remember after browser quit?
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
-         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER,
          $LOGIN_NAME, $LOGIN_ORGANIZATION, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE, $SITE_SECRET;
 
 
@@ -136,8 +132,6 @@ auth_login($email,			// I - Email
   $LOGIN_IS_EDITOR    = 0;
   $LOGIN_IS_MEMBER    = 0;
   $LOGIN_IS_OFFICER   = 0;
-  $LOGIN_IS_REVIEWER  = 0;
-  $LOGIN_IS_SUBMITTER = 0;
   $LOGIN_NAME         = "";
   $LOGIN_ORGANIZATION = 0;
   $LOGIN_PAGEMAX      = 10;
@@ -159,8 +153,6 @@ auth_login($email,			// I - Email
       $LOGIN_IS_ADMIN     = $row["is_admin"];
       $LOGIN_IS_EDITOR    = $row["is_editor"];
       $LOGIN_IS_MEMBER    = $row["is_member"];
-      $LOGIN_IS_REVIEWER  = $row["is_reviewer"];
-      $LOGIN_IS_SUBMITTER = $row["is_submitter"];
       $LOGIN_NAME         = $row["name"];
       $LOGIN_ORGANIZATION = $row["organization_id"];
       $LOGIN_PAGEMAX      = $row["itemsperpage"];
@@ -195,7 +187,7 @@ function
 auth_logout()
 {
   global $_SERVER, $LOGIN_EMAIL, $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR,
-         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER,
+         $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER,
          $LOGIN_NAME, $LOGIN_ORGANIZATION, $LOGIN_PAGEMAX, $LOGIN_TIMEZONE;
 
 
@@ -206,8 +198,6 @@ auth_logout()
   $LOGIN_IS_EDITOR    = 0;
   $LOGIN_IS_MEMBER    = 0;
   $LOGIN_IS_OFFICER   = 0;
-  $LOGIN_IS_REVIEWER  = 0;
-  $LOGIN_IS_SUBMITTER = 0;
   $LOGIN_NAME         = "";
   $LOGIN_ORGANIZATION = 0;
   $LOGIN_PAGEMAX      = 10;
