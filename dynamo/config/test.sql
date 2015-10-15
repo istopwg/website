@@ -20,7 +20,7 @@ INSERT INTO user VALUES(3, 2, 'wwwtesteditor@pwg.org','PWG Test Editor',1,'$6$68
 INSERT INTO user VALUES(4, 2, 'wwwtestmember@pwg.org','PWG Test Member',100,'$6$68e043b431d79cce$7aa1mK7RxdK15B3XcBU9grtBqaTc9Nypym8IV2JWB6yHEuX5s.N3mMVjJ9udCprIPqslwa/V0vdBL/SOaXxqi1',0,0,1,'America/Toronto',50,'2014-07-20 12:00:00',1,'2014-07-20 12:00:00',1);
 
 -- Organizations for test users
-INSERT INTO organization VALUES(100,2,'Test Member Company 1','',1,'2014-07-20',1,'2014-07-20',1);
+INSERT INTO organization VALUES(100,2,'Test Member Company 1','','2014-07-20',1,'2014-07-20',1);
 
 
 -- IPP Everywhere Printers

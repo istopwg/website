@@ -158,7 +158,7 @@ printer_search($search = "",		// I - Search string
 {
   global $PRINTER_COLUMNS;
 
-  if ($color >= 0 || $duplex >= 0 || $finishings >= 0)
+  if ($color >= 0 || $duplex >= 0 || $finishings >= 0 || $ipps >= 0)
   {
     $keyvals = array();
     if ($color >= 0)

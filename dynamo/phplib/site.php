@@ -78,7 +78,7 @@ site_header($title = "",		// I - Additional document title
 	    $sidebar = TRUE)		// I - Show sidebar?
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
-  global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_IS_REVIEWER, $LOGIN_IS_SUBMITTER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME, $SITE_SHOW_BETA;
+  global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME, $SITE_SHOW_BETA;
   global $html_is_phone, $html_is_tablet, $html_login_url;
 
 
@@ -137,10 +137,7 @@ site_header($title = "",		// I - Additional document title
 
     if ($SITE_SHOW_BETA)
     {
-      if ($LOGIN_IS_ADMIN || $LOGIN_IS_REVIEWER || $LOGIN_IS_SUBMITTER)
-	$userlogin .= "            <li><a href=\"${html_path}dynamo/evereview.php\">Review Self-Certifications</a></li>\n";
-
-      if ($LOGIN_IS_SUBMITTER)
+      if ($LOGIN_IS_ADMIN || $LOGIN_IS_MEMBER)
 	$userlogin .= "            <li><a href=\"${html_path}dynamo/evesubmit.php\">Submit Self-Certification</a></li>\n";
     }
 
@@ -150,7 +147,7 @@ site_header($title = "",		// I - Additional document title
       $userlogin .= "            <li><a href=\"${html_path}ftp-usage\">View FTP Usage</a></li>\n";
     }
 
-    if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_SUBMITTER || $LOGIN_IS_REVIEWER)
+    if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER || ($SITE_SHOW_BETA && $LOGIN_IS_MEMBER))
       $userlogin .= "            <li class=\"divider\"></li>\n";
 
     $userlogin .= "            <li><a href=\"${html_path}dynamo/account.php\">Profile</a></li>\n"

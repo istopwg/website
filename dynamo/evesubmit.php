@@ -242,7 +242,7 @@ html_form_field_end();
 
 // cert_version
 html_form_field_start("+cert_version", "Self-Certification Manual");
-html_form_select("cert_version", $SUBMISSION_VERSIONS, "", $cert_version);
+html_form_select("cert_version", $CERT_VERSIONS, "", $cert_version);
 html_form_field_end();
 
 // used_approved, used_prodready, printed_correctly
