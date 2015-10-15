@@ -73,6 +73,16 @@ if (html_form_validate())
       $user->email           = $email;
       $user->password();
 
+      // Check whether the user's email address has the same domain as the
+      // organization...
+      $organization = new organization($organization_id);
+      if ($organization->id == $organization_id && $organization->domain != "" && preg_match("/[@.]" . preg_quote($organization->domain) . "\$/i", $email))
+      {
+        $user->is_member = $organization->status == ORGANIZATION_STATUS_NON_VOTING ||
+                           $organization->status == ORGANIZATION_STATUS_SMALL_VOTING ||
+                           $organization->status == ORGANIZATION_STATUS_LARGE_VOTING;
+      }
+
       if ($user->save())
       {
 	$register = substr(hash("sha256", "$user->id:$user->modify_date:$user->hash"), 0, 8);

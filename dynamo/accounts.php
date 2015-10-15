@@ -238,10 +238,6 @@ switch ($op)
 	  $roles .= ", Editor";
 	if ($user->is_member)
 	  $roles .= ", Member";
-	if ($user->is_reviewer)
-	  $roles .= ", Reviewer";
-	if ($user->is_submitter)
-	  $roles .= ", Submitter";
 	if ($roles == "")
 	  $roles = "None";
 	else
