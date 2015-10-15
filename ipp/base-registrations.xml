@@ -4,11 +4,10 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2015-06-11 (PWG: 2015-07-28)</updated>
+  <updated>2015-06-11 (PWG: 2015-10-15)</updated>
   <!--
     Pending PWG Registrations and Changes:
-    - Added stable IPP Shared Infrastructure Extensions (INFRA) definitions
-    - Added deprecation of 'ssl3' value for uri-security-supported attribute.
+    - Added new job-password-encryption values from IPP WG.
   -->
   <registry id="ipp-registrations-1">
     <title>Objects</title>
