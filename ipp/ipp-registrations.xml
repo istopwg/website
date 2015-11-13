@@ -5758,6 +5758,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <collection>Printer Description</collection>
+      <name>pdl-override-guaranteed-supported</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="http://www.pwg.org/archives/ipp/2015/018629.html" type="uri">IPPWG20151019</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
       <name>pdl-override-supported</name>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc2911" />
@@ -9402,6 +9408,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <xref data="http://www.pwg.org/archives/ipp/2014/018054.html" type="uri">IPPWG20140616</xref>
     </record>
     <record>
+      <value>sha2-512_224</value>
+      <attribute>job-password-encryption</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="http://www.pwg.org/pipermail/ipp/2015/018621.html" type="uri">IPPWG20151009</xref>
+    </record>
+    <record>
       <value>sha2-512_256</value>
       <attribute>job-password-encryption</attribute>
       <syntax>type2 keyword</syntax>
@@ -9427,6 +9439,12 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
     </record>
     <record>
       <value>sha3-512</value>
+      <attribute>job-password-encryption</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="http://www.pwg.org/pipermail/ipp/2015/018621.html" type="uri">IPPWG20151009</xref>
+    </record>
+    <record>
+      <value>sha3-512_224</value>
       <attribute>job-password-encryption</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="http://www.pwg.org/pipermail/ipp/2015/018621.html" type="uri">IPPWG20151009</xref>
@@ -16382,6 +16400,17 @@ Template attributes are Printer object attributes.† See <xref type="rfc" data=
       <attribute>pdl-init-file-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <attribute>pdl-override-guaranteed-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="http://www.pwg.org/archives/ipp/2015/018629.html" type="uri">IPPWG20151019</xref>
+    </record>
+    <record>
+      <value>&lt; any Job Template attribute &gt;</value>
+      <attribute>pdl-override-guaranteed-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="http://www.pwg.org/archives/ipp/2015/018629.html" type="uri">IPPWG20151019</xref>
     </record>
     <record>
       <attribute>pdl-override-supported</attribute>

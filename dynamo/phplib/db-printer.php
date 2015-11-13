@@ -22,9 +22,7 @@ $PRINTER_COLUMNS = array(
 );
 
 $CERT_VERSIONS = array(
-  "org.pwg.ipp-everywhere.20151009" => "1.0 Stable (October 9, 2015)",
-  "org.pwg.ipp-everywhere.20150415" => "1.0 Interim (April 15, 2015)",
-  "org.pwg.ipp-everywhere.20140826" => "1.0 Interim (August 26, 2014)"
+  "org.pwg.ippeveselfcert10" => "1.0 (Stable)"
 );
 
 
@@ -285,18 +283,13 @@ printer_publish_submission($organization_id, $product_family, $url, $models, $ce
 
 function				// O - String containing errors or "" for OK
 printer_validate_plist($plist,		// I - plist to validate
-                       $cert_version)	// I - Certification version
+                       $cert_version,	// I - Certification version
+                       $file)		// I - File ("bonjour", "document", or "ipp")
 {
   $tests = array(
-    "org.pwg.ipp-everywhere.20140826.bonjour" => 10,
-    "org.pwg.ipp-everywhere.20140826.document" => 34,
-    "org.pwg.ipp-everywhere.20140826.ipp" => 28,
-    "org.pwg.ipp-everywhere.20150415.bonjour" => 10,
-    "org.pwg.ipp-everywhere.20150415.document" => 34,
-    "org.pwg.ipp-everywhere.20150415.ipp" => 28,
-    "org.pwg.ipp-everywhere.20151009.bonjour" => 10,
-    "org.pwg.ipp-everywhere.20151009.document" => 34,
-    "org.pwg.ipp-everywhere.20151009.ipp" => 28
+    "org.pwg.ippeveselfcert10.bonjour" => 10,
+    "org.pwg.ippeveselfcert10.document" => 34,
+    "org.pwg.ippeveselfcert10.ipp" => 27
   );
 
   if ($plist == NULL)
@@ -322,11 +315,17 @@ printer_validate_plist($plist,		// I - plist to validate
 
   $fileid = $plist["Tests"][0]["FileId"];
 
-  if (substr($fileid, 0, 31) != $cert_version || !array_key_exists($fileid, $tests))
+  if (substr($fileid, 0, 24) != $cert_version || !array_key_exists($fileid, $tests))
     return (htmlspecialchars("Invalid FileId '$fileid'."));
+
+  if ($fileid != "$cert_version.$file")
+    return (htmlspecialchars("Wrong file, expected '$file' but got '" . substr($fileid, 25) . "'."));
 
   if (sizeof($plist["Tests"]) != $tests[$fileid])
     return ("Wrong number of Tests in plist file.");
+
+  if (!$plist["Successful"])
+    return ("Not all tests were successful.");
 
   return ("");
 }

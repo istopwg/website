@@ -92,21 +92,52 @@ if ($REQUEST_METHOD == "POST")
 
   if (array_key_exists("bonjour_file", $_FILES) && array_key_exists("tmp_name", $_FILES["bonjour_file"]))
   {
-    $bonjour_file_plist = plist_read_file($_FILES["bonjour_file"]["tmp_name"]);
-    $bonjour_file_error = printer_validate_plist($bonjour_file_plist, $cert_version);
+    $filename = $_FILES["bonjour_file"]["tmp_name"];
+    if ($filename == "")
+    {
+      $bonjour_file_error = "No file provided.";
+    }
+    else
+    {
+      $bonjour_file_plist = plist_read_file($filename);
+      $bonjour_file_error = printer_validate_plist($bonjour_file_plist, $cert_version, "bonjour");
+    }
   }
+  else
+    $bonjour_file_error = "No file provided.";
 
   if (array_key_exists("ipp_file", $_FILES) && array_key_exists("tmp_name", $_FILES["ipp_file"]))
   {
-    $ipp_file_plist = plist_read_file($_FILES["ipp_file"]["tmp_name"]);
-    $ipp_file_error = printer_validate_plist($ipp_file_plist, $cert_version);
+    $filename = $_FILES["ipp_file"]["tmp_name"];
+    if ($filename == "")
+    {
+      $ipp_file_error = "No file provided.";
+    }
+    else
+    {
+      $ipp_file_plist = plist_read_file($filename);
+      $ipp_file_error = printer_validate_plist($ipp_file_plist, $cert_version, "ipp");
+    }
   }
+  else
+    $ipp_file_error = "No file provided.";
 
   if (array_key_exists("document_file", $_FILES) && array_key_exists("tmp_name", $_FILES["document_file"]))
   {
-    $document_file_plist = plist_read_file($_FILES["document_file"]["tmp_name"]);
-    $document_file_error = printer_validate_plist($document_file_plist, $cert_version);
+    $filename = $_FILES["document_file"]["tmp_name"];
+
+    if ($filename == "")
+    {
+      $document_file_error = "No file provided.";
+    }
+    else
+    {
+      $document_file_plist = plist_read_file($filename);
+      $document_file_error = printer_validate_plist($document_file_plist, $cert_version, "document");
+    }
   }
+  else
+    $document_file_error = "No file provided.";
 }
 
 // Validate form input...
@@ -141,7 +172,7 @@ if ($contact_name == "" && $REQUEST_METHOD == "POST")
 else
   $contact_name_valid = TRUE;
 
-if ($contact_email == "" && $REQUEST_METHOD == "POST")
+if (!validate_email($contact_email) && $REQUEST_METHOD == "POST")
 {
   $contact_email_valid = FALSE;
   $valid = FALSE;
@@ -180,6 +211,48 @@ if (!array_key_exists($cert_version, $CERT_VERSIONS) && $REQUEST_METHOD == "POST
 }
 else
   $cert_version_valid = TRUE;
+
+if ((!$used_approved || !$used_prodready || !$printed_correctly) && $REQUEST_METHOD == "POST")
+{
+  $checklist_valid = FALSE;
+  $valid = FALSE;
+}
+else
+  $checklist_valid = TRUE;
+
+if ($bonjour_file_plist == NULL || $bonjour_file_error != "")
+{
+  $bonjour_file_valid = FALSE;
+  $valid = FALSE;
+}
+else
+{
+  $bonjour_file_valid = TRUE;
+  $bonjour_file_error = "Results are valid.";
+}
+
+
+if ($ipp_file_plist == NULL || $ipp_file_error != "")
+{
+  $ipp_file_valid = FALSE;
+  $valid = FALSE;
+}
+else
+{
+  $ipp_file_valid = TRUE;
+  $ipp_file_error = "Results are valid.";
+}
+
+if ($document_file_plist == NULL || $document_file_error != "")
+{
+  $document_file_valid = FALSE;
+  $valid = FALSE;
+}
+else
+{
+  $document_file_valid = TRUE;
+  $document_file_error = "Results are valid.";
+}
 
 // Post results if everything is OK...
 if ($REQUEST_METHOD == "POST" && $valid)
@@ -246,7 +319,7 @@ html_form_select("cert_version", $CERT_VERSIONS, "", $cert_version);
 html_form_field_end();
 
 // used_approved, used_prodready, printed_correctly
-html_form_field_start("+used_approved", "Submission Checklist");
+html_form_field_start("+used_approved", "Submission Checklist", $checklist_valid);
 html_form_checkbox("used_approved", "Used PWG self-certification tools.", $used_approved, "As supplied on the PWG FTP server.");
 html_form_checkbox("used_prodready", "Used Production-Ready Code.", $used_prodready, "Production-Ready Code: Software and/or firmware that is considered ready to be included in products shipped to customers.");
 html_form_checkbox("printed_correctly", "All output printed correctly.", $printed_correctly, "As documented in section 7.3 of the IPP Everywhere Printer Self-Certification Manual 1.0.");

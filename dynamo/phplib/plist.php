@@ -12,6 +12,9 @@
 function				// O - Associative array or FALSE on error
 plist_read_file($path)			// I - File to read
 {
+  if ($path == "")
+    return (FALSE);
+
   $document = new DOMDocument();
   if (!$document->load($path))
     return (FALSE);
