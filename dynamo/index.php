@@ -61,7 +61,7 @@ if (!$firsttime)
     <div class="panel panel-default">
       <div class="panel-heading">3D Printing</div>
       <div class="panel-body">
-        <p>The PWG is investigating standardization of 3D printing using IPP and standard formats.</p>
+        <p>The PWG is defining an IPP extension for 3D printing using standard file formats.</p>
         <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>3d">More Info</a></p>
       </div>
     </div>
