@@ -8,14 +8,17 @@
       <div class="col-md-9 col-sm-12">
 	<div class="jumbotron">
 	  <h1><img class="pwg-logo pwg-right hidden-xs" src="pwg-3d-medium@2x.png">3D Printing</h1>
-	  <p>The Printer Working Group is investigating standardization of 3D Printing using the <a href="../ipp">Internet Printing Protocol</a> and <a href="../sm">PWG Semantic Model</a> for the underlying network protocol and Job Ticket formats, and one or more existing high-level 3D file formats to describe the objects to print.</p>
-	  <p><a class="btn btn-primary btn-lg" href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20151116.pdf">Current White Paper<br><small><em>November 16, 2015</em></small></a></p>
+	  <p>The Printer Working Group is defining an extension to the <a href="../ipp">Internet Printing Protocol</a> and <a href="../sm">PWG Semantic Model</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and one or more existing high-level 3D file formats to describe the objects to print. We expect to have a prototype-ready draft available by the 3rd quarter of 2016 and welcome participation from all interested parties.</p>
+	  <p><a class="btn btn-primary btn-lg" href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160217.pdf">Current Working Draft<br><small><em>February 17, 2016</em></small></a></p>
 	</div>
       </div>
       <div class="col-md-3 col-sm-12">
         <div class="panel panel-default">
-          <div class="panel-heading">Previous Meetings</div>
+          <div class="panel-heading">Recent Meetings</div>
           <div class="panel-body">
+	    <p><b>February 11, 2016</b><br>
+	    <a href="http://ftp.pwg.org/pub/pwg/ipp/slides/ipp-wg-agenda-february-16.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160201-rev.pdf">Working Draft</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20160210.pdf">Minutes</a></p>
+
 	    <p><b>November 3, 2015</b><br>
 	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-november-2015.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20151029-rev.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20151103.pdf">Minutes</a></p>
 
@@ -27,9 +30,6 @@
 
 	    <p><b>February 4, 2015</b><br>
 	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20150123.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20150204.pdf">Minutes</a></p>
-
-	    <p><b>August 13, 2014</b><br>
-	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-august-2014.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20140813.pdf">Minutes</a></p>
           </div>
         </div>
       </div>
@@ -37,23 +37,27 @@
 
     <h2>Summary of Work</h2>
 
-    <p>All of our work to date has been conducted through "Birds of a Feather" (BOF) sessions at our face-to-face meetings and on the <a href="http://www.pwg.org/mailman/listinfo/3d-printing">3d-printing</a> mailing list we host. A white paper has also been produced outlining our approach which may lead to the formation of a new workgroup or changes to an existing workgroup charter. While IPP and the PWG Semantic Model can be easily adapted to 3D printing, adapting the existing 3D file formats is proving to be more of a challenge.</p>
+    <p>We started our work in "Birds of a Feather" (BOF) sessions at our face-to-face meetings and on the <a href="http://www.pwg.org/mailman/listinfo/3d-printing">3d-printing</a> mailing list we host. A white paper was produced outlining our approach, and that lead to the addition of the IPP 3D Printing Extensions to the Internet Printing Protocol workgroup charter. While IPP and the PWG Semantic Model can be easily adapted to 3D printing, adapting the existing 3D file formats is proving to be more of a challenge.</p>
+
+    <p>3D printers can take advantage of the 50+ years of traditional 2D printing to offer high-level, networked, and cloud-aware printing services to client devices running any operating system. The Internet Printing Protocol provides a flexible and secure network protocol for queuing jobs, monitoring the state of jobs and printers, and managing jobs and printers. When combined with a high-level 3D file format, the proper job ticket attributes (i.e., print options), and one or more service discovery or directory protocols (Bonjour/DNS-SD, LDAP, etc.) a client device will be able to successfully print 3D objects to any printer using "generic" software.</p>
 
     <h2>3D File Formats</h2>
 
-    <p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a slightly more compact XML format than AMF with physical dimensions, named materials, and shared vertices. More investigation/prototyping it needed to determine whether it is suitable for use in low-end printer controllers.<br>
+    <p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a slightly more compact XML format than AMF with physical dimensions, named materials, and shared vertices. 3MF is supported by major CAD and slicer software.
     <a class="btn btn-primary btn-xs" target="_blank" href="http://www.3mf.io/">More Info</a></p>
 
-    <p><b>Additive Manufacturing File Format (AMF)</b>: AMF is an ISO standard XML format that supports physical dimensions, named materials, and shared vertices. It is generally considered to be the replacement for STL and is supported by some 3D software. The lack of a freely-available version of the standard has limited its use in 3D printing.<br>
+    <p><b>Additive Manufacturing File Format (AMF)</b>: AMF is an ISO standard XML format that supports physical dimensions, named materials, and shared vertices. It is generally considered to be the replacement for STL and is supported by some 3D software. The lack of a freely-available version of the standard has limited its use in 3D printing.
     <a class="btn btn-primary btn-xs" target="_blank" href="https://en.wikipedia.org/wiki/Additive_Manufacturing_File_Format">More Info</a></p>
 
-    <p><b>Collada (DAE)</b>: Collada is an XML format for 3D assets that is widely used in gaming. While it does offer shared vertices, it does not provide a way to name materials or define physical units.<br>
+    <p><b>Collada (DAE)</b>: Collada is an XML format for 3D assets that is widely used in gaming. While it does offer shared vertices, it does not provide a way to name materials or define physical units.
     <a class="btn btn-primary btn-xs" target="_blank" href="https://www.khronos.org/collada/">More Info</a></p>
 
-    <p><b>Stereo Lithography File Format (STL)</b>: STL is the current defacto-standard file format with both plain text and binary encodings. While it is the most widely used and supported file format for 3D printing, it lacks support for physical dimensions, named materials, or shared vertices.<br>
+    <p><b>Stereo Lithography File Format (STL)</b>: STL is the current defacto-standard file format with both plain text and binary encodings. While it is the most widely used and supported file format for 3D printing, it lacks support for physical dimensions, named materials, or shared vertices.
     <a class="btn btn-primary btn-xs" target="_blank" href="https://en.wikipedia.org/wiki/STL_(file_format)">More Info</a></p>
 
-    <p><b>PDF/2.0 and Universal 3D (U3D)</b>: PDF/2.0 is expected to include 3D support using the Universal 3D format (ECMA-363). U3D is a binary file format with named materials.<br>
-    <a class="btn btn-primary btn-xs" target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">More Info</a></p>
+    <p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) will add support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata.
+    <a class="btn btn-primary btn-xs" target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">More Info on ECMA-363</a>
+    <a class="btn btn-primary btn-xs" target="_blank" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/PDF32000_2008.pdf">More Info on ISO 32000-1</a>
+    </p>
   </body>
 </html>
