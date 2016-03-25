@@ -217,7 +217,7 @@ site_header($title = "",		// I - Additional document title
        ."            <li><a href=\"${html_path}standards.html\">Standards</a></li>\n"
        ."            <li class=\"divider\"></li>\n"
        ."            <li class=\"dropdown-header\" role=\"presentation\">Technologies</li>\n"
-       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>&reg;</sup></a></li>\n");
+       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>&reg;</sup></a></li>\n"
        ."            <li><a href=\"${html_path}dynamo/eveprinters.php\">&nbsp;&nbsp;&nbsp;&nbsp;IPP Everywhere<sup>&reg;</sup> Printers</a></li>\n"
        ."          </ul>\n"
        ."        </li>\n"
