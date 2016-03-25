@@ -71,9 +71,8 @@ if (!$firsttime)
       <div class="panel-heading">IPP Everywhere</div>
       <div class="panel-body">
 	<p>Print to any network or USB printer without using special software from the manufacturer.</p>
-	<p><a class="btn btn-default btn-sm" href="<?print($html_path);?>ipp/everywhere.html">More Info</a><?
-	  if ($SITE_SHOW_BETA)
-	    print(" &nbsp;<a class=\"btn btn-default btn-sm\" href=\"${html_path}dynamo/eveprinters.php\">Find Printers</a>\n");?></p>
+	<p><a class="btn btn-default btn-sm" href="<?print($html_path);?>ipp/everywhere.html">More Info</a>
+	&nbsp;<a class=\"btn btn-default btn-sm\" href=\"<?print($html_path);?>dynamo/eveprinters.php\">Find Printers</a></p>
       </div>
     </div>
   </div>

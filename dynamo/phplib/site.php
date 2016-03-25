@@ -135,11 +135,8 @@ site_header($title = "",		// I - Additional document title
     if ($LOGIN_IS_EDITOR)
       $userlogin .= "            <li><a href=\"${html_path}dynamo/issues.php\">Review Issues</a></li>\n";
 
-    if ($SITE_SHOW_BETA)
-    {
-      if ($LOGIN_IS_ADMIN || $LOGIN_IS_MEMBER)
-	$userlogin .= "            <li><a href=\"${html_path}dynamo/evesubmit.php\">Submit Self-Certification</a></li>\n";
-    }
+    if ($LOGIN_IS_ADMIN || $LOGIN_IS_MEMBER)
+      $userlogin .= "            <li><a href=\"${html_path}dynamo/evesubmit.php\">Submit Self-Certification</a></li>\n";
 
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
     {
@@ -147,7 +144,7 @@ site_header($title = "",		// I - Additional document title
       $userlogin .= "            <li><a href=\"${html_path}ftp-usage\">View FTP Usage</a></li>\n";
     }
 
-    if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER || ($SITE_SHOW_BETA && $LOGIN_IS_MEMBER))
+    if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER || $LOGIN_IS_MEMBER)
       $userlogin .= "            <li class=\"divider\"></li>\n";
 
     $userlogin .= "            <li><a href=\"${html_path}dynamo/account.php\">Profile</a></li>\n"
@@ -221,9 +218,8 @@ site_header($title = "",		// I - Additional document title
        ."            <li class=\"divider\"></li>\n"
        ."            <li class=\"dropdown-header\" role=\"presentation\">Technologies</li>\n"
        ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>&reg;</sup></a></li>\n");
-  if ($SITE_SHOW_BETA)
-    print("            <li><a href=\"${html_path}dynamo/eveprinters.php\">&nbsp;&nbsp;&nbsp;&nbsp;IPP Everywhere<sup>&reg;</sup> Printers</a></li>\n");
-  print("          </ul>\n"
+       ."            <li><a href=\"${html_path}dynamo/eveprinters.php\">&nbsp;&nbsp;&nbsp;&nbsp;IPP Everywhere<sup>&reg;</sup> Printers</a></li>\n"
+       ."          </ul>\n"
        ."        </li>\n"
        ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Workgroups <span class=\"caret\"></span></a>\n"
        ."          <ul class=\"dropdown-menu\" role=\"menu\">\n"
