@@ -8,14 +8,17 @@
       <div class="col-md-9 col-sm-12">
 	<div class="jumbotron">
 	  <h1><img class="pwg-logo pwg-right hidden-xs" src="pwg-3d-medium@2x.png">3D Printing</h1>
-	  <p>The Printer Working Group is defining an extension to the <a href="../ipp">Internet Printing Protocol</a> and <a href="../sm">PWG Semantic Model</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and one or more existing high-level 3D file formats to describe the objects to print. We expect to have a prototype-ready draft available by the 3rd quarter of 2016 and welcome participation from all interested parties.</p>
-	  <p><a class="btn btn-primary btn-lg" href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160217.pdf">Current Working Draft<br><small><em>February 17, 2016</em></small></a></p>
+	  <p>The Printer Working Group is defining an extension to the <a href="../ipp">Internet Printing Protocol</a> and <a href="../sm">PWG Semantic Model</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and one or more existing high-level 3D file formats to describe the objects to print. We have a prototype-ready draft available now and welcome participation from all interested parties.</p>
+	  <p><a class="btn btn-primary btn-lg" href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160430.pdf">Current Prototype Working Draft<br><small><em>April 30, 2016</em></small></a></p>
 	</div>
       </div>
       <div class="col-md-3 col-sm-12">
         <div class="panel panel-default">
           <div class="panel-heading">Recent Meetings</div>
           <div class="panel-body">
+	    <p><b>April 28, 2016</b><br>
+	    <a href="http://ftp.pwg.org/pub/pwg/ipp/slides/ipp-wg-agenda-april-16.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160420-rev.pdf">Working Draft</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20160417.pdf">Minutes</a></p>
+
 	    <p><b>February 11, 2016</b><br>
 	    <a href="http://ftp.pwg.org/pub/pwg/ipp/slides/ipp-wg-agenda-february-16.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160201-rev.pdf">Working Draft</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20160210.pdf">Minutes</a></p>
 
@@ -43,7 +46,7 @@
 
     <h2>3D File Formats</h2>
 
-    <p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a slightly more compact XML format than AMF with physical dimensions, named materials, and shared vertices. 3MF is supported by major CAD and slicer software.
+    <p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a slightly more compact XML format than AMF with physical dimensions, named materials, and shared vertices. 3MF is supported by major CAD and slicer software and is a required file format for the IPP 3D Printing Extensions.
     <a class="btn btn-primary btn-xs" target="_blank" href="http://www.3mf.io/">More Info</a></p>
 
     <p><b>Additive Manufacturing File Format (AMF)</b>: AMF is an ISO standard XML format that supports physical dimensions, named materials, and shared vertices. It is generally considered to be the replacement for STL and is supported by some 3D software. The lack of a freely-available version of the standard has limited its use in 3D printing.
@@ -55,7 +58,7 @@
     <p><b>Stereo Lithography File Format (STL)</b>: STL is the current defacto-standard file format with both plain text and binary encodings. While it is the most widely used and supported file format for 3D printing, it lacks support for physical dimensions, named materials, or shared vertices.
     <a class="btn btn-primary btn-xs" target="_blank" href="https://en.wikipedia.org/wiki/STL_(file_format)">More Info</a></p>
 
-    <p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) will add support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata.
+    <p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) will add support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata. PDF is a recommended file format for the IPP 3D Printing Extensions.
     <a class="btn btn-primary btn-xs" target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">More Info on ECMA-363</a>
     <a class="btn btn-primary btn-xs" target="_blank" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/PDF32000_2008.pdf">More Info on ISO 32000-1</a>
     </p>
