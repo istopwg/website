@@ -1,4 +1,4 @@
 Redirect /ippeveselfcert /dynamo/evesubmit.php
-Redirect /issues /dynamo/issues.php
+RedirectMatch ^/issues$ /dynamo/issues.php
 RedirectMatch ^/issues/([1-9][0-9]*) /dynamo/issues.php?L\1
 Redirect /printers /dynamo/eveprinters.php
