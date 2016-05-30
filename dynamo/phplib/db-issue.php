@@ -278,13 +278,13 @@ class issue
       else
 	$contents = "";
 
-      html_form_field_start("comments", "Description");
+      html_form_field_start("comments", "Description", $contents != "");
       html_form_text("contents", "Detailed description of issue.", $contents, "", 12);
       html_form_field_end();
     }
 
     // assigned_id
-    html_form_field_start("assigned_id", "Assigned To");
+    html_form_field_start("assigned_id", "Assigned To", $this->assigned_id_valid);
     if ($LOGIN_IS_ADMIN || $LOGIN_ID == $this->assigned_id)
       user_select("assigned_id", $this->assigned_id, USER_SELECT_MEMBER | USER_SELECT_EDITOR, "Nobody");
     else if ($this->assigned_id > 0)
@@ -534,7 +534,7 @@ class issue
 
     $document = new document($this->document_id);
 
-    if ($document->id != $this->document_id)
+    if ($document->id != $this->document_id || $this->document_id == 0)
     {
       $this->document_id_valid = FALSE;
       $valid = FALSE;
