@@ -130,6 +130,11 @@ else
   $id = 0;
 }
 
+//print("<pre>REQUEST_METHOD=\"$REQUEST_METHOD\"</pre>\n");
+//print("<pre>_POST=");
+//print_r($_POST);
+//print("</pre>\n");
+
 if ($REQUEST_METHOD == "POST")
 {
   if (array_key_exists("SEARCH", $_POST))
@@ -178,7 +183,7 @@ switch ($op)
       accounts_header("Manage Users");
 
       html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
-      html_form_search("search", "Search Users", $search);
+      html_form_search("SEARCH", "Search Users", $search);
       html_form_end(array("SUBMIT" => "-Search"));
 
       $matches = user_search($search, -1, "name");
