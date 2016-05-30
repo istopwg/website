@@ -57,7 +57,10 @@ else
 if ($html_path != "/")
   $html_path = "$html_path/";
 
-$html_login_url = "https://$SERVER_NAME${html_path}dynamo/login.php";
+if ($SERVER_NAME == "pwg.org")
+  $html_login_url = "https://www.pwg.org${html_path}dynamo/login.php";
+else
+  $html_login_url = "https://$SERVER_NAME${html_path}dynamo/login.php";
 
 // Include necessary headers...
 include_once "auth.php";
