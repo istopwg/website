@@ -140,8 +140,8 @@ site_header($title = "",		// I - Additional document title
 
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_OFFICER)
     {
-      $userlogin .= "            <li><a href=\"${html_path}usage\">View HTTP Usage</a></li>\n";
-      $userlogin .= "            <li><a href=\"${html_path}ftp-usage\">View FTP Usage</a></li>\n";
+      $userlogin .= "            <li><a href=\""https://$SERVER_NAME${html_path}awstats/awstats.pl\">View HTTP Usage</a></li>\n";
+//      $userlogin .= "            <li><a href=\"${html_path}ftp-usage\">View FTP Usage</a></li>\n";
     }
 
     if ($LOGIN_IS_ADMIN || $LOGIN_IS_EDITOR || $LOGIN_IS_OFFICER || $LOGIN_IS_MEMBER)
