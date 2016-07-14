@@ -8,76 +8,95 @@
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-theme-3.2.0.min.css">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
-    <style>body { margin: 20px; }</style>
   </head>
-  <body>
-    <div class="row">
+  <body><div class="container-fluid">
+    <style>
+      /* Logo colors are white, black, and #373e80 */
+      .pwg-panel-logo { width: 100%; }
+      #pwg-body { padding-left: 0px; padding-right: 0px; }
+      .pwg-panel { font-size: 125%; padding: 80px 60px; }
+      .pwg-panel h1 { font-size: 250%; }
+      .pwg-note { font-size: 80%; font-style: italic; margin-bottom: 1em; margin-top: 1em; }
+      ul.nav-pills li { background: #525dbf; border-radius: 5px; color: #ffffff; font-size: 90%; margin-bottom: 5px; margin-right: 5px; }
+      ul.nav-pills li a { color: #ffffff; }
+      ul.nav-pills li a:hover { background: #8a8fbf; color: #ffffff; }
+      .pwg-alt-0 { background: #e7eef1; color: #000000; }
+      .pwg-alt-1 { background: #e6e8ff; color: #000000; }
+      .pwg-alt-2 { background: #373e80; color: #ffffff; }
+      .pwg-figure { width: 100%; }
+      @media only screen and (min-device-width: 320px) and (max-device-width: 480px),
+	     only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+	.pwg-panel { font-size: 100%; padding: 30px 20px; }
+	.pwg-panel h1 { font-size: 200%; padding: 30px 20px; }
+      }
+    </style>
+    <div class="row pwg-panel">
+      <div class="col-md-3 hidden-sm hidden-xs">
+	<img class="pwg-panel-logo" src="pwg-3d-medium@2x.png">
+      </div>
       <div class="col-md-9 col-sm-12">
-	<div class="jumbotron">
-	  <h1><img class="pwg-logo pwg-right hidden-xs" src="pwg-3d-medium@2x.png">3D Printing</h1>
-	  <p>The Printer Working Group is defining an extension to the <a href="../ipp">Internet Printing Protocol</a> and <a href="../sm">PWG Semantic Model</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and one or more existing high-level 3D file formats to describe the objects to print. We have a prototype-ready draft available now and welcome participation from all interested parties.</p>
-	  <p><a class="btn btn-primary btn-lg" href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160430.pdf">Current Prototype Working Draft<br><small><em>April 30, 2016</em></small></a></p>
-	</div>
-      </div>
-      <div class="col-md-3 col-sm-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">Recent Meetings</div>
-          <div class="panel-body">
-	    <p><b>June 4, 2016</b><br>
-	    <a href="PWG-Drupa-June-2016.pdf">Drupa Presentation</a></p>
-
-	    <p><b>April 28, 2016</b><br>
-	    <a href="http://ftp.pwg.org/pub/pwg/ipp/slides/ipp-wg-agenda-april-16.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160420-rev.pdf">Working Draft</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20160417.pdf">Minutes</a></p>
-
-	    <p><b>February 11, 2016</b><br>
-	    <a href="http://ftp.pwg.org/pub/pwg/ipp/slides/ipp-wg-agenda-february-16.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160201-rev.pdf">Working Draft</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20160210.pdf">Minutes</a></p>
-
-	    <p><b>November 3, 2015</b><br>
-	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-november-2015.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20151029-rev.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20151103.pdf">Minutes</a></p>
-
-	    <p><b>August 11, 2015</b><br>
-	    <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-bof-august-2015.pdf">Slides</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/wd-apple-ipp3d-20150729-rev.pdf">White Paper</a> &middot; <a href="http://ftp.pwg.org/pub/pwg/BOFs/3d-printing/3d-printing-bof-minutes-20150811.pdf">Minutes</a></p>
-          </div>
-        </div>
+	<h1>3D Printing</h1>
+	<p>The Printer Working Group has developed an extension to the <a href="../ipp">Internet Printing Protocol</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and existing high-level 3D file formats to describe the objects to print. We welcome participation from all interested parties in the continued prototyping and development of this specification.</p>
+	<p class="hidden-xs">&nbsp;</p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160714.pdf">Current IPP 3D Specification</a></li>
+	  <li role="presentation"><a href="http://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Mailing List</a></li>
+	</ul>
       </div>
     </div>
-
-    <h2>Summary of Work</h2>
-
-    <div class="row">
-      <div class="col-md-6 col-sm-12">
-	<p>We started our work in "Birds of a Feather" (BOF) sessions at our face-to-face meetings and on the <a href="http://www.pwg.org/mailman/listinfo/3d-printing">3d-printing</a> mailing list we host. A white paper was produced outlining our approach, and that lead to the addition of the IPP 3D Printing Extensions to the Internet Printing Protocol workgroup charter. While IPP and the PWG Semantic Model can be easily adapted to 3D printing, adapting the existing 3D file formats is proving to be more of a challenge.</p>
-
-	<p>3D printers can take advantage of the 50+ years of traditional 2D printing to offer high-level, networked, and cloud-aware printing services to client devices running any operating system. The Internet Printing Protocol provides a flexible and secure network protocol for queuing jobs, monitoring the state of jobs and printers, and managing jobs and printers. When combined with a high-level 3D file format, the proper job ticket attributes (i.e., print options), and one or more service discovery or directory protocols (Bonjour/DNS-SD, LDAP, etc.) a client device will be able to successfully print 3D objects to any printer using "generic" software.</p>
-      </div>
-
-      <div class="col-md-6 col-sm-12">
-	<div class="well">
-	  <a href="PWG-IPP-and-3D-Printing-Infographic.pdf"><img src="PWG-IPP-and-3D-Printing-Infographic.jpg" width="100%"></a><br>
-	  <a href="PWG-IPP-and-3D-Printing-Infographic-2-pages.pdf">Two Page Handout Version</a>
-	</div>
+    <div class="row pwg-panel pwg-alt-0">
+      <div class="col-md-12 col-sm-12">
+	<h1>3D Printing and the Practical Applications of Time Travel</h1>
+	<p>The PWG and its predecessors have spent the last 60+ years defining and refining 2D printing, to the point that today you can print without using vendor-specific software or hardware.  3D printers can take advantage of the many years of traditional 2D printing to offer high-level, networked, and cloud-aware printing services to client devices running any operating system. IPP provides a flexible and secure network protocol for queuing jobs, monitoring the state of jobs and printers, and managing jobs and printers.</p>
+	<p>When combined with a high-level 3D file format, the proper job ticket attributes (print options), and service discovery (Bonjour) or directory (LDAP) protocols a client device can successfully print 3D objects to any printer using "generic" software.</p>
+	<p class="hidden-xs"><img src="PWG-IPP-and-3D-Printing-Infographic@2x.jpg" class="pwg-figure"></p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="PWG-IPP-and-3D-Printing-Infographic.pdf">IPP 3D Infographic (One Page Version)</a></li>
+	  <li role="presentation"><a href="PWG-IPP-and-3D-Printing-Infographic-2-pages.pdf">IPP 3D Infographic (Two Page Version)</a></li>
+	  <li role="presentation"><a href="PWG-Drupa-June-2016.pdf">Drupa 2016 Presentation on IPP 3D</a></li>
+	</ul>
       </div>
     </div>
-
-    <h2>Adopted 3D File Formats</h2>
-
-    <p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a slightly more compact XML format than AMF with physical dimensions, named materials, and shared vertices. 3MF is supported by major CAD and slicer software and is a required file format for the IPP 3D Printing Extensions.
-    <a class="btn btn-primary btn-xs" target="_blank" href="http://www.3mf.io/">More Info</a></p>
-
-    <p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) will add support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata. PDF is a recommended file format for the IPP 3D Printing Extensions.
-    <a class="btn btn-primary btn-xs" target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">More Info on ECMA-363</a>
-    <a class="btn btn-primary btn-xs" target="_blank" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/PDF32000_2008.pdf">More Info on ISO 32000-1</a>
-    </p>
-
-    <h2>Other 3D File Formats (Considered but Not Adopted)</h2>
-
-    <p><b>Additive Manufacturing File Format (AMF)</b>: AMF is an ISO standard XML format that supports physical dimensions, named materials, and shared vertices. It is generally considered to be the replacement for STL and is supported by some 3D software. The lack of a freely-available version of the standard has limited its use in 3D printing.
-    <a class="btn btn-primary btn-xs" target="_blank" href="https://en.wikipedia.org/wiki/Additive_Manufacturing_File_Format">More Info</a></p>
-
-    <p><b>Collada (DAE)</b>: Collada is an XML format for 3D assets that is widely used in gaming. While it does offer shared vertices, it does not provide a way to name materials or define physical units.
-    <a class="btn btn-primary btn-xs" target="_blank" href="https://www.khronos.org/collada/">More Info</a></p>
-
-    <p><b>Stereo Lithography File Format (STL)</b>: STL is the current defacto-standard file format with both plain text and binary encodings. While it is the most widely used and supported file format for 3D printing, it lacks support for physical dimensions, named materials, or shared vertices.
-    <a class="btn btn-primary btn-xs" target="_blank" href="https://en.wikipedia.org/wiki/STL_(file_format)">More Info</a></p>
-  </body>
+    <div class="row pwg-panel pwg-alt-2">
+      <div class="col-md-12 col-sm-12">
+        <h1>IPP 3D Print Jobs and Capabilities</h1>
+        <p>Client devices query an IPP 3D printer for the available materials and capabilities (heated build platform, multiple material support, etc.) and then send 3D files to the printer, specifying the material(s) and other options to use for the print job. The client can then monitor the progress of the job and the printer status, including any available camera video of the build platform. All slicing happens on the printer.</p>
+	<p class="hidden-xs">&nbsp;</p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160714.pdf">Current IPP 3D Specification</a></li>
+	  <li role="presentation"><a href="http://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Mailing List</a></li>
+	  <li role="presentation"><a href="http://github.com/istopwg/ippsample">IPP Sample Code</a></li>
+	</ul>
+      </div>
+    </div>
+    <div class="row pwg-panel pwg-alt-1">
+      <div class="col-md-12 col-sm-12">
+	<h1>IPP 3D File Formats</h1>
+	<p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a compact XML format with physical dimensions, named materials, and shared vertices. 3MF is supported by major CAD and slicer software and is a required file format for the IPP 3D Printing Extensions.</p>
+	<p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) will add support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata. PDF is a recommended file format for the IPP 3D Printing Extensions.</p>
+	<p class="hidden-xs">&nbsp;</p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a target="_blank" href="http://www.3mf.io/">3MF Web Site</a></li>
+	  <li role="presentation"><a target="_blank" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/PDF32000_2008.pdf">PDF 1.7 (ISO 32000-1) Specification</a></li>
+	  <li role="presentation"><a target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">Universal 3D (U3D, ECMA-363) Specification</a></li>
+	</ul>
+      </div>
+    </div>
+    <div class="row pwg-panel">
+      <div class="col-md-12 col-sm-12">
+        <h1>Resources</h1>
+        <ul>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160714.pdf">Current IPP 3D Specification</a></li>
+	  <li><a href="http://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Printing Mailing List</a></li>
+	  <li><a href="http://github.com/istopwg/ippsample">IPP Sample Code</a></li>
+	  <li><a href="PWG-IPP-and-3D-Printing-Infographic.pdf">IPP 3D Infographic (One Page Version)</a></li>
+	  <li><a href="PWG-IPP-and-3D-Printing-Infographic-2-pages.pdf">IPP 3D Infographic (Two Page Version)</a></li>
+	  <li><a href="PWG-Drupa-June-2016.pdf">Drupa 2016 Presentation on IPP 3D</a></li>
+	  <li><a target="_blank" href="http://www.3mf.io/">3MF Web Site</a></li>
+	  <li><a target="_blank" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/PDF32000_2008.pdf">PDF 1.7 (ISO 32000-1) Specification</a></li>
+	  <li><a target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">Universal 3D (U3D) Specification</a></li>
+        </ul>
+      </div>
+    </div>
+  </div></body>
 </html>

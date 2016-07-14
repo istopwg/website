@@ -222,7 +222,7 @@ site_header($title = "",		// I - Additional document title
        ."            <li class=\"dropdown-header\" role=\"presentation\">Technologies</li>\n"
        ."            <li><a href=\"${html_path}3d/index.html\">3D Printing</a></li>\n"
        ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>&reg;</sup></a></li>\n"
-//       ."            <li><a href=\"${html_path}dynamo/eveprinters.php\">&nbsp;&nbsp;&nbsp;&nbsp;IPP Everywhere<sup>&reg;</sup> Printers</a></li>\n"
+       ."            <li><a href=\"${html_path}sm/model.html\">PWG Semantic Model</a></li>\n"
        ."          </ul>\n"
        ."        </li>\n"
        ."        <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Workgroups <span class=\"caret\"></span></a>\n"

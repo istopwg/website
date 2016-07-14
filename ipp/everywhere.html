@@ -9,42 +9,114 @@
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-theme-3.2.0.min.css">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
-    <style>body { margin: 20px; }</style>
   </head>
-  <body>
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-	<div class="jumbotron">
-	  <h1><img class="pwg-logo pwg-right hidden-xs" src="ipp-everywhere@2x.png">IPP Everywhere<sup>&reg;</sup></h1>
-	  <p>A PWG standard that allows personal computers and mobile devices to find and print to networked and USB printers without using special software.</p>
-          <p><!-- <a class="btn btn-primary btn-lg" href="https://www.pwg.org/printers">Find Printers</a> -->
-          <a class="btn btn-default btn-lg" href="https://www.pwg.org/ippeveselfcert">Submission Portal</a>
-          <a class="btn btn-default btn-lg" href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeve10-20130128-5100.14.pdf">Technical Specification</a>
-          <a class="btn btn-default btn-lg" href="evefaq.html">Frequently Asked Questions</a></p>
-        </div>
+  <body><div class="container-fluid">
+    <style>
+      /* Logo colors are white, black, and #373e80 */
+      .pwg-panel-logo { width: 100%; }
+      #pwg-body { padding-left: 0px; padding-right: 0px; }
+      .pwg-panel { font-size: 125%; padding: 80px 60px; }
+      .pwg-panel h1 { font-size: 250%; }
+      .pwg-note { font-size: 80%; font-style: italic; margin-bottom: 1em; margin-top: 1em; }
+      ul.nav-pills li { background: #525dbf; border-radius: 5px; color: #ffffff; font-size: 90%; margin-bottom: 5px; margin-right: 5px; }
+      ul.nav-pills li a { color: #ffffff; }
+      ul.nav-pills li a:hover { background: #8a8fbf; color: #ffffff; }
+      .pwg-alt-0 { background: #e7eef1; color: #000000; }
+      .pwg-alt-1 { background: #e6e8ff; color: #000000; }
+      .pwg-alt-2 { background: #373e80; color: #ffffff; }
+      .pwg-figure { width: 100%; }
+      @media only screen and (min-device-width: 320px) and (max-device-width: 480px),
+	     only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+	.pwg-panel { font-size: 100%; padding: 30px 20px; }
+	.pwg-panel h1 { font-size: 200%; padding: 30px 20px; }
+      }
+    </style>
+    <div class="row pwg-panel">
+      <div class="col-md-3 hidden-sm hidden-xs">
+	<img class="pwg-panel-logo" src="ipp-everywhere-320@2x.png">
+      </div>
+      <div class="col-md-9 col-sm-12">
+	<h1>IPP Everywhere<sup>&reg;</sup></h1>
+	<p>A PWG standard that allows personal computers and mobile devices to find and print to networked and USB printers without using vendor-specific software.</p>
+	<p class="hidden-xs">&nbsp;</p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="https://www.pwg.org/printers">Find Printers</a></li>
+	  <li role="presentation"><a href="evefaq.html">Frequently Asked Questions</a></li>
+	</ul>
       </div>
     </div>
-    <div class="row">
+    <div class="row pwg-panel pwg-alt-0">
       <div class="col-md-12 col-sm-12">
-        <h2>Printer Self-Certification Manual and Tools</h2>
-	<p>v1.0:</p>
+	<h1>The Evolution of Digital Printing</h1>
+	<p>Today&rsquo;s IPP printers offer state-of-the-art printing capabilities, output quality, and ease of use without the need to download and install driver software or configure print queues.</p>
+	<p class="pwg-note">Features: Printer discovery, full range of print media, 2-sided printing, photo printing, finishers (stapling, punching, folding, etc.), and more!</p>
+	<p class="hidden-xs"><img class="pwg-figure" src="timeline.png"></p>
+      </div>
+    </div>
+    <div class="row pwg-panel pwg-alt-2">
+      <div class="col-md-12 col-sm-12">
+	<h1>IPP Everywhere Clients</h1>
+	<p>Many clients already support IPP Everywhere. For those that don&rsquo;t, operating system and desktop environment developers can leverage existing open source software to quickly provide IPP Everywhere printing support.</p>
+	<p class="pwg-note">Popular clients: Android, ChromeOS, CUPS, Linux, macOS</p>
+	<p class="hidden-xs">&nbsp;</p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="https://github.com/istopwg/ippsample">Sample Software</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeve10-20130128-5100.14.pdf">Technical Specification</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippig20-20150821-5100.19.pdf">Implementor's Guide</a></li>
+	</ul>
+      </div>
+    </div>
+    <div class="row pwg-panel pwg-alt-1">
+      <div class="col-md-12 col-sm-12">
+	<h1>IPP Everywhere Printers and Print Servers</h1>
+	<p>98% of all printers sold today support IPP/2.0 and Bonjour. Support generic file formats to enable IPP Everywhere printing.</p>
+	<p class="pwg-note">Required: IPP/2.0, Bonjour, PWG Raster Format and JPEG<br>
+	Recommended: PDF, IPP-USB</p>
+	<p class="hidden-xs">&nbsp;</p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="https://www.pwg.org/ippeveselfcert">Submission Portal</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeve10-20130128-5100.14.pdf">Technical Specification</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert10-20160219-5100.20.pdf">Self-Certification Manual</a></li>
+	</ul>
+      </div>
+    </div>
+    <div class="row pwg-panel">
+      <div class="col-md-12 col-sm-12">
+	<h1>Cloud, Enterprise, and Managed Printing</h1>
+	<p>Cloud, enterprise, and managed print services can utilize the IPP Shared Infrastructure Extensions to act as an intermediary between clients and printers. Clients continue to use the same printing interface while printers use the &ldquo;proxy&rdquo; interface provided by the print service to collect print jobs as needed.</p>
+	<p class="pwg-note">Features: Cloud printing, centralized accounting and access control, &ldquo;release&rdquo; printing</p>
+	<p class="hidden-xs"><img class="pwg-figure" src="cloud.png"></p>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf">Technical Specification</a></li>
+	</ul>
+      </div>
+    </div>
+    <div class="row pwg-panel pwg-alt-0">
+      <div class="col-md-6 col-sm-12">
+	<h1>Files</h1>
 	<ul>
-	  <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert10-20160219-5100.20.pdf">Printer Self-Certification Manual v1.0 (Approved)</a></li>
-	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-osx.zip">Mac OS X v1.0 Software Tools</a></li>
-	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-rhel.tar.gz.">Red Hat Enterprise Linux v1.0 Software Tools</a></li>
-	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-ubuntu.tar.gz">Ubuntu LTS v1.0 Software Tools</a></li>
-	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-windows.msi">Windows v1.0 Software Tools</a><ul>
-	    <li><a href="http://support.apple.com/kb/DL999">Bonjour Print Services for Windows (Required by Tools)</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert10-20160219-5100.20.pdf">Self-Certification Manual</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-osx.zip">macOS Tools</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-rhel.tar.gz.">Red Hat Enterprise Linux Tools</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-ubuntu.tar.gz">Ubuntu LTS Tools</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20151110-windows.msi">Windows Tools</a><ul>
+	    <li><a href="http://support.apple.com/kb/DL999">Bonjour for Windows (Required)</a></li>
 	  </ul></li>
 	  <li><a href="http://ftp.pwg.org/pub/pwg/ipp/examples">PWG Raster Format Sample Files</a></li>
 	</ul>
-	<h2>Resources</h2>
+      </div>
+      <div class="col-md-6 col-sm-12">
+	<h1>Resources</h1>
 	<ul>
-	  <li><a href="https://github.com/istopwg/ippeveselfcert/issues">Issue Tracker</a></li>
-	  <li><a href="https://github.com/istopwg/ippsample">Sample Software</a></li>
+	  <li><a href="https://www.pwg.org/mailman/listinfo/ipp">IPP Mailing List</a></li>
+	  <li><a href="https://github.com/istopwg/ippsample">IPP Sample Code</a></li>
 	  <li><a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">Self-Certification Mailing List</a></li>
+	  <li><a href="https://github.com/istopwg/ippeveselfcert/issues">Self-Certification Issue Tracker</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeve10-20130128-5100.14.pdf">IPP Everywhere Specification</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippig20-20150821-5100.19.pdf">IPP Implementor's Guide v2.0</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf">IPP Shared Infrastructure Extensions Specification</a></li>
 	</ul>
       </div>
     </div>
-  </body>
+  </div></body>
 </html>

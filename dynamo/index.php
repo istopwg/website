@@ -81,7 +81,7 @@ if (!$firsttime)
       <div class="panel-heading">PWG Semantic Model</div>
       <div class="panel-body">
         <p>Support multiple network protocols and job ticket formats using our abstract model.</p>
-        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>sm/index.html">More Info</a></p>
+        <p><a class="btn btn-default btn-sm" href="<?print($html_path);?>sm/model.html">More Info</a></p>
       </div>
     </div>
   </div>
