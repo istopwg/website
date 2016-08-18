@@ -370,7 +370,7 @@ printer_validate_plist($plist,		// I - plist to validate
             // I-9 exceptions
             foreach ($plist["Tests"][$i]["Errors"] as $error)
             {
-              if (!preg_match("/^EXPECTED: media-col-ready/", $error) && !preg_match("/^EXPECTED: media-ready/", $error) && !preg_match("/^EXPECTED: identify-actions-/", $error)&& !preg_match("/^EXPECTED: printer-device-id/", $error) && !preg_match("/^EXPECTED: printer-supply/", $error) && !preg_match("/^EXPECTED: operations-supported WITH-VALUE \"0x003c\"/", $error)
+              if (!preg_match("/^EXPECTED: media-col-ready/", $error) && !preg_match("/^EXPECTED: media-ready/", $error) && !preg_match("/^EXPECTED: identify-actions-/", $error)&& !preg_match("/^EXPECTED: printer-device-id/", $error) && !preg_match("/^EXPECTED: printer-supply/", $error) && !preg_match("/^EXPECTED: operations-supported WITH-VALUE \"0x003c\"/", $error))
               {
                 $successful = FALSE;
                 break;
