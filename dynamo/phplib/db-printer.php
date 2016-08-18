@@ -352,6 +352,7 @@ printer_validate_plist($plist,		// I - plist to validate
     }
 
     return ("Not all tests were successful.");
+  }
 
   return ("");
 }
