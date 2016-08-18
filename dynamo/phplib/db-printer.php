@@ -284,7 +284,9 @@ printer_publish_submission($organization_id, $product_family, $url, $models, $ce
 function				// O - String containing errors or "" for OK
 printer_validate_plist($plist,		// I - plist to validate
                        $cert_version,	// I - Certification version
-                       $file)		// I - File ("bonjour", "document", or "ipp")
+                       $file,		// I - File ("bonjour", "document", or "ipp")
+                       $print_server = FALSE)
+                       			// I - Results for a print server?
 {
   $tests = array(
     "org.pwg.ippeveselfcert10.bonjour" => 10,
@@ -325,6 +327,30 @@ printer_validate_plist($plist,		// I - plist to validate
     return ("Wrong number of Tests in plist file.");
 
   if (!$plist["Successful"])
+  {
+    if ($print_server && $file == "ipp")
+    {
+      // Allow I-9 printer-supply checks and I-27 media-needed checks to fail
+      $successful = TRUE;
+      for ($i = 0; $successful && $i < sizeof($plists["Tests"]); $i ++)
+      {
+        if (!$plist["Tests"][$i]["Successful"])
+        {
+          if ($i == 8)
+          {
+            // I-9 printer-supply exceptions
+            foreach ($plist["Tests"][$i]["Errors"] as $error)
+            {
+              if (!preg_match("/^EXPECTED: printer-supply/", $error))
+                $successful = FALSE;
+            }
+          }
+          else if ($i != 26)
+            $successful = FALSE;
+        }
+      }
+    }
+
     return ("Not all tests were successful.");
 
   return ("");

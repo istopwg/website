@@ -90,6 +90,11 @@ if ($REQUEST_METHOD == "POST")
   else
     $printed_correctly = FALSE;
 
+  if (array_key_exists("print_server", $_POST))
+    $print_server = TRUE;
+  else
+    $print_server = FALSE;
+
   if (array_key_exists("bonjour_file", $_FILES) && array_key_exists("tmp_name", $_FILES["bonjour_file"]))
   {
     $filename = $_FILES["bonjour_file"]["tmp_name"];
@@ -100,7 +105,7 @@ if ($REQUEST_METHOD == "POST")
     else
     {
       $bonjour_file_plist = plist_read_file($filename);
-      $bonjour_file_error = printer_validate_plist($bonjour_file_plist, $cert_version, "bonjour");
+      $bonjour_file_error = printer_validate_plist($bonjour_file_plist, $cert_version, "bonjour", $print_server);
     }
   }
   else
@@ -116,7 +121,7 @@ if ($REQUEST_METHOD == "POST")
     else
     {
       $ipp_file_plist = plist_read_file($filename);
-      $ipp_file_error = printer_validate_plist($ipp_file_plist, $cert_version, "ipp");
+      $ipp_file_error = printer_validate_plist($ipp_file_plist, $cert_version, "ipp", $print_server);
     }
   }
   else
@@ -133,7 +138,7 @@ if ($REQUEST_METHOD == "POST")
     else
     {
       $document_file_plist = plist_read_file($filename);
-      $document_file_error = printer_validate_plist($document_file_plist, $cert_version, "document");
+      $document_file_error = printer_validate_plist($document_file_plist, $cert_version, "document", $print_server);
     }
   }
   else
@@ -220,7 +225,7 @@ if ((!$used_approved || !$used_prodready || !$printed_correctly) && $REQUEST_MET
 else
   $checklist_valid = TRUE;
 
-if ($bonjour_file_plist == NULL || $bonjour_file_error != "")
+if (($bonjour_file_plist == NULL || $bonjour_file_error != "") && $REQUEST_METHOD == "POST")
 {
   $bonjour_file_valid = FALSE;
   $valid = FALSE;
@@ -228,11 +233,13 @@ if ($bonjour_file_plist == NULL || $bonjour_file_error != "")
 else
 {
   $bonjour_file_valid = TRUE;
-  $bonjour_file_error = "Results are valid.";
+
+  if ($REQUEST_METHOD == "POST")
+    $bonjour_file_error = "Results are valid.";
 }
 
 
-if ($ipp_file_plist == NULL || $ipp_file_error != "")
+if (($ipp_file_plist == NULL || $ipp_file_error != "") && $REQUEST_METHOD == "POST")
 {
   $ipp_file_valid = FALSE;
   $valid = FALSE;
@@ -240,10 +247,11 @@ if ($ipp_file_plist == NULL || $ipp_file_error != "")
 else
 {
   $ipp_file_valid = TRUE;
-  $ipp_file_error = "Results are valid.";
+  if ($REQUEST_METHOD == "POST")
+    $ipp_file_error = "Results are valid.";
 }
 
-if ($document_file_plist == NULL || $document_file_error != "")
+if (($document_file_plist == NULL || $document_file_error != "") && $REQUEST_METHOD == "POST")
 {
   $document_file_valid = FALSE;
   $valid = FALSE;
@@ -251,7 +259,8 @@ if ($document_file_plist == NULL || $document_file_error != "")
 else
 {
   $document_file_valid = TRUE;
-  $document_file_error = "Results are valid.";
+  if ($REQUEST_METHOD == "POST")
+    $document_file_error = "Results are valid.";
 }
 
 // Post results if everything is OK...
@@ -323,6 +332,7 @@ html_form_field_start("+used_approved", "Submission Checklist", $checklist_valid
 html_form_checkbox("used_approved", "Used PWG self-certification tools.", $used_approved, "As supplied on the PWG FTP server.");
 html_form_checkbox("used_prodready", "Used Production-Ready Code.", $used_prodready, "Production-Ready Code: Software and/or firmware that is considered ready to be included in products shipped to customers.");
 html_form_checkbox("printed_correctly", "All output printed correctly.", $printed_correctly, "As documented in section 7.3 of the IPP Everywhere Printer Self-Certification Manual 1.0.");
+html_form_checkbox("print_server", "Results are for print server software.", $print_server);
 html_form_field_end();
 
 // files
