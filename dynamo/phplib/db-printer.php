@@ -332,7 +332,9 @@ printer_validate_plist($plist,		// I - plist to validate
   {
     if ($file == "bonjour")
     {
-      // Allow rp values other than ipp/print and ipp/print/*
+      // Auto-exceptions for all printers:
+      //
+      //   B-4/B-5.5 Allow rp values other than ipp/print and ipp/print/*
       $successful = TRUE;
       for ($i = 0; $successful && $i < sizeof($plists["Tests"]); $i ++)
       {
@@ -354,7 +356,10 @@ printer_validate_plist($plist,		// I - plist to validate
     }
     else if ($file == "ipp" && $print_server)
     {
-      // Allow I-9 printer-supply checks and I-27 media-needed checks to fail
+      // Auto-exceptions for print servers:
+      //
+      //   I-9 identify-actions, media-col-ready, media-ready, operations-supported, printer-device-id, and printer-supply checks
+      //   I-27 media-needed checks
       $successful = TRUE;
       for ($i = 0; $successful && $i < sizeof($plists["Tests"]); $i ++)
       {
@@ -362,10 +367,10 @@ printer_validate_plist($plist,		// I - plist to validate
         {
           if ($i == 8)
           {
-            // I-9 printer-supply and printer-uri-supported exceptions
+            // I-9 exceptions
             foreach ($plist["Tests"][$i]["Errors"] as $error)
             {
-              if (!preg_match("/^EXPECTED: printer-supply/", $error))
+              if (!preg_match("/^EXPECTED: media-col-ready/", $error) && !preg_match("/^EXPECTED: media-ready/", $error) && !preg_match("/^EXPECTED: identify-actions-/", $error)&& !preg_match("/^EXPECTED: printer-device-id/", $error) && !preg_match("/^EXPECTED: printer-supply/", $error) && !preg_match("/^EXPECTED: operations-supported WITH-VALUE \"0x003c\"/", $error)
               {
                 $successful = FALSE;
                 break;
