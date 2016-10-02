@@ -231,7 +231,7 @@ printer_search($search = "",		// I - Search string
                $duplex = -1,		// I - Duplex
                $finishings = -1,	// I - Finishings
                $ipps = -1,		// I - IPPS support
-	       $order = "")		// I - Order fields
+	       $order = "model")	// I - Order fields
 {
   global $PRINTER_COLUMNS;
 
