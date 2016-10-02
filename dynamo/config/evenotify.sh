@@ -6,13 +6,13 @@ include_once "../phplib/db-printer.php";
 
 // Who mail comes from - MUST be someone on the pwg-announce@pwg.org list
 $FROM = "msweet@apple.com";
+// Where mail goes to - normally pwg-announce@pwg.org
+$TO = "pwg-announce@pwg.org";
 
 //////// END OF CONFIGURABLE STUFF ////////
 
 // Prepare a message of new printers...
 $since   = time() - 7 * 24 * 60 * 60;   // 1 week ago...
-$to      = "pwg-announce@pwg.org";
-$from    = $FROM;
 $replyto = "noreply@$SITE_HOSTNAME";
 $message = "";
 $ids     = printer_search();
@@ -29,7 +29,7 @@ if ($message != "")
 {
   // Send the email...
   $subject = "New IPP Everywhere Self-Certified Printers";
-  $headers = "From: $from\n"
+  $headers = "From: $FROM\n"
             ."Reply-To: $replyto\n"
             ."Mime-Version: 1.0\n"
             ."Content-Type: text/plain\n";
@@ -40,5 +40,5 @@ if ($message != "")
              ."    http://www.pwg.org/printers\n";
 
   // Send the email notification...
-  mail($to, $subject, wordwrap($message), $headers);
+  mail($TO, $subject, wordwrap($message), $headers);
 }
