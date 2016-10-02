@@ -4,7 +4,7 @@
 //
 
 include_once "site.php";
-include_once "db.php";
+include_once "db-organization.php";
 
 
 $PRINTER_COLUMNS = array(
@@ -97,6 +97,57 @@ class printer
 
 
   //
+  // 'printer::form()' - Display a form for a printer object.
+  //
+
+  function
+  form()
+  {
+    global $PHP_SELF;
+
+
+    html_form_start("$PHP_SELF?U$this->id");
+
+    html_form_field_start("organization_id", "Organization", TRUE);
+    print(organization_name($this->organization_id));
+    html_form_field_end();
+
+    html_form_field_start("product_family", "Product Family", TRUE);
+    print(htmlspecialchars($this->product_family));
+    html_form_field_end();
+
+    html_form_field_start("model", "Model Name", $this->model != "");
+    html_form_text("model", "Model Name", $this->model);
+    html_form_field_end();
+
+    html_form_field_start("url", "Product Web Page", $this->url == "" || validate_url($this->url));
+    html_form_url("url", "http://www.example.com", $this->url);
+    html_form_field_end();
+
+    html_form_field_start("cert_version", "Certification Version", TRUE);
+    print($CERT_VERSIONS[$this->cert_version]);
+    html_form_field_end();
+
+    html_form_field_start("capabilities", "Capabilities", TRUE);
+    html_form_checkbox("color_supported", "Color", $this->color_supported);
+    print("<br>\n");
+    html_form_checkbox("duplex_supported", "Duplex", $this->duplex_supported);
+    print("<br>\n");
+    html_form_checkbox("finishings_supported", "Finishings", $this->finishings_supported);
+    print("<br>\n");
+    html_form_checkbox("ipps_supported", "IPPS", $this->ipps_supported);
+    html_form_field_end();
+
+    html_form_field_start("create_date", "Submission Date", TRUE);
+    print(html_date($this->create_date));
+    html_form_field_end();
+
+    // Submit
+    html_form_end(array("SUBMIT" => "+Save Changes"));
+  }
+
+
+  //
   // 'printer::load()' - Load a printer object.
   //
 
@@ -113,6 +164,34 @@ class printer
     $this->id = $id;
 
     return (TRUE);
+  }
+
+
+  //
+  // 'printer::loadform()' - Load a printer object from form data.
+  //
+
+  function				// O - TRUE if OK, FALSE otherwise
+  loadform()
+  {
+    global $_POST, $LOGIN_ID, $LOGIN_IS_ADMIN, $REQUEST_METHOD;
+
+
+    if (!html_form_validate())
+      return (FALSE);
+
+    if (array_key_exists("model", $_POST))
+      $this->model = trim($_POST["model"]);
+
+    if (array_key_exists("url", $_POST))
+      $this->url = trim($_POST["url"]);
+
+    $this->color_supported      = array_key_exists("color_supported", $_POST);
+    $this->duplex_supported     = array_key_exists("duplex_supported", $_POST);
+    $this->finishings_supported = array_key_exists("finishings_supported", $_POST);
+    $this->ipps_supported       = array_key_exists("ipps_supported", $_POST);
+
+    return ($this->model != "" && ($this->url == "" || validate_url($this->url)));
   }
 
 

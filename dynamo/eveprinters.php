@@ -10,6 +10,38 @@
 include_once "phplib/site.php";
 include_once "phplib/db-printer.php";
 
+// Handle updates...
+if ($LOGIN_IS_ADMIN && $argc && $argv[0][0] == "U")
+{
+  $id = (int)substr($argv[0], 1);
+  $printer = new printer($id);
+  if ($printer->id == $id && $id > 0)
+  {
+    if ($printer->loadform())
+    {
+      // Save changes...
+      $printer->save();
+      header("Location: $PHP_SELF");
+    }
+    else
+    {
+      // Show form...
+      site_header("Update IPP Everywhere Self-Certified Printer");
+
+      print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
+
+      if ($REQUEST_METHOD == "POST")
+        html_show_error("Please correct the highlighted fields.");
+
+      $printer->form();
+      site_footer();
+    }
+
+    exit(0);
+  }
+}
+
+// Otherwise show the list...
 site_header("IPP Everywhere Self-Certified Printers");
 
 // Collect form input...
@@ -79,10 +111,15 @@ if ($count > 0)
     $pfinishings = $printer->finishings_supported ? "YES" : "NO";
     $pipps       = $printer->ipps_supported ? "YES" : "NO";
 
-    if ($purl != "")
-      print("<tr><td><a href=\"$purl\" target=\"_blank\">$pmodel</td><td>$pcolor</td><td>$pduplex</td><td>$pfinishings</td><td>$pipps</td></tr>\n");
+    if ($LOGIN_IS_ADMIN)
+      $pedit = "<a href=\"$PHP_SELF?U$id\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
     else
-      print("<tr><td>$pmodel<td>$pcolor</td><td>$pduplex</td><td>$pfinishings</td><td>$pipps</td></tr>\n");
+      $pedit = "";
+
+    if ($purl != "")
+      print("<tr><td><a href=\"$purl\" target=\"_blank\">$pmodel</a>$pedit</td><td>$pcolor</td><td>$pduplex</td><td>$pfinishings</td><td>$pipps</td></tr>\n");
+    else
+      print("<tr><td>$pmodel$pedit<td>$pcolor</td><td>$pduplex</td><td>$pfinishings</td><td>$pipps</td></tr>\n");
   }
 
   html_end_table();
