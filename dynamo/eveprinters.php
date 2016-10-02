@@ -112,7 +112,7 @@ if ($count > 0)
     $pipps       = $printer->ipps_supported ? "YES" : "NO";
 
     if ($LOGIN_IS_ADMIN)
-      $pedit = "<a href=\"$PHP_SELF?U$id\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
+      $pedit = " <a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?U$id\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
     else
       $pedit = "";
 
