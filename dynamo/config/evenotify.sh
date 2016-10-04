@@ -8,8 +8,7 @@ include_once "phplib/db-printer.php";
 // Who mail comes from - MUST be someone on the pwg-announce@pwg.org list
 $FROM = "msweet@apple.com";
 // Where mail goes to - normally pwg-announce@pwg.org
-//$TO = "pwg-announce@pwg.org";
-$TO = "msweet@apple.com";
+$TO = "pwg-announce@pwg.org";
 
 if ($argc > 1)
   $DAYS = (int)$argv[1];
