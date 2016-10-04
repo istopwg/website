@@ -11,11 +11,11 @@ include_once "phplib/site.php";
 include_once "phplib/db-printer.php";
 
 // Handle updates...
-if ($LOGIN_IS_ADMIN && $argc && $argv[0][0] == "U")
+if ($LOGIN_ID > 0 && $argc && $argv[0][0] == "U" && (int)substr($argv[0], 1) > 0)
 {
   $id = (int)substr($argv[0], 1);
   $printer = new printer($id);
-  if ($printer->id == $id && $id > 0)
+  if ($printer->id == $id && $id > 0 && ($LOGIN_IS_ADMIN || $printer->create_id == $LOGIN_ID))
   {
     if ($printer->loadform())
     {
@@ -73,8 +73,9 @@ else
 // Filter form...
 print("<div style=\"display: block-inline; text-align: center;\">"
      ."<form action=\"$PHP_SELF\" method=\"GET\" class=\"form-inline\">\n");
-html_form_text("s", "Name, etc.", $search, "", 1, "", 15);
-print(" ");
+html_form_search("s", "Name, etc.", $search, "");
+html_form_buttons(array("" => "Filter Results"));
+print("<br>\n");
 html_form_select("c", array("-1" => "Color and B&W", "0" => "B&W Only", "1" => "Color Only"), "", $color);
 print(" ");
 html_form_select("d", array("-1" => "1 and 2-Sided", "0" => "1-Sided Only", "1" => "2-Sided Capable"), "", $duplex);
@@ -83,7 +84,7 @@ html_form_select("f", array("-1" => "Optional Staple, Punch, ...", "0" => "No St
 print(" ");
 html_form_select("t", array("-1" => "Optional IPPS", "0" => "No IPPS", "1" => "IPPS Only"), "", $ipps);
 print(" ");
-html_form_end(array("" => "Filter Results"));
+html_form_end();
 print("<hr>\n");
 
 // Printer list...
@@ -111,8 +112,8 @@ if ($count > 0)
     $pfinishings = $printer->finishings_supported ? "YES" : "NO";
     $pipps       = $printer->ipps_supported ? "YES" : "NO";
 
-    if ($LOGIN_IS_ADMIN)
-      $pedit = " <a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?U$id\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
+    if ($LOGIN_IS_ADMIN || $LOGIN_ID == $printer->create_id)
+      $pedit = " <a class=\"btn btn-default btn-xs\" href=\"$PHP_SELF?U$id\"><span class=\"glyphicon glyphicon-pencil\"></span></a>";
     else
       $pedit = "";
 

@@ -12,7 +12,7 @@
 // Include site configuration...
 //
 
-include_once "config/site.cfg";
+include_once "../config/site.cfg";
 
 
 //
