@@ -2,12 +2,15 @@
 <?php
 // Script to notify people about new IPP Everywhere Printer submissions in
 // the last week...  Run from crontab on Sunday nights...
+include_once "site.cfg";
+include_once "../phplib/site.php";
 include_once "../phplib/db-printer.php";
 
 // Who mail comes from - MUST be someone on the pwg-announce@pwg.org list
 $FROM = "msweet@apple.com";
 // Where mail goes to - normally pwg-announce@pwg.org
-$TO = "pwg-announce@pwg.org";
+//$TO = "pwg-announce@pwg.org";
+$TO = "msweet@apple.com";
 
 //////// END OF CONFIGURABLE STUFF ////////
 
