@@ -12,10 +12,15 @@ $FROM = "msweet@apple.com";
 //$TO = "pwg-announce@pwg.org";
 $TO = "msweet@apple.com";
 
+if ($argc)
+  $DAYS = (int)$argv[0];
+else
+  $DAYS = 7;
+
 //////// END OF CONFIGURABLE STUFF ////////
 
 // Prepare a message of new printers...
-$since   = time() - 7 * 24 * 60 * 60;   // 1 week ago...
+$since   = time() - $DAYS * 24 * 60 * 60;
 $replyto = "noreply@$SITE_HOSTNAME";
 $message = "";
 $ids     = printer_search();
@@ -26,6 +31,8 @@ foreach ($ids as $id)
 
   if ($printer->id == $id && $printer->create_date >= $since)
     $message .= "- $printer->model\n";
+  else
+    print("Skipping $printer->model\n");
 }
 
 if ($message != "")
