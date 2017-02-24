@@ -63,7 +63,7 @@ if ($argc)
   $op = $argv[0][0];
   $id = (int)substr($argv[0], 1);
 
-  if ($op != 'L' && $op != 'U')
+  if ($op != 'D' && $op != 'L' && $op != 'U')
   {
     site_header("Articles");
     print("<p>Bad command '$op'.</p>\n");
@@ -71,7 +71,7 @@ if ($argc)
     exit();
   }
 
-  if ($op == 'U' && $id)
+  if (($op == 'D' || $op == 'U') && $id)
   {
     $article = new article($id);
 
@@ -129,6 +129,53 @@ $options = "+I$index+Q" . urlencode($search);
 
 switch ($op)
 {
+  case 'D' : // Delete
+      if (!$LOGIN_IS_ADMIN && !$LOGIN_IS_OFFICER)
+      {
+	site_header("Articles");
+	print("<p>You do not have permission to access this page.</p>\n");
+	article_footer();
+	exit(0);
+      }
+
+      $article = new article($id);
+
+      if ($article->id != $id)
+      {
+	site_header("Articles");
+	print("<p>Article #$id does not exist.</p>\n");
+	article_footer();
+	exit();
+      }
+
+      if (!$id)
+      {
+        header("Location: $PHP_SELF?L$options");
+        exit();
+      }
+
+      if ($article->loadform() && array_key_exists("SUBMIT", $_POST))
+      {
+        $article->delete();
+        header("Location: $PHP_SELF?L$options");
+      }
+      else
+      {
+        article_header("Delete Article", $id);
+
+        print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
+
+        html_form_start("$PHP_SELF?U$id$options");
+
+        $article->view("", 2, FALSE);
+
+        // Submit
+        html_form_end(array("SUBMIT" => "+Confirm Delete"));
+
+        article_footer();
+      }
+      break;
+
   case 'L' : // View/list
       // List article...
       article_header("Articles");
