@@ -16,7 +16,7 @@
     </style>
     <h2>Charter</h2>
 
-    <p>The Internet Printing Protocol workgroup is developing standards for IPP-based multi-function services such as scanning and facsimile as well as 3D printing, and is responsible for maintaining the IANA IPP, Printer MIB, Finisher MIB, and Job MIB registries. The workgroup also develops IPP Everywhere<sup>&reg;</sup> and manages the IPP Everywhere<sup>&reg;</sup> Printer Self-Certification program.</p>
+    <p>The Internet Printing Protocol workgroup is developing standards for IPP-based multi-function services such as scanning and facsimile as well as 3D printing, is developing the PWG Semantic Model Print3d Service Schema, and is responsible for maintaining the IANA IPP, Printer MIB, Finisher MIB, and Job MIB registries. The workgroup also develops IPP Everywhere<sup>&reg;</sup> and manages the IPP Everywhere<sup>&reg;</sup> Printer Self-Certification program.</p>
 
     <ul class="nav nav-pills">
       <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/charter/ch-ipp-charter-20151225.pdf">View Approved Charter</a></li>
@@ -84,26 +84,30 @@
 
     <h2>Working Drafts</h2>
 
-    <p>IPP 3D Printing Extensions (3D): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160824.pdf">Clean</a>
+    <p>IPP 3D Printing Extensions (3D): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20170210.pdf">Clean</a>
     &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20160824-rev.pdf">Redlined</a> (Prototype Draft - Last Updated August 24, 2016)</p>
-
-    <p>IPP Finishings 2.1 (FIN): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings21-20160926.pdf">Clean</a>
+    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20170210-rev.pdf">Redlined</a>
     &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings21-20160926-rev.pdf">Redlined</a> (IPP WG Last Call - Last Updated September 26, 2016)</p>
+    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/lcrc-ipp3d10.txt">Last Call Comments</a>
+    (Approved February 10, 2017, Pending Publication)</p>
 
-    <p>IPP System Service (SYSTEM): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20160915.pdf">Clean</a>
+    <p>IPP Finishings 2.1 (FIN): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings21-20170216.pdf">Clean</a>
     &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20160915-rev.pdf">Redlined</a> (Interim Draft - Last Updated September 15, 2016)</p>
-
-    <p>IPP/1.1: Encoding and Transport (RFC2910bis): <a href="http://tools.ietf.org/html/draft-sweet-rfc2910bis">Clean</a>
+    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippfinishings21-20170216-rev.pdf">Redlined</a>
     &middot;
-    <a href="https://tools.ietf.org/rfcdiff?url2=draft-sweet-rfc2910bis-09.txt">Redlined</a> (Approved - Last Updated August 5, 2016)</p>
+    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/lcrc-ippfinishings21.txt">Last Call Comments</a>
+    (Approved February 17, 2017, Pending Publication)</p>
 
-    <p>IPP/1.1: Model and Semantics (RFC2911bis): <a href="http://tools.ietf.org/html/draft-sweet-rfc2911bis">Clean</a>
+    <p>IPP System Service (SYSTEM): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170212.pdf">Clean</a>
     &middot;
-    <a href="https://tools.ietf.org/rfcdiff?url2=draft-sweet-rfc2911bis-10.txt">Redlined</a> (Approved - Last Updated August 5, 2016)</p>
+    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170212-rev.pdf">Redlined</a> (Interim Draft - Last Updated February 12, 2017)</p>
 
+    <p>PWG Semantic Model Print3D schema: <a href="https://istopwg.github.io/ippregistry/smprint3d10-schema">Browseable Schema</a>
+    &middot;
+    <a href="http://ftp.pwg.org/pub/pwg/sm3/schemas/smprint3d10-20170219.zip">ZIP Archive</a>
+    &middot;
+    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-smprint3d10-20170219.pdf">PWG 3D Print Job Ticket and Associated Capabilities v1.0 (PRINT3D)</a>
+    (Initial Draft - Last Updated February 19, 2017)</p>
 
     <h2>White Papers</h2>
 
@@ -160,19 +164,19 @@
     <a href="http://tools.ietf.org/html/rfc2567">RFC 2567</a>: Design Goals for an Internet Printing Protocol<br>
     <a href="http://tools.ietf.org/html/rfc2568">RFC 2568</a>: Rational for the Structure of the Model and Protocol for the Internet Printing Protocol<br>
     <a href="http://tools.ietf.org/html/rfc2569">RFC 2569</a>: Mapping between LPD and IPP Protocols<br>
-    <a href="http://tools.ietf.org/html/rfc2616">RFC 2616</a>: Hypertext Transfer Protocol -- HTTP/1.1 (replaced by RFC 723x)<br>
-    <a href="http://tools.ietf.org/html/rfc2617">RFC 2617</a>: HTTP Authentication: Basic and Digest Access Authentication (replaced by RFC 7616 and 7617)<br>
+    <a href="#RFC7230">RFC 2616</a>: Hypertext Transfer Protocol -- HTTP/1.1 (replaced by RFCs 723x)<br>
+    <a href="#RFC7616">RFC 2617</a>: HTTP Authentication: Basic and Digest Access Authentication (replaced by RFCs 7616 and 7617)<br>
     <a href="http://tools.ietf.org/html/rfc2707">RFC 2707</a>: Job Monitoring MIB - V1.0<br>
     <a href="http://tools.ietf.org/html/rfc2708">RFC 2708</a>: Job Submission Protocol Mapping Recommendations for the Job Monitoring MIB<br>
     <a href="http://tools.ietf.org/html/rfc2817">RFC 2817</a>: Upgrading to TLS Within HTTP/1.1<br>
-    <a href="http://tools.ietf.org/html/rfc2910">RFC 2910</a>: IPP/1.1 Encoding and Transport<br>
-    <a href="http://tools.ietf.org/html/rfc2911">RFC 2911</a>: IPP/1.1 Model and Semantics</p>
+    <a href="#RFC8010">RFC 2910</a>: IPP/1.1 Encoding and Transport (replaced by RFC 8010)<br>
+    <a href="#RFC8011">RFC 2911</a>: IPP/1.1 Model and Semantics (replaced by RFC 8011)</p>
 
     <p><a href="http://tools.ietf.org/html/rfc3196">RFC 3196</a>: IPP/1.1 Implementers Guide<br>
     <a href="http://tools.ietf.org/html/rfc3239">RFC 3239</a>: IPP: Requirements for Job, Printer, and Device Administrative Operations<br>
     <a href="http://tools.ietf.org/html/rfc3380">RFC 3380</a>: IPP: Job and Printer Set Operations<br>
-    <a href="http://tools.ietf.org/html/rfc3381">RFC 3381</a>: IPP: Job Progress Attributes<br>
-    <a href="http://tools.ietf.org/html/rfc3382">RFC 3382</a>: IPP: The Collection Attribute Syntax<br>
+    <a href="http://tools.ietf.org/html/rfc3381">RFC 3381</a>: IPP: Job Progress Attributes (OBSOLETE)<br>
+    <a href="#RFC8010">RFC 3382</a>: IPP: The Collection Attribute Syntax (replaced by RFCs 8010 and 8011)<br>
     <a href="http://tools.ietf.org/html/rfc3391">RFC 3391</a>: The MIME Application/Vnd.pwg-multiplexed Content-Type<br>
     <a href="http://tools.ietf.org/html/rfc3510">RFC 3510</a>: IPP: IPP URL Scheme<br>
     <a href="http://tools.ietf.org/html/rfc3629">RFC 3629</a>: UTF-8 Transformation of ISO 10646<br>
@@ -194,7 +198,7 @@
     <a href="http://tools.ietf.org/html/rfc6762">RFC 6762</a>: Multicast DNS<br>
     <a href="http://tools.ietf.org/html/rfc6763">RFC 6763</a>: DNS-Based Service Discovery</p>
 
-    <p><a href="http://tools.ietf.org/html/rfc7230">RFC 7230</a>: HTTP/1.1 - Message Syntax and Routing<br>
+    <p><a href="http://tools.ietf.org/html/rfc7230">RFC 7230</a>: <a name="RFC7230">HTTP/1.1 - Message Syntax and Routing</a><br>
     <a href="http://tools.ietf.org/html/rfc7231">RFC 7231</a>: HTTP/1.1 - Semantics and Content<br>
     <a href="http://tools.ietf.org/html/rfc7232">RFC 7232</a>: HTTP/1.1 - Conditional Requests<br>
     <a href="http://tools.ietf.org/html/rfc7233">RFC 7233</a>: HTTP/1.1 - Range Requests<br>
@@ -208,8 +212,11 @@
     <a href="http://tools.ietf.org/html/rfc7541">RFC 7541</a>: HPACK: Header Compression for HTTP/2<br>
     <a href="http://tools.ietf.org/html/rfc7612">RFC 7612</a>: LDAP Schema for Printer Services<br>
     <a href="http://tools.ietf.org/html/rfc7615">RFC 7615</a>: HTTP Authentication-Info and Proxy-Authentication-Info Response Header Fields<br>
-    <a href="http://tools.ietf.org/html/rfc7616">RFC 7616</a>: HTTP Digest Access Authentication<br>
+    <a href="http://tools.ietf.org/html/rfc7616">RFC 7616</a>: <a name="RFC7616">HTTP Digest Access Authentication</a><br>
     <a href="http://tools.ietf.org/html/rfc7617">RFC 7617</a>: The 'Basic' HTTP Authentication Scheme</p>
+
+    <p><a href="http://tools.ietf.org/html/rfc8010">RFC 8010</a>: <a name="RFC8010">IPP/1.1 Encoding and Transport</a><br>
+    <a href="http://tools.ietf.org/html/rfc8011">RFC 8011</a>: <a name="RFC8011">IPP/1.1 Model and Semantics</a></p>
 
 
     <h2>Related Links</h2>
@@ -220,7 +227,10 @@
 
     <p><a href="https://github.com/williamkapke/ipp">IPP Client implementation in Javascript for nodejs</a></p>
 
-    <p><a href="http://www.msweet.org/projects.php/rasterview">RasterView Software for Viewing PWG Raster Files</a></p>
+    <p><a href="http://www.msweet.org/projects.php/rasterview">RasterView Software (PWG Raster File Viewer)</a></p>
+
+    <p><a href="http://www.wireshark.org/">Wireshark Software (Network Protocol Analyzer)</a> &middot;
+    <a href="https://www.wireshark.org/download/automated/">Nightly Builds with Enhanced IPP Support</a></p>
 
     <h3>Specifications</h3>
 
