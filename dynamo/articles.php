@@ -165,7 +165,7 @@ switch ($op)
 
         print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
-        html_form_start("$PHP_SELF?U$id$options");
+        html_form_start("$PHP_SELF?D$id$options");
 
         $article->view("", 2, FALSE);
 
