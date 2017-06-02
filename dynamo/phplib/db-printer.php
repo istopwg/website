@@ -270,7 +270,8 @@ printer_notify_users($ids, $contact_name, $contact_email)
   $from    = $LOGIN_EMAIL;
   $replyto = "noreply@$SITE_HOSTNAME";
 //  $cc      = "Cc: ippeveselfcert@pwg.org\n";
-  $cc      = "Cc: msweet@apple.com\n";
+  $cc      = "Cc: msweet@apple.com\n"
+            ."Cc: chair@pwg.org\n";
   if ($contact_email != $LOGIN_EMAIL)
     $cc .= "Cc: $LOGIN_EMAIL\n";
 
