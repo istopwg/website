@@ -12,7 +12,7 @@
   <body><div class="container-fluid">
     <style>
       /* Logo colors are white, black, and #373e80 */
-      .pwg-panel-logo { width: 100%; }
+      .pwg-panel-logo { padding-top: 20px; width: 100%; }
       #pwg-body { padding-left: 0px; padding-right: 0px; }
       .pwg-panel { font-size: 125%; padding: 80px 60px; }
       .pwg-panel h1 { font-size: 250%; }
@@ -36,11 +36,13 @@
       </div>
       <div class="col-md-9 col-sm-12">
 	<h1>3D Printing</h1>
-	<p>The Printer Working Group has developed an extension to the <a href="../ipp">Internet Printing Protocol</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and existing high-level 3D file formats to describe the objects to print. We welcome participation from all interested parties in the continued prototyping and development of this specification.</p>
+	<p>The Printer Working Group has developed an extension to the <a href="../ipp">Internet Printing Protocol</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and existing high-level 3D file formats to describe the objects to print. The IPP workgroup is also developing a version of the PWG Semantic Model Print Job Ticket schema for 3D printing to support data exchange and embedding within common 3D file formats such as 3MF and 3D PDF documents so that user intent is preserved regardless of the transport or workflow used.</p>
+	<p>We welcome participation from all interested parties in the continued prototyping and development of these specifications.</p>
 	<p class="hidden-xs">&nbsp;</p>
 	<ul class="nav nav-pills">
-	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20170210.pdf">Current IPP 3D Specification</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" target="_blank">IPP 3D Specification</a></li>
 	  <li role="presentation"><a href="http://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Mailing List</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-smpjt3d10-20170504.pdf" target="_blank">3D Print Job Ticket Draft</a></li>
 	</ul>
       </div>
     </div>
@@ -63,7 +65,7 @@
         <p>Client devices query an IPP 3D printer for the available materials and capabilities (heated build platform, multiple material support, etc.) and then send 3D files to the printer, specifying the material(s) and other options to use for the print job. The client can then monitor the progress of the job and the printer status, including any available camera video of the build platform. All slicing happens on the printer.</p>
 	<p class="hidden-xs">&nbsp;</p>
 	<ul class="nav nav-pills">
-	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20170210.pdf">Current IPP 3D Specification</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf">IPP 3D Specification</a></li>
 	  <li role="presentation"><a href="http://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Mailing List</a></li>
 	  <li role="presentation"><a href="http://github.com/istopwg/ippsample">IPP Sample Code</a></li>
 	</ul>
@@ -86,7 +88,7 @@
       <div class="col-md-12 col-sm-12">
         <h1>Resources</h1>
         <ul>
-	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d10-20170210.pdf">Current IPP 3D Specification</a></li>
+	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf">IPP 3D Specification</a></li>
 	  <li><a href="http://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Printing Mailing List</a></li>
 	  <li><a href="http://github.com/istopwg/ippsample">IPP Sample Code</a></li>
 	  <li><a href="PWG-IPP-and-3D-Printing-Infographic.pdf">IPP 3D Infographic (One Page Version)</a></li>
@@ -95,6 +97,7 @@
 	  <li><a target="_blank" href="http://www.3mf.io/">3MF Web Site</a></li>
 	  <li><a target="_blank" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/PDF32000_2008.pdf">PDF 1.7 (ISO 32000-1) Specification</a></li>
 	  <li><a target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">Universal 3D (U3D) Specification</a></li>
+	  <li><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-smpjt3d10-20170504.pdf" target="_blank">3D Print Job Ticket Draft</a></li>
         </ul>
       </div>
     </div>
