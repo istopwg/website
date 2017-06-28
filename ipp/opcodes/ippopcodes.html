@@ -1,100 +1,75 @@
 ﻿<!doctype html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=9">
-  <title>IPP Vendor Operation Codes - Printer Working Group</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="../../pwg.css">
-  <link rel="shortcut icon" href="../../pwg.ico" type="image/x-icon">
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script type="text/javascript" src="../../pwg.js"></script>
-</head>
-<body onload="load_sidebar('../../');">
-<div id="PWGPage">
-  <div id="PWGHeader">
-    <div id="PWGHeaderBody">
-      <div id="PWGLogo"><img src="../../pwg.png" alt="PWG Logo" width="167" height="78"></div>
-      <div id="PWGSearchForm">Google Custom Search</div>
-      <div id="PWGTitle">IPP Vendor Operation Codes</div>
-    </div>
-  </div>
-  <div id="PWGBody">
-    <div id="PWGSearchResults"></div>
-    <div id="PWGSideBar">
-      <div id="PWGSideBody">Loading...</div>
-    </div>
-    <div id="PWGContent">
-      <div id="PWGContentBody">
-	<h2>Current Allocations</h2>
+  <head>
+    <title>IPP Vendor Operation Codes</title>
+  </head>
+  <body>
+    <table class="table table-condensed table-striped standard" summary="Current Allocations">
+      <thead>
+        <tr>
+          <th>Opcode(s)</th>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0x4000</td>
+          <td>Microsoft</td>
+          <td><a href="mailto:weihaic@Exchange.Microsoft.com">Weihai Chen</a></td>
+          <td>Used by Microsoft in Win 2000 (and presumably also in their Win 95 and 98 IPP clients)</td>
+        </tr>
+        <tr>
+          <td>0x4001-0x400F</td>
+          <td>Apple Inc.</td>
+          <td><a href="mailto:msweet@apple.com">Michael Sweet</a></td>
+          <td>Used in the CUPS implementation of IPP. For details see <a href="https://www.cups.org/doc/spec-ipp.html">https://www.cups.org/doc/spec-ipp.html</a></td>
+        </tr>
+        <tr>
+          <td>0x4010</td>
+          <td>Peerless Systems Imaging Products</td>
+          <td><a href="mailto:krish@hde.com">Kris Henderson</a></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>0x4011-0x4019</td>
+          <td colspan="3">Currently reserved.</td>
+        </tr>
+        <tr>
+          <td>0x401A-0x4025</td>
+          <td>Novell</td>
+          <td><a href="mailto:TTRONSON@novell.com">Ted Tronson</a></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>0x4026</td>
+          <td>Xerox</td>
+          <td><a href="mailto:Peter.Zehler@Xerox.com">Peter Zehler</a></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>0x4027-0x4028</td>
+          <td>Apple Inc.</td>
+          <td><a href="mailto:msweet@apple.com">Michael Sweet</a></td>
+          <td>Used in the CUPS implementation of IPP. For details see <a href="https://www.cups.org/doc/spec-ipp.html">https://www.cups.org/doc/spec-ipp.html</a></td>
+        </tr>
+        <tr>
+          <td>0x4029-0x402A</td>
+          <td>HP</td>
+          <td><a href="mailto:kevin.sigl@hp.com">Kevin Sigl</a></td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
 
-	<table class="table table-condensed table-striped standard" summary="Current Allocations">
-	  <thead>
-	    <tr>
-	      <th>Opcode(s)</th>
-	      <th>Company</th>
-	      <th>Contact</th>
-	      <th>Description</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <td>0x4000</td>
-	      <td>Microsoft</td>
-	      <td><a href="mailto:weihaic@Exchange.Microsoft.com">Weihai Chen</a></td>
-	      <td>Used by Microsoft in Win 2000 (and presumably also in their Win 95 and 98 IPP clients)</td>
-	    </tr>
-	    <tr>
-	      <td>0x4001-0x400F</td>
-	      <td>Apple Inc.</td>
-	      <td><a href="mailto:msweet@apple.com">Michael Sweet</a></td>
-	      <td>Used in the CUPS implementation of IPP. For details see <a href="http://www.cups.org/spec-ipp.html">http://www.cups.org/spec-ipp.html</a></td>
-	    </tr>
-	    <tr>
-	      <td>0x4010</td>
-	      <td>Peerless Systems Imaging Products</td>
-	      <td><a href="mailto:krish@hde.com">Kris Henderson</a></td>
-	      <td>&nbsp;</td>
-	    </tr>
-	    <tr>
-	      <td>0x4011-0x4019</td>
-	      <td colspan="3">Currently reserved.</td>
-	    </tr>
-	    <tr>
-	      <td>0x401A-0x4025</td>
-	      <td>Novell</td>
-	      <td><a href="mailto:TTRONSON@novell.com">Ted Tronson</a></td>
-	      <td>&nbsp;</td>
-	    </tr>
-	    <tr>
-	      <td>0x4026</td>
-	      <td>Xerox</td>
-	      <td><a href="mailto:Peter.Zehler@Xerox.com">Peter Zehler</a></td>
-	      <td>&nbsp;</td>
-	    </tr>
-	    <tr>
-	      <td>0x4027-0x4028</td>
-	      <td>Apple Inc.</td>
-	      <td><a href="mailto:msweet@apple.com">Michael Sweet</a></td>
-	      <td>Used in the CUPS implementation of IPP. For details see <a href="http://www.cups.org/spec-ipp.html">http://www.cups.org/spec-ipp.html</a></td>
-	    </tr>
-	    <tr>
-	      <td>0x4029-0x402A</td>
-	      <td>HP</td>
-	      <td><a href="mailto:kevin.sigl@hp.com">Kevin Sigl</a></td>
-	      <td>&nbsp;</td>
-	    </tr>
-	  </tbody>
-	</table>
+    <h2>Reserving New Vendor Operation Codes</h2>
 
-	<h2>Reserving New Vendor Operation Codes</h2>
+    <blockquote>It is highly recommended that the functionality represented by the requested operation code be presented to the PWG for inclusion in an official specification before requesting the allocation of a proprietary operation code.</blockquote>
 
-	<blockquote>It is highly recommended that the functionality represented by the requested operation code be presented to the PWG for inclusion in an official specification before requesting the allocation of a proprietary operation code.</blockquote>
+    <p>Send email to the <a href="mailto:msweet@apple.com?subject=IPP%20Vendor%20Operation%20Code%20Request&body=Contact%20Name%3A%0AContact%20Email%3A%0ACompany%20Name%3A%0ANumber%20of%20Operation%20Codes%20-or-%20Specific%20Operation%20Code%3A%0ADescription%3A%0ASpecification%20Document%20URL%20(optional)%3A%0ASpecification%20Document%20(optional)%3A%0A">IPP secretary</a> to request one or more operation codes in the vendor space (0x4000 to 0xFFFF). The body of the email should contain the following information:</p>
 
-	<p>Send email to the <a href="mailto:msweet@apple.com?subject=IPP%20Vendor%20Operation%20Code%20Request&body=Contact%20Name%3A%0AContact%20Email%3A%0ACompany%20Name%3A%0ANumber%20of%20Operation%20Codes%20-or-%20Specific%20Operation%20Code%3A%0ADescription%3A%0ASpecification%20Document%20URL%20(optional)%3A%0ASpecification%20Document%20(optional)%3A%0A">IPP secretary</a> to request one or more operation codes in the vendor space (0x4000 to 0xFFFF). The body of the email should contain the following information:</p>
-
-	<pre>
+    <pre>
 Contact Name:
 Contact Email:
 Company Name:
@@ -102,13 +77,6 @@ Number of Operation Codes -or- Specific Operation Code:
 Description:
 Specification Document URL (optional):
 Specification Document (optional):
-	</pre>
-	  </div>
-	</div>
-  </div>
-  <div id="PWGFooter">
-    <div id="PWGFooterBody">Comments are owned by the poster. All other material is copyright &copy; 2001-2011 The Printer Working Group. All rights reserved. Please contact the <a href="mailto:istopwg@gmail.com">PWG Webmaster</a> to report problems with this site.</div>
-  </div>
-</div>
-</body>
+    </pre>
+  </body>
 </html>
