@@ -26,7 +26,7 @@ if ($LOGIN_ID > 0 && $argc && $argv[0][0] == "U" && (int)substr($argv[0], 1) > 0
     else
     {
       // Show form...
-      site_header("Update IPP Everywhere Self-Certified Printer");
+      site_header("Update IPP Everywhere(tm) Self-Certified Printer");
 
       print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Back to List</a></p>\n");
 
@@ -42,7 +42,7 @@ if ($LOGIN_ID > 0 && $argc && $argv[0][0] == "U" && (int)substr($argv[0], 1) > 0
 }
 
 // Otherwise show the list...
-site_header("IPP Everywhere Self-Certified Printers");
+site_header("IPP Everywhere(tm) Self-Certified Printers");
 
 // Collect form input...
 if (array_key_exists("c", $_GET))
@@ -126,7 +126,7 @@ if ($count > 0)
   html_end_table();
 
   print("<hr>\n"
-       ."<p>Note: Printers listed on this web page have been tested and submitted by the vendor. The IEEE-ISTO Printer Working Group provides vendors with software that tests printers for general conformance to the IPP Everywhere standard, but we cannot guarantee that any printer will function perfectly and/or produce the correct output under all circumstances. There is currently no software to certify the conformance of client printing software to the IPP Everywhere standard.</p>\n");
+       ."<p>Note: Printers listed on this web page have been tested and submitted by the vendor. The IEEE-ISTO Printer Working Group provides vendors with software that tests printers for general conformance to the IPP Everywhere&trade; standard, but we cannot guarantee that any printer will function perfectly and/or produce the correct output under all circumstances. There is currently no software to certify the conformance of client printing software to the IPP Everywhere&trade; standard.</p>\n");
 }
 
 site_footer();

@@ -68,7 +68,7 @@ if (!$firsttime)
   </div>
   <div class="col-md-3 col-sm-6">
     <div class="panel panel-default">
-      <div class="panel-heading">IPP Everywhere</div>
+      <div class="panel-heading">IPP Everywhere&trade;</div>
       <div class="panel-body">
 	<p>Print to any network or USB printer without using special software from the manufacturer.</p>
 	<p><a class="btn btn-default btn-sm" href="<?print($html_path);?>ipp/everywhere.html">More Info</a>
