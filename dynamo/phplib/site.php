@@ -108,7 +108,7 @@ site_header($title = "",		// I - Additional document title
   else
     $html_title = "";
 
-  $title = str_replace(array("(tm)", "(r)"), array("<sup>TM</sup>", "&reg;"), htmlspecialchars($title));
+  $title = str_replace(array("(tm)", "(r)"), array("&trade;", "&reg;"), htmlspecialchars($title));
 
   if ($subtitle != "")
     $subtitle = "<br><small>$subtitle</small>";
@@ -169,7 +169,7 @@ site_header($title = "",		// I - Additional document title
     $userlogin = "<li><a href=\"$html_login_url?PAGE=$url\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
   }
 
-  print("<title>$html_title Printer Working Group</title>\n"
+  print("<title>$title Printer Working Group</title>\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
@@ -221,7 +221,7 @@ site_header($title = "",		// I - Additional document title
        ."            <li class=\"divider\"></li>\n"
        ."            <li class=\"dropdown-header\" role=\"presentation\">Technologies</li>\n"
        ."            <li><a href=\"${html_path}3d/index.html\">3D Printing</a></li>\n"
-       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere<sup>&reg;</sup></a></li>\n"
+       ."            <li><a href=\"${html_path}ipp/everywhere.html\">IPP Everywhere&trade;</a></li>\n"
        ."            <li><a href=\"${html_path}sm/model.html\">PWG Semantic Model</a></li>\n"
        ."          </ul>\n"
        ."        </li>\n"
@@ -268,7 +268,7 @@ site_footer($javascript = "")
        ."  <div id=\"pwg-footer-body\">Comments are owned by the poster. All other "
        ."material is Copyright &copy; 2001-$year The Printer Working Group. "
        ."All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the "
-       ."PWG logo are registered trademarks of the IEEE-ISTO. Please contact the "
+       ."PWG logo are trademarks of the IEEE-ISTO. Please contact the "
        ."<a href=\"mailto:$SITE_EMAIL\">PWG Webmaster</a> to report problems "
        ."with this site.</div>\n"
        ."</div>\n"
