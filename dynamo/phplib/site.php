@@ -101,9 +101,9 @@ site_header($title = "",		// I - Additional document title
   if ($title != "" && $title != "Printer Working Group")
   {
     if ($title[0] == "-")
-      $html_title = htmlspecialchars(substr($title, 1) . " -");
+      $html_title = str_replace(array("(tm)", "(r)"), array("&trade;", "&reg;"), htmlspecialchars(substr($title, 1) . " -"));
     else
-      $html_title = htmlspecialchars("$title -");
+      $html_title = str_replace(array("(tm)", "(r)"), array("&trade;", "&reg;"), htmlspecialchars("$title -"));
   }
   else
     $html_title = "";
@@ -169,7 +169,7 @@ site_header($title = "",		// I - Additional document title
     $userlogin = "<li><a href=\"$html_login_url?PAGE=$url\"><span class=\"glyphicon glyphicon-user\"></span> Login</a></li>";
   }
 
-  print("<title>$title Printer Working Group</title>\n"
+  print("<title>$html_title Printer Working Group</title>\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
