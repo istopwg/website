@@ -1,140 +1,63 @@
 <!doctype html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=9">
-  <title>Imaging Device Security - Printer Working Group</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="../pwg.css">
-  <link rel="shortcut icon" href="../pwg.png" type="image/png">
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script type="text/javascript" src="../pwg.js"></script>
-</head>
-<body onload="load_sidebar('../');">
-<div id="PWGPage">
-  <div id="PWGHeader">
-    <div id="PWGHeaderBody">
-      <div id="PWGLogo"><img src="../pwg.png" alt="PWG Logo" width="75" height="78"></div>
-      <div id="PWGSearchForm">Google Custom Search</div>
-      <div id="PWGTitle">Imaging Device Security</div>
-    </div>
-  </div>
-  <div id="PWGBody">
-    <div id="PWGSearchResults"></div>
-    <div id="PWGSideBar">
-      <div id="PWGSideBody">Loading...</div>
-    </div>
-    <div id="PWGContent">
-      <div id="PWGContentBody">
-        <h2><a name="ACTIVITIES">Current Activities</a></h2>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <title>Imaging Device Security Workgroup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//www.google.com/cse/style/look/default.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
+  </head>
+  <body><div class="container-fluid">
+    <style>
+      ul.nav-pills li { background: #525dbf; border-radius: 5px; color: #ffffff; font-size: 90%; margin-bottom: 5px; margin-right: 5px; }
+      ul.nav-pills li a { color: #ffffff; }
+      ul.nav-pills li a:hover { background: #8a8fbf; color: #ffffff; }
+    </style>
+    <h2>Charter</h2>
 
-		<p>Modern Imaging and Hardcopy Devices may be allowed unrestrained access to and storage of secure and controlled documents and resources exposing security and access considerations that are not fully addressed within current standards.</p>
-<ul>
-<li>Imaging Devices provide and use services outside of the traditional concept of a local user or server on a physical device. While current standards such as the IEEE 2600-2008 are focused on addressing issues related to securing local Hardcopy Device functionality, there are currently no 37 suitable Imaging Device standards or recommendation for controlling or validating access to these extended services.</li>
-<li>Imaging Devices provide services to Imaging Clients running on various operating systems and can extend these services as Cloud resources. Imaging Devices and Imaging Clients also use resources and Imaging Services from the Cloud. There are no suitable Imaging Device standards or recommended methodologies for authenticating and securing the Imaging Devices, Imaging Clients, and Imaging Services in a Cloud environment.</li>
-<li>Imaging Devices and Imaging Services have no standard method to associate security information with an Imaging Job and ensure that the security information is maintained throughout the Job lifetime.</li>
-<li>Security Information and Event Management (SIEM) systems are being deployed in enterprise and government environments to provide continuous monitoring and analysis of security-related system log entries and other events. Imaging Devices have no industry standard format or set of values defined for to provide this information in a manner easily gathered and analyzed by SIEM tools.</li>
-<li>Enterprise networks are deploying network endpoint attachment protocols and tools to measure and assess the health of devices on the network. These assessment protocols go beyond simply checking that the device possesses the correct credentials to access the network to also assessing information such as operating system, security patches, antivirus definition levels etc. Hardcopy Devices (Network Printers, Multi-Function Devices, Network Scanners, etc.) have not been widely integrated into these newassessment protocol schemes, in part because there is no standardized set of attributes that a health assessment server can measure for Hardcopy Devices.</li>
-</ul>
-<p>The goal of the Imaging Device Security Working Group is to address these issues by developing the following specifications and recommendations:</p>
-<ul>
-<li>Imaging Device Health Attributes - Define a set of common health assessment attributes for Imaging Devices</li>
-<ul>
-<li>Binding Specifications – Define health attributes binding to the most common health assessment protocols.</li>
-<li>Remediation specification – Define standard methods to perform remediation of detected device health failures.</li>
-</ul>
-<li>IDS Model and Requirements – Define a set of common security model for PWG projects and working groups.</li>
-<li>IDS Identification, Authentication and Authorization - Define a set of standards and recommendations for providing the credentials and information required to provide secure access to Imaging Devices, Services and Clients.</li>
-<li>IDS Security Ticket – Define a standard method for specifying, associating and maintaining security information with an Imaging Job, Imaging Device or Imaging Client.</li>
-<li>IDS Log - Define standards and recommendations for common log information.</li>
-</ul>
-<p>Our goal is to provide the metrics and mechanisms that allow Imaging Devices to fully participate in assessment81
-protected networks and provide secure, controlled access to Jobs, Documents and Imaging Services.</p>
+    <p>The Imaging Device Security (IDS) workgroup is chartered to establish and provide liaisons with public standards bodies concerning security topics, standards, and protection profiles for Hardcopy Devices.</p>
 
-		<h2><a name="OFFICERS">Officers</a></h2>
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ids/charter/ch-ids-charter-20170720.pdf">View Approved Charter</a></li>
+    </ul>
 
-		<p>Chair: <a href="mailto:jmurdock@sharplabs.com">Joe Murdock</a>, Sharp<br>
-		Vice-Chair: <a href="mailto:Alan.Sukert@xerox.com">Alan Sukert</a>, Xerox<br>
-		Editors: <a href="mailto:jmurdock@sharplabs.com">Joe Murdock</a>, Sharp, <a href="mailto:blueroofmusic@gmail.com">Ira McDonald</a>, High North, <a href="mailto:msweet@apple.com">Michael Sweet</a>, Apple</p>
+    <h2>Officers</h2>
 
-		<h2><a name="PARTICIPATING">Participating in the Working Group</a></h2>
+    <p>Chair: <a href="mailto:Alan.Sukert@xerox.com">Alan Sukert (Xerox)</a><br>
+    Vice-Chair: Vacant<br>
+    Secretary: Vacant</p>
 
-		<p>Bi-weekly conference calls are held on Thursdays at 1pm US Eastern time; announcements are made to the IDS mailing list.</p>
+    <h2>How to Participate</h2>
 
-		<p>Mailing list: <a href="mailto:ids@pwg.org">ids@pwg.org</a>&nbsp;&middot;
-		<a href="https://www.pwg.org/mailman/listinfo/ids">Subscribe</a>&nbsp;&middot;
-		<a href="http://www.pwg.org/archives/ids">Archive</a></p>
+    <p>Currently IDS meetings are held using PWG face-to-face meetings as needed.</p>
 
-		<p>Wiki: <a href="http://pwg-wiki.wikispaces.com/Imaging+Device+Security+WG">Imaging Device Security WG</a></p>
+    <p>Mailing list: <a href="mailto:ids@pwg.org">ipp@pwg.org</a>
+    &middot;
+    <a href="https://www.pwg.org/mailman/listinfo/ids">Subscribe</a></p>
 
-		<h2><a name="MINUTES">Conference Call and Meeting Minutes</a></h2>
+    <p>Archives: <a href="http://ftp.pwg.org/pub/pwg/ids/minutes">Meeting Minutes</a>
+    &middot;
+    <a href="http://www.pwg.org/archives/ids">IDS List Archive</a></p>
 
-		<p><a>Face to face meeting minutes</a></p>
-		<p class="PWGList">
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-F2F-Minutes-20130517.pdf">May 17, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-F2F-Minutes-20130207.pdf">February 7, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-F2F-Minutes-20120808.pdf">August 8, 2012</a>&nbsp;&middot;
-        <a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-F2F-Minutes-20121206.pdf">December 6, 2012</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20120606.pdf">June 6, 2012</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20120427.pdf">April 27, 2012</a></p>
 
-		<p><a>Conference call minutes</a></p>
-		<p class="PWGList">
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20130429.pdf">April 29, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20130401.pdf">April 01, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20130318.pdf">March 18, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-SM-call-minutes-20130128.pdf">January 28, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20130121.pdf">January 21, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20130107.pdf">January 7, 2013</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20121126.pdf">November 26, 2012</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20121112.pdf">November 12, 2012</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20120726.pdf">July 26, 2012</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20120517.pdf">May 17, 2012</a>&nbsp;&middot;
-		<a href="ftp://ftp.pwg.org/pub/pwg/ids/minutes/IDS-call-minutes-20120315.pdf">March 15, 2012</a></p>
+    <h2>Candidate Standards</h2>
 
-		<h2><a name="DOCUMENTS">Documents</a></h2>
+    <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-idsattributes10-20130401-5110.1.pdf">PWG 5110.1-2013: PWG Hardcopy Device Health Assessment Attributes</a><br>
+    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ids-napsoh10-20130401-5110.2.pdf">PWG 5110.2-2013: PWG Hardcopy Device Health Assessment Network Access Protection Protocol Binding</a><br>
+ <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ids-log10-20130401.5110.3.pdf">PWG 5110.3-2013: Common Log Format</a></p>
 
-		<h3>Charter</h3>
+    <h2>White Papers</h2>
 
-		<p>
-           <a href="ftp://ftp.pwg.org/pub/pwg/ids/charter/ch-ids-charter-201100503.pdf">PWG-IDS Charter</a> (May 3, 2011)
-        </p>
+    <p><a href="http://ftp.pwg.org/pub/pwg/ids/white/tb-ids-hcd-nac-business-case-current.pdf">Business Case for NAC and Hardcopy Devices (whitepaper)</a>
+</p>
 
-		<h3>Candidate Standards</h3>
+    <h3>Historical Drafts</h3>
 
-		<p>
-		   <a href="ftp://ftp.pwg.org/pub/pwg/candidates/cs-idsattributes10-20130401-5110.1.pdf">PWG 5110.1-2013: PWG Hardcopy Device Health Assessment Attributes</a><br>
-		   <a href="ftp://ftp.pwg.org/pub/pwg/candidates/cs-ids-napsoh10-20130401-5110.2.pdf">PWG 5110.2-2013: PWG Hardcopy Device Health Assessment Network Access Protection Protocol Binding</a><br>
-           <a href="ftp://ftp.pwg.org/pub/pwg/candidates/cs-ids-log10-20130401.5110.3.pdf">PWG 5110.3-2013: Common Log Format</a><br>
-		</p>
-
-		<h3>White Papers</h3>
-
-		<p>
-	   	   <a href="ftp://ftp.pwg.org/pub/pwg/ids/white/tb-ids-hcd-nac-business-case-current.pdf">Business Case for NAC and Hardcopy Devices (whitepaper)</a>
-        </p>
-
-		<h3>Drafts</h3>
-
-		<p>
-           <a href="ftp://ftp.pwg.org/pub/pwg/ids/wd/wd-ids-model10-current.pdf">Most recent draft IDS Model and Requirements</a><br>
-		   <a href="ftp://ftp.pwg.org/pub/pwg/ids/wd/wd-ids-iaa10-current.pdf">Most recent draft IDS Authentication and Authorization</a><br>
-		   <a href="ftp://ftp.pwg.org/pub/pwg/ids/wd/wd-ids-tnc10-current.pdf">Most recent draft HCD-TNC binding specification</a><br>
-        </p>
-
-		<h3>Historical</h3>
-
-		<p>
-           <a href="ftp://ftp.pwg.org/pub/pwg/general/presentations/Hardcopy_NAC_Request.pdf">December 2007 BOF Presentation</a>
-        </p>
-
-	  </div>
-	</div>
-  </div>
-  <div id="PWGFooter">
-    <div id="PWGFooterBody">Comments are owned by the poster. All other material is copyright &copy; 2001-2011 The Printer Working Group. All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the PWG logo are trademarks of the IEEE-ISTO. Please contact the <a href="mailto:webmaster@pwg.org">PWG Webmaster</a> to report problems with this site.</div>
-  </div>
-</div>
-</body>
+    <p><a href="http://ftp.pwg.org/pub/pwg/ids/wd/wd-ids-model10-current.pdf">Most recent draft IDS Model and Requirements</a><br>
+    <a href="http://ftp.pwg.org/pub/pwg/ids/wd/wd-ids-iaa10-current.pdf">Most recent draft IDS Authentication and Authorization</a><br>
+    <a href="http://ftp.pwg.org/pub/pwg/ids/wd/wd-ids-tnc10-current.pdf">Most recent draft HCD-TNC binding specification</a><br>
+    <a href="http://ftp.pwg.org/pub/pwg/general/presentations/Hardcopy_NAC_Request.pdf">December 2007 BOF Presentation</a></p>
+  </div></body>
 </html>
