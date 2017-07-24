@@ -72,8 +72,8 @@ else
 
 // Filter form...
 print("<div style=\"display: block-inline; text-align: center;\">"
-     ."<img src=\"/ipp/ipp-everywhere.png\" width=\"28\" height=\"32\" alt=\"IPP Everywhere&trade;\">"
-     ."<form action=\"$PHP_SELF\" method=\"GET\" class=\"form-inline\">\n");
+     ."<form action=\"$PHP_SELF\" method=\"GET\" class=\"form-inline\">\n"
+     ."<img src=\"/ipp/ipp-everywhere.png\" width=\"28\" height=\"32\" alt=\"IPP Everywhere&trade;\">\n");
 html_form_search("s", "Name, etc.", $search, "");
 html_form_buttons(array("" => "Filter Results"));
 print("<br>\n");
