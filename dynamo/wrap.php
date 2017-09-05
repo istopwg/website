@@ -46,7 +46,7 @@ else
     readfile($PATH_TRANSLATED);
     exit(0);
   }
-  else if (preg_match("/\\.jpg\$/", $PATH_TRANSLATED))
+  else if (preg_match("/\\.(jpg,jpeg)\$/", $PATH_TRANSLATED))
   {
     header("Content-Type: image/jpeg");
     readfile($PATH_TRANSLATED);
@@ -61,6 +61,12 @@ else
   else if (preg_match("/\\.png\$/", $PATH_TRANSLATED))
   {
     header("Content-Type: image/png");
+    readfile($PATH_TRANSLATED);
+    exit(0);
+  }
+  else if (preg_match("/^schemas/.*\\.html\$/", $PATH_TRANSLATED))
+  {
+    header("Content-Type: text/html");
     readfile($PATH_TRANSLATED);
     exit(0);
   }
