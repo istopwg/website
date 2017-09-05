@@ -64,7 +64,7 @@ else
     readfile($PATH_TRANSLATED);
     exit(0);
   }
-  else if (preg_match("/^schemas\\/.*\\.html\$/", $PATH_TRANSLATED))
+  else if (preg_match("/\\/schemas\\/.*\\.html\$/", $PATH_TRANSLATED))
   {
     header("Content-Type: text/html");
     readfile($PATH_TRANSLATED);
