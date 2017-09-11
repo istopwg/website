@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="//www.google.com/cse/style/look/default.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-theme-3.2.0.min.css">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
   </head>
   <body><div class="container-fluid">
@@ -14,234 +15,290 @@
       ul.nav-pills li a { color: #ffffff; }
       ul.nav-pills li a:hover { background: #8a8fbf; color: #ffffff; }
     </style>
-    <h2>Charter</h2>
+    <div id="ipp-workgroup">
+      <ul id="ipp-section" class="nav nav-tabs" data-tabs="ipp-section" role="complementary">
+        <li class="active"><a data-toggle="tab" href="#ABOUT">About</a></li>
+        <li><a data-toggle="tab" href="#DRAFTS">Working Drafts</a></li>
+        <li><a data-toggle="tab" href="#PUBLISHED">Published Work</a></li>
+        <li><a data-toggle="tab" href="#REFERENCES">References</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="ABOUT">
+          <h2>Charter</h2>
 
-    <p>The Internet Printing Protocol workgroup is developing standards for IPP-based multi-function services such as scanning and facsimile as well as 3D printing, is developing the PWG Semantic Model Print3d Service Schema, and is responsible for maintaining the IANA IPP, Printer MIB, Finisher MIB, and Job MIB registries. The workgroup also develops IPP Everywhere&trade; and manages the IPP Everywhere&trade; Printer Self-Certification program.</p>
+          <p>The Internet Printing Protocol workgroup is developing standards for IPP-based multi-function services such as scanning and facsimile as well as 3D printing, is developing the PWG Semantic Model Print3d Service Schema, and is responsible for maintaining the IANA IPP, Printer MIB, Finisher MIB, and Job MIB registries. The workgroup also develops IPP Everywhere&trade; and manages the IPP Everywhere&trade; Printer Self-Certification program.</p>
 
-    <ul class="nav nav-pills">
-      <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/charter/ch-ipp-charter-20170615.pdf">View Approved Charter</a></li>
-      <li role="presentation"><a href="faq.html">Frequently Asked Questions</a></li>
-      <li role="presentation"><a href="everywhere.html">IPP Everywhere&trade;</a></li>
-      <li role="presentation"><a href="../3d/index.html">3D Printing</a></li>
-    </ul>
-
-
-    <h2>Officers</h2>
-
-    <p>Co-Chairs: <a href="mailto:blueroofmusic@gmail.com">Ira McDonald</a>,
-    <a href="mailto:ptykodi@tykodi.com">Paul Tykodi</a><br>
-    Secretary: <a href="mailto:msweet@apple.com">Michael Sweet</a></p>
-
-    <h2>How to Participate</h2>
-
-    <p>Weekly conference calls are held on Mondays at 3pm or 4pm US Eastern time. Announcements are made to the IPP mailing list.</p>
-
-    <p>Mailing lists:</p>
-
-    <ul>
-      <li>IPP list: <a href="mailto:ipp@pwg.org">ipp@pwg.org</a>
-      &middot;
-      <a href="https://www.pwg.org/mailman/listinfo/ipp">Subscribe</a></li>
-      <li>IPP Everywhere&trade; Self-Certification list: <a href="mailto:ippeveselfcert@pwg.org">ippeveselfcert@pwg.org</a>
-      &middot;
-      <a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">Subscribe</a></li>
-      <li>3D Printing list: <a href="mailto:3d-printing@pwg.org">3d-printing@pwg.org</a>
-      &middot;
-      <a href="https://www.pwg.org/mailman/listinfo/3d-printing">Subscribe</a></li>
-    </ul>
-
-    <p>Archives: <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes">Meeting Minutes</a>
-    &middot;
-    <a href="http://www.pwg.org/archives/ipp">IPP List Archive</a>
-    &middot;
-    <a href="http://www.pwg.org/archives/ippeveselfcert">IPP Everywhere&trade; Self-Certification List Archive</a>
-    &middot;
-    <a href="http://www.pwg.org/archives/3d-printing">3D Printing List Archive</a></p>
+          <ul class="nav nav-pills">
+            <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/ipp/charter/ch-ipp-charter-20170615.pdf">View Approved Charter</a></li>
+            <li role="presentation"><a href="faq.html">Frequently Asked Questions</a></li>
+            <li role="presentation"><a href="everywhere.html">IPP Everywhere&trade;</a></li>
+            <li role="presentation"><a href="../3d/index.html">3D Printing</a></li>
+          </ul>
 
 
-    <h2>Registries</h2>
+          <h2>Officers</h2>
 
-    <p>Pending PWG IPP Registrations: <a href="ipp-registrations.xml">XML</a></p>
+          <p>Co-Chairs: <a href="mailto:blueroofmusic@gmail.com">Ira McDonald</a>,
+          <a href="mailto:ptykodi@tykodi.com">Paul Tykodi</a><br>
+          Secretary: <a href="mailto:msweet@apple.com">Michael Sweet</a></p>
 
-    <p>IANA IPP Registrations: <a href="http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml">XML</a>
-    &middot;
-    <a href="http://www.iana.org/assignments/ipp-registrations/ipp-registrations.txt">Plain Text</a></p>
+          <h2>How to Participate</h2>
 
-    <p>IANA Service Name Registrations: <a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml">XML</a>
-    &middot;
-    <a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.txt">Plain Text</a></p>
-    <p>Vendor IPP Registrations: <a href="opcodes/ippopcodes.html">Vendor&nbsp;Operation&nbsp;Codes</a></p>
+          <p>Weekly conference calls are held on Mondays at 3pm or 4pm US Eastern time. Announcements are made to the IPP mailing list.</p>
 
+          <p>Mailing lists:</p>
 
-    <h2>Repositories</h2>
+          <ul>
+            <li>IPP list: <a href="mailto:ipp@pwg.org">ipp@pwg.org</a>
+            &middot;
+            <a href="https://www.pwg.org/mailman/listinfo/ipp">Subscribe</a></li>
+            <li>IPP Everywhere&trade; Self-Certification list: <a href="mailto:ippeveselfcert@pwg.org">ippeveselfcert@pwg.org</a>
+            &middot;
+            <a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">Subscribe</a></li>
+            <li>3D Printing list: <a href="mailto:3d-printing@pwg.org">3d-printing@pwg.org</a>
+            &middot;
+            <a href="https://www.pwg.org/mailman/listinfo/3d-printing">Subscribe</a></li>
+          </ul>
 
-    <p>IPP IANA Registry Tools: <a href="https://github.com/istopwg/ippregistry">Repository</a></p>
-
-    <p>IPP Everywhere&trade; Printer Self-Certification Software: <a href="https://github.com/istopwg/ippeveselfcert">Repository</a></p>
-
-    <p>IPP Sample Code: <a href="https://github.com/istopwg/ippsample">Repository</a></p>
-
-
-    <h2>Working Drafts</h2>
-
-    <p>IPP System Service (SYSTEM): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170719.pdf">Clean</a>
-    &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170719-rev.pdf">Redlined</a> (Prototype Draft - Last Updated July 19, 2017)</p>
-
-    <p>PWG 3D Print Job Ticket and Associated Capabilities v1.0 (PJT3D): <a href="https://istopwg.github.io/ippregistry/smpjt3d10-current">Browseable Schema</a>
-    &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/sm3/schemas/smpjt3d10-20170504.zip">Schema ZIP Archive</a>
-    &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-smpjt3d10-20170627.pdf">Clean</a>
-    &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-smpjt3d10-20170627-rev.pdf">Redlined</a>
-    &middot;
-    <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/lcrc-smpjt3d10.txt">PWG Last Call Responses</a>
-    (Stable Draft, LCRC - Last Updated June 27, 2017)</p>
-
-    <h2>White Papers</h2>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wp-encrypted-document-20150204.docx">Encrypted Documents</a> (February 4, 2015)</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-ippauth-20170803.pdf">IPP Authentication Methods</a> (August 3, 2017)</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-userop-20170801-rev.pdf">IPP Get-User-Printer-Attributes Operation</a> (August 1, 2017)</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-ipp-preset-20170822-rev.pdf">IPP Presets</a> (August 22, 2017)</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/RasterAnalysis-20110922.pdf">An Analysis of Raster Formats for Printing</a> (September 22, 2011)</p>
+          <p>Archives: <a href="http://ftp.pwg.org/pub/pwg/ipp/minutes">Meeting Minutes</a>
+          &middot;
+          <a href="http://www.pwg.org/archives/ipp">IPP List Archive</a>
+          &middot;
+          <a href="http://www.pwg.org/archives/ippeveselfcert">IPP Everywhere&trade; Self-Certification List Archive</a>
+          &middot;
+          <a href="http://www.pwg.org/archives/3d-printing">3D Printing List Archive</a></p>
 
 
-    <h2>Full Standards</h2>
+          <h2>Registries</h2>
 
-    <p><a href="http://ftp.pwg.org/pub/pwg/standards/std-ipp20-20151030-5100.12.pdf">PWG 5100.12-2015</a>: IPP 2.0, 2.1, and 2.2</p>
+          <p>Pending PWG IPP Registrations: <a href="ipp-registrations.xml">XML</a></p>
 
+          <p>IANA IPP Registrations: <a href="http://www.iana.org/assignments/ipp-registrations/ipp-registrations.xml">XML</a>
+          &middot;
+          <a href="http://www.iana.org/assignments/ipp-registrations/ipp-registrations.txt">Plain Text</a></p>
 
-    <h3>Candidate Standards</h3>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20170217-5100.1.pdf">PWG 5100.1-2017</a>: IPP Finishings 2.1 (FIN)<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG 5100.2-2001</a>: "output-bin" attribute extension<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG 5100.3-2001</a>: Production Printing Attributes - Set1<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG 5100.5-2003</a>: IPP Document Object<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipppageoverride10-20031031-5100.6.pdf">PWG 5100.6-2003</a>: IPP Page Overrides<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG 5100.7-2003</a>: IPP Job Extensions<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG 5100.8-2003</a>: IPP "-actual" attributes<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippstate10-20090731-5100.9.pdf">PWG 5100.9-2009:</a> IPP Printer State Extensions<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/informational/pwg5100.9-abnf.txt">Collected ABNF</a><br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG 5100.11-2010:</a> IPP: Job and Printer Extensions - Set 2 (JPS2)<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf">PWG 5100.13-2012:</a> IPP: Job and Printer Extensions – Set 3 (JPS3)<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/informational/pwg5100.13-abnf.txt">Collected ABNF</a><br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeve10-20130128-5100.14.pdf">PWG 5100.14-2013:</a> IPP Everywhere<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20140618-5100.15.pdf">PWG 5100.15-2014:</a> IPP FaxOut Service<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf">PWG 5100.16-2013:</a> IPP Transaction-Based Printing Extensions<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf">PWG 5100.17-2014:</a> IPP Scan Service<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf">PWG 5100.18-2015:</a> IPP Shared Infrastructure Extensions (INFRA)<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippig20-20150821-5100.19.pdf">PWG 5100.19-2015:</a> IPP Implementor's Guide v2.0 (IG)<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert10-20160219-5100.20.pdf">PWG 5100.20-2016:</a> IPP Everywhere Printer Self-Certification Manual v1.0 (SELFCERT)<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="everywhere.html">Tools, etc.</a><br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf">PWG 5100.21-2017:</a> IPP 3D Printing Extensions v1.0 (3D)</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf">PWG 5101.1-2013</a>: PWG Media Standardized Names 2.0<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/informational/pwg5101.1-media-name-abnf.txt">Collected ABNF</a><br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-crrepsup10-20040201-5101.2.pdf">PWG 5101.2-2004</a>: PWG RepertoireSupported Element</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ifxpdfis10-20040315-5102.3.pdf">PWG 5102.3-2004</a>: Portable Document Format: Imaging Streamable (PDF/is)<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippraster10-20120420-5102.4.pdf">PWG 5102.4-2012</a>: PWG Raster Format</a><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/ipp/examples">Sample PWG Raster Data</a></p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-sm10-20040120-5105.1.pdf">PWG 5105.1-2004</a>: PWG Semantic Model</p>
-
-    <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-pmp1284cmdset10-20100531-5107.2.pdf">PWG 5107.2-2010</a>: PWG Command Set Format for IEEE 1284 Device ID v1.0<br>
-    <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-pmpmfdalerts10-20120629-5107.3.pdf">PWG 5107.3-2012</a>: Printer MIB and IPP MFD Alerts</p>
+          <p>IANA Service Name Registrations: <a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml">XML</a>
+          &middot;
+          <a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.txt">Plain Text</a></p>
+          <p>Vendor IPP Registrations: <a href="opcodes/ippopcodes.html">Vendor&nbsp;Operation&nbsp;Codes</a></p>
 
 
-    <h2>IETF RFCs</h2>
+          <h2>Repositories</h2>
 
-    <p><a href="http://tools.ietf.org/html/rfc2246">RFC 2246</a>: Transport Layer Security 1.0<br>
-    <a href="http://tools.ietf.org/html/rfc2567">RFC 2567</a>: Design Goals for an Internet Printing Protocol<br>
-    <a href="http://tools.ietf.org/html/rfc2568">RFC 2568</a>: Rational for the Structure of the Model and Protocol for the Internet Printing Protocol<br>
-    <a href="http://tools.ietf.org/html/rfc2569">RFC 2569</a>: Mapping between LPD and IPP Protocols<br>
-    <a href="#RFC7230">RFC 2616</a>: Hypertext Transfer Protocol -- HTTP/1.1 (replaced by RFCs 723x)<br>
-    <a href="#RFC7616">RFC 2617</a>: HTTP Authentication: Basic and Digest Access Authentication (replaced by RFCs 7616 and 7617)<br>
-    <a href="http://tools.ietf.org/html/rfc2707">RFC 2707</a>: Job Monitoring MIB - V1.0<br>
-    <a href="http://tools.ietf.org/html/rfc2708">RFC 2708</a>: Job Submission Protocol Mapping Recommendations for the Job Monitoring MIB<br>
-    <a href="http://tools.ietf.org/html/rfc2817">RFC 2817</a>: Upgrading to TLS Within HTTP/1.1<br>
-    <a href="#RFC8010">RFC 2910</a>: IPP/1.1 Encoding and Transport (replaced by RFC 8010)<br>
-    <a href="#RFC8011">RFC 2911</a>: IPP/1.1 Model and Semantics (replaced by RFC 8011)</p>
+          <p>IPP IANA Registry Tools: <a href="https://github.com/istopwg/ippregistry">Repository</a></p>
 
-    <p><a href="http://tools.ietf.org/html/rfc3196">RFC 3196</a>: IPP/1.1 Implementers Guide<br>
-    <a href="http://tools.ietf.org/html/rfc3239">RFC 3239</a>: IPP: Requirements for Job, Printer, and Device Administrative Operations<br>
-    <a href="http://tools.ietf.org/html/rfc3380">RFC 3380</a>: IPP: Job and Printer Set Operations<br>
-    <a href="http://tools.ietf.org/html/rfc3381">RFC 3381</a>: IPP: Job Progress Attributes (OBSOLETE)<br>
-    <a href="#RFC8010">RFC 3382</a>: IPP: The Collection Attribute Syntax (replaced by RFCs 8010 and 8011)<br>
-    <a href="http://tools.ietf.org/html/rfc3391">RFC 3391</a>: The MIME Application/Vnd.pwg-multiplexed Content-Type<br>
-    <a href="http://tools.ietf.org/html/rfc3510">RFC 3510</a>: IPP: IPP URL Scheme<br>
-    <a href="http://tools.ietf.org/html/rfc3629">RFC 3629</a>: UTF-8 Transformation of ISO 10646<br>
-    <a href="http://tools.ietf.org/html/rfc3805">RFC 3805</a>: Printer MIB v2<br>
-    <a href="http://tools.ietf.org/html/rfc3806">RFC 3806</a>: Printer Finishing MIB<br>
-    <a href="http://tools.ietf.org/html/rfc3995">RFC 3995</a>: IPP Event Notifications and Subscriptions<br>
-    <a href="http://tools.ietf.org/html/rfc3996">RFC 3996</a>: The 'ippget' Delivery Method for Event Notifications<br>
-    <a href="http://tools.ietf.org/html/rfc3997">RFC 3997</a>: Requirements for IPP Notifications<br>
-    <a href="http://tools.ietf.org/html/rfc3998">RFC 3998</a>: IPP Job and Printer Administrative Operations</p>
+          <p>IPP Everywhere&trade; Printer Self-Certification Software: <a href="https://github.com/istopwg/ippeveselfcert">Repository</a></p>
 
-    <p><a href="http://tools.ietf.org/html/rfc4122">RFC 4122</a>: A Universally Unique IDentifier (UUID) URN Namespace<br>
-    <a href="http://tools.ietf.org/html/rfc4346">RFC 4346</a>: Transport Layer Security 1.1</p>
+          <p>IPP Sample Code: <a href="https://github.com/istopwg/ippsample">Repository</a></p>
+        </div>
+        <div class="tab-pane fade" id="DRAFTS">
+          <h2>Standards-Track Drafts</h2>
 
-    <p><a href="http://tools.ietf.org/html/rfc5198">RFC 5198</a>: Unicode Format for Network Interchange<br>
-    <a href="http://tools.ietf.org/html/rfc5246">RFC 5246</a>: Transport Layer Security 1.2</p>
+          <p>IPP System Service (SYSTEM): <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170910.pdf">Clean</a>
+          &middot;
+          <a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20170910-rev.pdf">Redlined</a> (Prototype Draft - Last Updated September 10, 2017)</p>
 
-    <p><a href="http://tools.ietf.org/html/rfc6760">RFC 6760</a>: Requirements for a Protocol to Replace the AppleTalk Name Binding Protocol (NBP)<br>
-    <a href="http://tools.ietf.org/html/rfc6761">RFC 6761</a>: Special-Use Domain Names<br>
-    <a href="http://tools.ietf.org/html/rfc6762">RFC 6762</a>: Multicast DNS<br>
-    <a href="http://tools.ietf.org/html/rfc6763">RFC 6763</a>: DNS-Based Service Discovery</p>
+          <h2>Registration Drafts</h2>
 
-    <p><a href="http://tools.ietf.org/html/rfc7230">RFC 7230</a>: <a name="RFC7230">HTTP/1.1 - Message Syntax and Routing</a><br>
-    <a href="http://tools.ietf.org/html/rfc7231">RFC 7231</a>: HTTP/1.1 - Semantics and Content<br>
-    <a href="http://tools.ietf.org/html/rfc7232">RFC 7232</a>: HTTP/1.1 - Conditional Requests<br>
-    <a href="http://tools.ietf.org/html/rfc7233">RFC 7233</a>: HTTP/1.1 - Range Requests<br>
-    <a href="http://tools.ietf.org/html/rfc7234">RFC 7234</a>: HTTP/1.1 - Caching<br>
-    <a href="http://tools.ietf.org/html/rfc7235">RFC 7235</a>: HTTP/1.1 - Authentication<br>
-    <a href="http://tools.ietf.org/html/rfc7236">RFC 7236</a>: HTTP/1.1 - Authentication Scheme Registrations<br>
-    <a href="http://tools.ietf.org/html/rfc7237">RFC 7237</a>: HTTP/1.1 - Method Registrations<br>
-    <a href="http://tools.ietf.org/html/rfc7472">RFC 7472</a>: IPP over HTTPS Transport Binding and 'ipps' URI Scheme<br>
-    <a href="http://tools.ietf.org/html/rfc7525">RFC 7525</a>: Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)<br>
-    <a href="http://tools.ietf.org/html/rfc7540">RFC 7540</a>: Hypertext Transfer Protocol Version 2 (HTTP/2)<br>
-    <a href="http://tools.ietf.org/html/rfc7541">RFC 7541</a>: HPACK: Header Compression for HTTP/2<br>
-    <a href="http://tools.ietf.org/html/rfc7612">RFC 7612</a>: LDAP Schema for Printer Services<br>
-    <a href="http://tools.ietf.org/html/rfc7615">RFC 7615</a>: HTTP Authentication-Info and Proxy-Authentication-Info Response Header Fields<br>
-    <a href="http://tools.ietf.org/html/rfc7616">RFC 7616</a>: <a name="RFC7616">HTTP Digest Access Authentication</a><br>
-    <a href="http://tools.ietf.org/html/rfc7617">RFC 7617</a>: The 'Basic' HTTP Authentication Scheme</p>
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wp-encrypted-document-20150204.docx">Encrypted Documents</a> (February 4, 2015)</p>
 
-    <p><a href="http://tools.ietf.org/html/rfc8010">RFC 8010</a>: <a name="RFC8010">IPP/1.1 Encoding and Transport</a><br>
-    <a href="http://tools.ietf.org/html/rfc8011">RFC 8011</a>: <a name="RFC8011">IPP/1.1 Model and Semantics</a></p>
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-ippauth-20170803.pdf">IPP Authentication Methods</a> (August 3, 2017)</p>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-userop-20170801-rev.pdf">IPP Get-User-Printer-Attributes Operation</a> (August 1, 2017)</p>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-ipp-preset-20170822-rev.pdf">IPP Presets</a> (August 22, 2017)</p>
+        </div>
+        <div class="tab-pane fade" id="PUBLISHED">
+          <h2>Full Standards</h2>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/standards/std-ipp20-20151030-5100.12.pdf">PWG 5100.12-2015</a>: IPP 2.0, 2.1, and 2.2</p>
 
 
-    <h2>Related Links</h2>
+          <h2>Candidate Standards</h2>
 
-    <h3>Software</h3>
+          <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20170217-5100.1.pdf">PWG 5100.1-2017</a>: IPP Finishings 2.1 (FIN)<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG 5100.2-2001</a>: "output-bin" attribute extension<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG 5100.3-2001</a>: Production Printing Attributes - Set1<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG 5100.5-2003</a>: IPP Document Object<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipppageoverride10-20031031-5100.6.pdf">PWG 5100.6-2003</a>: IPP Page Overrides<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG 5100.7-2003</a>: IPP Job Extensions<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG 5100.8-2003</a>: IPP "-actual" attributes<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippstate10-20090731-5100.9.pdf">PWG 5100.9-2009:</a> IPP Printer State Extensions<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/informational/pwg5100.9-abnf.txt">Collected ABNF</a><br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG 5100.11-2010:</a> IPP: Job and Printer Extensions - Set 2 (JPS2)<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf">PWG 5100.13-2012:</a> IPP: Job and Printer Extensions – Set 3 (JPS3)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/informational/pwg5100.13-abnf.txt">Collected ABNF</a><br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeve10-20130128-5100.14.pdf">PWG 5100.14-2013:</a> IPP Everywhere<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20140618-5100.15.pdf">PWG 5100.15-2014:</a> IPP FaxOut Service<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf">PWG 5100.16-2013:</a> IPP Transaction-Based Printing Extensions<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf">PWG 5100.17-2014:</a> IPP Scan Service<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf">PWG 5100.18-2015:</a> IPP Shared Infrastructure Extensions (INFRA)<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippig20-20150821-5100.19.pdf">PWG 5100.19-2015:</a> IPP Implementor's Guide v2.0 (IG)<br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert10-20160219-5100.20.pdf">PWG 5100.20-2016:</a> IPP Everywhere Printer Self-Certification Manual v1.0 (SELFCERT)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="everywhere.html">Tools, etc.</a><br>
+          <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf">PWG 5100.21-2017:</a> IPP 3D Printing Extensions v1.0 (3D)</p>
 
-    <p><a href="http://www.cups.org/">CUPS Software (IPP Reference Implementation)</a></p>
+          <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf">PWG 5101.1-2013</a>: PWG Media Standardized Names 2.0<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/informational/pwg5101.1-media-name-abnf.txt">Collected ABNF</a></p>
 
-    <p><a href="https://github.com/williamkapke/ipp">IPP Client implementation in Javascript for nodejs</a></p>
+          <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippraster10-20120420-5102.4.pdf">PWG 5102.4-2012</a>: PWG Raster Format</a><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://ftp.pwg.org/pub/pwg/ipp/examples">Sample PWG Raster Data</a></p>
 
-    <p><a href="https://michaelrsweet.github.io/rasterview">RasterView Software (PWG Raster File Viewer)</a></p>
 
-    <p><a href="http://www.wireshark.org/">Wireshark Software (Network Protocol Analyzer)</a> &middot;
-    <a href="https://www.wireshark.org/download/automated/">Nightly Builds with Enhanced IPP Support</a></p>
+          <h2>IETF RFCs</h2>
 
-    <h3>Specifications</h3>
+          <p><a href="http://tools.ietf.org/html/rfc2567">RFC 2567</a>: Design Goals for an Internet Printing Protocol<br>
+          <a href="http://tools.ietf.org/html/rfc2568">RFC 2568</a>: Rational for the Structure of the Model and Protocol for the Internet Printing Protocol<br>
+          <a href="http://tools.ietf.org/html/rfc2569">RFC 2569</a>: Mapping between LPD and IPP Protocols<br>
+          <a href="http://tools.ietf.org/html/rfc2707">RFC 2707</a>: Job Monitoring MIB - V1.0<br>
+          <a href="http://tools.ietf.org/html/rfc2708">RFC 2708</a>: Job Submission Protocol Mapping Recommendations for the Job Monitoring MIB<br>
+          <a href="#RFC8010">RFC 2910</a>: IPP/1.1 Encoding and Transport (replaced by RFC 8010)<br>
+          <a href="#RFC8011">RFC 2911</a>: IPP/1.1 Model and Semantics (replaced by RFC 8011)</p>
 
-    <p><a href="https://developer.apple.com/bonjour/printing-specification/bonjourprinting-1.2.pdf">Bonjour Printing Specification v1.2</a></p>
+          <p><a href="http://tools.ietf.org/html/rfc3196">RFC 3196</a>: IPP/1.1 Implementers Guide<br>
+          <a href="http://tools.ietf.org/html/rfc3239">RFC 3239</a>: IPP: Requirements for Job, Printer, and Device Administrative Operations<br>
+          <a href="http://tools.ietf.org/html/rfc3380">RFC 3380</a>: IPP: Job and Printer Set Operations<br>
+          <a href="http://tools.ietf.org/html/rfc3381">RFC 3381</a>: IPP: Job Progress Attributes (OBSOLETE)<br>
+          <a href="#RFC8010">RFC 3382</a>: IPP: The Collection Attribute Syntax (replaced by RFCs 8010 and 8011)<br>
+          <a href="http://tools.ietf.org/html/rfc3510">RFC 3510</a>: IPP: IPP URL Scheme<br>
+          <a href="http://tools.ietf.org/html/rfc3805">RFC 3805</a>: Printer MIB v2<br>
+          <a href="http://tools.ietf.org/html/rfc3806">RFC 3806</a>: Printer Finishing MIB<br>
+          <a href="http://tools.ietf.org/html/rfc3995">RFC 3995</a>: IPP Event Notifications and Subscriptions<br>
+          <a href="http://tools.ietf.org/html/rfc3996">RFC 3996</a>: The 'ippget' Delivery Method for Event Notifications<br>
+          <a href="http://tools.ietf.org/html/rfc3997">RFC 3997</a>: Requirements for IPP Notifications<br>
+          <a href="http://tools.ietf.org/html/rfc3998">RFC 3998</a>: IPP Job and Printer Administrative Operations</p>
 
-    <p><a href="http://www.usb.org/developers/devclass_docs">IPP USB Specification</a></p>
+          <p><a href="http://tools.ietf.org/html/rfc7472">RFC 7472</a>: IPP over HTTPS Transport Binding and 'ipps' URI Scheme</p>
 
-    <p><a href="http://www.unicode.org/versions/Unicode9.0.0/">Unicode 9.0</a><br>
-    <a href="http://www.unicode.org/reports/tr15/">Unicode Normalization Forms</a></p>
+          <p><a href="http://tools.ietf.org/html/rfc8010">RFC 8010</a>: <a name="RFC8010">IPP/1.1 Encoding and Transport</a><br>
+          <a href="http://tools.ietf.org/html/rfc8011">RFC 8011</a>: <a name="RFC8011">IPP/1.1 Model and Semantics</a></p>
 
-    <h3>Historical</h3>
 
-    <p><a href="http://www.ietf.org/wg/concluded/ipp.html">Original IETF IPP Charter</a></p>
+          <!-- <h2>IPP Registration Documents</h2>
 
-    <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeverywhere-slides-20100524.pdf">IPP Everywhere Slides (historical, May 24, 2010)</a></p>
+          <p>Coming soon!</p> -->
+
+
+          <h2>Best Practices</h2>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/informational/bp-smpjt3d10-20170818.pdf">PWG 3D Print Job Ticket and Associated Capabilities v1.0 (PJT3D)</a> (August 18, 2017)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.pwg.org/schemas/smpjt3d10/Print3DService.html">Browsable Print3D XML Schema</a></p>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/informational/bp-smjdfmap10-20170828.pdf">Mapping CIP4 JDF to PWG Job Ticket v1.0 (JDFMAP)</a> (August 28, 2017)</p>
+
+          <h2>White Papers</h2>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/RasterAnalysis-20110922.pdf">An Analysis of Raster Formats for Printing</a> (September 22, 2011)</p>
+        </div>
+        <div class="tab-pane fade" id="REFERENCES">
+          <h2>Historical</h2>
+
+          <p><a href="http://www.ietf.org/wg/concluded/ipp.html">Original IETF IPP Charter</a></p>
+
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeverywhere-slides-20100524.pdf">IPP Everywhere Slides (historical, May 24, 2010)</a></p>
+
+
+          <h2>Software</h2>
+
+          <ul class="list-unstyled">
+            <li>Applications:<ul>
+              <li><a href="https://michaelrsweet.github.io/rasterview">RasterView: PWG Raster File Viewer</a></li>
+              <li><a href="http://www.wireshark.org/">Wireshark: Network Protocol Analyzer</a></li>
+            </ul></li>
+
+            <li>C:<ul>
+              <li><a href="https://www.cups.org/">CUPS: Printing Software for Linux/UNIX</a></li>
+              <li><a href="https://istopwg.github.io/ippsample">IPP Sample Code</a></li>
+            </ul></li>
+
+            <li>Python:<ul>
+              <li><a href="http://cyberelk.net/tim/software/pycups/">pycups: Python Bindings for CUPS/IPP</a></li>
+              <li><a href="http://www.pykota.com/software/pkipplib/">pyipplib: IPP Client implementation (no CUPS dependency)</a></li>
+              <li><a href="https://github.com/ezeep/pyipptool">pyipptool: Python Wrapper for ipptool (needs CUPS/IPP Sample Code)</a></li>
+            </ul></li>
+
+            <li>Java:<ul>
+              <li><a href="http://www.cups4j.org">cups4j: Java printing library for CUPS/IPP</a></li>
+              <li><a href="https://code.google.com/archive/p/jspi/">jspi: IPP Client implementation (also implements Java Print Service API)</a></li>
+            </ul></li>
+
+            <li>Javascript:<ul>
+              <li><a href="https://github.com/williamkapke/ipp">IPP Client implementation for nodejs</a></li>
+              <li><a href="https://github.com/watson/ipp-printer">IPP Printer implementation for nodejs</a></li>
+            </ul></li>
+
+            <li>Rust:<ul>
+              <li><a href="https://github.com/dremon/ipp.rs">ipp.rs: IPP protocol implementation for Rust</a></li>
+            </ul></li>
+          </ul>
+
+
+          <h2>Specifications</h2>
+
+          <ul class="list-unstyled">
+            <li>Apple:<ul>
+              <li><a href="https://developer.apple.com/bonjour/printing-specification/bonjourprinting-1.2.pdf">Bonjour Printing Specification v1.2</a></li>
+            </ul></li>
+
+            <li>IETF:<ul>
+              <li><a href="http://tools.ietf.org/html/rfc2246">RFC 2246</a>: Transport Layer Security 1.0</li>
+              <li><a href="#RFC7230">RFC 2616</a>: Hypertext Transfer Protocol -- HTTP/1.1 (replaced by RFCs 723x)</li>
+              <li><a href="#RFC7616">RFC 2617</a>: HTTP Authentication: Basic and Digest Access Authentication (replaced by RFCs 7616 and 7617)</li>
+              <li><a href="http://tools.ietf.org/html/rfc2817">RFC 2817</a>: Upgrading to TLS Within HTTP/1.1</li>
+
+              <li><a href="http://tools.ietf.org/html/rfc3391">RFC 3391</a>: The MIME Application/Vnd.pwg-multiplexed Content-Type</li>
+              <li><a href="http://tools.ietf.org/html/rfc3629">RFC 3629</a>: UTF-8 Transformation of ISO 10646</li>
+
+              <li><a href="http://tools.ietf.org/html/rfc4122">RFC 4122</a>: A Universally Unique IDentifier (UUID) URN Namespace</li>
+              <li><a href="http://tools.ietf.org/html/rfc4346">RFC 4346</a>: Transport Layer Security 1.1</li>
+
+              <li><a href="http://tools.ietf.org/html/rfc5198">RFC 5198</a>: Unicode Format for Network Interchange</li>
+              <li><a href="http://tools.ietf.org/html/rfc5246">RFC 5246</a>: Transport Layer Security 1.2</li>
+
+              <li><a href="http://tools.ietf.org/html/rfc6760">RFC 6760</a>: Requirements for a Protocol to Replace the AppleTalk Name Binding Protocol (NBP)</li>
+              <li><a href="http://tools.ietf.org/html/rfc6761">RFC 6761</a>: Special-Use Domain Names</li>
+              <li><a href="http://tools.ietf.org/html/rfc6762">RFC 6762</a>: Multicast DNS</li>
+              <li><a href="http://tools.ietf.org/html/rfc6763">RFC 6763</a>: DNS-Based Service Discovery</li>
+
+              <li><a href="http://tools.ietf.org/html/rfc7230">RFC 7230</a>: <a name="RFC7230">HTTP/1.1 - Message Syntax and Routing</a></li>
+              <li><a href="http://tools.ietf.org/html/rfc7231">RFC 7231</a>: HTTP/1.1 - Semantics and Content</li>
+              <li><a href="http://tools.ietf.org/html/rfc7232">RFC 7232</a>: HTTP/1.1 - Conditional Requests</li>
+              <li><a href="http://tools.ietf.org/html/rfc7233">RFC 7233</a>: HTTP/1.1 - Range Requests</li>
+              <li><a href="http://tools.ietf.org/html/rfc7234">RFC 7234</a>: HTTP/1.1 - Caching</li>
+              <li><a href="http://tools.ietf.org/html/rfc7235">RFC 7235</a>: HTTP/1.1 - Authentication</li>
+              <li><a href="http://tools.ietf.org/html/rfc7236">RFC 7236</a>: HTTP/1.1 - Authentication Scheme Registrations</li>
+              <li><a href="http://tools.ietf.org/html/rfc7237">RFC 7237</a>: HTTP/1.1 - Method Registrations</li>
+              <li><a href="http://tools.ietf.org/html/rfc7525">RFC 7525</a>: Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)</li>
+              <li><a href="http://tools.ietf.org/html/rfc7540">RFC 7540</a>: Hypertext Transfer Protocol Version 2 (HTTP/2)</li>
+              <li><a href="http://tools.ietf.org/html/rfc7541">RFC 7541</a>: HPACK: Header Compression for HTTP/2</li>
+              <li><a href="http://tools.ietf.org/html/rfc7615">RFC 7615</a>: HTTP Authentication-Info and Proxy-Authentication-Info Response Header Fields</li>
+              <li><a href="http://tools.ietf.org/html/rfc7616">RFC 7616</a>: <a name="RFC7616">HTTP Digest Access Authentication</a></li>
+              <li><a href="http://tools.ietf.org/html/rfc7617">RFC 7617</a>: The 'Basic' HTTP Authentication Scheme</li>
+            </ul></li>
+
+            <li>PWG:<ul>
+              <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-crrepsup10-20040201-5101.2.pdf">PWG 5101.2-2004</a>: PWG RepertoireSupported Element</li>
+              <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ifxpdfis10-20040315-5102.3.pdf">PWG 5102.3-2004</a>: Portable Document Format: Imaging Streamable (PDF/is)</li>
+              <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-sm10-20040120-5105.1.pdf">PWG 5105.1-2004</a>: PWG Semantic Model</li>
+              <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-pmp1284cmdset10-20100531-5107.2.pdf">PWG 5107.2-2010</a>: PWG Command Set Format for IEEE 1284 Device ID v1.0</li>
+              <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-pmpmfdalerts10-20120629-5107.3.pdf">PWG 5107.3-2012</a>: Printer MIB and IPP MFD Alerts</li>
+            </ul></li>
+
+            <li>Unicode:<ul>
+              <li><a href="http://www.unicode.org/versions/Unicode10.0.0/">Unicode 10.0</a></li>
+              <li><a href="http://www.unicode.org/reports/tr15/">Unicode Normalization Forms</a></li>
+            </ul></li>
+
+            <li>USB Implementers Forum:<ul>
+              <li><a href="http://www.usb.org/developers/devclass_docs">IPP USB Specification</a></li>
+            </ul></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div></body>
+  <script src="../dynamo/resources/jquery-1.11.1.min.js"></script>
+  <script src="../dynamo/resources/bootstrap-3.2.0.min.js"></script>
+  <script type="text/javascript" src="../dynamo/resources/pwg-search.js"></script>
+  <script type="text/javascript" src="../dynamo/resources/pwg.js"></script>
 </html>
