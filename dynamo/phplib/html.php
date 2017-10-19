@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: html.php 142 2014-04-11 01:18:16Z msweet $"
-//
 // PHP functions for standardized HTML output...
 //
 // This file should be included using "include_once"...
@@ -1675,9 +1673,4 @@ html_form_validate()
 
   return (html_form_csrf($validation) == $validation);
 }
-
-
-//
-// End of "$Id: html.php 142 2014-04-11 01:18:16Z msweet $".
-//
 ?>

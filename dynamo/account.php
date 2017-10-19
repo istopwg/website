@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: account.php 350 2012-09-10 05:33:20Z mike $"
-//
 // Account management page...
 //
 
@@ -34,8 +32,4 @@ if ($REQUEST_METHOD == "POST")
 $user->form();
 
 site_footer();
-
-//
-// End of "$Id: account.php 350 2012-09-10 05:33:20Z mike $".
-//
 ?>

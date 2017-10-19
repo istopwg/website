@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: forgot.php 351 2012-07-20 05:58:28Z msweet $"
-//
 // Login/registration form...
 //
 
@@ -98,8 +96,4 @@ html_form_field_end();
 html_form_end(array("SUBMIT" => "+Send Password Reset Instructions"));
 
 site_footer();
-
-//
-// End of "$Id: forgot.php 351 2012-07-20 05:58:28Z msweet $".
-//
 ?>

@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: login.php 121 2013-10-07 14:26:37Z msweet $"
-//
 // Login form...
 //
 
@@ -75,9 +73,4 @@ print("<p><a class=\"btn btn-default btn-xs\" href=\"newaccount.php\">New Accoun
      ."<a <a class=\"btn btn-default btn-xs\" href=\"forgot.php\">Forgot Password</a></p>\n");
 
 site_footer();
-
-
-//
-// End of "$Id: login.php 121 2013-10-07 14:26:37Z msweet $".
-//
 ?>

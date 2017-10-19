@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: enable.php 351 2012-07-20 05:58:28Z msweet $"
-//
 // Account enable form...
 //
 
@@ -125,9 +123,4 @@ html_form_field_end();
 html_form_end(array("SUBMIT" => "+Enable Account"));
 
 site_footer();
-
-
-//
-// End of "$Id: enable.php 351 2012-07-20 05:58:28Z msweet $".
-//
 ?>

@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id$"
-//
 // Organization management page...
 //
 

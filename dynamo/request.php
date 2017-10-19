@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: account.php 350 2012-09-10 05:33:20Z mike $"
-//
 // Account management page...
 //
 
@@ -70,8 +68,4 @@ if (!$user->is_member)
 html_form_end(array("SUBMIT" => "+Request Access Roles"));
 
 site_footer();
-
-//
-// End of "$Id: account.php 350 2012-09-10 05:33:20Z mike $".
-//
 ?>

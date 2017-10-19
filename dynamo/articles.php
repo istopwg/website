@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id$"
-//
 // Account management page...
 //
 
@@ -291,8 +289,4 @@ switch ($op)
       }
       break;
 }
-
-//
-// End of "$Id$".
-//
 ?>

@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: logout.php 98 2013-08-21 16:28:15Z msweet $"
-//
 // Logout page...
 //
 
@@ -18,8 +16,4 @@ if (!preg_match("/^(\\/dynamo\\/[a-z]+|dynamo\\/[a-z]+)\\.php(|\\?.*)\$/", $page
 auth_logout();
 
 header("Location: $page");
-
-//
-// End of "$Id: logout.php 98 2013-08-21 16:28:15Z msweet $".
-//
 ?>

@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: validate.php 142 2014-04-11 01:18:16Z msweet $"
-//
 // PHP functions for validating common input.
 //
 // This file should be included using "include_once"...
@@ -78,9 +76,4 @@ validate_url($url)			// I - URL string
 {
   return (preg_match("/^(http:|https:|ftp:)\\/\\/[-_.%@:;a-zA-Z0-9]+(\\/.*|)\$/", $url));
 }
-
-
-//
-// End of "$Id: validate.php 142 2014-04-11 01:18:16Z msweet $".
-//
 ?>

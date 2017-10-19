@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: newaccount.php 351 2012-07-20 05:58:28Z msweet $"
-//
 // New account form...
 //
 
@@ -155,8 +153,4 @@ html_form_field_end();
 html_form_end(array("SUBMIT" => "+Request Account"));
 
 site_footer();
-
-//
-// End of "$Id: newaccount.php 351 2012-07-20 05:58:28Z msweet $".
-//
 ?>

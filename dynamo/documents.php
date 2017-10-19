@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id$"
-//
 // Document management page...
 //
 

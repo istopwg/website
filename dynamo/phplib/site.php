@@ -1,7 +1,5 @@
 <?php
 //
-// "$Id: site.php 142 2014-04-11 01:18:16Z msweet $"
-//
 // Main site include file...
 //
 // This file should be included using "include_once"...
@@ -284,9 +282,4 @@ site_footer($javascript = "")
   print("</body>\n"
        ."</html>\n");
 }
-
-
-//
-// End of "$Id: site.php 142 2014-04-11 01:18:16Z msweet $".
-//
 ?>
