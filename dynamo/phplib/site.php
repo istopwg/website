@@ -172,8 +172,6 @@ site_header($title = "",		// I - Additional document title
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/pwg.css\">\n"
-       ."<link rel=\"alternate\" title=\"Printer Working Group RSS\" "
-       ."type=\"application/rss+xml\" href=\"${html_path}rss/index.rss\">\n"
        ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg@2x.png\" "
        ."type=\"image/png\">\n"
        ."</head>\n");
