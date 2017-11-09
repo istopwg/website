@@ -168,9 +168,9 @@ site_header($title = "",		// I - Additional document title
   }
 
   print("<title>$html_title Printer Working Group</title>\n"
-       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"//www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
-       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.css\">\n"
-       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/bootstrap-theme-3.2.0.min.css\">\n"
+       ."<link rel=\"stylesheet\" type=\"text/css\" href=\"https://www.google.com/cse/style/look/default.css\" type=\"text/css\">\n"
+       ."<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n"
+       ."<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">\n"
        ."<link rel=\"stylesheet\" type=\"text/css\" href=\"${html_path}dynamo/resources/pwg.css\">\n"
        ."<link rel=\"shortcut icon\" href=\"${html_path}dynamo/resources/pwg@2x.png\" "
        ."type=\"image/png\">\n"
@@ -268,8 +268,8 @@ site_footer($javascript = "")
        ."<a href=\"mailto:$SITE_EMAIL\">PWG Webmaster</a> to report problems "
        ."with this site.</div>\n"
        ."</div>\n"
-       ."<script src=\"${html_path}dynamo/resources/jquery-1.11.1.min.js\"></script>\n"
-       ."<script src=\"${html_path}dynamo/resources/bootstrap-3.2.0.min.js\"></script>\n");
+       ."<script src=\"https://code.jquery.com/jquery-3.2.1.min.js\"   integrity=\"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=\" crossorigin=\"anonymous\"></script>\n"
+       ."<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n");
   if (!$html_is_phone)
     print("<script type=\"text/javascript\" src=\"//www.google.com/jsapi\"></script>\n"
          ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-search.js\"></script>\n");

@@ -4,9 +4,8 @@
     <title>Internet Printing Protocol Workgroup</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="//www.google.com/cse/style/look/default.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
-    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-theme-3.2.0.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
   </head>
   <body><div class="container-fluid">
@@ -104,19 +103,19 @@
 
           <p><a href="http://ftp.pwg.org/pub/pwg/ipp/whitepaper/tb-ippauth-20170803.pdf">IPP Authentication Methods</a> (August 3, 2017)</p>
 
-          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippgupa-20171016-rev.pdf">IPP Get-User-Printer-Attributes Operation</a> (October 16, 2017)</p>
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippgupa-20171108-rev.pdf">IPP Get-User-Printer-Attributes Operation</a> (November 8, 2017)</p>
 
-          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipppreset-20171016-rev.pdf">IPP Presets</a> (October 16, 2017)</p>
+          <p><a href="http://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipppreset-20171108-rev.pdf">IPP Presets</a> (November 8, 2017)</p>
         </div>
         <div class="tab-pane fade" id="PUBLISHED">
-          <h2>Full Standards</h2>
+          <h2>Standards <a id="standards" role="button" data-toggle="popover" data-container="body" data-content="A PWG Standard is a specification that has been approved by the Printer Working Group membership and has demonstrated interoperability."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></h2>
 
           <p><a href="http://ftp.pwg.org/pub/pwg/standards/std-ipp20-20151030-5100.12.pdf">PWG 5100.12-2015</a>: IPP 2.0, 2.1, and 2.2</p>
 
 
-          <h2>Candidate Standards</h2>
+	  <h2>Candidate Standards <a id="candidates" role="button" data-toggle="popover" data-container="body" data-content="A PWG Candidate Standard is a specification that has been approved by the Printer Working Group membership and has been prototyped."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></h2>
 
-          <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20170217-5100.1.pdf">PWG 5100.1-2017</a>: IPP Finishings 2.1 (FIN)<br>
+          <p><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf">PWG 5100.1-2017</a>: IPP Finishings 2.1 (FIN)<br>
           <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG 5100.2-2001</a>: "output-bin" attribute extension<br>
           <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG 5100.3-2001</a>: Production Printing Attributes - Set1<br>
           <a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG 5100.5-2003</a>: IPP Document Object<br>
@@ -174,12 +173,12 @@
           <a href="http://tools.ietf.org/html/rfc8011">RFC 8011</a>: <a name="RFC8011">IPP/1.1 Model and Semantics</a></p>
 
 
-          <!-- <h2>IPP Registration Documents</h2>
+          <!-- <h2>IPP Registration Documents <a id="registrations" role="button" data-toggle="popover" data-container="body" data-content="An IPP Registration is a document that defines new IPP attributes, values, or operations and has been approved by the Internet Printing Protocol workgroup."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></h2>
 
           <p>Coming soon!</p> -->
 
 
-          <h2>Best Practices</h2>
+          <h2>Best Practices <a id="bestPractices" role="button" data-toggle="popover" data-container="body" data-content="A PWG Best Practice is a document that has been approved by the Printer Working Group membership and provides expert implementation or interchange guidance."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></h2>
 
           <p><a href="http://ftp.pwg.org/pub/pwg/informational/bp-smpjt3d10-20170818.pdf">PWG 3D Print Job Ticket and Associated Capabilities v1.0 (PJT3D)</a> (August 18, 2017)<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.pwg.org/schemas/smpjt3d10/Print3DService.html">Browsable Print3D XML Schema</a></p>
@@ -297,8 +296,7 @@
       </div>
     </div>
   </div></body>
-  <script src="../dynamo/resources/jquery-1.11.1.min.js"></script>
-  <script src="../dynamo/resources/bootstrap-3.2.0.min.js"></script>
-  <script type="text/javascript" src="../dynamo/resources/pwg-search.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script type="text/javascript" src="../dynamo/resources/pwg.js"></script>
 </html>
