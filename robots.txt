@@ -1,6 +1,0 @@
-User-agent: *
-Crawl-Delay: 10
-Disallow: /cgi-bin/
-Disallow: /hypermail/
-Disallow: /mailman/
-Disallow: /ADMIN/
