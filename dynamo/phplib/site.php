@@ -202,7 +202,7 @@ site_header($title = "",		// I - Additional document title
        ."            <li><a href=\"${html_path}chair/index.html\">Officers</a></li>\n"
        ."            <li class=\"divider\"></li>\n"
        ."            <li><a href=\"${html_path}bofs.html\">BOF Sessions</a></li>\n"
-       ."            <li><a href=\"http://www.google.com/calendar/embed?src=istopwg%40gmail.com\" target=\"_blank\">Calendar</a></li>\n"
+//       ."            <li><a href=\"http://www.google.com/calendar/embed?src=istopwg%40gmail.com\" target=\"_blank\">Calendar</a></li>\n"
        ."            <li><a href=\"${html_path}mailhelp.html\">Mailing Lists</a></li>\n"
        ."            <li><a href=\"${html_path}chair/meeting-info/meetings.html\">Meetings</a></li>\n"
        ."            <li><a href=\"${html_path}chair/participating.html\">Participating</a></li>\n"

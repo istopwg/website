@@ -27,12 +27,12 @@ $content  = "";
 $subtitle = "";
 $css      = "";
 
-if ($PATH_INFO == "${SITE_DOCROOT}index.html")
+if ($PATH_INFO == "/index.html")
 {
   include_once "index.php";
   exit(0);
 }
-else if ($PATH_INFO == "${SITE_DOCROOT}standards.html")
+else if ($PATH_INFO == "/standards.html")
 {
   include_once "standards.php";
   exit(0);
