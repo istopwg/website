@@ -4,7 +4,7 @@
 include_once "config/site.cfg";
 
 // Verify we got a POST request with the right headers...
-if (!array_key_exists("REQUEST_METHOD", $_SERVER) || $_SERVER("REQUEST_METHOD") != "POST")
+if (!array_key_exists("REQUEST_METHOD", $_SERVER) || $_SERVER["REQUEST_METHOD"] != "POST")
 {
   // Unknown/unsupported request method...
   print("POST required.\n");
