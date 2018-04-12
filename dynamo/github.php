@@ -3,31 +3,29 @@
 
 include_once "config/site.cfg";
 
+function email_and_error($message)
+{
+  global $SITE_EMAIL, $SITE_HOSTNAME;
+
+  $subject = "[$SITE_HOSTNAME] Github Webhook Failed";
+
+  mail($SITE_EMAIL, $subject, $message);
+  print($message);
+  exit(1);
+}
+
 // Verify we got a POST request with the right headers...
 if (!array_key_exists("REQUEST_METHOD", $_SERVER) || $_SERVER["REQUEST_METHOD"] != "POST")
-{
-  // Unknown/unsupported request method...
-  print("POST required.\n");
-  exit(1);
-}
+  email_and_error("POST required.\n");
 
 if (!array_key_exists("HTTP_CONTENT_TYPE", $_SERVER) || $_SERVER["HTTP_CONTENT_TYPE"] != "application/json")
-{
-  print("Only JSON is supported.\n");
-  exit(1);
-}
+  email_and_error("Only JSON is supported.\n");
 
 if (!array_key_exists("HTTP_X_GITHUB_EVENT", $_SERVER) || $_SERVER["HTTP_X_GITHUB_EVENT"] != "push")
-{
-  print("Only push events are supported.\n");
-  exit(1);
-}
+  email_and_error("Only push events are supported.\n");
 
 if (!array_key_exists("HTTP_X_HUB_SIGNATURE", $_SERVER))
-{
-  print("Missing X-Hub-Signature header.\n");
-  exit(1);
-}
+  email_and_error("Missing X-Hub-Signature header.\n");
 
 $github_signature = $_SERVER["HTTP_X_HUB_SIGNATURE"];
 
@@ -36,10 +34,7 @@ $post_data    = file_get_contents('php://input');
 $my_signature = "sha1=" . hash_hmac('sha1', $post_data, $SITE_SECRET);
 
 if ($github_signature != $my_signature)
-{
-  print("Signatures don't match.\n");
-  exit(1);
-}
+  email_and_error("Signatures don't match.\n");
 
 // If we got this far, then we can update the local checkout...
 chdir($SITE_DOCROOT);
