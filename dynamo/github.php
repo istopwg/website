@@ -47,14 +47,20 @@ $output = array();
 $status = 0;
 
 exec("git pull", $output, $status);
+
+$message = "cd $SITE_DOCROOT\ngit pull\n";
+foreach ($output as $line)
+$message .= "$line\n";
+
+if ($status)
+  $subject = "[$SITE_HOSTNAME] Github Webhook Failed";
+else
+  $subject = "[$SITE_HOSTNAME] Github Webhook Succeeded";
+
+mail($SITE_EMAIL, $subject, $message);
+
 if ($status)
 {
-  $message = "cd $SITE_DOCROOT\ngit pull\n";
-  foreach ($output as $line)
-    $message .= "$line\n";
-
-  mail($SITE_EMAIL, "Github Webhook Failed", $message);
-
   print("Update failed.\n");
   exit(1);
 }
