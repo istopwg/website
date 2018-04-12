@@ -34,7 +34,7 @@ $post_data    = file_get_contents('php://input');
 $my_signature = "sha1=" . hash_hmac('sha1', $post_data, $SITE_SECRET);
 
 if ($github_signature != $my_signature)
-  email_and_error("Signatures don't match.\n");
+  email_and_error("Signatures don't match - got '$github_signature', expected '$my_signature'.\n");
 
 // If we got this far, then we can update the local checkout...
 chdir($SITE_DOCROOT);
