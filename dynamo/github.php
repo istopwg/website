@@ -18,7 +18,7 @@ function email_and_error($message)
 if (!array_key_exists("REQUEST_METHOD", $_SERVER) || $_SERVER["REQUEST_METHOD"] != "POST")
   email_and_error("POST required.\n");
 
-if (!array_key_exists("HTTP_CONTENT_TYPE", $_SERVER) || $_SERVER["HTTP_CONTENT_TYPE"] != "application/json")
+if (!array_key_exists("CONTENT_TYPE", $_SERVER) || $_SERVER["CONTENT_TYPE"] != "application/json")
   email_and_error("Only JSON is supported.\n");
 
 if (!array_key_exists("HTTP_X_GITHUB_EVENT", $_SERVER) || $_SERVER["HTTP_X_GITHUB_EVENT"] != "push")
