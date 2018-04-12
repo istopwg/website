@@ -14,7 +14,7 @@ $matches = article_search();
 ?>
 
 <div class="jumbotron">
-  <h1><img class="pwg-logo pwg-right hidden-xs" src="<?print($html_path);?>dynamo/resources/pwg-medium@2x.png">The Printer Working Group</h1>
+  <h1><img class="pwg-logo pwg-right hidden-xs" src="<?print($html_path);?>dynamo/resources/pwg-medium@2x.png">The Printer Working Group<?if ($SITE_SHOW_BETA)print(" Beta Test Site");?></h1>
   <p>Our members include printer and multi-function device manufacturers, print server developers, operating system providers, print management application developers, and industry experts. We make printers, multi-function devices, and the applications and operating systems supporting them work together better.</p>
   <p><a class="btn btn-primary btn-lg" href="<?print($html_path);?>about.html">More Info</a>
   &nbsp;<a class="btn btn-default btn-lg" href="#NEWS">Recent News</a></p>
