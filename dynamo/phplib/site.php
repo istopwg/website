@@ -80,7 +80,7 @@ site_header($title = "",		// I - Additional document title
 {
   global $argc, $argv, $html_path, $_GET, $LOGIN_EMAIL;
   global $LOGIN_ID, $LOGIN_IS_ADMIN, $LOGIN_IS_EDITOR, $LOGIN_IS_MEMBER, $LOGIN_IS_OFFICER, $LOGIN_NAME, $PHP_SELF, $_SERVER, $SERVER_NAME, $SITE_SHOW_BETA;
-  global $html_is_phone, $html_is_tablet, $html_login_url;
+  global $html_login_url;
 
 
   if ($LOGIN_ID != "")
@@ -187,10 +187,8 @@ site_header($title = "",		// I - Additional document title
        ."      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#pwg-nav-collapsible\"><span class=\"sr-only\">Toggle navigation</span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>\n"
        ."      <a class=\"navbar-brand\" href=\"{$html_path}\"><img src=\"${html_path}dynamo/resources/pwg-4dark.png\" alt=\"PWG Logo\" "
        ."height=\"27\" width=\"28\"></a>\n"
-       ."    </div>\n");
-  if (!$html_is_phone)
-    print("    <div id=\"pwg-search-form\">Google Custom Search</div>\n");
-  print("    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
+       ."    </div>\n"
+       ."    <div class=\"collapse navbar-collapse\" id=\"pwg-nav-collapsible\">\n"
        ."      <ul class=\"nav navbar-nav\">\n"
        ."        $userlogin\n"
        ."        <li><a href=\"${html_path}index.html\">Home</a></li>\n"
@@ -233,14 +231,45 @@ site_header($title = "",		// I - Additional document title
        ."            <li><a href=\"${html_path}wims/\">Workgroup for Imaging Management Solutions</a></li>\n"
        ."          </ul>\n"
        ."        </li>\n"
+       ."        <li><a href=\"#modalSearch\" data-toggle=\"modal\" data-target=\"#modalSearch\">Search</a></li>\n"
        ."      </ul>\n"
        ."    </div>\n"
        ."  </div>\n"
        ."</nav>\n"
-       ."<div id=\"pwg-body\">\n");
-  if (!$html_is_phone)
-    print("  <div id=\"pwg-search-results\"></div>\n");
-  print("  <div id=\"pwg-content\">\n");
+       ."<!-- Search Modal -->\n"
+       ."<div id=\"modalSearch\" class=\"modal fade\" role=\"dialog\">\n"
+       ."  <div class=\"modal-dialog\" role=\"document\">\n"
+       ."    <!-- Modal content-->\n"
+       ."    <div class=\"modal-content\">\n"
+       ."       <div class=\"modal-header\">\n"
+       ."         <h4 class=\"modal-title\">Search PWG</h4>\n"
+       ."         <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n"
+       ."           <span aria-hidden=\"true\">&times;</span>\n"
+       ."         </button>\n"
+       ."       </div>\n"
+       ."       <div class=\"modal-body\">\n"
+       ."         <script>\n"
+       ."           (function() {\n"
+       ."    	 var cx = '018021367961685880654:mdt584m83r4';\n"
+       ."    	 var gcse = document.createElement('script');\n"
+       ."    	 gcse.type = 'text/javascript';\n"
+       ."    	 gcse.async = true;\n"
+       ."    	 gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;\n"
+       ."    	 var s = document.getElementsByTagName('script')[0];\n"
+       ."    	 s.parentNode.insertBefore(gcse, s);\n"
+       ."           })();\n"
+       ."         </script>\n"
+       ."         <gcse:search></gcse:search>\n"
+       ."       </div>\n"
+       ."       <div class=\"modal-footer\">\n"
+       ."         <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>\n"
+       ."       </div>\n"
+       ."    </div>\n"
+       ."  </div>\n"
+       ."</div>\n"
+       ."<div id=\"pwg-body\">\n"
+       ."  <div id=\"pwg-content\">\n");
+
   if ($title != "" && $title[0] != "-")
     print("    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
 }
@@ -253,7 +282,7 @@ site_header($title = "",		// I - Additional document title
 function
 site_footer($javascript = "")
 {
-  global $html_is_phone, $html_path, $SITE_EMAIL;
+  global $html_path, $SITE_EMAIL;
 
 
   $year = date("Y");
@@ -273,13 +302,9 @@ site_footer($javascript = "")
        ."</div>\n"
        ."<script src=\"https://code.jquery.com/jquery-3.2.1.min.js\"   integrity=\"sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=\" crossorigin=\"anonymous\"></script>\n"
        ."<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n");
-  if (!$html_is_phone)
-    print("<script type=\"text/javascript\" src=\"//www.google.com/jsapi\"></script>\n"
-         ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-search.js\"></script>\n");
-  print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
-       ."</script>\n");
-  print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-cookie-notice.js\">"
-       ."</script>\n");
+  print("<script type=\"text/javascript\" src=\"//www.google.com/jsapi\"></script>\n"
+       ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\"></script>\n"
+       ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-cookie-notice.js\"></script>\n");
   if ($javascript != "")
     print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/$javascript\"></script>\n");
   print("</body>\n"
