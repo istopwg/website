@@ -278,6 +278,8 @@ site_footer($javascript = "")
          ."<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-search.js\"></script>\n");
   print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg.js\">"
        ."</script>\n");
+  print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/pwg-cookie-notice.js\">"
+       ."</script>\n");
   if ($javascript != "")
     print("<script type=\"text/javascript\" src=\"${html_path}dynamo/resources/$javascript\"></script>\n");
   print("</body>\n"
