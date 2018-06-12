@@ -82,7 +82,7 @@
         if (params.learnMoreLinkEnabled) {
             var learnMoreLinkText = getStringForCurrentLocale(params.learnMoreLinkText);
 
-            learnMoreLink = createLearnMoreLink(learnMoreLinkText);
+            learnMoreLink = createLearnMoreLink(learnMoreLinkText, params.learnMoreLinkHref);
         }
 
         // Get current locale for button text
