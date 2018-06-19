@@ -19,55 +19,126 @@
 
   <xsl:template match="/iana:registry">
     <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+      <link rel="stylesheet" type="text/css" href="/dynamo/resources/pwg.css" />
+      <link rel="shortcut icon" href="/dynamo/resources/pwg@2x.png" type="image/png" />
       <link rel="stylesheet" href="iana-registry.css" type="text/css"/>
-      <!-- IE insists on having <script ...></script>, not <script .../> when it
-      displays XML converted on the fly using XSLT. -->
-      <script type="text/javascript" src="jquery.js"></script>
-      <script type="text/javascript" src="sort.js"></script>
       <xsl:call-template name="iana:head"/>
-      <title><xsl:value-of select="iana:title" /></title>
+      <title><xsl:value-of select="iana:title" /> - Printer Working Group</title>
     </head>
     <body>
-      <xsl:apply-templates select="iana:title" />
-      <xsl:if test="iana:created|iana:updated|iana:registration_rule|iana:expert|iana:description|iana:note|iana:xref|iana:record">
-        <dl>
-          <xsl:apply-templates select="iana:created" />
-          <xsl:apply-templates select="iana:updated" />
-          <xsl:apply-templates select="iana:registration_rule" />
-          <xsl:apply-templates select="iana:expert" />
-          <xsl:apply-templates select="iana:description" />
-          <xsl:call-template name="iana:references"/>
-          <xsl:apply-templates select="iana:note" />
-          <xsl:call-template name="iana:formats"/>
-        </dl>
-      </xsl:if>
-      <xsl:if test="iana:registry and not(iana:file)">
-        <xsl:choose>
-          <xsl:when test="count(iana:registry/iana:title) = 0">
-          </xsl:when>
-          <xsl:when test="count(iana:registry/iana:title) = 1">
-            <p><b>Registry included below</b></p>
-          </xsl:when>
-          <xsl:otherwise>
-            <p><b>Registries included below</b></p>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:call-template name="table-of-contents"/>
-      </xsl:if>
-      <xsl:if test="iana:pagination/@page_cnt > 1 or iana:pagination/@search">
-        <form method="get">
-          <xsl:attribute name="action"><xsl:value-of select="iana:pagination/iana:url"/></xsl:attribute>
-          <input name="search" size="18" type="text">
-            <xsl:attribute name="value"><xsl:value-of select="iana:pagination/@search"/></xsl:attribute>
-          </input>
-          <input value="Search" type="submit"/>
-        </form>
-      </xsl:if>
-      <xsl:if test = "iana:record"><xsl:call-template name="iana:records" /></xsl:if>
-      <xsl:if test = "iana:file"><h2>Files</h2><xsl:call-template name="iana:files" /></xsl:if>
-      <xsl:apply-templates select="iana:registry" />
-      <xsl:apply-templates select="iana:people"/>
-      <xsl:call-template name="iana:footnotes"/>
+      <nav class="navbar navbar-inverse navbar-fixed-top pwg-navbar" role="navigation">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pwg-nav-collapsible"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+	    <a class="navbar-brand" href="/"><img src="/dynamo/resources/pwg-4dark.png" alt="PWG Logo" height="27" width="28" /></a>
+	  </div>
+	  <div class="collapse navbar-collapse" id="pwg-nav-collapsible">
+	    <ul class="nav navbar-nav">
+	      <li><a href="https://www.pwg.org/dynamo/login.php?PAGE=%2Fdynamo%2Fwrap.php%2Fipp%2Findex.html"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+	      <li><a href="/index.html">Home</a></li>
+	      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">About <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="/about.html">About the PWG</a></li>
+		  <li><a href="/members.html#JOINING">Joining</a></li>
+		  <li><a href="/members.html">Members</a></li>
+		  <li><a href="/chair/index.html">Officers</a></li>
+		  <li class="divider"></li>
+		  <li><a href="/bofs.html">BOF Sessions</a></li>
+		  <li><a href="/mailhelp.html">Mailing Lists</a></li>
+		  <li><a href="/chair/meeting-info/meetings.html">Meetings</a></li>
+		  <li><a href="/chair/participating.html">Participating</a></li>
+		  <li><a href="https://ieee-isto.org/privacy-policy/">Privacy Policy</a></li>
+		</ul>
+	      </li>
+	      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Our Work <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li class="dropdown-header" role="presentation">Publications</li>
+		  <li><a href="/informational.html">Informational Documents</a></li>
+		  <li><a href="/namespaces.html">Namespaces</a></li>
+		  <li><a href="/standards.html">Standards</a></li>
+		  <li class="divider"></li>
+		  <li class="dropdown-header" role="presentation">Technologies</li>
+		  <li><a href="/3d/index.html">3D Printing</a></li>
+		  <li><a href="/ipp/everywhere.html">IPP Everywhere&#x2122;</a></li>
+		  <li><a href="/sm/model.html">PWG Semantic Model</a></li>
+		</ul>
+	      </li>
+	      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Workgroups <span class="caret"></span></a>
+		<ul class="dropdown-menu" role="menu">
+		  <li class="dropdown-header" role="presentation">Active Workgroups</li>
+		  <li><a href="/ids/">Imaging Device Security</a></li>
+		  <li><a href="/ipp/">Internet Printing Protocol</a></li>
+		  <li class="divider"></li>
+		  <li class="dropdown-header" role="presentation">Inactive Workgroups</li>
+		  <li><a href="/cloud/">Cloud Imaging Model</a></li>
+		  <li><a href="/sm/">Semantic Model</a></li>
+		  <li><a href="/wims/">Workgroup for Imaging Management Solutions</a></li>
+		</ul>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+      </nav>
+      <div id="pwg-body">
+	<div id="pwg-content">
+	  <xsl:apply-templates select="iana:title" />
+	  <xsl:if test="iana:created|iana:updated|iana:registration_rule|iana:expert|iana:description|iana:note|iana:xref|iana:record">
+	    <dl>
+	      <xsl:apply-templates select="iana:created" />
+	      <xsl:apply-templates select="iana:updated" />
+	      <xsl:apply-templates select="iana:registration_rule" />
+	      <xsl:apply-templates select="iana:expert" />
+	      <xsl:apply-templates select="iana:description" />
+	      <xsl:call-template name="iana:references"/>
+	      <xsl:apply-templates select="iana:note" />
+	      <xsl:call-template name="iana:formats"/>
+	    </dl>
+	  </xsl:if>
+	  <xsl:if test="iana:registry and not(iana:file)">
+	    <xsl:choose>
+	      <xsl:when test="count(iana:registry/iana:title) = 0">
+	      </xsl:when>
+	      <xsl:when test="count(iana:registry/iana:title) = 1">
+		<p><b>Registry included below</b></p>
+	      </xsl:when>
+	      <xsl:otherwise>
+		<p><b>Registries included below</b></p>
+	      </xsl:otherwise>
+	    </xsl:choose>
+	    <xsl:call-template name="table-of-contents"/>
+	  </xsl:if>
+	  <xsl:if test="iana:pagination/@page_cnt > 1 or iana:pagination/@search">
+	    <form method="get">
+	      <xsl:attribute name="action"><xsl:value-of select="iana:pagination/iana:url"/></xsl:attribute>
+	      <input name="search" size="18" type="text">
+		<xsl:attribute name="value"><xsl:value-of select="iana:pagination/@search"/></xsl:attribute>
+	      </input>
+	      <input value="Search" type="submit"/>
+	    </form>
+	  </xsl:if>
+	  <xsl:if test = "iana:record"><xsl:call-template name="iana:records" /></xsl:if>
+	  <xsl:if test = "iana:file"><h2>Files</h2><xsl:call-template name="iana:files" /></xsl:if>
+	  <xsl:apply-templates select="iana:registry" />
+	  <xsl:apply-templates select="iana:people"/>
+	  <xsl:call-template name="iana:footnotes"/>
+	</div>
+      </div>
+      <div id="pwg-footer">
+	<div id="pwg-footer-body">Comments are owned by the poster. All other material is Copyright &#x00a9; 2001-2018 The Printer Working Group. All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the PWG logo are trademarks of the IEEE-ISTO.<br />
+      <a href="/about.html">About the PWG</a> &#x00b7; <a href="https://ieee-isto.org/privacy-policy/">Privacy Policy</a> &#x00b7; <a href="mailto:webmaster@pwg.org">PWG Webmaster</a></div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="/dynamo/resources/pwg.js"></script>
+      <script type="text/javascript" src="/dynamo/resources/pwg-cookie-notice.js"></script>
+      <!-- IE insists on having <script ...></script>, not <script .../> when it
+      displays XML converted on the fly using XSLT. -->
+      <script type="text/javascript" src="sort.js"></script>
     </body>
   </xsl:template>
 
