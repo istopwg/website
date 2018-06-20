@@ -8094,7 +8094,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all baling-type values &gt;</value>
+      <value>&lt;Any "baling-type value&gt;</value>
       <attribute>baling-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -8122,7 +8122,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all baling-when values &gt;</value>
+      <value>&lt;Any "baling-when value&gt;</value>
       <attribute>baling-when-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -8162,7 +8162,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all binding-reference-edge values &gt;</value>
+      <value>&lt;Any "binding-reference-edge value&gt;</value>
       <attribute>binding-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -8226,7 +8226,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all binding-type values &gt;</value>
+      <value>&lt;Any "binding-type value&gt;</value>
       <attribute>binding-type-supported</attribute>
       <syntax>(1setOf type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -8260,7 +8260,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all coating-sides values &gt;</value>
+      <value>&lt;Any "coating-sides value&gt;</value>
       <attribute>coating-sides-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -8336,7 +8336,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all coating-type values &gt;</value>
+      <value>&lt;Any "coating-type value&gt;</value>
       <attribute>coating-type-supported</attribute>
       <syntax>(1setOf type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -8376,7 +8376,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf" type="uri">PWG5100.17</xref>
     </record>
     <record>
-      <value>&lt; all compression values &gt;</value>
+      <value>&lt;Any "compression value&gt;</value>
       <attribute>compression-accepted</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf" type="uri">PWG5100.17</xref>
@@ -8537,7 +8537,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all covering-name values &gt;</value>
+      <value>&lt;Any "covering-name value&gt;</value>
       <attribute>covering-name-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -9992,7 +9992,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all folding-direction values &gt;</value>
+      <value>&lt;Any "folding-direction value&gt;</value>
       <attribute>folding-direction-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10032,7 +10032,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all folding-reference-edge values &gt;</value>
+      <value>&lt;Any "folding-reference-edge value&gt;</value>
       <attribute>folding-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -11740,7 +11740,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all laminating-sides values &gt;</value>
+      <value>&lt;All "laminating-sides" value&gt;</value>
       <attribute>laminating-sides-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -11792,7 +11792,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all laminating-type values &gt;</value>
+      <value>&lt;Any "laminating-type" value&gt;</value>
       <attribute>laminating-type-supported</attribute>
       <syntax>(1setOf type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -24163,7 +24163,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all punching-reference-edge values &gt;</value>
+      <value>&lt;Any "punching-reference-edge" value&gt;</value>
       <attribute>punching-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -24753,7 +24753,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all stitching-method values &gt;</value>
+      <value>&lt;Any "stitching-method" value&gt;</value>
       <attribute>stitching-method-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -24926,7 +24926,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all trimming-reference-edge values &gt;</value>
+      <value>&lt;Any "trimming-reference-edge" value&gt;</value>
       <attribute>trimming-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -24978,7 +24978,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all trimming-type values &gt;</value>
+      <value>&lt;Any "trimming-type value&gt;</value>
       <attribute>trimming-type-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -25018,7 +25018,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; all trimming-when values &gt;</value>
+      <value>&lt;Any "trimming-when value&gt;</value>
       <attribute>trimming-when-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
