@@ -9970,23 +9970,6 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <attribute>finishings-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <value>finishing-template</value>
-      <attribute>finishings-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <value>stitching</value>
-      <attribute>finishings-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
       <attribute>folding-direction</attribute>
       <syntax>type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10777,17 +10760,6 @@ by IESG-designated experts.
       <attribute>job-error-sheet-when</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <attribute>job-finishings-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
-    </record>
-    <record>
-      <value>&lt;Any "finishings-col-supported" keyword value&gt;</value>
-      <attribute>job-finishings-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
       <attribute>job-hold-until</attribute>
@@ -12058,17 +12030,6 @@ by IESG-designated experts.
       <value>wax</value>
       <attribute>material-type</attribute>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
-    </record>
-    <record>
-      <attribute>materials-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
-    </record>
-    <record>
-      <value>&lt; any materials-col member attribute name &gt;</value>
-      <attribute>materials-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
@@ -15872,47 +15833,6 @@ by IESG-designated experts.
       <attribute>media-back-coating-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
-    </record>
-    <record>
-      <value>media-bottom-margin</value>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
-    </record>
-    <record>
-      <value>media-left-margin</value>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
-    </record>
-    <record>
-      <value>media-right-margin</value>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
-    </record>
-    <record>
-      <value>media-size-name</value>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
-    </record>
-    <record>
-      <value>media-source</value>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
-    </record>
-    <record>
-      <value>media-top-margin</value>
-      <attribute>media-col-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
       <attribute>media-color</attribute>
