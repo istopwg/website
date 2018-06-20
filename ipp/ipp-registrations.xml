@@ -6833,7 +6833,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>pdl-override-guaranteed-supported</name>
-      <syntax>1setOf type2 keyword</syntax>
+      <syntax>1setOf keyword</syntax>
       <xref data="https://www.pwg.org/archives/ipp/2015/018629.html" type="uri">IPPWG20151019</xref>
     </record>
     <record>
@@ -8060,7 +8060,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
-      <value>&lt; any accuracy-units values &gt;</value>
+      <value>&lt;Any "accuracy-units" value&gt;</value>
       <attribute>accuracy-units-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -8387,7 +8387,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "compression" keyword value&gt;</value>
+      <value>&lt;Any "compression" value&gt;</value>
       <attribute>compression-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -8421,7 +8421,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "cover-back-supported" keyword value&gt;</value>
+      <value>&lt;Any "cover-back-supported" value&gt;</value>
       <attribute>cover-front-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -8548,7 +8548,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-order-received" keyword value&gt;</value>
+      <value>&lt;Any "page-order-received" value&gt;</value>
       <attribute>current-page-order</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -8594,7 +8594,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "document-digital-signature" keyword value&gt;</value>
+      <value>&lt;Any "document-digital-signature" value&gt;</value>
       <attribute>document-digital-signature-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -8605,7 +8605,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "document-digital-signature" keyword value&gt;</value>
+      <value>&lt;Any "document-digital-signature" value&gt;</value>
       <attribute>document-digital-signature-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -8994,7 +8994,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "feed-orientation" keyword value&gt;</value>
+      <value>&lt;Any "feed-orientation" value&gt;</value>
       <attribute>feed-orientation-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -9964,7 +9964,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt; any finishing-template value &gt;</value>
+      <value>&lt;Any "finishing-template" value&gt;</value>
       <attribute>finishing-template-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings20-20141219-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10072,7 +10072,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "identify-actions" keyword value&gt;</value>
+      <value>&lt;Any "identify-actions" value&gt;</value>
       <attribute>identify-actions-default</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -10083,7 +10083,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "identify-actions" keyword value&gt;</value>
+      <value>&lt;Any "identify-actions" value&gt;</value>
       <attribute>identify-actions-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -10194,7 +10194,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any input-color-mode value&gt;</value>
+      <value>&lt;Any "input-color-mode" value&gt;</value>
       <attribute>input-color-mode-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10252,7 +10252,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any input-content-type value&gt;</value>
+      <value>&lt;Any "input-content-type" value&gt;</value>
       <attribute>input-content-type-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10292,7 +10292,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt; any input-film-scan-mode value&gt;</value>
+      <value>&lt;Any "input-film-scan-mode" value&gt;</value>
       <attribute>input-film-scan-mode-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10303,7 +10303,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any media size name value&gt;</value>
+      <value>&lt;Any "media" size name value&gt;</value>
       <attribute>input-media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10320,7 +10320,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any input-media value&gt;</value>
+      <value>&lt;Any "media" size name value&gt;</value>
       <attribute>input-media-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10331,7 +10331,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any sides value&gt;</value>
+      <value>&lt;Any "sides" value&gt;</value>
       <attribute>input-sides</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10342,7 +10342,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any sides value&gt;</value>
+      <value>&lt;Any "sides" value&gt;</value>
       <attribute>input-sides-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10376,7 +10376,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any input-source value&gt;</value>
+      <value>&lt;Any "input-source" value&gt;</value>
       <attribute>input-source-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -10522,7 +10522,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
-      <value>&lt; any "job-account-type" value &gt;</value>
+      <value>&lt;Any "job-account-type" value&gt;</value>
       <attribute>job-account-type-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
@@ -10533,7 +10533,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
-      <value>&lt; any "job-account-type" value &gt;</value>
+      <value>&lt;Any "job-account-type" value&gt;</value>
       <attribute>job-account-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
@@ -10544,7 +10544,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "output-bin" keyword value&gt;</value>
+      <value>&lt;Any "output-bin" value keyword&gt;</value>
       <attribute>job-accounting-output-bin</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
@@ -10567,13 +10567,13 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "cover-back-supported" keyword value&gt;</value>
+      <value>&lt;Any "cover-back-supported" value&gt;</value>
       <attribute>job-cover-back-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "cover-front-supported" keyword value&gt;</value>
+      <value>&lt;Any "cover-front-supported" value&gt;</value>
       <attribute>job-cover-front-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -10637,7 +10637,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt; any "job-default-output-until" value &gt;</value>
+      <value>&lt;Any "job-default-output-until" value&gt;</value>
       <attribute>job-delay-output-until-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
@@ -10648,7 +10648,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt; any "job-default-output-until" value &gt;</value>
+      <value>&lt;Any "job-default-output-until" value&gt;</value>
       <attribute>job-delay-output-until-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
@@ -10711,7 +10711,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "job-error-action" keyword value&gt;</value>
+      <value>&lt;Any "job-error-action" value&gt;</value>
       <attribute>job-error-action-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -10722,7 +10722,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "job-error-action" keyword value&gt;</value>
+      <value>&lt;Any "job-error-action" value&gt;</value>
       <attribute>job-error-action-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -10820,7 +10820,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-hold-until" keyword value&gt;</value>
+      <value>&lt;Any "job-hold-until" value&gt;</value>
       <attribute>job-hold-until-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -10831,7 +10831,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-hold-until" keyword value&gt;</value>
+      <value>&lt;Any "job-hold-until" value&gt;</value>
       <attribute>job-hold-until-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -10991,7 +10991,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "job-password-encryption" keyword value&gt;</value>
+      <value>&lt;Any "job-password-encryption" value&gt;</value>
       <attribute>job-password-encryption-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -11002,7 +11002,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wp-job-password-repertoire-20160101.pdf" type="uri">IPPWG20160229-1</xref>
     </record>
     <record>
-      <value>&lt; any "job-password-repertoire-supported" value &gt;</value>
+      <value>&lt;Any "job-password-repertoire-supported" value&gt;</value>
       <attribute>job-password-repertoire-configured</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wp-job-password-repertoire-20160101.pdf" type="uri">IPPWG20160229-1</xref>
@@ -11188,7 +11188,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-sheets" keyword value&gt;</value>
+      <value>&lt;Any "job-sheets" value&gt;</value>
       <attribute>job-sheets-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -11199,7 +11199,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-sheets" keyword value&gt;</value>
+      <value>&lt;Any "job-sheets" value&gt;</value>
       <attribute>job-sheets-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -11844,7 +11844,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
-      <value>&lt; any "media" color name &gt;</value>
+      <value>&lt;Any "media-color" value&gt;</value>
       <attribute>material-color</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -15829,7 +15829,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-back-coating" keyword value&gt;</value>
+      <value>&lt;Any "media-back-coating" value&gt;</value>
       <attribute>media-back-coating-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16325,7 +16325,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-color" keyword value&gt;</value>
+      <value>&lt;Any "media-color" value&gt;</value>
       <attribute>media-color-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16336,7 +16336,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "media" keyword value&gt;</value>
+      <value>&lt;Any "media" value&gt;</value>
       <attribute>media-default</attribute>
       <syntax>no-value | type2 keyword | name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -16347,7 +16347,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-back-coating" keyword value&gt;</value>
+      <value>&lt;Any "media-back-coating" value&gt;</value>
       <attribute>media-front-coating</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16358,7 +16358,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-back-coating" keyword value&gt;</value>
+      <value>&lt;Any "media-back-coating" value&gt;</value>
       <attribute>media-front-coating-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16386,7 +16386,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "media-grain" keyword value&gt;</value>
+      <value>&lt;Any "media-grain" value&gt;</value>
       <attribute>media-grain-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -16397,7 +16397,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media" input tray keyword value&gt;</value>
+      <value>&lt;Any "media" input tray value&gt;</value>
       <attribute>media-input-tray-check</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16431,7 +16431,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-pre-printed" keyword value&gt;</value>
+      <value>&lt;Any "media-pre-printed" value&gt;</value>
       <attribute>media-pre-printed-supported</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16442,7 +16442,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "media" media or size keyword value&gt;</value>
+      <value>&lt;Any "media" media or size value&gt;</value>
       <attribute>media-ready</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -16470,7 +16470,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-recycled" keyword value&gt;</value>
+      <value>&lt;Any "media-recycled" value&gt;</value>
       <attribute>media-recycled-supported</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -16786,7 +16786,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "feed-orientation" keyword value&gt;</value>
+      <value>&lt;Any "feed-orientation" value&gt;</value>
       <attribute>media-source-feed-direction</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -16797,7 +16797,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "media-source" keyword value&gt;</value>
+      <value>&lt;Any "media-source" value&gt;</value>
       <attribute>media-source-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -16808,7 +16808,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "media" keyword value&gt;</value>
+      <value>&lt;Any "media" value&gt;</value>
       <attribute>media-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -16884,7 +16884,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "media-tooth" keyword value&gt;</value>
+      <value>&lt;Any "media-tooth" value&gt;</value>
       <attribute>media-tooth-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -17638,7 +17638,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-type" keyword value&gt;</value>
+      <value>&lt;Any "media-type" value&gt;</value>
       <attribute>media-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -17678,7 +17678,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "multiple-document-handling" keyword value&gt;</value>
+      <value>&lt;Any "multiple-document-handling" value&gt;</value>
       <attribute>multiple-document-handling-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -17689,7 +17689,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "multiple-document-handling" keyword value&gt;</value>
+      <value>&lt;Any "multiple-document-handling" value&gt;</value>
       <attribute>multiple-document-handling-supported</attribute>
       <syntax>1setOf (type2 keyword)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -17910,7 +17910,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-events" keyword value&gt;</value>
+      <value>&lt;Any "notify-events" value&gt;</value>
       <attribute>notify-events-default</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -17921,7 +17921,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-events" keyword value&gt;</value>
+      <value>&lt;Any "notify-events" value&gt;</value>
       <attribute>notify-events-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -17943,7 +17943,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-pull-method" keyword value&gt;</value>
+      <value>&lt;Any "notify-pull-method" value&gt;</value>
       <attribute>notify-pull-method-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -17954,7 +17954,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-events" keyword value&gt;</value>
+      <value>&lt;Any "notify-events" value&gt;</value>
       <attribute>notify-subscribed-event</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -18228,7 +18228,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
     </record>
     <record>
-      <value>&lt;Any "output-bin" keyword value&gt;</value>
+      <value>&lt;Any "output-bin" value&gt;</value>
       <attribute>output-bin-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
@@ -18239,7 +18239,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
     </record>
     <record>
-      <value>&lt;Any "output-bin" keyword value&gt;</value>
+      <value>&lt;Any "output-bin" value&gt;</value>
       <attribute>output-bin-supported</attribute>
       <syntax>1setof (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
@@ -18285,7 +18285,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-delivery" keyword value&gt;</value>
+      <value>&lt;Any "page-delivery" value&gt;</value>
       <attribute>page-delivery-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18296,7 +18296,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-delivery" keyword value&gt;</value>
+      <value>&lt;Any "page-delivery" value&gt;</value>
       <attribute>page-delivery-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18324,7 +18324,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-order-received" keyword value&gt;</value>
+      <value>&lt;Any "page-order-received" value&gt;</value>
       <attribute>page-order-received-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18335,7 +18335,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-order-received" keyword value&gt;</value>
+      <value>&lt;Any "page-order-received" value&gt;</value>
       <attribute>page-order-received-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18488,17 +18488,6 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <attribute>pdl-override-guaranteed-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2015/018629.html" type="uri">IPPWG20151019</xref>
-    </record>
-    <record>
-      <value>&lt; any Job Template attribute &gt;</value>
-      <attribute>pdl-override-guaranteed-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2015/018629.html" type="uri">IPPWG20151019</xref>
-    </record>
-    <record>
       <attribute>pdl-override-supported</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -18597,7 +18586,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "presentation-direction-number-up" keyword value&gt;</value>
+      <value>&lt;Any "presentation-direction-number-up" value&gt;</value>
       <attribute>presentation-direction-number-up-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18608,7 +18597,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "presentation-direction-number-up" keyword value&gt;</value>
+      <value>&lt;Any "presentation-direction-number-up" value&gt;</value>
       <attribute>presentation-direction-number-up-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18707,7 +18696,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-color-mode" keyword value&gt;</value>
+      <value>&lt;Any "print-color-mode" value&gt;</value>
       <attribute>print-color-mode-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -18718,7 +18707,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-color-mode" keyword value&gt;</value>
+      <value>&lt;Any "print-color-mode" value&gt;</value>
       <attribute>print-color-mode-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -18764,7 +18753,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "print-content-optimize" keyword value&gt;</value>
+      <value>&lt;Any "print-content-optimize" value&gt;</value>
       <attribute>print-content-optimize-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -18775,21 +18764,10 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "print-content-optimize" keyword value&gt;</value>
+      <value>&lt;Any "print-content-optimize" value&gt;</value>
       <attribute>print-content-optimize-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
-    </record>
-    <record>
-      <attribute>print-objects-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
-    </record>
-    <record>
-      <value>&lt; any print-objects member attribute name &gt;</value>
-      <attribute>print-objects-supported</attribute>
-      <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
       <attribute>print-rendering-intent</attribute>
@@ -18838,7 +18816,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-rendering-intent" keyword value&gt;</value>
+      <value>&lt;Any "print-rendering-intent" value&gt;</value>
       <attribute>print-rendering-intent-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -18849,7 +18827,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-rendering-intent" keyword value&gt;</value>
+      <value>&lt;Any "print-rendering-intent" value&gt;</value>
       <attribute>print-rendering-intent-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -24576,7 +24554,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "save-disposition" keyword value&gt;</value>
+      <value>&lt;Any "save-disposition" value&gt;</value>
       <attribute>save-disposition-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -24645,7 +24623,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "separator-sheets-type" keyword value&gt;</value>
+      <value>&lt;Any "separator-sheets-type" value&gt;</value>
       <attribute>separator-sheets-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -24685,7 +24663,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3381" />
     </record>
     <record>
-      <value>&lt;Any "sheet-collate" keyword value&gt;</value>
+      <value>&lt;Any "sheet-collate" value&gt;</value>
       <attribute>sheet-collate-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc3381" />
@@ -24696,7 +24674,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3381" />
     </record>
     <record>
-      <value>&lt;Any "sheet-collate" keyword value&gt;</value>
+      <value>&lt;Any "sheet-collate" value&gt;</value>
       <attribute>sheet-collate-supported</attribute>
       <syntax>1setOf (type2 keyword)</syntax>
       <xref type="rfc" data="rfc3381" />
@@ -24730,7 +24708,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "sides" keyword value&gt;</value>
+      <value>&lt;Any "sides" value&gt;</value>
       <attribute>sides-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -24741,7 +24719,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "sides" keyword value&gt;</value>
+      <value>&lt;Any "sides" value&gt;</value>
       <attribute>sides-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -24815,7 +24793,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "stitching-reference-edge" keyword value&gt;</value>
+      <value>&lt;Any "stitching-reference-edge" value&gt;</value>
       <attribute>stitching-reference-edge-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -25198,7 +25176,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "which-jobs" keyword value&gt;</value>
+      <value>&lt;Any "which-jobs" value&gt;</value>
       <attribute>which-jobs-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -25238,7 +25216,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "x-image-position" keyword value&gt;</value>
+      <value>&lt;Any "x-image-position" value&gt;</value>
       <attribute>x-image-position-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -25249,7 +25227,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "x-image-position" keyword value&gt;</value>
+      <value>&lt;Any "x-image-position" value&gt;</value>
       <attribute>x-image-position-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -25359,7 +25337,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "y-image-position" keyword value&gt;</value>
+      <value>&lt;Any "y-image-position" value&gt;</value>
       <attribute>y-image-position-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -25370,7 +25348,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "y-image-position" keyword value&gt;</value>
+      <value>&lt;Any "y-image-position" value&gt;</value>
       <attribute>y-image-position-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -25959,7 +25937,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "finishings" enum value&gt;</value>
+      <value>&lt;Any "finishings" value&gt;</value>
       <attribute>finishings-default</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -25970,7 +25948,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "finishings" enum value&gt;</value>
+      <value>&lt;Any "finishings" value&gt;</value>
       <attribute>finishings-ready</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -25981,7 +25959,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "finishings" enum value&gt;</value>
+      <value>&lt;Any "finishings" value&gt;</value>
       <attribute>finishings-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -25992,7 +25970,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" enum value&gt;</value>
+      <value>&lt;Any "orientation-requested" value&gt;</value>
       <name />
       <attribute>input-orientation-requested</attribute>
       <syntax>type2 enum</syntax>
@@ -26004,7 +25982,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" enum value&gt;</value>
+      <value>&lt;Any "orientation-requested" value&gt;</value>
       <name />
       <attribute>input-orientation-requested-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
@@ -26016,7 +25994,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "print-quality" enum value&gt;</value>
+      <value>&lt;Any "print-quality" value&gt;</value>
       <name />
       <attribute>input-quality</attribute>
       <syntax>type2 enum</syntax>
@@ -26028,7 +26006,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "print-quality" enum value&gt;</value>
+      <value>&lt;Any "print-quality" value&gt;</value>
       <name />
       <attribute>input-quality-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
@@ -26101,7 +26079,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value> &lt;Any "finishings" enum value&gt;</value>
+      <value> &lt;Any "finishings" value&gt;</value>
       <attribute>job-finishings</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -26112,7 +26090,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value> &lt;Any "finishings" enum value&gt;</value>
+      <value> &lt;Any "finishings" value&gt;</value>
       <attribute>job-finishings-default</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -26123,7 +26101,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value> &lt;Any "finishings" enum value&gt;</value>
+      <value> &lt;Any "finishings" value&gt;</value>
       <attribute>job-finishings-ready</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -26134,7 +26112,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value> &lt;Any "finishings" enum value&gt;</value>
+      <value> &lt;Any "finishings" value&gt;</value>
       <attribute>job-finishings-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -26199,7 +26177,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" enum value&gt;</value>
+      <value>&lt;Any "orientation-requested" value&gt;</value>
       <name />
       <attribute>media-source-feed-orientation</attribute>
       <syntax>type2 enum</syntax>
@@ -26810,7 +26788,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" enum value&gt;</value>
+      <value>&lt;Any "orientation-requested" value&gt;</value>
       <attribute>orientation-requested-default</attribute>
       <syntax>no-value | type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -26821,7 +26799,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" enum value&gt;</value>
+      <value>&lt;Any "orientation-requested" value&gt;</value>
       <attribute>orientation-requested-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -26870,7 +26848,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "print-quality" enum value&gt;</value>
+      <value>&lt;Any "print-quality" value&gt;</value>
       <attribute>print-quality-default</attribute>
       <syntax>type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -26881,7 +26859,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "print-quality" enum value&gt;</value>
+      <value>&lt;Any "print-quality" value&gt;</value>
       <attribute>print-quality-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
