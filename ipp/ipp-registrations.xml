@@ -15437,14 +15437,14 @@ by IESG-designated experts.
       <xref data="https://www.pwg.org/pipermail/ipp/2016/018729.html" type="uri">IPPWG20160229-2</xref>
     </record>
     <record>
-      <value>oe_photo-square_4x4in</value>
+      <value>oe_square-photo_4x4in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://www.pwg.org/archives/ipp/2018/019625.html" type="uri">CANON20180618</xref>
     </record>
     <record>
-      <value>oe_photo-square_5x5in</value>
+      <value>oe_square-photo_5x5in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
@@ -15556,13 +15556,6 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>om_photo-square_89x89mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2018/019625.html" type="uri">CANON20180618</xref>
-    </record>
-    <record>
       <value>om_postfix_114x229mm</value>
       <type>size name</type>
       <attribute>media</attribute>
@@ -15575,6 +15568,13 @@ by IESG-designated experts.
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf">PWG5101.1</xref>
+    </record>
+    <record>
+      <value>om_square-photo_89x89mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref data="https://www.pwg.org/archives/ipp/2018/019625.html" type="uri">CANON20180618</xref>
     </record>
     <record>
       <value>om_wide-photo_100x200mm</value>
