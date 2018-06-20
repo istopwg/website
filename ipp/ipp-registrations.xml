@@ -25445,7 +25445,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
-      <value>&lt; all status code values other than 'successful-ok' &gt;</value>
+      <value>&lt;All "status-code" value other than 'successful-ok'&gt;</value>
       <name />
       <attribute>fetch-status-code</attribute>
       <syntax>type2 enum</syntax>
@@ -25992,7 +25992,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any orientation-requested value&gt;</value>
+      <value>&lt;Any "orientation-requested" enum value&gt;</value>
       <name />
       <attribute>input-orientation-requested</attribute>
       <syntax>type2 enum</syntax>
@@ -26004,7 +26004,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any orientation-requested value&gt;</value>
+      <value>&lt;Any "orientation-requested" enum value&gt;</value>
       <name />
       <attribute>input-orientation-requested-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
@@ -26016,7 +26016,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any print-quality value&gt;</value>
+      <value>&lt;Any "print-quality" enum value&gt;</value>
       <name />
       <attribute>input-quality</attribute>
       <syntax>type2 enum</syntax>
@@ -26028,7 +26028,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;any print-quality value&gt;</value>
+      <value>&lt;Any "print-quality" enum value&gt;</value>
       <name />
       <attribute>input-quality-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
@@ -26101,6 +26101,18 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
+      <value> &lt;Any "finishings" enum value&gt;</value>
+      <attribute>job-finishings</attribute>
+      <syntax>1setOf type2 enum</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
+    </record>
+    <record>
+      <attribute>job-finishings-default</attribute>
+      <syntax>1setOf type2 enum</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
+    </record>
+    <record>
+      <value> &lt;Any "finishings" enum value&gt;</value>
       <attribute>job-finishings-default</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -26111,12 +26123,18 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
+      <value> &lt;Any "finishings" enum value&gt;</value>
+      <attribute>job-finishings-ready</attribute>
+      <syntax>1setOf type2 enum</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
+    </record>
+    <record>
       <attribute>job-finishings-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <name> &lt;enum values are the same as the "finishings"&gt;</name>
+      <value> &lt;Any "finishings" enum value&gt;</value>
       <attribute>job-finishings-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -26814,7 +26832,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
-      <value>&lt; all job-state values &gt;</value>
+      <value>&lt;Any "job-state" enum value &gt;</value>
       <name />
       <attribute>output-device-job-states</attribute>
       <syntax>1setOf type1 enum</syntax>
