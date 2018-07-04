@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2018-07-01</updated>
+  <updated>2018-07-04</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011" />
@@ -256,6 +256,18 @@ Section 5.2 Subscription Template Attributes.
       <name>attributes-natural-language</name>
       <syntax>naturalLanguage</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
+    </record>
+    <record>
+      <collection>Document Status</collection>
+      <name>chamber-humidity-actual</name>
+      <syntax>1setOf integer(0:100)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Document Status</collection>
+      <name>chamber-temperature-actual</name>
+      <syntax>1setOf integer(-273:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -913,6 +925,18 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Document Template</collection>
+      <name>chamber-humidity</name>
+      <syntax>integer(0:100)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Document Template</collection>
+      <name>chamber-temperature</name>
+      <syntax>integer(-273:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Document Template</collection>
       <name>copies</name>
       <syntax>integer(1:MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
@@ -1070,6 +1094,13 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>materials-col</name>
+      <member_attribute>material-nozzle-diameter</member_attribute>
+      <syntax>integer(0:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Document Template</collection>
+      <name>materials-col</name>
       <member_attribute>material-purpose</member_attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -1087,6 +1118,13 @@ Section 5.2 Subscription Template Attributes.
       <member_attribute>material-rate-units</member_attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <collection>Document Template</collection>
+      <name>materials-col</name>
+      <member_attribute>material-retraction</member_attribute>
+      <syntax>boolean</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Document Template</collection>
@@ -1645,6 +1683,18 @@ Section 5.2 Subscription Template Attributes.
       <name>attributes-natural-language</name>
       <syntax>naturalLanguage</syntax>
       <xref type="rfc" data="rfc8011" />
+    </record>
+    <record>
+      <collection>Job Status</collection>
+      <name>chamber-humidity-actual</name>
+      <syntax>1setOf integer(0:100)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Job Status</collection>
+      <name>chamber-temperature-actual</name>
+      <syntax>1setOf integer(-273:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2621,6 +2671,18 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Job Template</collection>
+      <name>chamber-humidity</name>
+      <syntax>integer(0:100)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Job Template</collection>
+      <name>chamber-temperature</name>
+      <syntax>integer(-273:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Job Template</collection>
       <name>confirmation-sheet-print</name>
       <syntax>boolean</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -3573,6 +3635,13 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Template</collection>
       <name>materials-col</name>
+      <member_attribute>material-nozzle-diameter</member_attribute>
+      <syntax>integer(0:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Job Template</collection>
+      <name>materials-col</name>
       <member_attribute>material-purpose</member_attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -3590,6 +3659,13 @@ Section 5.2 Subscription Template Attributes.
       <member_attribute>material-rate-units</member_attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <collection>Job Template</collection>
+      <name>materials-col</name>
+      <member_attribute>material-retraction</member_attribute>
+      <syntax>boolean</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -5172,6 +5248,30 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Printer Description</collection>
+      <name>chamber-humidity-default</name>
+      <syntax>integer(0:100) | no-value</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>chamber-humidity-supported</name>
+      <syntax>boolean</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>chamber-temperature-default</name>
+      <syntax>integer(-273:MAX) | no-value</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>chamber-temperature-supported</name>
+      <syntax>1setOf (integer(-273:MAX) | rangeOfInteger(-273:MAX))</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
       <name>charset-configured</name>
       <syntax>charset</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -6344,6 +6444,12 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Printer Description</collection>
+      <name>material-nozzle-diameter-supported</name>
+      <syntax>1setOf (integer(0:MAX) | rangeOfInteger(0:MAX))</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
       <name>material-purpose-supported</name>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -6401,6 +6507,12 @@ Section 5.2 Subscription Template Attributes.
       <name>materials-col-supported</name>
       <syntax>1setOf keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>materials-col-supported(extension)</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -7087,6 +7199,12 @@ Section 5.2 Subscription Template Attributes.
       <name>print-objects-supported</name>
       <syntax>1setOf keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>print-objects-supported(extension)</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -7823,6 +7941,18 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Printer Status</collection>
+      <name>chamber-humidity-current</name>
+      <syntax>integer(0:100) | unknown</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Status</collection>
+      <name>chamber-temperature-current</name>
+      <syntax>integer(-273:MAX) | unknown</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <collection>Printer Status</collection>
       <name>device-service-count</name>
       <syntax>integer(1:MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -7868,6 +7998,12 @@ Section 5.2 Subscription Template Attributes.
       <name>printer-alert-description</name>
       <syntax>1setOf text(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippstate10-20090731-5100.9.pdf">PWG5100.9</xref>
+    </record>
+    <record>
+      <collection>Printer Status</collection>
+      <name>printer-camera-image-uri</name>
+      <syntax>1setOf uri</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <collection>Printer Status</collection>
@@ -9171,6 +9307,12 @@ by IESG-designated experts.
       <attribute>accuracy-units-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <value>&lt; any accuracy-units values &gt;</value>
+      <attribute>accuracy-units-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <value>&lt;Any "accuracy-units" value&gt;</value>
@@ -12957,6 +13099,12 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
+      <value>&lt; any "media" color name &gt;</value>
+      <attribute>material-color</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
       <value>&lt;Any "media-color" value&gt;</value>
       <attribute>material-color</attribute>
       <syntax>type2 keyword</syntax>
@@ -13086,6 +13234,12 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
+      <value>pla-dissolvable</value>
+      <attribute>material-type</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
       <value>pla-flexible</value>
       <attribute>material-type</attribute>
       <syntax>type2 keyword</syntax>
@@ -13144,6 +13298,17 @@ by IESG-designated experts.
       <attribute>material-type</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <attribute>materials-col-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any materials-col member attribute name &gt;</value>
+      <attribute>materials-col-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <attribute>media</attribute>
@@ -18843,6 +19008,39 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
+      <attribute>multiple-object-handling-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any multiple-object-handling Job Template attribute value &gt;</value>
+      <attribute>multiple-object-handling-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <attribute>multiple-object-handling-default</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any multiple-object-handling Job Template attribute value &gt;</value>
+      <attribute>multiple-object-handling-default</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <attribute>multiple-object-handling-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any multiple-object-handling Job Template attribute value &gt;</value>
+      <attribute>multiple-object-handling-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
       <attribute>multiple-operation-time-out-action</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -19823,6 +20021,39 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
+      <attribute>print-base-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-base Job Template attribute value &gt;</value>
+      <attribute>print-base-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <attribute>print-base-default</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-base Job Template attribute value &gt;</value>
+      <attribute>print-base-default</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <attribute>print-base-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-base Job Template attribute value &gt;</value>
+      <attribute>print-base-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
       <attribute>print-color-mode</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -19955,6 +20186,17 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
+      <attribute>print-objects-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-objects member attribute name &gt;</value>
+      <attribute>print-objects-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
       <attribute>print-rendering-intent</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -20074,6 +20316,39 @@ by IESG-designated experts.
       <attribute>print-supports</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d10-20170210-5100.21.pdf" type="uri">PWG5100.21</xref>
+    </record>
+    <record>
+      <attribute>print-supports-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-supports Job Template attribute value &gt;</value>
+      <attribute>print-supports-actual</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <attribute>print-supports-default</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-supports Job Template attribute value &gt;</value>
+      <attribute>print-supports-default</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <attribute>print-supports-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
+    </record>
+    <record>
+      <value>&lt; any print-supports Job Template attribute value &gt;</value>
+      <attribute>print-supports-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipp3d11-20180704.pdf" type="uri">PWG5100.3D</xref>
     </record>
     <record>
       <attribute>printer-service-type</attribute>
