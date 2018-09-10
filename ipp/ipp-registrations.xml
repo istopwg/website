@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2018-07-04</updated>
+  <updated>2018-09-10</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011" />
@@ -700,19 +700,6 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Document Status</collection>
-      <name>overrides-actual</name>
-      <syntax>1setOf collection</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Status</collection>
-      <name>overrides-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "overrides" Document Template attribute&gt;</member_attribute>
-      <syntax />
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Status</collection>
       <name>page-delivery-actual</name>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
@@ -1188,40 +1175,6 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Template</collection>
       <name>orientation-requested</name>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Template</collection>
-      <name>overrides</name>
-      <syntax>1setOf collection</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Template</collection>
-      <name>overrides</name>
-      <member_attribute>&lt;Any Document Template attribute&gt;</member_attribute>
-      <syntax />
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Template</collection>
-      <name>overrides</name>
-      <member_attribute>document-copies</member_attribute>
-      <syntax>1setOf rangeOfInteger</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Template</collection>
-      <name>overrides</name>
-      <member_attribute>document-numbers</member_attribute>
-      <syntax>1setOf rangeOfInteger</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
-    </record>
-    <record>
-      <collection>Document Template</collection>
-      <name>overrides</name>
-      <member_attribute>pages</member_attribute>
-      <syntax>1setOf rangeOfInteger</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject10-20031031-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
@@ -1812,12 +1765,6 @@ Section 5.2 Subscription Template Attributes.
       <name>document-natural-language-supplied</name>
       <syntax>naturalLanguage</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
-    </record>
-    <record>
-      <collection>Job Status</collection>
-      <name>document-overrides-actual</name>
-      <syntax>1setOf collection</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -3968,6 +3915,12 @@ Section 5.2 Subscription Template Attributes.
       <name>pages-per-subset</name>
       <syntax>1setOf integer(1:MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
+    </record>
+    <record>
+      <collection>Job Template</collection>
+      <name>pclm-source-resolution</name>
+      <syntax>resolution</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -7014,6 +6967,30 @@ Section 5.2 Subscription Template Attributes.
       <name>parent-printers-supported</name>
       <syntax>1setOf uri</syntax>
       <xref type="rfc" data="rfc3998" />
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>pclm-raster-back-side</name>
+      <syntax>keyword</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>pclm-source-resolution-supported</name>
+      <syntax>1setOf resolution</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>pclm-strip-height-preferred</name>
+      <syntax>1setOf integer</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>pclm-strip-height-supported</name>
+      <syntax>integer</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -12184,7 +12161,7 @@ by IESG-designated experts.
       <value>sha2-512_224</value>
       <attribute>job-password-encryption</attribute>
       <syntax>type2 keyword</syntax>
-      <xref data="https://www.pwg.org/pipermail/ipp/2015/018621.html" type="uri">IPPWG20151009</xref>
+      <xref data="https://www.pwg.org/pipermail/ipp/2015/018630.html" type="uri">IPPWG20151009</xref>
     </record>
     <record>
       <value>sha2-512_256</value>
@@ -12220,7 +12197,7 @@ by IESG-designated experts.
       <value>sha3-512_224</value>
       <attribute>job-password-encryption</attribute>
       <syntax>type2 keyword</syntax>
-      <xref data="https://www.pwg.org/pipermail/ipp/2015/018621.html" type="uri">IPPWG20151009</xref>
+      <xref data="https://www.pwg.org/pipermail/ipp/2015/018630.html" type="uri">IPPWG20151009</xref>
     </record>
     <record>
       <value>sha3-512_256</value>
@@ -19722,6 +19699,29 @@ by IESG-designated experts.
       <attribute>page-order-received-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
+    </record>
+    <record>
+      <attribute>pclm-raster-back-side</attribute>
+      <syntax>keyword</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
+    </record>
+    <record>
+      <value>flipped</value>
+      <attribute>pclm-raster-back-side</attribute>
+      <syntax>keyword</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
+    </record>
+    <record>
+      <value>normal</value>
+      <attribute>pclm-raster-back-side</attribute>
+      <syntax>keyword</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
+    </record>
+    <record>
+      <value>rotated</value>
+      <attribute>pclm-raster-back-side</attribute>
+      <syntax>keyword</syntax>
+      <xref data="https://www.wi-fi.org/file/wi-fi-peer-to-peer-services-technical-specification-package-v12" type="uri">HP20180907</xref>
     </record>
     <record>
       <attribute>pdf-features-supported</attribute>
