@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2019-04-19</updated>
+  <updated>2019-04-25</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011" />
@@ -28159,17 +28159,17 @@ by IESG-designated experts.
     </record>
     <record>
       <value>0x0027</value>
-      <name>Deactivate-Printer</name>
-      <attribute>operations-supported</attribute>
-      <syntax>1setOf type2 enum</syntax>
-      <xref type="rfc" data="rfc3998" />
-    </record>
-    <record>
-      <value>0x0027</value>
       <name>Deactivate-Printer(deprecated)</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref data="https://www.pwg.org/pipermail/ipp/2015/018518.html" type="uri">APPLE20150505-3</xref>
+    </record>
+    <record>
+      <value>0x0027</value>
+      <name>Deactivate-Printer</name>
+      <attribute>operations-supported</attribute>
+      <syntax>1setOf type2 enum</syntax>
+      <xref type="rfc" data="rfc3998" />
     </record>
     <record>
       <value>0x0028</value>
