@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2019-08-15</updated>
+  <updated>2019-08-20</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011" />
@@ -55,13 +55,13 @@ Attributes are listed in alphabetic order. The member attributes of
 collection attributes <xref type="rfc" data="rfc3382" /> are indented two spaces immediately
 after the collection attribute to which they belong.
 
-The "xxx" Job Template attributes are Job object attributes, while
-the "xxx-default" and "xxx-supported" Job Template attributes are
+The &quot;xxx&quot; Job Template attributes are Job object attributes, while
+the &quot;xxx-default&quot; and &quot;xxx-supported&quot; Job Template attributes are
 Printer object attributes.  See <xref type="rfc" data="rfc8011" /> Section 5.2
 Job Template Attributes.
 
-The "xxx" Subscription Template attributes are Subscription object
-attributes, while the "xxx-default" and "xxx-supported" Subscription
+The &quot;xxx&quot; Subscription Template attributes are Subscription object
+attributes, while the &quot;xxx-default&quot; and &quot;xxx-supported&quot; Subscription
 Template attributes are Printer object attributes.† See <xref type="rfc" data="rfc3995" />
 Section 5.2 Subscription Template Attributes.
     </note>
@@ -262,7 +262,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>cover-back-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-back" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-back&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -275,7 +275,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>cover-front-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-front" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-front&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -349,13 +349,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>document-format-details(deprecated)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
       <name>document-format-details-detected(deprecated)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -379,7 +379,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>document-format-supplied(obsolete)</name>
       <syntax>mimeMediaType</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -397,7 +397,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>document-format-version-supplied(obsolete)</name>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -427,7 +427,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>document-message-supplied(obsolete)</name>
       <syntax>text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -439,7 +439,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>document-name-supplied(obsolete)</name>
       <syntax>name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -516,7 +516,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>finishings-col-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "finishings-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;finishings-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -553,7 +553,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>impressions-completed-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "impressions-col" Document Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;impressions-col&quot; Document Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20150429.pdf" type="uri">APRIL2015F2F</xref>
     </record>
@@ -578,7 +578,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>insert-sheet-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "insert-sheet" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;insert-sheet&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -621,7 +621,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>media-col-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -646,7 +646,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>media-sheets-completed-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-sheets-col" Document Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-sheets-col&quot; Document Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20150429.pdf" type="uri">APRIL2015F2F</xref>
     </record>
@@ -690,7 +690,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>output-device-actual(obsolete)</name>
       <syntax>1setOf name(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -755,7 +755,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>pages-completed-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "pages-col" Document Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;pages-col&quot; Document Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20150429.pdf" type="uri">APRIL2015F2F</xref>
     </record>
@@ -846,7 +846,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Status</collection>
       <name>separator-sheets-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "separator-sheets" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;separator-sheets&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -979,7 +979,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>cover-back</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-back" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-back&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -992,7 +992,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>cover-front</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-front" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-front&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -1017,7 +1017,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>finishings-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "finishings-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;finishings-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -1060,7 +1060,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>insert-sheet</name>
-      <member_attribute>&lt;Member attributes are the same as the "insert-sheet" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;insert-sheet&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -1197,7 +1197,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>media-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -1229,7 +1229,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Template</collection>
       <name>output-device</name>
       <syntax>name(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Document Template</collection>
@@ -1264,7 +1264,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>pdl-init-file</name>
-      <member_attribute>&lt;Member attributes are the same as the "pdl-init-file" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;pdl-init-file&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -1447,7 +1447,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Document Template</collection>
       <name>separator-sheets</name>
-      <member_attribute>&lt;Member attributes are the same as the "separator-sheets" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;separator-sheets&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -1719,7 +1719,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>compression-supplied(obsolete)</name>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1736,7 +1736,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>cover-back-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-back" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-back&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -1749,7 +1749,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>cover-front-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-front" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-front&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -1814,7 +1814,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-charset-supplied(obsolete)</name>
       <syntax>charset</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1826,19 +1826,19 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-digital-signature-supplied(obsolete)</name>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>document-format-details(deprecated)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>document-format-details-detected(deprecated)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1849,7 +1849,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>document-format-details-supplied</name>
-      <member_attribute>&lt;Member attributes are the same as the "document-format-details" Operation attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;document-format-details&quot; Operation attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
@@ -1857,7 +1857,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-format-details-supplied(obsolete)</name>
       <syntax>1setOf collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1875,7 +1875,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-format-supplied(obsolete)</name>
       <syntax>mimeMediaType</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1887,7 +1887,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-format-version-supplied(obsolete)</name>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1899,7 +1899,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-message-supplied(obsolete)</name>
       <syntax>text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1911,7 +1911,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-name-supplied(obsolete)</name>
       <syntax>name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1923,7 +1923,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-natural-language-supplied(obsolete)</name>
       <syntax>naturalLanguage</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -1946,7 +1946,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>finishings-col-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "finishings-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;finishings-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -1983,7 +1983,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>insert-sheet-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "insert-sheet" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;insert-sheet&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -1991,7 +1991,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>ipp-attribute-fidelity(obsolete)</name>
       <syntax>boolean</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2014,7 +2014,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>job-accounting-sheets-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-accounting-sheets" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-accounting-sheets&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -2034,19 +2034,19 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>job-copies-actual(obsolete)</name>
       <syntax>integer(1:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>job-cover-back-actual(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>job-cover-front-actual(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2069,7 +2069,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>job-error-sheet-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-error-sheet" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-error-sheet&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -2077,13 +2077,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>job-finishings-actual(obsolete)</name>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>job-finishings-col-actual(obsolete)</name>
       <syntax>1setOf collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2180,7 +2180,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>job-impressions-completed-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-impressions-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-impressions-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20150429.pdf" type="uri">APRIL2015F2F</xref>
     </record>
@@ -2200,7 +2200,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>job-mandatory-attributes(obsolete)</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2257,7 +2257,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>job-media-sheets-completed-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-media-sheets-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-media-sheets-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20150429.pdf" type="uri">APRIL2015F2F</xref>
     </record>
@@ -2320,7 +2320,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>job-pages-completed-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-pages-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-pages-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20150429.pdf" type="uri">APRIL2015F2F</xref>
     </record>
@@ -2375,7 +2375,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>job-sheets-col-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-sheets-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-sheets-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -2430,7 +2430,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>media-col-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-col"&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot;&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -2504,7 +2504,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>output-device-actual(obsolete)</name>
       <syntax>1setOf name(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2545,7 +2545,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>overrides-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "overrides" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;overrides&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipppageoverride10-20031031-5100.6.pdf">PWG5100.6</xref>
     </record>
@@ -2648,7 +2648,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Status</collection>
       <name>separator-sheets-actual</name>
-      <member_attribute>&lt;Member attributes are the same as the "separator-sheets"&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;separator-sheets&quot;&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
@@ -2816,7 +2816,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>cover-back</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -2851,7 +2851,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>cover-front</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -3314,7 +3314,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>insert-sheet</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -3368,7 +3368,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-accounting-sheets</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -3382,7 +3382,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-cancel-after</name>
       <syntax>integer(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3394,7 +3394,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-copies(obsolete)</name>
       <syntax>integer(1:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3405,7 +3405,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Template</collection>
       <name>job-cover-back</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-back"&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-back&quot;&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -3413,7 +3413,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-cover-back(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3424,7 +3424,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Template</collection>
       <name>job-cover-front</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-front"&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-front&quot;&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -3432,7 +3432,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-cover-front(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3490,7 +3490,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-error-sheet</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -3498,7 +3498,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-finishigns-col(obsolete)</name>
       <syntax>1setOf collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3510,7 +3510,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-finishings(obsolete)</name>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3521,7 +3521,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Job Template</collection>
       <name>job-finishings-col</name>
-      <member_attribute>&lt;Member attributes are the same as the "finishings-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;finishings-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG5100.5</xref>
     </record>
@@ -3571,19 +3571,19 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-retain-until</name>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
       <name>job-retain-until-interval</name>
       <syntax>integer(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
       <name>job-retain-until-time</name>
       <syntax>dateTime</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -3672,7 +3672,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>job-sheets-col</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -4326,7 +4326,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>proof-print</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
@@ -4373,7 +4373,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Template</collection>
       <name>separator-sheets</name>
       <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</sub-member_attribute>
+      <sub-member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</sub-member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -4617,7 +4617,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Operation</collection>
       <name>document-digital-signature(obsolete)</name>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
@@ -4697,69 +4697,69 @@ Section 5.2 Subscription Template Attributes.
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-format(obsolete)</member_attribute>
       <syntax>mimeMediaType</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-format-device-id(obsolete)</member_attribute>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-format-version(obsolete)</member_attribute>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-natural-language(obsolete)</member_attribute>
       <syntax>1setOf naturalLanguage</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-source-application-name</member_attribute>
       <syntax>name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-source-application-version</member_attribute>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-source-os-name</member_attribute>
       <syntax>name(40)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-details(deprecated)</name>
       <member_attribute>document-source-os-version</member_attribute>
       <syntax>text(40)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>document-format-version(obsolete)</name>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
@@ -5019,7 +5019,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Operation</collection>
       <name>job-hold-until-time</name>
       <syntax>dateTime</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Operation</collection>
@@ -5548,7 +5548,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>cover-back-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-back" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-back&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -5573,7 +5573,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>cover-front-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-front" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-front&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -5598,7 +5598,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>cover-sheet-info-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "cover-sheet-info" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;cover-sheet-info&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
@@ -5748,7 +5748,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>document-digital-signature-default(obsolete)</name>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -5760,7 +5760,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>document-digital-signature-supported(obsolete)</name>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -5777,7 +5777,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>document-format-details-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "document-format-details" Operation attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;document-format-details&quot; Operation attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
@@ -5785,7 +5785,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>document-format-details-default(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -5809,7 +5809,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>document-format-version-default(obsolete)</name>
       <syntax>text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -5821,7 +5821,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>document-format-version-supported(obsolete)</name>
       <syntax>1setOf text(127)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -5892,7 +5892,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>finishings-col-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "finishings-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;finishings-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf">PWG5100.1</xref>
     </record>
@@ -5905,7 +5905,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>finishings-col-ready</name>
-      <member_attribute>&lt;Member attributes are the same as the "finishings-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;finishings-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf">PWG5100.1</xref>
     </record>
@@ -6156,7 +6156,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>insert-sheet-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "insert-sheet" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;insert-sheet&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -6229,7 +6229,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>job-accounting-sheets-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-accounting-sheets" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-accounting-sheets&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -6279,13 +6279,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>job-cancel-after-default</name>
       <syntax>integer(0:MAX) | no-value</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-cancel-after-supported</name>
       <syntax>rangeOfInteger(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -6304,37 +6304,37 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>job-copies-default(obsolete)</name>
       <syntax>integer(1:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-copies-supported(obsolete)</name>
       <syntax>rangeOfInteger(1:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-cover-back-default(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-cover-back-supported(obsolete)</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-cover-front-default(obsolete)</name>
       <syntax>collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-cover-front-supported(obsolete)</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -6352,7 +6352,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>job-delay-output-until-interval-supported</name>
       <syntax>rangeOfInteger(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -6393,7 +6393,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>job-error-sheet-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-error-sheet" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-error-sheet&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -6425,61 +6425,61 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>job-finishings-col-default(obsolete)</name>
       <syntax>1setOf collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-finishings-col-ready(obsolete)</name>
       <syntax>1setOf collection</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-finishings-col-supported(obsolete)</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-finishings-default(obsolete)</name>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-finishings-ready(obsolete)</name>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-finishings-supported(obsolete)</name>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-history-attributes-configured</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-history-attributes-supported</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-history-interval-configured</name>
       <syntax>integer(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-history-interval-supported</name>
       <syntax>rangeOfInteger(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -6521,7 +6521,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>job-mandatory-attributes-supported</name>
       <syntax>boolean</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -6655,25 +6655,25 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>job-retain-until-default</name>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-retain-until-interval-supported</name>
       <syntax>rangeOfInteger(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-retain-until-supported</name>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>job-retain-until-time-supported</name>
       <syntax>rangeOfInteger(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -6696,7 +6696,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>job-sheets-col-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "job-sheets-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;job-sheets-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -6908,7 +6908,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>media-col-database</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
@@ -6944,7 +6944,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>media-col-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -6957,7 +6957,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>media-col-ready</name>
-      <member_attribute>&lt;Member attributes are the same as the "media-col" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;media-col&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -7445,7 +7445,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>pdl-init-file-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "pdl-init-file" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;pdl-init-file&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
@@ -7941,7 +7941,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>proof-print-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "proof-print" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;proof-print&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
@@ -8092,7 +8092,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>separator-sheets-default</name>
-      <member_attribute>&lt;Member attributes are the same as the "separator-sheets" Job Template attribute&gt;</member_attribute>
+      <member_attribute>&lt;Member attributes are the same as the &quot;separator-sheets&quot; Job Template attribute&gt;</member_attribute>
       <syntax />
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
@@ -8485,30 +8485,6 @@ Section 5.2 Subscription Template Attributes.
       <name>printer-finisher-supplies-description</name>
       <syntax>1setOf text(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-name</name>
-      <syntax>1setOf name(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-patches</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-string-version</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-version</name>
-      <syntax>1setOf octetString(64)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
     </record>
     <record>
       <collection>Printer Status</collection>
@@ -9892,7 +9868,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
-      <value>&lt;Any "accuracy-units" value&gt;</value>
+      <value>&lt;Any &quot;accuracy-units&quot; value&gt;</value>
       <attribute>accuracy-units-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -9926,7 +9902,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "baling-type" value&gt;</value>
+      <value>&lt;Any &quot;baling-type&quot; value&gt;</value>
       <attribute>baling-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -9954,7 +9930,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "baling-when" value&gt;</value>
+      <value>&lt;Any &quot;baling-when&quot; value&gt;</value>
       <attribute>baling-when-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -9994,7 +9970,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "binding-reference-edge" value&gt;</value>
+      <value>&lt;Any &quot;binding-reference-edge&quot; value&gt;</value>
       <attribute>binding-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10058,7 +10034,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "binding-type" value&gt;</value>
+      <value>&lt;Any &quot;binding-type&quot; value&gt;</value>
       <attribute>binding-type-supported</attribute>
       <syntax>(1setOf type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10092,7 +10068,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "coating-sides" value&gt;</value>
+      <value>&lt;Any &quot;coating-sides&quot; value&gt;</value>
       <attribute>coating-sides-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10168,7 +10144,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "coating-type" value&gt;</value>
+      <value>&lt;Any &quot;coating-type&quot; value&gt;</value>
       <attribute>coating-type-supported</attribute>
       <syntax>(1setOf type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10208,7 +10184,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf" type="uri">PWG5100.17</xref>
     </record>
     <record>
-      <value>&lt;Any "compression" value&gt;</value>
+      <value>&lt;Any &quot;compression&quot; value&gt;</value>
       <attribute>compression-accepted</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippscan10-20140918-5100.17.pdf" type="uri">PWG5100.17</xref>
@@ -10219,7 +10195,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "compression" value&gt;</value>
+      <value>&lt;Any &quot;compression&quot; value&gt;</value>
       <attribute>compression-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -10253,7 +10229,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "cover-back-supported" value&gt;</value>
+      <value>&lt;Any &quot;cover-back-supported&quot; value&gt;</value>
       <attribute>cover-front-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -10369,7 +10345,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "covering-name" value&gt;</value>
+      <value>&lt;Any &quot;covering-name&quot; value&gt;</value>
       <attribute>covering-name-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -10380,7 +10356,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-order-received" value&gt;</value>
+      <value>&lt;Any &quot;page-order-received&quot; value&gt;</value>
       <attribute>current-page-order</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -10426,7 +10402,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "document-digital-signature" value&gt;</value>
+      <value>&lt;Any &quot;document-digital-signature&quot; value&gt;</value>
       <attribute>document-digital-signature-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -10437,7 +10413,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "document-digital-signature" value&gt;</value>
+      <value>&lt;Any &quot;document-digital-signature&quot; value&gt;</value>
       <attribute>document-digital-signature-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -10826,7 +10802,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "feed-orientation" value&gt;</value>
+      <value>&lt;Any &quot;feed-orientation&quot; value&gt;</value>
       <attribute>feed-orientation-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -11796,7 +11772,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "finishing-template" value&gt;</value>
+      <value>&lt;Any &quot;finishing-template&quot; value&gt;</value>
       <attribute>finishing-template-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -11824,7 +11800,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "folding-direction" value&gt;</value>
+      <value>&lt;Any &quot;folding-direction&quot; value&gt;</value>
       <attribute>folding-direction-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -11864,7 +11840,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "folding-reference-edge" value&gt;</value>
+      <value>&lt;Any &quot;folding-reference-edge&quot; value&gt;</value>
       <attribute>folding-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -11904,7 +11880,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "identify-actions" value&gt;</value>
+      <value>&lt;Any &quot;identify-actions&quot; value&gt;</value>
       <attribute>identify-actions-default</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -11915,7 +11891,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "identify-actions" value&gt;</value>
+      <value>&lt;Any &quot;identify-actions&quot; value&gt;</value>
       <attribute>identify-actions-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -12026,7 +12002,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "input-color-mode" value&gt;</value>
+      <value>&lt;Any &quot;input-color-mode&quot; value&gt;</value>
       <attribute>input-color-mode-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12084,7 +12060,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "input-content-type" value&gt;</value>
+      <value>&lt;Any &quot;input-content-type&quot; value&gt;</value>
       <attribute>input-content-type-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12124,7 +12100,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "input-film-scan-mode" value&gt;</value>
+      <value>&lt;Any &quot;input-film-scan-mode&quot; value&gt;</value>
       <attribute>input-film-scan-mode-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12135,7 +12111,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "media" size name value&gt;</value>
+      <value>&lt;Any &quot;media&quot; size name value&gt;</value>
       <attribute>input-media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12152,7 +12128,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "media" size name value&gt;</value>
+      <value>&lt;Any &quot;media&quot; size name value&gt;</value>
       <attribute>input-media-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12163,7 +12139,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "sides" value&gt;</value>
+      <value>&lt;Any &quot;sides&quot; value&gt;</value>
       <attribute>input-sides</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12174,7 +12150,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "sides" value&gt;</value>
+      <value>&lt;Any &quot;sides&quot; value&gt;</value>
       <attribute>input-sides-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12208,7 +12184,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "input-source" value&gt;</value>
+      <value>&lt;Any &quot;input-source&quot; value&gt;</value>
       <attribute>input-source-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
@@ -12354,7 +12330,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
-      <value>&lt;Any "job-account-type" value&gt;</value>
+      <value>&lt;Any &quot;job-account-type&quot; value&gt;</value>
       <attribute>job-account-type-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
@@ -12365,7 +12341,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
-      <value>&lt;Any "job-account-type" value&gt;</value>
+      <value>&lt;Any &quot;job-account-type&quot; value&gt;</value>
       <attribute>job-account-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
@@ -12376,13 +12352,13 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt; any "output-bin" value &gt;</value>
+      <value>&lt; any &quot;output-bin&quot; value &gt;</value>
       <attribute>job-accounting-output-bin</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippppx20-20190626.pdf" type="uri">PWG5100.PPX</xref>
     </record>
     <record>
-      <value>&lt;Any "output-bin" value keyword&gt;</value>
+      <value>&lt;Any &quot;output-bin&quot; value keyword&gt;</value>
       <attribute>job-accounting-output-bin</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
@@ -12405,13 +12381,13 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "cover-back-supported" value&gt;</value>
+      <value>&lt;Any &quot;cover-back-supported&quot; value&gt;</value>
       <attribute>job-cover-back-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "cover-front-supported" value&gt;</value>
+      <value>&lt;Any &quot;cover-front-supported&quot; value&gt;</value>
       <attribute>job-cover-front-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -12475,16 +12451,16 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "job-default-output-until" value&gt;</value>
+      <value>&lt;Any &quot;job-default-output-until&quot; value&gt;</value>
       <attribute>job-delay-output-until-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "job-delay-output-until" value&gt;</value>
+      <value>&lt;Any &quot;job-delay-output-until&quot; value&gt;</value>
       <attribute>job-delay-output-until-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>job-delay-output-until-supported</attribute>
@@ -12492,16 +12468,16 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "job-default-output-until" value&gt;</value>
+      <value>&lt;Any &quot;job-default-output-until&quot; value&gt;</value>
       <attribute>job-delay-output-until-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf" type="uri">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "job-delay-output-until" value&gt;</value>
+      <value>&lt;Any &quot;job-delay-output-until&quot; value&gt;</value>
       <attribute>job-delay-output-until-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>job-destination-spooling-supported</attribute>
@@ -12561,7 +12537,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "job-error-action" value&gt;</value>
+      <value>&lt;Any &quot;job-error-action&quot; value&gt;</value>
       <attribute>job-error-action-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -12572,7 +12548,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "job-error-action" value&gt;</value>
+      <value>&lt;Any &quot;job-error-action&quot; value&gt;</value>
       <attribute>job-error-action-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -12670,7 +12646,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-hold-until" value&gt;</value>
+      <value>&lt;Any &quot;job-hold-until&quot; value&gt;</value>
       <attribute>job-hold-until-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -12681,7 +12657,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-hold-until" value&gt;</value>
+      <value>&lt;Any &quot;job-hold-until&quot; value&gt;</value>
       <attribute>job-hold-until-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -12841,7 +12817,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "job-password-encryption" value&gt;</value>
+      <value>&lt;Any &quot;job-password-encryption&quot; value&gt;</value>
       <attribute>job-password-encryption-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -12852,7 +12828,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wp-job-password-repertoire-20160101.pdf" type="uri">IPPWG20160229-1</xref>
     </record>
     <record>
-      <value>&lt;Any "job-password-repertoire-supported" value&gt;</value>
+      <value>&lt;Any &quot;job-password-repertoire-supported&quot; value&gt;</value>
       <attribute>job-password-repertoire-configured</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wp-job-password-repertoire-20160101.pdf" type="uri">IPPWG20160229-1</xref>
@@ -12977,59 +12953,59 @@ by IESG-designated experts.
     <record>
       <attribute>job-retain-until</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>end-of-day</value>
       <attribute>job-retain-until</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>end-of-month</value>
       <attribute>job-retain-until</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>end-of-week</value>
       <attribute>job-retain-until</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>indefinite</value>
       <attribute>job-retain-until</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>none</value>
       <attribute>job-retain-until</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>job-retain-until-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "job-retain-until" value&gt;</value>
+      <value>&lt;Any &quot;job-retain-until&quot; value&gt;</value>
       <attribute>job-retain-until-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>job-retain-until-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "job-retain-until" value&gt;</value>
+      <value>&lt;Any &quot;job-retain-until&quot; value&gt;</value>
       <attribute>job-retain-until-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>job-save-disposition-supported</attribute>
@@ -13095,7 +13071,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-sheets" value&gt;</value>
+      <value>&lt;Any &quot;job-sheets&quot; value&gt;</value>
       <attribute>job-sheets-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -13106,7 +13082,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "job-sheets" value&gt;</value>
+      <value>&lt;Any &quot;job-sheets&quot; value&gt;</value>
       <attribute>job-sheets-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -13215,7 +13191,7 @@ by IESG-designated experts.
       <value>digital-signature-type-not-supported(obsolete)</value>
       <attribute>job-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>document-access-error</value>
@@ -13317,7 +13293,7 @@ by IESG-designated experts.
       <value>job-digital-signature-wait(obsolete)</value>
       <attribute>job-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>job-fetchable</value>
@@ -13659,7 +13635,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;All "laminating-sides" value&gt;</value>
+      <value>&lt;All &quot;laminating-sides&quot; value&gt;</value>
       <attribute>laminating-sides-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -13711,7 +13687,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "laminating-type" value&gt;</value>
+      <value>&lt;Any &quot;laminating-type&quot; value&gt;</value>
       <attribute>laminating-type-supported</attribute>
       <syntax>(1setOf type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -13763,13 +13739,13 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
-      <value>&lt; any "media" color name &gt;</value>
+      <value>&lt; any &quot;media&quot; color name &gt;</value>
       <attribute>material-color</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf" type="uri">PWG5100.21</xref>
     </record>
     <record>
-      <value>&lt;Any "media-color" value&gt;</value>
+      <value>&lt;Any &quot;media-color&quot; value&gt;</value>
       <attribute>material-color</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf" type="uri">PWG5100.21</xref>
@@ -16549,6 +16525,13 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
+      <value>jpn_chou40_90x225mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf" type="uri">PWG5101.1</xref>
+    </record>
+    <record>
       <value>jpn_hagaki_100x148mm</value>
       <type>size name</type>
       <attribute>media</attribute>
@@ -17771,7 +17754,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-back-coating" value&gt;</value>
+      <value>&lt;Any &quot;media-back-coating&quot; value&gt;</value>
       <attribute>media-back-coating-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18267,7 +18250,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-color" value&gt;</value>
+      <value>&lt;Any &quot;media-color&quot; value&gt;</value>
       <attribute>media-color-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18278,7 +18261,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "media" value&gt;</value>
+      <value>&lt;Any &quot;media&quot; value&gt;</value>
       <attribute>media-default</attribute>
       <syntax>no-value | type2 keyword | name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -18289,7 +18272,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-back-coating" value&gt;</value>
+      <value>&lt;Any &quot;media-back-coating&quot; value&gt;</value>
       <attribute>media-front-coating</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18300,7 +18283,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-back-coating" value&gt;</value>
+      <value>&lt;Any &quot;media-back-coating&quot; value&gt;</value>
       <attribute>media-front-coating-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18328,7 +18311,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "media-grain" value&gt;</value>
+      <value>&lt;Any &quot;media-grain&quot; value&gt;</value>
       <attribute>media-grain-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -18339,7 +18322,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media" input tray value&gt;</value>
+      <value>&lt;Any &quot;media&quot; input tray value&gt;</value>
       <attribute>media-input-tray-check</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18373,7 +18356,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-pre-printed" value&gt;</value>
+      <value>&lt;Any &quot;media-pre-printed&quot; value&gt;</value>
       <attribute>media-pre-printed-supported</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18384,7 +18367,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "media" media or size value&gt;</value>
+      <value>&lt;Any &quot;media&quot; media or size value&gt;</value>
       <attribute>media-ready</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -18412,7 +18395,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-recycled" value&gt;</value>
+      <value>&lt;Any &quot;media-recycled&quot; value&gt;</value>
       <attribute>media-recycled-supported</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -18728,7 +18711,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "feed-orientation" value&gt;</value>
+      <value>&lt;Any &quot;feed-orientation&quot; value&gt;</value>
       <attribute>media-source-feed-direction</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -18739,7 +18722,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "media-source" value&gt;</value>
+      <value>&lt;Any &quot;media-source&quot; value&gt;</value>
       <attribute>media-source-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -18750,7 +18733,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "media" value&gt;</value>
+      <value>&lt;Any &quot;media&quot; value&gt;</value>
       <attribute>media-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -18826,7 +18809,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "media-tooth" value&gt;</value>
+      <value>&lt;Any &quot;media-tooth&quot; value&gt;</value>
       <attribute>media-tooth-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -19580,7 +19563,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "media-type" value&gt;</value>
+      <value>&lt;Any &quot;media-type&quot; value&gt;</value>
       <attribute>media-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -19620,7 +19603,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "multiple-document-handling" value&gt;</value>
+      <value>&lt;Any &quot;multiple-document-handling&quot; value&gt;</value>
       <attribute>multiple-document-handling-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -19631,7 +19614,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "multiple-document-handling" value&gt;</value>
+      <value>&lt;Any &quot;multiple-document-handling&quot; value&gt;</value>
       <attribute>multiple-document-handling-supported</attribute>
       <syntax>1setOf (type2 keyword)</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -19957,7 +19940,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-events" value&gt;</value>
+      <value>&lt;Any &quot;notify-events&quot; value&gt;</value>
       <attribute>notify-events-default</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -19968,7 +19951,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-events" value&gt;</value>
+      <value>&lt;Any &quot;notify-events&quot; value&gt;</value>
       <attribute>notify-events-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -19990,7 +19973,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-pull-method" value&gt;</value>
+      <value>&lt;Any &quot;notify-pull-method&quot; value&gt;</value>
       <attribute>notify-pull-method-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -20001,7 +19984,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
-      <value>&lt;Any "notify-events" value&gt;</value>
+      <value>&lt;Any &quot;notify-events&quot; value&gt;</value>
       <attribute>notify-subscribed-event</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc3995" />
@@ -20275,7 +20258,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
     </record>
     <record>
-      <value>&lt;Any "output-bin" value&gt;</value>
+      <value>&lt;Any &quot;output-bin&quot; value&gt;</value>
       <attribute>output-bin-default</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
@@ -20286,7 +20269,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
     </record>
     <record>
-      <value>&lt;Any "output-bin" value&gt;</value>
+      <value>&lt;Any &quot;output-bin&quot; value&gt;</value>
       <attribute>output-bin-supported</attribute>
       <syntax>1setof (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf">PWG5100.2</xref>
@@ -20332,7 +20315,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-delivery" value&gt;</value>
+      <value>&lt;Any &quot;page-delivery&quot; value&gt;</value>
       <attribute>page-delivery-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -20343,7 +20326,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-delivery" value&gt;</value>
+      <value>&lt;Any &quot;page-delivery&quot; value&gt;</value>
       <attribute>page-delivery-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -20371,7 +20354,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-order-received" value&gt;</value>
+      <value>&lt;Any &quot;page-order-received&quot; value&gt;</value>
       <attribute>page-order-received-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -20382,7 +20365,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "page-order-received" value&gt;</value>
+      <value>&lt;Any &quot;page-order-received&quot; value&gt;</value>
       <attribute>page-order-received-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -20656,7 +20639,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "presentation-direction-number-up" value&gt;</value>
+      <value>&lt;Any &quot;presentation-direction-number-up&quot; value&gt;</value>
       <attribute>presentation-direction-number-up-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -20667,7 +20650,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "presentation-direction-number-up" value&gt;</value>
+      <value>&lt;Any &quot;presentation-direction-number-up&quot; value&gt;</value>
       <attribute>presentation-direction-number-up-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -20799,7 +20782,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-color-mode" value&gt;</value>
+      <value>&lt;Any &quot;print-color-mode&quot; value&gt;</value>
       <attribute>print-color-mode-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -20810,7 +20793,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-color-mode" value&gt;</value>
+      <value>&lt;Any &quot;print-color-mode&quot; value&gt;</value>
       <attribute>print-color-mode-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -20836,7 +20819,7 @@ by IESG-designated experts.
       <value>graphics</value>
       <attribute>print-content-optimize</attribute>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <value>photo</value>
@@ -20860,18 +20843,18 @@ by IESG-designated experts.
       <value>text-and-graphics</value>
       <attribute>print-content-optimize</attribute>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>print-content-optimize-actual</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "print-content-optimize" value&gt;</value>
+      <value>&lt;Any &quot;print-content-optimize&quot; value&gt;</value>
       <attribute>print-content-optimize-actual</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <attribute>print-content-optimize-default</attribute>
@@ -20879,7 +20862,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "print-content-optimize" value&gt;</value>
+      <value>&lt;Any &quot;print-content-optimize&quot; value&gt;</value>
       <attribute>print-content-optimize-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -20890,7 +20873,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
     </record>
     <record>
-      <value>&lt;Any "print-content-optimize" value&gt;</value>
+      <value>&lt;Any &quot;print-content-optimize&quot; value&gt;</value>
       <attribute>print-content-optimize-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext10-20031031-5100.7.pdf">PWG5100.7</xref>
@@ -20953,7 +20936,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-rendering-intent" value&gt;</value>
+      <value>&lt;Any &quot;print-rendering-intent&quot; value&gt;</value>
       <attribute>print-rendering-intent-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -20964,7 +20947,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "print-rendering-intent" value&gt;</value>
+      <value>&lt;Any &quot;print-rendering-intent&quot; value&gt;</value>
       <attribute>print-rendering-intent-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
@@ -26835,7 +26818,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "punching-reference-edge" value&gt;</value>
+      <value>&lt;Any &quot;punching-reference-edge&quot; value&gt;</value>
       <attribute>punching-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -27233,7 +27216,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
     </record>
     <record>
-      <value>&lt; any "job-state-reasons" value &gt;</value>
+      <value>&lt; any &quot;job-state-reasons&quot; value &gt;</value>
       <attribute>resource-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
@@ -27362,7 +27345,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "save-disposition" value&gt;</value>
+      <value>&lt;Any &quot;save-disposition&quot; value&gt;</value>
       <attribute>save-disposition-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -27431,7 +27414,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "separator-sheets-type" value&gt;</value>
+      <value>&lt;Any &quot;separator-sheets-type&quot; value&gt;</value>
       <attribute>separator-sheets-type-supported</attribute>
       <syntax>1setOf (type2 keyword | name(MAX))</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -27465,7 +27448,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "sides" value&gt;</value>
+      <value>&lt;Any &quot;sides&quot; value&gt;</value>
       <attribute>sides-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -27476,7 +27459,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "sides" value&gt;</value>
+      <value>&lt;Any &quot;sides&quot; value&gt;</value>
       <attribute>sides-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -27510,7 +27493,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "stitching-method" value&gt;</value>
+      <value>&lt;Any &quot;stitching-method&quot; value&gt;</value>
       <attribute>stitching-method-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -27550,7 +27533,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "stitching-reference-edge" value&gt;</value>
+      <value>&lt;Any &quot;stitching-reference-edge&quot; value&gt;</value>
       <attribute>stitching-reference-edge-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -27654,7 +27637,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
     </record>
     <record>
-      <value>&lt; any "printer-state-reasons" value &gt;</value>
+      <value>&lt; any &quot;printer-state-reasons&quot; value &gt;</value>
       <attribute>system-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
@@ -27746,7 +27729,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "trimming-reference-edge" value&gt;</value>
+      <value>&lt;Any &quot;trimming-reference-edge&quot; value&gt;</value>
       <attribute>trimming-reference-edge-supported</attribute>
       <syntax>1setOf type1 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -27798,7 +27781,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "trimming-type value&gt;</value>
+      <value>&lt;Any &quot;trimming-type value&gt;</value>
       <attribute>trimming-type-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -27838,7 +27821,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
-      <value>&lt;Any "trimming-when" value&gt;</value>
+      <value>&lt;Any &quot;trimming-when&quot; value&gt;</value>
       <attribute>trimming-when-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
@@ -27996,7 +27979,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
-      <value>&lt;Any "which-jobs" value&gt;</value>
+      <value>&lt;Any &quot;which-jobs&quot; value&gt;</value>
       <attribute>which-jobs-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext10-20101030-5100.11.pdf">PWG5100.11</xref>
@@ -28083,7 +28066,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "x-image-position" value&gt;</value>
+      <value>&lt;Any &quot;x-image-position&quot; value&gt;</value>
       <attribute>x-image-position-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -28094,7 +28077,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "x-image-position" value&gt;</value>
+      <value>&lt;Any &quot;x-image-position&quot; value&gt;</value>
       <attribute>x-image-position-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -28204,7 +28187,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "y-image-position" value&gt;</value>
+      <value>&lt;Any &quot;y-image-position&quot; value&gt;</value>
       <attribute>y-image-position-default</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -28215,7 +28198,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "y-image-position" value&gt;</value>
+      <value>&lt;Any &quot;y-image-position&quot; value&gt;</value>
       <attribute>y-image-position-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
@@ -28290,7 +28273,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
     </record>
     <record>
-      <value>&lt; any "power-state" value &gt;</value>
+      <value>&lt; any &quot;power-state&quot; value &gt;</value>
       <name />
       <attribute>end-power-state</attribute>
       <syntax>type1 enum</syntax>
@@ -28302,7 +28285,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
-      <value>&lt;All "status-code" value other than 'successful-ok'&gt;</value>
+      <value>&lt;All &quot;status-code&quot; value other than 'successful-ok'&gt;</value>
       <name />
       <attribute>fetch-status-code</attribute>
       <syntax>type2 enum</syntax>
@@ -28816,7 +28799,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "finishings" value&gt;</value>
+      <value>&lt;Any &quot;finishings&quot; value&gt;</value>
       <attribute>finishings-default</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -28827,7 +28810,7 @@ by IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
-      <value>&lt;Any "finishings" value&gt;</value>
+      <value>&lt;Any &quot;finishings&quot; value&gt;</value>
       <attribute>finishings-ready</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -28838,7 +28821,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "finishings" value&gt;</value>
+      <value>&lt;Any &quot;finishings&quot; value&gt;</value>
       <attribute>finishings-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -28849,7 +28832,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" value&gt;</value>
+      <value>&lt;Any &quot;orientation-requested&quot; value&gt;</value>
       <name />
       <attribute>input-orientation-requested</attribute>
       <syntax>type2 enum</syntax>
@@ -28861,7 +28844,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" value&gt;</value>
+      <value>&lt;Any &quot;orientation-requested&quot; value&gt;</value>
       <name />
       <attribute>input-orientation-requested-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
@@ -28873,7 +28856,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "print-quality" value&gt;</value>
+      <value>&lt;Any &quot;print-quality&quot; value&gt;</value>
       <name />
       <attribute>input-quality</attribute>
       <syntax>type2 enum</syntax>
@@ -28885,7 +28868,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
     </record>
     <record>
-      <value>&lt;Any "print-quality" value&gt;</value>
+      <value>&lt;Any &quot;print-quality&quot; value&gt;</value>
       <name />
       <attribute>input-quality-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
@@ -28951,7 +28934,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobprinterext3v10-20120727-5100.13.pdf" type="uri">PWG5100.13</xref>
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" value&gt;</value>
+      <value>&lt;Any &quot;orientation-requested&quot; value&gt;</value>
       <name />
       <attribute>media-source-feed-orientation</attribute>
       <syntax>type2 enum</syntax>
@@ -29758,7 +29741,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" value&gt;</value>
+      <value>&lt;Any &quot;orientation-requested&quot; value&gt;</value>
       <attribute>orientation-requested-default</attribute>
       <syntax>no-value | type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -29769,7 +29752,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "orientation-requested" value&gt;</value>
+      <value>&lt;Any &quot;orientation-requested&quot; value&gt;</value>
       <attribute>orientation-requested-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -29780,7 +29763,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
-      <value>&lt;Any "job-state" enum value &gt;</value>
+      <value>&lt;Any &quot;job-state&quot; enum value &gt;</value>
       <name />
       <attribute>output-device-job-states</attribute>
       <syntax>1setOf type1 enum</syntax>
@@ -30124,7 +30107,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "print-quality" value&gt;</value>
+      <value>&lt;Any &quot;print-quality&quot; value&gt;</value>
       <attribute>print-quality-default</attribute>
       <syntax>type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -30135,7 +30118,7 @@ by IESG-designated experts.
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
-      <value>&lt;Any "print-quality" value&gt;</value>
+      <value>&lt;Any &quot;print-quality&quot; value&gt;</value>
       <attribute>print-quality-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
       <xref type="rfc" data="rfc8011" />
@@ -30172,7 +30155,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
     </record>
     <record>
-      <value>&lt; any "power-state" value &gt;</value>
+      <value>&lt; any &quot;power-state&quot; value &gt;</value>
       <name />
       <attribute>request-power-state</attribute>
       <syntax>type1 enum</syntax>
@@ -30224,7 +30207,7 @@ by IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsystem10-20190815.pdf" type="uri">PWG5100.SYS</xref>
     </record>
     <record>
-      <value>&lt; any "power-state" value &gt;</value>
+      <value>&lt; any &quot;power-state&quot; value &gt;</value>
       <name />
       <attribute>start-power-state</attribute>
       <syntax>type1 enum</syntax>
@@ -30326,37 +30309,37 @@ Section 3.5.1.  The tag values are listed in numeric order.
     </record>
     <record>
       <value>0x01</value>
-      <name>"operation-attributes-tag"</name>
+      <name>&quot;operation-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc8010" />
     </record>
     <record>
       <value>0x02</value>
-      <name>"job-attributes-tag"</name>
+      <name>&quot;job-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc8010" />
     </record>
     <record>
       <value>0x03</value>
-      <name>"end-of-attributes-tag"</name>
+      <name>&quot;end-of-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc8010" />
     </record>
     <record>
       <value>0x04</value>
-      <name>"printer-attributes-tag"</name>
+      <name>&quot;printer-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc8010" />
     </record>
     <record>
       <value>0x05</value>
-      <name>"unsupported-attributes-tag"</name>
+      <name>&quot;unsupported-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc8010" />
     </record>
     <record>
       <value>0x06</value>
-      <name>"subscription-attributes-tag"</name>
+      <name>&quot;subscription-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
       <value>0x07</value>
-      <name>"event-notification-attributes-tag"</name>
+      <name>&quot;event-notification-attributes-tag&quot;</name>
       <xref type="rfc" data="rfc3995" />
     </record>
     <record>
@@ -30616,14 +30599,14 @@ proposed registrations must be submitted to a mailing list for review
 by IESG-designated experts.
 
 See the hex values assigned to each operation under the
-"operations-supported" attribute in Section 4 above.  In addition,
+&quot;operations-supported&quot; attribute in Section 4 above.  In addition,
 vendors may define their own private operations. See the explanation
 at the beginning of Section 4 above on the enum allocation for such
 vendor-defined private operations.
 
 Operations are listed in alphabetic order. Specifications that extend
 the semantics of operations defined in other specifications will be
-listed here as well on separate lines with the notation "(extension)"
+listed here as well on separate lines with the notation &quot;(extension)&quot;
 after the name.
     </note>
     <record>
@@ -30708,7 +30691,7 @@ after the name.
     </record>
     <record>
       <name>Create-Job(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Create-Job(extension)</name>
@@ -30944,7 +30927,7 @@ after the name.
     </record>
     <record>
       <name>Hold-Job(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Hold-Job(extension)</name>
@@ -30996,7 +30979,7 @@ after the name.
     </record>
     <record>
       <name>Print-Job(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Print-Job(extension)</name>
@@ -31024,7 +31007,7 @@ after the name.
     </record>
     <record>
       <name>Print-URI(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Print-URI(extension)</name>
@@ -31168,7 +31151,7 @@ after the name.
     </record>
     <record>
       <name>Send-Document(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Send-Document(extension)</name>
@@ -31188,7 +31171,7 @@ after the name.
     </record>
     <record>
       <name>Send-URI(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Send-URI(extension)</name>
@@ -31212,7 +31195,7 @@ after the name.
     </record>
     <record>
       <name>Set-Job-Attributes(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Set-Printer-Attributes</name>
@@ -31284,7 +31267,7 @@ after the name.
     </record>
     <record>
       <name>Validate-Job(Extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext20-20190718.pdf" type="uri">PWG5100.JOBEXT</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf" type="uri">PWG5100.7</xref>
     </record>
     <record>
       <name>Validate-Job(extension)</name>
@@ -31320,12 +31303,12 @@ The range of status code values is 0x0000 to 0x7FFF. Appendix B of
 <xref type="rfc" data="rfc8011" /> allocates the value ranges for each status
 code class as follows:
 
-  "successful"     - 0x0000 to 0x00FF
-  "informational"  - 0x0100 to 0x01FF
+  &quot;successful&quot;     - 0x0000 to 0x00FF
+  &quot;informational&quot;  - 0x0100 to 0x01FF
   Unassigned       - 0x0200 to 0x02FF
-  "redirection"    - 0x0300 to 0x03FF
-  "client-error"   - 0x0400 to 0x04FF
-  "server-error"   - 0x0500 to 0x05FF
+  &quot;redirection&quot;    - 0x0300 to 0x03FF
+  &quot;client-error&quot;   - 0x0400 to 0x04FF
+  &quot;server-error&quot;   - 0x0500 to 0x05FF
   Unassigned       - 0x0600 to 0x7FFF
 
 The top half (128 values) of each range (0x0n80 to 0x0nFF,
