@@ -115,7 +115,7 @@ class organization
     html_form_field_end();
 
     html_form_field_start("domain", "Domain", $this->domain_valid);
-    html_form_email("domain", "example.com", $this->domain);
+    html_form_text("domain", "example.com", $this->domain);
     html_form_field_end();
 
     // status
