@@ -4863,6 +4863,18 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Operation</collection>
+      <name>encrypted-job-request-format</name>
+      <syntax>mimeMediaType</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20200218.pdf" type="uri">PWG5100.TRUSTNOONE</xref>
+    </record>
+    <record>
+      <collection>Operation</collection>
+      <name>encrypted-job-request-id</name>
+      <syntax>integer(1:MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20200218.pdf" type="uri">PWG5100.TRUSTNOONE</xref>
+    </record>
+    <record>
+      <collection>Operation</collection>
       <name>fetch-status-code</name>
       <syntax>type2 enum</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
@@ -5362,6 +5374,12 @@ Section 5.2 Subscription Template Attributes.
       <name>requesting-user-name</name>
       <syntax>name(MAX)</syntax>
       <xref type="rfc" data="rfc8011" />
+    </record>
+    <record>
+      <collection>Operation</collection>
+      <name>requesting-user-pgp-public-key</name>
+      <syntax>1setOf text(MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20200218.pdf" type="uri">PWG5100.TRUSTNOONE</xref>
     </record>
     <record>
       <collection>Operation</collection>
