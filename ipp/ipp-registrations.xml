@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2020-02-19</updated>
+  <updated>2020-04-17</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011" />
@@ -1624,7 +1624,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Event Notifications</collection>
       <name>printer-current-time</name>
-      <syntax>dateTime</syntax>
+      <syntax>dateTime|unknown</syntax>
       <xref type="rfc" data="rfc3996" />
     </record>
     <record>
@@ -7365,7 +7365,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>number-up-supported</name>
-      <syntax>integer(1:MAX) | rangeOfInteger(1:MAX)</syntax>
+      <syntax>1setOf (integer(1:MAX) | rangeOfInteger(1:MAX))</syntax>
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
@@ -8023,7 +8023,7 @@ Section 5.2 Subscription Template Attributes.
     <record>
       <collection>Printer Description</collection>
       <name>printer-resolution-supported</name>
-      <syntax>resolution</syntax>
+      <syntax>1setOf resolution</syntax>
       <xref type="rfc" data="rfc8011" />
     </record>
     <record>
@@ -8657,30 +8657,6 @@ Section 5.2 Subscription Template Attributes.
       <name>printer-finisher-supplies-description</name>
       <syntax>1setOf text(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings21-20170217-5100.1.pdf" type="uri">PWG5100.1</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-name</name>
-      <syntax>1setOf name(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-patches</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-string-version</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
-    </record>
-    <record>
-      <collection>Printer Status</collection>
-      <name>printer-firmware-version</name>
-      <syntax>1setOf octetString(MAX)</syntax>
-      <xref data="https://www.pwg.org/archives/ipp/2019/020184.html" type="uri">APPLE20190724</xref>
     </record>
     <record>
       <collection>Printer Status</collection>
@@ -12332,7 +12308,7 @@ by IESG-designated experts.
       <value>ipp-everywhere-server</value>
       <attribute>ipp-features-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeve11-20200211.pdf" type="uri">PWG5100.EVE</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeve11-20200417.pdf" type="uri">PWG5100.EVE</xref>
     </record>
     <record>
       <value>job-save</value>
