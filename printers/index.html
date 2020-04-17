@@ -1,0 +1,168 @@
+---
+title: IPP Everywhere™ Printers
+layout: bare
+---
+
+<div class="row pwg-panel pwg-base">
+  <div class="col-md-12 col-sm-12">
+    <h1><img class="pwg-logo-xs hidden-sm" src="/ipp/ipp-everywhere-320@2x.png">IPP Everywhere™ Printers</h1>
+  </div>
+</div>
+<div class="row pwg-panel" style="height: 100%;">
+  <div class="col-md-12 col-sm-12">
+    <form id="search" onSubmit="event.preventDefault(); update();" style="text-align: center;">Filter:
+    <input type="search" name="q" placeholder="Make, model, etc." xxsize="40" list="qlist" autocomplete="org.pwg.ipp-everywhere" onInput="update();">
+    <datalist id="qlist">
+<!--      <option value="Brother"></option>
+      <option value="Canon"></option>-->
+      <option value="DesignJet"></option>
+      <option value="DeskJet"></option>
+<!--      <option value="EPSON"></option>
+      <option value="Fuji Xerox"></option>-->
+      <option value="HP"></option>
+<!--      <option value="Konica Minolta"></option>
+      <option value="Kyocera"></option>
+      <option value="LaserJet"></option>
+      <option value="Lexmark"></option>-->
+      <option value="OfficeJet"></option>
+<!--      <option value="Oki Data"></option>-->
+      <option value="Photosmart"></option>
+<!--      <option value="Ricoh"></option>
+      <option value="Toshiba"></option>
+      <option value="Xerox"></option>-->
+    </datalist>
+    <select name="media" onChange="update();">
+      <option value="">All Sizes</option>
+      <option value="Small">Letter/A4</option>
+      <option value="Medium">Tabloid/A3</option>
+      <option value="Large">C/A2+</option>
+    </select>
+    <select name="color" onChange="update();">
+      <option value="">Color and B&amp;W</option>
+      <option value="0">B&amp;W Only</option>
+      <option value="1">Color Only</option>
+    </select>
+    <select name="duplex" onChange="update();">
+      <option value="">1 and 2-Sided</option>
+      <option value="0">1-Sided Only</option>
+      <option value="1">2-Sided Only</option>
+    </select>
+    <select name="finishers" onChange="update();">
+      <option value="">Optional Staple, Punch, ...</option>
+      <option value="0">No Staple, Punch, ...</option>
+      <option value="1">Staple, Punch, ...</option>
+    </select>
+    <select name="ipps" onChange="update();">
+      <option value="">Optional IPPS</option>
+      <option value="0">No IPPS</option>
+      <option value="1">IPPS Only</option>
+    </select>
+    </form>
+
+    <div class="table-responsive-sm">
+      <table class="pwg-table" summary="IPP Everywhere™ Printers">
+	<caption id="printerCount">??? printers.</caption>
+	<thead>
+	  <tr>
+	    <th>Model</th>
+	    <th>Media</th>
+	    <th>Color</th>
+	    <th>2-Sided</th>
+	    <th>Finishers</th>
+	    <th>Encryption</th>
+	  </tr>
+	</thead>
+	<tbody id="printers">
+	</tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+function update()
+{
+  var printers = null;
+
+  console.log("update()");
+
+  fetch('./printers.json')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(json) {
+    console.log("Got printers.json.");
+    printers = json;
+    console.log(printers);
+
+    var form = document.getElementById("search");
+    var q = form.elements[0].value.toLowerCase();
+    var media = form.elements[1].value;
+    var color = form.elements[2].value;
+    var duplex = form.elements[3].value;
+    var finishers = form.elements[4].value;
+    var ipps = form.elements[5].value;
+
+    console.log("Query string: " + q);
+    console.log("Color: " + color);
+
+    var r = new Array(), j = 0, count = 0;
+    for (var i = 0; i < printers.length; i ++)
+    {
+      var printer = printers[i];
+
+      if (q != "" && printer["model"].toLowerCase().indexOf(q) < 0)
+        continue;
+      if (media != "" && media != printer["media"])
+        continue;
+      if (color != "" && color != printer["color"])
+        continue;
+      if (duplex != "" && duplex != printer["duplex"])
+        continue;
+      if (finishers != "" && finishers != printer["finishings"])
+        continue;
+      if (ipps != "" && ipps != printer["ipps"])
+        continue;
+
+      r[j++] = '<tr><td><a href="';
+      r[j++] = printer["url"];
+      r[j++] = '">';
+      r[j++] = printer["model"];
+      if (printer["version"] != "1.0")
+      {
+        r[j++] = '</a>&nbsp;<span class="badge badge-secondary">';
+        r[j++] = printer["version"];
+        r[j++] = '</span></td><td>';
+      }
+      else
+        r[j++] = '</a></td><td>';
+      r[j++] = printer["media"];
+      r[j++] = '</td><td>';
+      r[j++] = printer["color"] != 0 ? 'YES' : 'NO';
+      r[j++] = '</td><td>';
+      r[j++] = printer["duplex"] != 0 ? 'YES' : 'NO';
+      r[j++] = '</td><td>';
+      r[j++] = printer["finishings"] != 0 ? 'YES -' : 'NO';
+      r[j++] = printer["fin_fold"] != 0 ? ' Fold' : '';
+      r[j++] = printer["fin_punch"] != 0 ? ' Punch' : '';
+      r[j++] = printer["fin_staple"] != 0 ? ' Staple' : '';
+      r[j++] = printer["fin_trim"] != 0 ? ' Cut' : '';
+      r[j++] = '</td><td>';
+      r[j++] = printer["ipps"] != 0 ? 'YES' : 'NO';
+      r[j++] = '</td></tr>';
+      count ++;
+    }
+
+    if (count == 0)
+      document.getElementById("printerCount").innerHTML = 'No printers.';
+    else if (count == 1)
+      document.getElementById("printerCount").innerHTML = '1 printer.';
+    else
+      document.getElementById("printerCount").innerHTML = count + ' printers.';
+
+    document.getElementById("printers").innerHTML = r.join('');
+  });
+}
+
+update();
+</script>
