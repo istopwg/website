@@ -1,13 +1,14 @@
----
-title: IPP Everywhere™ Printers
-layout: bare
----
-
-<div class="row pwg-panel pwg-base">
-  <div class="col-md-12 col-sm-12">
-    <h1><img class="pwg-logo-xs hidden-sm" src="/ipp/ipp-everywhere-320@2x.png">IPP Everywhere™ Printers</h1>
-  </div>
-</div>
+<!doctype html>
+<html>
+  <head>
+    <title>IPP Everywhere™ Printers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
+  </head>
+  <body>
 <div class="row pwg-panel" style="height: 100%;">
   <div class="col-md-12 col-sm-12">
     <form id="search" onSubmit="event.preventDefault(); update();" style="text-align: center;">Filter:
@@ -60,7 +61,7 @@ layout: bare
     </form>
 
     <div class="table-responsive-sm">
-      <table class="pwg-table" summary="IPP Everywhere™ Printers">
+      <table class="standard table table-striped" summary="IPP Everywhere™ Printers">
 	<caption id="printerCount">??? printers.</caption>
 	<thead>
 	  <tr>
@@ -78,6 +79,7 @@ layout: bare
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
 function update()
@@ -111,44 +113,44 @@ function update()
     {
       var printer = printers[i];
 
-      if (q != "" && printer["model"].toLowerCase().indexOf(q) < 0)
+      if (q != "" && printer['model'].toLowerCase().indexOf(q) < 0)
         continue;
-      if (media != "" && media != printer["media"])
+      if (media != "" && media != printer['media'])
         continue;
-      if (color != "" && color != printer["color"])
+      if (color != "" && color != printer['color'])
         continue;
-      if (duplex != "" && duplex != printer["duplex"])
+      if (duplex != "" && duplex != printer['duplex'])
         continue;
-      if (finishers != "" && finishers != printer["finishings"])
+      if (finishers != "" && finishers != printer['finishings'])
         continue;
-      if (ipps != "" && ipps != printer["ipps"])
+      if (ipps != "" && ipps != printer['ipps'])
         continue;
 
       r[j++] = '<tr><td><a href="';
-      r[j++] = printer["url"];
+      r[j++] = printer['url'];
       r[j++] = '">';
-      r[j++] = printer["model"];
-      if (printer["version"] != "1.0")
+      r[j++] = printer['model'];
+      if (printer['version'] != "1.0")
       {
         r[j++] = '</a>&nbsp;<span class="badge badge-secondary">';
-        r[j++] = printer["version"];
+        r[j++] = printer['version'];
         r[j++] = '</span></td><td>';
       }
       else
         r[j++] = '</a></td><td>';
-      r[j++] = printer["media"];
+      r[j++] = printer['media'];
       r[j++] = '</td><td>';
-      r[j++] = printer["color"] != 0 ? 'YES' : 'NO';
+      r[j++] = printer['color'] != 0 ? 'YES' : 'NO';
       r[j++] = '</td><td>';
-      r[j++] = printer["duplex"] != 0 ? 'YES' : 'NO';
+      r[j++] = printer['duplex'] != 0 ? 'YES' : 'NO';
       r[j++] = '</td><td>';
-      r[j++] = printer["finishings"] != 0 ? 'YES -' : 'NO';
-      r[j++] = printer["fin_fold"] != 0 ? ' Fold' : '';
-      r[j++] = printer["fin_punch"] != 0 ? ' Punch' : '';
-      r[j++] = printer["fin_staple"] != 0 ? ' Staple' : '';
-      r[j++] = printer["fin_trim"] != 0 ? ' Cut' : '';
+      r[j++] = printer['finishings'] != 0 ? 'YES -' : 'NO';
+      r[j++] = printer['fin_fold'] != 0 ? ' Fold' : '';
+      r[j++] = printer['fin_punch'] != 0 ? ' Punch' : '';
+      r[j++] = printer['fin_staple'] != 0 ? ' Staple' : '';
+      r[j++] = printer['fin_trim'] != 0 ? ' Cut' : '';
       r[j++] = '</td><td>';
-      r[j++] = printer["ipps"] != 0 ? 'YES' : 'NO';
+      r[j++] = printer['ipps'] != 0 ? 'YES' : 'NO';
       r[j++] = '</td></tr>';
       count ++;
     }
@@ -166,3 +168,5 @@ function update()
 
 update();
 </script>
+</body>
+</html>
