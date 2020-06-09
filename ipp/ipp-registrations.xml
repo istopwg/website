@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2020-05-26</updated>
+  <updated>2020-06-09</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011" />
@@ -9451,7 +9451,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>System Description</collection>
       <name>system-dns-sd-name</name>
       <syntax>name(63)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippsysdisc10-20200427.pdf" type="uri">IPPSYSDISC10</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippsysdisc10-20200604.pdf" type="uri">IPPSYSDISC10</xref>
     </record>
     <record>
       <collection>System Description</collection>
@@ -12338,7 +12338,7 @@ by IESG-designated experts.
       <value>ipp-everywhere-server</value>
       <attribute>ipp-features-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeve11-20200417.pdf" type="uri">PWG5100.EVE</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf" type="uri">PWG5100.14</xref>
     </record>
     <record>
       <value>job-save</value>
