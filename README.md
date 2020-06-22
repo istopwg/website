@@ -28,7 +28,7 @@ web browser as-is.
 
 Changes pushed to the `dynamo` directory are updated on the web site.  Changes
 to the other directories currently will not appear on the PWG web site since
-they are hosted by the FTP server.
+they are hosted by the FTP server from the `pub/pwg/www` directory.
 
 
 ## Architecture
