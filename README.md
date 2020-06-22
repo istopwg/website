@@ -27,8 +27,9 @@ the standard site template applied to them, while other files are passed to the
 web browser as-is.
 
 Changes pushed to the `dynamo` directory are updated on the web site.  Changes
-to the other directories currently will not appear on the PWG web site since
-they are hosted by the FTP server from the `pub/pwg/www` directory.
+to other directories will not appear on the PWG web site since they are
+currently hosted by the FTP server from the
+[`pub/pwg/www`](https://ftp.pwg.org/pub/pwg/www) directory.
 
 
 ## Architecture
