@@ -26,6 +26,10 @@ corresponding PHP files in the `dynamo` directory.  All other HTML files get
 the standard site template applied to them, while other files are passed to the
 web browser as-is.
 
+Changes pushed to the `dynamo` directory are updated on the web site.  Changes
+to the other directories currently will not appear on the PWG web site since
+they are hosted by the FTP server.
+
 
 ## Architecture
 
