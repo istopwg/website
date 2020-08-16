@@ -36,13 +36,14 @@
       </div>
       <div class="col-md-9 col-sm-12">
 	<h1>3D Printing</h1>
-	<p>The Printer Working Group has developed an extension to the <a href="../ipp">Internet Printing Protocol</a> for 3D Printing. The extension leverages our existing network protocol and Job Ticket formats and existing high-level 3D file formats to describe the objects to print. The IPP workgroup has also developed a version of the PWG Semantic Model Print Job Ticket schema for 3D printing to support data exchange and embedding within common 3D file formats such as 3MF and 3D PDF documents so that user intent is preserved regardless of the transport or workflow used.</p>
+	<p>The Printer Working Group has developed an extension to the <a href="../ipp">Internet Printing Protocol</a> for 3D Printing. The extension combines our IPP network printing protocol and Job Ticket formats with existing high-level 3D file formats or PWG Safe G-Code to describe the objects to print, discover the printer's capabilities, and monitor a job's progress with portability and interoperability. The IPP Workgroup has also developed a version of the PWG Semantic Model Print Job Ticket schema for 3D printing to support data exchange and embedding within common 3D file formats such as 3MF and 3D PDF documents so that user intent is preserved regardless of the transport or workflow used.</p>
 	<p>We welcome participation from all interested parties in the continued prototyping and development of these specifications.</p>
 	<p class="hidden-xs">&nbsp;</p>
 	<ul class="nav nav-pills">
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf" target="_blank">IPP 3D v1.1 Specification</a></li>
 	  <li role="presentation"><a href="https://www.pwg.org/mailman/listinfo/3d-printing">IPP 3D Mailing List</a></li>
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/informational/bp-smpjt3d10-20170818.pdf" target="_blank">PWG 3D Print Job Ticket</a></li>
+	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/informational/bp-pwgsafegcode10-20190604-5199.7.pdf" target="_blank">PWG Safe G-Code</a></li>
 	</ul>
       </div>
     </div>
@@ -75,8 +76,8 @@
       <div class="col-md-12 col-sm-12">
 	<h1>IPP 3D File Formats</h1>
 	<p><b>3D Manufacturing File Format (3MF)</b>: 3MF offers a compact XML format with physical dimensions, named materials, and shared vertices. 3MF is supported by major CAD and slicer software and is a required file format for the IPP 3D Printing Extensions.</p>
-	<p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) will add support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata. PDF is a recommended file format for the IPP 3D Printing Extensions.</p>
-	<p><b>PWG Safe G-Code Subset for 3D Printing</b>: G-Code is the de-facto pre-sliced format for FDM printers. The PWG subset limits the G-Code commands that can be used to those that are common and have no side-effects.</p>
+	<p><b>PDF</b>: PDF 1.7 (ISO 32000-1) includes 3D support using the Universal 3D format ("U3D", ECMA-363) and PDF 2.0 (ISO 32000-2) adds support for the Product Representation Compact format ("PRC", ISO 14739-1:2014) format. Both U3D and PRC are binary file formats with named materials. PRC also includes manufacturing tolerance metadata. Future versions of PDF will add support for the STEP-NC format for 3D content. PDF is a recommended file format for the IPP 3D Printing Extensions.</p>
+	<p><b>PWG Safe G-Code Subset for 3D Printing</b>: G-Code is the de-facto pre-sliced format for FDM and concrete printers. The PWG subset limits the G-Code commands that can be used to those that are common and have no side-effects.</p>
 	<p class="hidden-xs">&nbsp;</p>
 	<ul class="nav nav-pills">
 	  <li role="presentation"><a target="_blank" href="http://www.3mf.io/">3MF Web Site</a></li>
@@ -84,6 +85,12 @@
           <li class="nav-item" role="presentation"><a href="https://ftp.pwg.org/pub/pwg/informational/bp-pwgsafegcode10-20190604-5199.7.pdf">PWG Safe G-Code Subset for 3D Printing v1.0</a></li>
 	  <li role="presentation"><a target="_blank" href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-363%204th%20Edition.pdf">Universal 3D (U3D, ECMA-363) Specification</a></li>
 	</ul>
+      </div>
+    </div>
+    <div class="row pwg-panel pwg-alt-0">
+      <div class="col-md-12 col-sm-12">
+        <h1 id="INTENT">Intent vs. Process</h1>
+        <p>IPP is based on an intent-based data model - what you want done - vs. a process-based data model - how you want something done. This design choice has served us well over the past 20+ years to support a wide variety of printing technologies and features. With IPP 3D, you specify the materials you want used for a print, quality values (accuracy, in-fill, etc.), and in some cases environmental values (temperate/humidity) that are necessary to produce a successful print - this is known as a Job Ticket. The Job Ticket can even specify international standard material identifiers to ensure the printed result meets the requirements of the job. The printer then determines the best way to satisfy the Job Ticket, given the unique physical and technological characteristics of the printer, and produces the 3D object provided by the client.</p>
       </div>
     </div>
     <div class="row pwg-panel">
