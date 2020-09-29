@@ -59,7 +59,7 @@
       <div class="col-md-12 col-sm-12">
 	<h1>IPP Everywhere Clients</h1>
 	<p>Many clients already support IPP Everywhere. For those that don&rsquo;t, operating system and desktop environment developers can leverage existing open source software to quickly provide IPP Everywhere printing support.</p>
-	<p class="pwg-note">Popular clients: Android, ChromeOS, CUPS, Linux, macOS</p>
+	<p class="pwg-note">Popular clients: Chrome OS, CUPS, Linux, macOS</p>
 	<p class="hidden-xs">&nbsp;</p>
 	<ul class="nav nav-pills">
 	  <li role="presentation"><a href="https://github.com/istopwg/ippsample">Sample Software</a></li>
@@ -71,14 +71,14 @@
     <div class="row pwg-panel pwg-alt-1">
       <div class="col-md-12 col-sm-12">
 	<h1>IPP Everywhere Printers and Print Servers</h1>
-	<p>98% of all printers sold today support IPP/2.0 and Bonjour. Support generic file formats to enable IPP Everywhere printing.</p>
-	<p class="pwg-note">Required: IPP/2.0, Bonjour, PWG Raster Format and JPEG<br>
+	<p>98% of all printers sold today support IPP/2.0 and DNS-SD. Support generic file formats to enable IPP Everywhere printing.</p>
+	<p class="pwg-note">Required: IPP/2.0, DNS-SD, PWG Raster and JPEG JFIF file formats (JPEG only required for color printers)<br>
 	Recommended: PDF, IPP-USB</p>
 	<p class="hidden-xs">&nbsp;</p>
 	<ul class="nav nav-pills">
 	  <li role="presentation"><a href="https://www.pwg.org/ippeveselfcert">Submission Portal</a></li>
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf">Technical Specification</a></li>
-	  <li role="presentation"><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert11-20200515-5100.20.pdf">Self-Certification Manual</a></li>
+	  <li role="presentation"><a href="https//ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert11-20200515-5100.20.pdf">Self-Certification Manual</a></li>
 	</ul>
       </div>
     </div>
@@ -97,24 +97,31 @@
       <div class="col-md-6 col-sm-12">
 	<h1>Files</h1>
 	<ul>
-	  <li><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf">IPP Everywhere Specification</a></li>
-	  <li><a href="http://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert11-20200515-5100.20.pdf">IPP Everywhere Self-Certification Manual</a></li>
+	  <li><a href="https://www.pwg.org/ippeveselfcert/">IPP Everywhere Self-Certification Guide</a> - Start Here</li>
+	  <li><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf">IPP Everywhere Specification v1.1</a></li>
+	  <li><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert11-20200515-5100.20.pdf">IPP Everywhere Self-Certification Manual v1.1</a></li>
+<!-- 
 	  <li role="presentation"><a href="https://github.com/istopwg/ippeveselfcert/blob/master/KNOWNISSUES.md">Known Issues</a></li>
 	  <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-macos.zip">macOS Tools</a></li>
 	  <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-rhel.tar.gz">Red Hat Enterprise Linux Tools</a></li>
 	  <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-ubuntu.tar.gz">Ubuntu LTS Tools</a></li>
-	  <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-windows.msi">Windows Tools</a><ul>
-	    <li><a href="http://support.apple.com/kb/DL999">Bonjour for Windows (Required)</a></li>
-	  </ul></li>
-	  <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples">PWG Raster Format Sample Files</a><ul>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-150dpi-20180607.zip">150dpi</a></li>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-180dpi-20180607.zip">180dpi</a></li>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-200dpi-20180607.zip">200dpi</a></li>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-300dpi-20180607.zip">300dpi</a></li>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-360dpi-20180607.zip">360dpi</a></li>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-600dpi-20180607.zip">600dpi</a></li>
-	    <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-720dpi-20180607.zip">720dpi</a></li>
-	  </ul></li>
+	  <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-windows.msi">Windows Tools</a>
+          <ul>
+            <li><a href="https://support.apple.com/kb/DL999">Bonjour for Windows (Required)</a></li>
+          </ul>
+	  </li>
+	  <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples">PWG Raster Format Sample Files</a>
+          <ul>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-150dpi-20180607.zip">150dpi</a></li>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-180dpi-20180607.zip">180dpi</a></li>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-200dpi-20180607.zip">200dpi</a></li>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-300dpi-20180607.zip">300dpi</a></li>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-360dpi-20180607.zip">360dpi</a></li>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-600dpi-20180607.zip">600dpi</a></li>
+            <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-720dpi-20180607.zip">720dpi</a></li>
+          </ul>
+	  </li>
+ -->
 	</ul>
       </div>
       <div class="col-md-6 col-sm-12">
