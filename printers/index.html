@@ -113,7 +113,7 @@ function update()
     {
       var printer = printers[i];
 
-      if (q != "" && printer['model'].toLowerCase().indexOf(q) < 0)
+      if (q != "" && printer['model'].toLowerCase().indexOf(q) < 0 && printer['family'].toLowerCase().indexOf(q) < 0)
         continue;
       if (media != "" && media != printer['media'])
         continue;
