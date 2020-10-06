@@ -1,30 +1,31 @@
 <!doctype html>
 <html>
-  <head>
-    <title>IPP Everywhere™ Printer Self-Certification Tools</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
-  </head>
-  <body>
-<style><!--
-a.nav-link.active {
-  background: #f8f8f8 !important;
-  border-bottom-color: #f8f8f8 !important;
-}
-.tab-pane {
-  background: #f8f8f8;
-  border-left: rgb(222,226,230) solid 1px;
-  border-right: rgb(222,226,230) solid 1px;
-  border-bottom: rgb(222,226,230) solid 1px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  min-height: 500px;
-  padding: 20px;
-}
---></style>
+<head>
+	<title>IPP Everywhere™ Printer Self-Certification Tools</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
+</head>
+<body>
+<style>	<!--
+	a.nav-link.active {
+	  background: #f8f8f8 !important;
+	  border-bottom-color: #f8f8f8 !important;
+	}
+	.tab-pane {
+	  background: #f8f8f8;
+	  border-left: rgb(222,226,230) solid 1px;
+	  border-right: rgb(222,226,230) solid 1px;
+	  border-bottom: rgb(222,226,230) solid 1px;
+	  border-bottom-left-radius: 4px;
+	  border-bottom-right-radius: 4px;
+	  min-height: 500px;
+	  padding: 20px;
+	}
+	-->
+</style>
 <!--
 <ul class="nav nav-tabs">
   <li class="nav-item"><a class="nav-link active" id="general-tab" data-toggle="tab" role="tab" aria-controls="general" aria-selected="true" href="#general">General Info</a></li>
@@ -37,158 +38,183 @@ a.nav-link.active {
 </ul>
 <div class="tab-content">
   <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">-->
-    <h2>About the IPP Everywhere&trade; Printer Self-Certification Tools</h2>
-
-    <p>The IPP Everywhere&trade; Printer self-certification tools are used to test the conformance of printers to <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf" target="_blank">PWG Candidate Standard 5100.14-2020: IPP Everywhere&trade; v1.1</a>. The testing and submission procedures are defined in <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert11-20200515-5100.20.pdf" target="_blank">PWG Candidate Standard 5100.20-2020: IPP Everywhere&trade; v1.1 Printer Self-Certification Manual.</a></p>
-
-    <blockquote>Note: Tests are intended to be run on an isolated network, or at least when no other users are printing using the target printer. Otherwise the test scripts will fail randomly.</blockquote>
-
-
-    <h2>Support</h2>
-
-    <p>The <em>ippeveselfcert@pwg.org</em> mailing list is used to discuss IPP Everywhere&trade; Printer Self-Certification. You can subscribe and view the list archives <a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">here</a>. Issues found in the tools should be reported using the <a href="https://github.com/istopwg/ippeveselfcert/issues">Github issues page</a>. A list of known issues can be <a href="https://github.com/istopwg/ippeveselfcert/blob/master/KNOWNISSUES.md">found here</a>.</p>
+<h2>
+	About the IPP Everywhere&trade; Printer Self-Certification Tools
+</h2>
+<p>
+	The IPP Everywhere&trade; Printer self-certification tools are used to test the conformance of printers to <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeve11-20200515-5100.14.pdf" target="_blank">PWG Candidate Standard 5100.14-2020: IPP Everywhere&trade; v1.1</a>. The testing and submission procedures are defined in <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippeveselfcert11-20200515-5100.20.pdf" target="_blank">PWG Candidate Standard 5100.20-2020: IPP Everywhere&trade; v1.1 Printer Self-Certification Manual.</a>
+</p>
+<blockquote>
+	Note: Tests are intended to be run on an isolated network, or at least when no other users are printing using the target printer. Otherwise the test scripts will fail randomly.
+</blockquote>
+<h2>
+	Support
+</h2>
+<p>
+	The <em>ippeveselfcert@pwg.org</em> mailing list is used to discuss IPP Everywhere&trade; Printer Self-Certification. You can subscribe and view the list archives <a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">here</a>. Issues found in the tools should be reported using the <a href="https://github.com/istopwg/ippeveselfcert/issues">Github issues page</a>. A list of known issues can be <a href="https://github.com/istopwg/ippeveselfcert/blob/master/KNOWNISSUES.md">found here</a>.
+</p>
 <!--  </div>
   <div class="tab-pane fade" id="raster" role="tabpanel" aria-labelledby="raster-tab">-->
-    <h2>PWG Raster Files</h2>
-
-    <p>The PWG has generated PWG Raster document files for the self-certification tools in several resolutions:</p>
-    <ul>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-150dpi-20180607.zip">150dpi</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-180dpi-20180607.zip">180dpi</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-200dpi-20180607.zip">200dpi</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-300dpi-20180607.zip">300dpi</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-360dpi-20180607.zip">360dpi</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-600dpi-20180607.zip">600dpi</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-720dpi-20180607.zip">720dpi</a></li>
-    </ul>
-    <p>Please <a href="https://github.com/istopwg/ippeveselfcert/issues/new">file an issue on the Github project page</a> if you require raster files at a different resolution.</p>
+<h2>
+	PWG Raster Files
+</h2>
+<p>
+	The PWG has generated PWG Raster document files for the self-certification tools in several resolutions:
+</p>
+<ul>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-150dpi-20180607.zip">150dpi</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-180dpi-20180607.zip">180dpi</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-200dpi-20180607.zip">200dpi</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-300dpi-20180607.zip">300dpi</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-360dpi-20180607.zip">360dpi</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-600dpi-20180607.zip">600dpi</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/examples/pwg-raster-samples-720dpi-20180607.zip">720dpi</a></li>
+</ul>
+<p>
+	Please <a href="https://github.com/istopwg/ippeveselfcert/issues/new">file an issue on the Github project page</a> if you require raster files at a different resolution.
+</p>
 <!--  </div>
   <div class="tab-pane fade" id="windows" role="tabpanel" aria-labelledby="windows-tab">-->
-    <h2>Running the Self-Certification Tools on Windows&reg; 7 and Higher</h2>
-
-    <p>First download and install the current self-certification tools for Windows along with Bonjour for Windows from Apple:</p>
-
-    <ul>
-      <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-windows.msi">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-windows.msi">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
-      <li><a href="https://support.apple.com/kb/DL999">Bonjour for Windows (Required)</a></li>
-    </ul>
-
-    <p>Extract the PWG Raster files to your Desktop directory, then open a command prompt or power shell and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:</p>
-
-    <pre>
+<h2>
+	Running the Self-Certification Tools on Windows&reg; 7 and Higher
+</h2>
+<p>
+	First download and install the current self-certification tools for Windows along with Bonjour for Windows from Apple:
+</p>
+<ul>
+	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-windows.msi">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-windows.msi">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
+	<li><a href="https://support.apple.com/kb/DL999">Bonjour for Windows (Required)</a></li>
+</ul>
+<p>
+	Extract the PWG Raster files to your Desktop directory, then open a command prompt or power shell and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
+</p>
+<pre>
 cd "C:\Program Files\IPP Everywhere Printer Self-Certification Tools"
 .\bonjour-tests.bat "<em>Printer Name</em>"  (v1.0 tools)
 .\dnssd-tests.bat "<em>Printer Name</em>"    (v1.1 tools)
 .\ipp-tests.bat "<em>Printer Name</em>"
 .\document-tests.bat "<em>Printer Name</em>"
 </pre>
-
-    <p>Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:</p>
-
-    <pre>
+<p>
+	Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:
+</p>
+<pre>
 .\ippevesubmit "<em>Printer Name</em>"
 </pre>
-
-    <p>Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.</p>
+<p>
+	Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.
+</p>
 <!--  </div>
   <div class="tab-pane fade" id="macos" role="tabpanel" aria-labelledby="macos-tab">-->
-    <h2>Running the Self-Certification Tools on macOS&reg; 10.10 and Higher</h2>
-
-    <p>First download and extract the current self-certification tools for macOS:</p>
-    <ul>
-      <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-macos.zip">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-macos.zip">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
-    </ul>
-
-    <p>Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:</p>
-
-    <pre>
+<h2>
+	Running the Self-Certification Tools on macOS&reg; 10.10 and Higher
+</h2>
+<p>
+	First download and extract the current self-certification tools for macOS:
+</p>
+<ul>
+	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-macos.zip">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-macos.zip">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
+</ul>
+<p>
+	Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
+</p>
+<pre>
 cd <em>/path/to/tools</em>
 ./bonjour-tests.sh "<em>Printer Name</em>"  (v1.0 tools)
 ./dnssd-tests.sh "<em>Printer Name</em>"    (v1.1 tools)
 ./ipp-tests.sh "<em>Printer Name</em>"
 ./document-tests.sh "<em>Printer Name</em>"
 </pre>
-
-    <p>Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:</p>
-
-    <pre>
+<p>
+	Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:
+</p>
+<pre>
 ./ippevesubmit "<em>Printer Name</em>"
 </pre>
-
-    <p>Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.</p>
+<p>
+	Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.
+</p>
 <!--  </div>
   <div class="tab-pane fade" id="rhel" role="tabpanel" aria-labelledby="rhel-tab">-->
-    <h2>Running the Self-Certification Tools on Red Hat Enterprise Linux 7 and Higher</h2>
-
-    <p>First download and extract the current self-certification tools for RHEL:</p>
-    <ul>
-      <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-rhel.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-rhel.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
-    </ul>
-
-    <p>Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:</p>
-
-    <pre>
+<h2>
+	Running the Self-Certification Tools on Red Hat Enterprise Linux 7 and Higher
+</h2>
+<p>
+	First download and extract the current self-certification tools for RHEL:
+</p>
+<ul>
+	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-rhel.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-rhel.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
+</ul>
+<p>
+	Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
+</p>
+<pre>
 cd <em>/path/to/tools</em>
 ./bonjour-tests.sh "<em>Printer Name</em>"  (v1.0 tools)
 ./dnssd-tests.sh "<em>Printer Name</em>"    (v1.1 tools)
 ./ipp-tests.sh "<em>Printer Name</em>"
 ./document-tests.sh "<em>Printer Name</em>"
 </pre>
-
-    <p>Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:</p>
-
-    <pre>
+<p>
+	Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:
+</p>
+<pre>
 ./ippevesubmit "<em>Printer Name</em>"
 </pre>
-
-    <p>Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.</p>
+<p>
+	Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.
+</p>
 <!--  </div>
   <div class="tab-pane fade" id="ubuntu" role="tabpanel" aria-labelledby="ubuntu-tab">-->
-    <h2>Running the Self-Certification Tools on Ubuntu 18.04 and Higher</h2>
-
-    <p>First download and extract the current self-certification tools for Ubuntu:</p>
-    <ul>
-      <li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-ubuntu.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
-      <li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-ubuntu.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
-    </ul>
-
-    <p>Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:</p>
-
-    <pre>
+<h2>
+	Running the Self-Certification Tools on Ubuntu 18.04 and Higher
+</h2>
+<p>
+	First download and extract the current self-certification tools for Ubuntu:
+</p>
+<ul>
+	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-ubuntu.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
+	<li><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/sw-ippeveselfcert11-20200617-ubuntu.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 1</a></li>
+</ul>
+<p>
+	Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
+</p>
+<pre>
 cd <em>/path/to/tools</em>
 ./bonjour-tests.sh "<em>Printer Name</em>"  (v1.0 tools)
 ./dnssd-tests.sh "<em>Printer Name</em>"    (v1.1 tools)
 ./ipp-tests.sh "<em>Printer Name</em>"
 ./document-tests.sh "<em>Printer Name</em>"
 </pre>
-
-    <p>Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:</p>
-
-    <pre>
+<p>
+	Assuming all of the tests passed, you can then run the following command to generate a JSON file containing your submission:
+</p>
+<pre>
 ./ippevesubmit "<em>Printer Name</em>"
 </pre>
-
-    <p>Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.</p>
+<p>
+	Proceed to the <a href="#submitting" onclick="$('#submitting-tab').tab('show');">Submitting Results</a> instructions to submit the JSON file.
+</p>
 <!--  </div>
   <div class="tab-pane fade" id="submitting" role="tabpanel" aria-labelledby="submitting-tab">-->
-  <a id="submitting"></a>
-    <h2>Submitting Your Self-Certification Results</h2>
+  
+<!-- Remove the below anchor whenever the div / tabs get fixed -->
+<a id="submitting"></a> 
+<!-- Remove the above anchor whenever the div / tabs get fixed -->
 
-<p>If you haven't done so already,
-<a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">subscribe</a> to
-the <em>ippeveselfcert@pwg.org</em> mailing list. Then
-<a href="mailto:ippeveselfcert@pwg.org?subject=IPP%20Everywhere%20Printer%20Self-Certification%20Results">send an email</a>
-to the mailing list with the subject "IPP Everywhere Printer Self-Certification
-Results" and attach the "<em>Printer Name</em>.json" file created by the
-<code>ippevesubmit</code> tool to the message.</p>
-
-    <p>Alternately you may <a href="https://github.com/istopwg/ippeveselfcert/issues/new" target="_blank">file an issue</a> on Github and attach the "<em>Printer Name</em>.json" file to the newly created issue.</p>
+<h2>
+	Submitting Your Self-Certification Results
+</h2>
+<p>
+	If you haven't done so already, <a href="https://www.pwg.org/mailman/listinfo/ippeveselfcert">subscribe</a> to the <em>ippeveselfcert@pwg.org</em> mailing list. Then <a href="mailto:ippeveselfcert@pwg.org?subject=IPP%20Everywhere%20Printer%20Self-Certification%20Results">send an email</a> to the mailing list with the subject "IPP Everywhere Printer Self-Certification Results" and attach the "<em>Printer Name</em>.json" file created by the <code>ippevesubmit</code> tool to the message.
+</p>
+<p>
+	Alternately you may <a href="https://github.com/istopwg/ippeveselfcert/issues/new" target="_blank">file an issue</a> on Github and attach the "<em>Printer Name</em>.json" file to the newly created issue.
+</p>
 <!--  </div>
 </div>-->
-
-
 </body>
 </html>
