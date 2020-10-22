@@ -58,6 +58,11 @@
       <option value="0">No IPPS</option>
       <option value="1">IPPS Only</option>
     </select>
+    <select name="version" onChange="update();">
+      <option value="">Any Version</option>
+      <option value="1.0">1.0 Only</option>
+      <option value="1.1">1.1 Only</option>
+    </select>
     </form>
 
     <div class="table-responsive-sm">
@@ -104,6 +109,7 @@ function update()
     var duplex = form.elements[3].value;
     var finishers = form.elements[4].value;
     var ipps = form.elements[5].value;
+    var version = form.elements[6].value;
 
     console.log("Query string: " + q);
     console.log("Color: " + color);
@@ -124,6 +130,8 @@ function update()
       if (finishers != "" && finishers != printer['finishings'])
         continue;
       if (ipps != "" && ipps != printer['ipps'])
+        continue;
+      if (version != "" && version != printer['version'])
         continue;
 
       r[j++] = '<tr><td><a href="';
