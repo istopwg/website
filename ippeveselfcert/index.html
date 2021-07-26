@@ -47,7 +47,6 @@
 <blockquote>
 	Note: Tests are intended to be run on an isolated network, or at least when no other users are printing using the target printer. Otherwise the test scripts will fail randomly.
 </blockquote>
-<blockquote>Note: The IPP Everywhere v1.0 printer self-certification tools can still be used for certifications until June 30, 2021. All certifications after that date must use the IPP Everywhere v1.1 printer self-certification tools.</blockquote>
 <h2>
 	Support
 </h2>
@@ -84,7 +83,6 @@
 </p>
 <ul>
 	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert11-20210517-windows.msi">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 3</a></li>
-	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-windows.msi">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
 	<li><a href="https://support.apple.com/kb/DL999">Bonjour for Windows (Required)</a></li>
 </ul>
 <p>
@@ -92,8 +90,7 @@
 </p>
 <pre>
 cd "C:\Program Files\IPP Everywhere Printer Self-Certification Tools"
-.\dnssd-tests.bat "<em>Printer Name</em>"    (v1.1 tools)
-.\bonjour-tests.bat "<em>Printer Name</em>"  (v1.0 tools)
+.\dnssd-tests.bat "<em>Printer Name</em>"
 .\ipp-tests.bat "<em>Printer Name</em>"
 .\document-tests.bat "<em>Printer Name</em>"
 </pre>
@@ -116,15 +113,13 @@ cd "C:\Program Files\IPP Everywhere Printer Self-Certification Tools"
 </p>
 <ul>
 	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert11-20210517-macos.zip">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 3</a></li>
-	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-macos.zip">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
 </ul>
 <p>
 	Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
 </p>
 <pre>
 cd <em>/path/to/tools</em>
-./dnssd-tests.sh "<em>Printer Name</em>"    (v1.1 tools)
-./bonjour-tests.sh "<em>Printer Name</em>"  (v1.0 tools)
+./dnssd-tests.sh "<em>Printer Name</em>"
 ./ipp-tests.sh "<em>Printer Name</em>"
 ./document-tests.sh "<em>Printer Name</em>"
 </pre>
@@ -147,15 +142,13 @@ cd <em>/path/to/tools</em>
 </p>
 <ul>
 	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert11-20210517-rhel.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 3</a></li>
-	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-rhel.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
 </ul>
 <p>
 	Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
 </p>
 <pre>
 cd <em>/path/to/tools</em>
-./dnssd-tests.sh "<em>Printer Name</em>"    (v1.1 tools)
-./bonjour-tests.sh "<em>Printer Name</em>"  (v1.0 tools)
+./dnssd-tests.sh "<em>Printer Name</em>"
 ./ipp-tests.sh "<em>Printer Name</em>"
 ./document-tests.sh "<em>Printer Name</em>"
 </pre>
@@ -178,15 +171,13 @@ cd <em>/path/to/tools</em>
 </p>
 <ul>
 	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert11-20210517-ubuntu.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.1 Update 3</a></li>
-	<li><a href="https://ftp.pwg.org/pub/pwg/tools/sw-ippeveselfcert10-20200617-ubuntu.tar.gz">IPP Everywhere&trade; Printer Self-Certification Tools v1.0 Update 5</a></li>
 </ul>
 <p>
 	Extract the PWG Raster files to the tools directory, then open a Terminal window and run the following commands with "Printer Name" replaced by the DNS-SD service name of your printer:
 </p>
 <pre>
 cd <em>/path/to/tools</em>
-./dnssd-tests.sh "<em>Printer Name</em>"    (v1.1 tools)
-./bonjour-tests.sh "<em>Printer Name</em>"  (v1.0 tools)
+./dnssd-tests.sh "<em>Printer Name</em>"
 ./ipp-tests.sh "<em>Printer Name</em>"
 ./document-tests.sh "<em>Printer Name</em>"
 </pre>
