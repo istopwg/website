@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title> PWG April 2019 Face-to-Face Meeting - Summary </title>
+    <!--subtitle April 26, 2019 -->
+    <meta name="author" content="PWG">
+  </head>
+  <body>
+    <p> The PWG held its <a href="https://www.pwg.org/chair/meeting-info/april-2019-lexington.html" target="_blank">April 2019 Face-to-Face Meeting</a>
+      on April 16-18, 2019 at Lexmark's headquarters in Lexington, Kentucky. This event was held in collaboration with Linux Foundation OpenPrinting Workgroup</a>. Sessions were presented by both organizations over the event's 3 days. Representatives from Apple, Artifex, Canon, Google, High North, HP Inc., Lexmark, Kyocera, Mopria, Qualcomm, Red Hat, Ricoh, TIC, TCS and Xerox attended 
+the meetings. Attendees
+      reviewed work in progress including drafts of a number of
+      in-progress specifications and papers, discussed proposals for new
+ work, and discussed liaisons with partner
+      groups. Here is a summary of the proceedings. </p>
+    <h2> PWG Plenary </h2>
+    <p> In the PWG Plenary, we reviewed the overall state of the PWG,
+      its programs and initiatives, and briefly discussed upcoming
+      face-to-face meeting scheduling. We noted that <a href="https://www.pwg.org/printers" target="_blank"> there are
+        now 365 printers certified </a> by the PWG's IPP Everywhere™
+      Self Certification program, with more certifications believed to
+      be in progress. Leaders of the two active PWG workgroups (<a href="https://www.pwg.org/ids/" target="_blank">IDS Work Group</a>
+      and <a href="https://www.pwg.org/ipp/" target="_blank">IPP
+        Work Group</a>) summarized their current status. Finally, we
+      reviewed the status of our partners' work in Trusted Computing
+      Group (TCG), IETF, Mopria Alliance, Linux Foundation OpenPrinting
+      Workgroup, and a quick summary of our 3D liaisons.<br>
+    </p>
+    <p> Complete minutes are available here: <a href="https://ftp.pwg.org/pub/pwg/general/minutes/pwg-plenary-minutes-20190416.htm">https://ftp.pwg.org/pub/pwg/general/minutes/pwg-plenary-minutes-20190416.htm</a>
+    </p>
+    <h2> </h2>
+<h2>Linux Foundation OpenPrinting Workgroup</h2>
+<p>In the Linux Foundation OpenPrinting Workgroup sessions on the first 
+day, Ira McDonald reviewed the Linux OpenPrinting project's 
+accomplishments from 2018 and surveyed the efforts under way for 2019. 
+Work included completing the work to move the filters to QPDF or MuPDF 
+from Poppler, and a focus on reliability and bug fixes. Preparations 
+continue for the shift from CUPS 2.2.x to 2.3, and full support for the 
+soon-to-be-ratified IPP System Service. Ira also announced the adoption 
+of a new logo and website for Linux OpenPrinting. <br>
+</p>
+<p>Mike Sweet presented the CUPS Plenary, reviewing the status of CUPS 
+2.2.x and the development status of CUPS 2.3, including a more detailed 
+discussion of the CUPS 2.3 changes and enhancements. He also spent some 
+time reviewing the significant deprecated feature sets from legacy CUPS 
+releases to help developers understand why they are deprecated and the 
+importance of moving to the new APIs. He finished with a discussion of 
+CUPS Future features. <br>
+</p>
+<p>After lunch, Aveek Basu presented a review of the Linux OpenPrinting 
+Workgroup's projects that are active in 2019. He discussed the upcoming 
+"Google Summer of Code 2019" projects that will implement a generic 
+framework for converting legacy drivers into CUPS Printer Applications, 
+and test suites for IPP System Service, IPP Job Extensions 1.1, IPP 
+Document Object 1.1, and IPP 3D Printing Extensions 1.1. He also covered
+ the Linux OpenPrinting Workgroup's engagement in "Google Season of 
+Docs", "Google Code In", and "Linux Plumbers Conference".</p>
+<p>Sean Kau presented "Printing in Chrome OS", covering system details 
+that differ from other operating system environments and how that 
+affects printing support. He discussed some of the security features of 
+Chrome OS and the work done to build releases for the various hardware 
+platforms that run Chrome OS. Many of the software components developed 
+by the Linux Foundation OpenPrinting Workgroup, as well as an unmodified
+ CUPS release, are deployed as the core components of the Chrome OS 
+print system. IPP Everywhere is supported out-of-box and helps to enable
+ universal printing.</p>
+<p>After a break, Till Kamppeter presented a detailed survey of 
+completed, in-process and future work in the "cups-filters" and 
+"ippusbxd" projects. Many bug fixes were made in 2018, and work 
+continues on both of these projects.  To close out the day, Michael 
+Vrhel took us through a review of the status of Ghostscript, MuPDF and 
+associated projects such as MuJS and MuPDF WebAssembly. Color space 
+handling for unconventional color spaces was discussed, as well as code 
+security and analysis.</p>
+<p>Minutes were not taken, but all slides presented are available on the <a href="https://www.pwg.org/chair/meeting-info/april-2019-lexington.html">April 2019 F2F Event Page</a>.<br>
+</p>
+<h2>Internet Printing Protocol (IPP) Workgroup </h2>
+
+    <p>The second day of the F2F event was dominated by IPP Workgroup 
+sessions covering the majority of the Workgroup's wide range of 
+engagement topics. Ira McDonald and Mike Sweet kicked it off by 
+summarizing the
+      status of current IPP Workgroup activities. We then moved to 3D 
+Printing, considering the value and work required for the PWG to develop
+ a an IPP 3D GUI client prototype. Paul Tykodi guided us through a 
+discussion of work ISO JTC1 WG12, SME, AMSE, and related standards work 
+outside the PWG to which Paul has been liaising and evangelizing PWG  
+IPP 3D related semantics and technologies. There is growing interest in 
+the work we did earlier with IPP 3D Printing Extensions. Characterizing 
+materials and new 3D printing technologies may be needed in the future, 
+but the consensus is that we are prepared for that work with the 
+foundation we have laid with IPP 3D Printing Extensions v1.1, PWG Safe 
+G-Code, and IPP Everywhere.</p>
+<p>After a break, Mike and Ira covered the status of IPP System Service.
+ Mike is close to completing prototyping work using ippserver, and 
+showed a demo. Sean noted that the non-standard IPP attributes specific 
+to the ippserver's implementation are non-standard, by renaming them to 
+use the "smi2699-" prefix. We talked about the "Printer template" 
+resource that could be used in a Create-Printer operation, which could 
+make it very easy to create a new printer. We think Q2 is still a good 
+target for getting to a stable draft, with specification finalization 
+targeting late Q3 / early Q4 2019.</p>
+<p>During lunch, Rick Yardumian presented a slide deck contributed by 
+Canon. The slide set described a collection of various features Canon 
+would like supported in IPP if they are not supported already. The group
+ discussed each feature, some of which seemed to be supportable with IPP
+ today, while others might need some additional specification work.</p>
+<p>After lunch, we discussed the state of IPP Everywhere v1.1, and Mike 
+demonstrated a new tool to convert the self certification report to a 
+JSON format, that is intended to be used with the revised submission 
+process. We discussed the requirements for print servers compared to 
+physical printers, and also discussed relaxing the DNS-SD requirements 
+for enterprise-class MFDs.</p>
+<p>After a break, we reviewed the latest draft of IPP Enterprise 
+Printing Extensions v1.0. We considered the semantics of feature 
+terminology introduced by that draft and how it overlapped with JPS2 
+(PWG 5100.11). Job state phases and states were discussed, which are 
+very important to the semantics of the new Proof Job and Stored Job 
+feature concepts. We cut the review of this short to move on  to IPP Job
+ Extensions v2.0. <br>
+</p>
+<p>In the Job Extensions v2.0 review, we engaged on the fate of the 
+much-discussed "document-format-details". A vigorous and productive 
+discussion reviewing the merits and demerits of that attribute and its 
+members, as well as the value that some of its members provided, 
+produced a consensus for deprecating the attribute and some of its 
+members while obsoleting other members. This led into the Job Accounting
+ BoF, where we had a more open-ended discussion of use cases and 
+requirements for job accounting generally. This will help to inform the 
+IPP Workgroup in creating a sound functional replacement for 
+"document-format-details" and other attributes used for Job Accounting. 
+We plan to have another Job Accounting BoF at the August F2F.</p>
+<p>On the third day, Mike led a review of the latest draft of IPP Encrypted Jobs and Documents. 
+We considered use cases for the ownership of encryption keys, which 
+might come from the Printer, but might also come from the User / Client.
+ The group consensus was that this document should become a Standards 
+Track specification, not a registration, because of its scope and 
+uniqueness. Notifications for future drafts will be posted to both the 
+IPP Workgroup and the IDS Workgroup, to encourage the IDS members to 
+provide feedback from their own security-focused perspectives. We 
+concluded our IPP sessions with next steps for the IPP Workgroup.<br>
+</p>
+<p> Complete minutes are available here: <a href="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20190417.pdf">https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20190417.pdf</a><br>
+    </p>
+    <h2> Imaging Device Security (IDS) Workgroup </h2>
+    <p> On the third day, Alan Sukert led the IDS
+      Workgroup session with a review of state of the final draft of the
+ Hardcopy Device (HCD) Protection Profile (PP) v1.1 proposed
+      at the Hardcopy Device Technical Community (HCD-TC) face-to-face 
+meeting held in Rome two weeks earlier. The NIAP TLS Package v1.1 was 
+discussed for its candidacy as a possible addition to the HCD PP. Also, 
+the latest HCD iTC Terms of Reference (ToR) and Essential Security 
+Requirements (ESR) drafts were reviewed, which are the documents 
+required by the process to
+      create an HCD international Technical Committee (iTC). We 
+then discussed thoughts on issues the HCD TC needed to address to 
+transition from an HCD TC to an HCD iTC, and some thoughts on what 
+requirements should be included in the eventual HCD collaborative PP 
+(cPP). Finally, Ira provided an overview of the PWG Hardcopy Device Security Guidelines he is developing.
+    </p>
+    <p>Complete minutes are available here: <a href="https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20190418.pdf">https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20190418.pdf</a><br>
+    </p>
+    <p> </p>
+    <h2> Next PWG Face-to-Face Meeting </h2>
+    <p> The next PWG Face-to-Face meeting will be a virtual event
+      tentatively planned for August 28-29. Please check the <a href="http://www.pwg.org/chair/meeting-info/meetings.html" target="_blank"> PWG Meetings page</a> for updates on plans
+      for upcoming meetings. </p>
+  
+
+</body></html>

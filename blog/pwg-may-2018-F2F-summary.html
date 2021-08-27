@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>PWG May 2018 Face-to-Face Meeting - Summary</title>
+    <!--subtitle May 22, 2018 -->
+    <meta name="author" content="PWG">
+  </head>
+  <body>
+    <p>The PWG held its May 2018 Face-to-Face meeting May 15-17, 2018 at
+      the Wild Palms Hotel in Sunnyvale, California. This event was held
+      in collaboration with <a
+href="http://www.linuxfoundation.org/collaborate/workgroups/openprinting">Linux
+
+
+
+        Foundation OpenPrinting Workgroup</a>.&nbsp; Sessions were
+      presented by both organizations over the event's 3 days.
+      Representatives from Apple, Artifex, Canon, Canonical, Google,
+      High North, HP Inc., IBM, Lexmark, Microsoft, Oki, Red Hat, Ricoh,
+      TIC, TCS and Xerox attended the meetings. Attendees present in
+      person and on the phone discussed liaisons with one another and
+      other groups, and reviewed work in progress, including drafts of a
+      number of in-progress specifications. Here is a summary of the
+      proceedings.</p>
+    <p>The <a
+        href="https://www.pwg.org/chair/meeting-info/may-2018-sunnyvale.html"
+        target="_blank">May 2018 PWG F2F meeting page</a> lists the
+      meeting agenda and provides links to the documents presented.<br>
+    </p>
+    <h2>PWG Plenary<br>
+    </h2>
+    <p>In the PWG Plenary, we reviewed the overall state of the PWG and
+      the status of its programs. We briefly discussed upcoming
+      face-to-face meeting planning, noting that attendance has been a
+      concern in the past for the events later in the year. We
+      considered both virtual and in-person meetings, and noted the need
+      for a survey to poll members and attendees for the viability and
+      timing of another in-person face-to-face meeting. We noted that <a
+        href="https://www.pwg.org/printers" target="_blank">there are
+        now 272 printers certified</a> under the PWG's IPP Everywhere™
+      Self Certification program (it was 206 at the start of the day!),
+      with more purported to be on the way.<br>
+    </p>
+    <p>We also reviewed the status of the <a
+        href="https://www.pwg.org/ids/">IDS Workgroup</a> and the <a
+        href="https://www.pwg.org/ipp/">IPP Workgroup</a>, noting that
+      the Imaging Device Security (IDS) working group members have
+      recently attended HCD TC meetings and that Paul Tykodi had
+      recently attended the RAPID + TCT Conference as a representative
+      of the PWG. It was observed that the PWG has recently sent a
+      request to advance RFC 8010 and RFC 8011 to full Internet Standard
+      status, which seems to be moving forward. Finally, we discussed
+      our liaison relationships with Trusted Computing Group (TCG),
+      IETF, Mopria, AMSC, ISO/IEC JTC1 3D Printing and Scanning Study
+      Group, possible collaboration with ISO TC 171 SC2, and possible
+      collaboration with IEEE P3030.</p>
+    <p> </p>
+    <p>Complete minutes are available here: <a
+href="https://ftp.pwg.org/pub/pwg/general/minutes/pwg-plenary-minutes-20180515.htm">https://ftp.pwg.org/pub/pwg/general/minutes/pwg-plenary-minutes-20180515.htm</a><br>
+    </p>
+    <h2>Linux OpenPrinting</h2>
+    <p>In the Linux OpenPrinting sessions on the first day, Ira McDonald
+      led a review the status of the Linux OpenPrinting project and its
+      efforts, and reviewed the current major issues affecting printing
+      on Linux and other open source operating systems.&nbsp; Michael
+      Vrhel discussed the latest updates to Ghostscript and MuPDF and
+      reviewed why one might choose one over the other. Mike Sweet of
+      Apple reviewed the state of CUPS and outlined some of the upcoming
+      enhancements to that system, including a significant license
+      change, driver deprecation, and Print Applications coming in CUPS
+      2.3. Till Kamppeter of Canonical discussed the latest enhancement
+      to the "cups-filters" and "cups-browsed" projects, which support
+      technologies that have been removed from the core CUPS
+      distributions. Lastly, Aveek Basu of Lexmark discussed the Google
+      Summer of Code (GSoC) projects that Linux OpenPrinting has active
+      for 2018, and noted the contributions made by PWG members to
+      guiding the students' work.<br>
+    </p>
+    <h2>Internet Printing Protocol (IPP) Workgroup </h2>
+    <p>In the IPP WG sessions on the first day, we discussed 3D printing
+      related topics, continuing the liaison status updates from Paul
+      Tykodi, that led into a discussion of higher level file formats
+      such as 3D PDF, and also ISO Step-NC. We then reviewed the latest
+      drafts of IPP 3D Printing Extensions v1.1 and PWG Safe G-Code,
+      with contributions and comments from Kris Iverson of Microsoft.
+      The consensus was that the PWG is making good progress, and all
+      are hoping these documents and the prototyping work contributed by
+      Mike Sweet can help to further simplify and empower the client /
+      printer interactions between clients and desktop 3D printers.<br>
+    </p>
+    <p>On the second day, Ira led a status review, and then Mike Sweet
+      performed a sample code demonstration, showing off the support of
+      Shared Infrastructure Extensions support in "ippproxy" and other
+      tools. Next, Mike Sweet and Ira McDonald led a review of the
+      latest draft of IPP System Service. We reviewed the entire latest
+      draft, and the group believes it is making good progress toward a
+      stable draft, though a number of relatively minor changes were
+      identified. Following lunch, we reviewed the latest draft of IPP
+      Encrypted Jobs and Documents, in which we discussed the recently
+      published "eFail" vulnerabilities to S/MIME and PGP. We briefly
+      discussed the nature of those vulnerabilities and some
+      alternatives, then decided that none of us were qualified to
+      propose any alternatives. Smith volunteered to contribute some use
+      case topology diagrams to keep the effort scope on track, and the
+      group agreed to set this effort aside to wait for mitigations from
+      the S/MIME and PGP communities. Smith Kennedy then led a review of
+      the latest draft of the Job Reprint Password IPP Registration
+      document, where the group noted a number of editorial and other
+      issues. Finally, Mike Sweet led a review of the changes in the
+      latest draft of IPP Everywhere v1.1 and IPP Everywhere Self
+      Certification v1.1, when we also discussed some updates to the IPP
+      Everywhere Self Certification portal page.<br>
+    </p>
+    <p>On the afternoon of the third day, Mike Sweet led a review of the
+      latest draft of the "How to Use the Internet Printing Protocol"
+      mini-book, aimed at introducing newcomers to IPP concepts and
+      usage. Next, Smith Kennedy led a review of the latest draft of IPP
+      Authentication Methods, which contained some clarifications in the
+      OAuth2 section including a second "hybrid OAuth2 / HTTP Digest"
+      system (discussed and abandoned), as well as new content replacing
+      a number of lingering placeholders in the earlier drafts
+      concerning certificate management and life cycles. Finally, next
+      steps were considered.<br>
+    </p>
+    <p>Complete minutes are available here: <a
+href="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20180515.pdf"
+        target="_blank">https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20180515.pdf</a>
+      <br>
+    </p>
+    <h2>Imaging Device Security (IDS) Workgroup</h2>
+    <p>The IDS Workgroup had a session on the morning of the third day,
+      where notable developments in the HCD TC meetings and face-to-face
+      event in Trondheim, Norway, were reviewed. A number of new
+      requirements and changes were discussed in detail. There was
+      general agreement with the recommendations as to what changes
+      should go into the planned Version 1.1 “minor” update to the HCD
+      Protection Profile (PP) that is planned for November 2018, and
+      what changes should go into the next major update to the HCD PP.
+      Those present at the meeting supported the consensus of the HCD TC
+      that the TC’s next step should be to get the Common Criteria
+      Development Board to approve the formation of a HCD international
+      TC (iTC) from the HCD TC so that the next major update to the HCD
+      PP would be an HCD collaborative PP (cPP).</p>
+    Complete minutes are available here: <a
+href="https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20180517.pdf">https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20180517.pdf</a><br>
+    <p> </p>
+    <h2>Next PWG Face-to-Face Meeting</h2>
+    <p>The PWG is still considering the exact time and location for its
+      next face-to-face event. A poll will be constructed to solicit
+      input from the membership. A link to that survey will be added to
+      the <a href="http://www.pwg.org/chair/meeting-info/meetings.html">PWG
+
+
+
+        Meetings page</a>, where information on upcoming meetings is
+      listed.<br>
+    </p>
+  </body>
+</html>

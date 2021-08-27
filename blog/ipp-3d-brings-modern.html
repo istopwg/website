@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IPP 3D Brings Modern Networking and Processing to 3D Printing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-theme-3.2.0.min.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <!--<h1>IPP 3D Brings Modern Networking and Processing to 3D Printing</h1>-->
+          <p>The Internet Printing Protocol (IPP) has been used to support network printing for traditional 2D printers for over 20 years. <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ipp3d11-20190329-5100.21.pdf">PWG Candidate Standard 5100.21</a> brings IPP to 3D printers, extending the IPP data model to include detailed material specification, accuracy control, environmental control, and 3D printing options. This information is available prior to submitting a job as part of the printer's capabilities, is included in each print submission as a <em>Job Ticket</em>, and is generated as a result of processing in a <em>Job Receipt</em>. IPP 3D also extends the IPP data model to support reporting of printer hardware status, including URLs for remote cameras and key environmental readings. The goal is to make an interoperable 3D printing work flow possible with different technologies and manufacturing processes.</p>
+          <p>For example, to print 12 copies of a statue in bronze with IPP, the client device queries the IPP printer to get the list of supported materials and then generates a print request specifying the material information and number of copies desired, along with a file containing the geometry of the statue itself. As the job is printed, the client device can query the job and printer state, show any remote camera video associated with the printer, and cancel the job if necessary. When the prints are complete, the printer generates an end-of-job report specifying the amount of each material that was used, the number of copies that were produced, the start and end times, and so forth.</p>
+          <p>Because different kinds of 3D printing require different kind of print data, IPP supports multiple file formats when submitting a print request.  The IPP 3D specification requires support for the 3D Manufacturing File Format (3MF) and recommends support for PDF files containing 3D content, but it can work equally well with AMF, the old de-facto standard G-Code and STL formats, or any of the industry-specific 3D formats.</p>
+          <p>IPP also brings with it a well-defined security and privacy model including encryption of data (both in transit and optionally at rest), support for different kinds of authentication, authorization, and access control, support for secure paid printing, and support for different network topologies.</p>
+          <p>IPP printers can be physical devices you talk to directly, a local or cloud-based print server that manages one or more physical printers, and/or a 3D print company's internet submission gateway. In all cases the same protocol is used but the actual method of printing and processing the job is hidden from the client. All the client needs to know is the user intent ("I want to print 12 copies of a statue in bronze") and not the printer processing that is required to satisfy the user's request.</p>
+          <p>Please see the <a href="../3d/index.html">PWG IPP 3D technology page</a> for more information.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

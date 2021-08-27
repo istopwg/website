@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html><head>
+	
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+	
+<meta charset="utf-8">
+
+
+	
+<title>PWG May 2021 Face-to-Face Meeting - Summary</title>
+
+
+    <!--subtitle May 13, 2021 -->
+	
+<meta name="author" content="PWG">
+
+
+</head>
+<body>
+<p>
+	The PWG held its <a href="https://www.pwg.org/chair/meeting-info/may-2021-virtual.html" target="_blank">May 2021 Virtual Face-to-Face Meeting</a>
+ on May 4-7, 2021 via Webex teleconferences. This event was held in 
+collaboration with Linux Foundation OpenPrinting Workgroup. Sessions 
+were presented by both organizations over the event's 4 days. 
+Representatives from Artifex, Canon, Canonical, Google, High North, HP 
+Inc., Konica Minolta, Kyocera Document Solutions, Lakeside Robotics, 
+Lexmark, Microsoft, Qualcomm, Pharos, Red Hat, Ricoh, TIC, and TCS 
+attended the meetings, among others. Attendees reviewed work in 
+progress, including drafts of a number of in-progress specifications, 
+and discussed liaisons with partner groups. Here is a summary of the 
+proceedings. 
+</p>
+
+
+
+<h2>
+	PWG Plenary 
+</h2>
+
+
+<p>
+	The F2F event began with the PWG Plenary session, which had a reduced 
+scope to limit the presentation time. The PWG Chair began with the new 
+PWG Antitrust Policy, which was presented at the start of each session 
+at this F2F, and will be presented at the start of all PWG 
+teleconferences and F2F sessions going forward. The PWG Chair then reviewed the 
+overall state of the PWG, its programs and initiatives, and briefly 
+discussed upcoming face-to-face meeting scheduling. We noted that 
+<a href="https://www.pwg.org/printers/" target="_blank"> there are currently 692 printers certified</a>
+ under the PWG's IPP Everywhere™ Self Certification program. We 
+discussed the PWG Steering Committee's activities and initiatives, 
+including progress on Process 4.0, new policies, and recently approved 
+documents. Officers from the <a href="https://www.pwg.org/ids/" target="_blank">IDS Workgroup</a> and <a href="https://www.pwg.org/ipp/" target="_blank">IPP Workgroup</a>
+ briefly summarized their Workgroup's status, and PWG Liaison Officers 
+also briefly reported on the status of our partners' work in Mopria Alliance, 
+ISO JTC1 WG12, and INCITS. <br>
+</p>
+
+
+Complete minutes are available here: <a href="https://ftp.pwg.org/pub/pwg/general/minutes/pwg-plenary-minutes-20210504.htm" target="_blank">https://ftp.pwg.org/pub/pwg/general/minutes/pwg-plenary-minutes-20210504.htm</a> 
+<h2>
+	Linux Foundation OpenPrinting Workgroup 
+</h2>
+
+
+<p>
+	The Linux Foundation OpenPrinting Workgroup held seven sessions on the 
+first and second days, covering a variety of topics. On the first day in
+ the <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/op-plenary-may-2021-v1.pdf">OpenPrinting Plenary</a>, Ira McDonald reviewed the Linux OpenPrinting 
+project's accomplishments from 2020 and surveyed the efforts under way 
+for 2021.</p>
+
+<p>Following lunch, Aveek Basu (Lexmark / Linux Foundation OpenPrinting) <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/OpenPrintingProjectUpdates_PWG-OPSummit-2021.pdf">presented
+ a summary of the OpenPrinting Workgroup's activities</a> during Google 
+Summer of Code (GSoC) and Google Season of Docs (GSoD) events in 2020, 
+and also the work being done as part of the Linux Foundation Mentorship 
+Program (LFMP). Piyush Goyal presented a summary of his GSoD 2021 work on 
+documentation for PAPPL Applications developers [link] to the group. Aveek 
+concluded with a preview of the work planned for 2021 
+including attending Plumber's 2021 and engagement in the LFMP. Next, 
+Michael Vrhel (Artifex) <a href="presented on the state of Ghostscript and MuPDF">presented on the state of Ghostscript and MuPDF</a>,
+ covering two releases to Ghostscript and three releases of MuPDF. Other
+ changes, security testing methodologies, and the status of a few other 
+minor projects such as MuJS were also covered. Work planned for 2021 
+includes a new PDF interpreter in Ghostscript, Ghostscript device 
+interface cleanup, resolution independent display list for Ghostscript, 
+digital signatures, and ".docx" file format output for Ghostscript.<br>
+</p>
+
+<p>After a break, Sean
+ Kau (Google) <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/Printer%20Working%20Group%20-%20ChromiumOS%20Update%202021.pdf">presented on the state of Chrome OS printing</a>, reviewing 
+the open source components used in the <a href="https://www.chromium.org/chromium-os">Chromium OS</a> / <a href="https://www.google.com/chromebook/">Chrome OS</a> printing 
+system, including CUPS, cups-filters, Avahi, Ghostscript, and 
+sane-airscan. Recent additions include expanded lpadmin errors and 
+greater use of automated testing. New projects originated by the Google 
+Chromium printing team include foomatic_shell, virtual-usb-printer, and 
+ippusb_bridge, which is implemented in Rust. The presentation concluded 
+with some discussion about scanning and the standards available today 
+(eSCL and IPP Scan) and the desire for some additional features 
+including "push scan".<br>
+</p>
+
+
+
+<p>On the second day, Mike Sweet (Lakeside Robotics) <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/cups-plenary-may-2021.pdf">presented the CUPS 
+Plenary</a>, covering the changes that have occurred between <a href="https://www.cups.org">Apple's "main" 
+CUPS distribution</a> and the <a href="https://openprinting.github.io/projects/00-cups/">OpenPrinting CUPS fork</a>, which is seeing more 
+active development. Mike is now coordinating code changes across the two
+ distributions, with OpenPrinting CUPS pushing toward a 2.4.0 release. 
+Apple will likely release a 2.3.5 release sometime in June 2021. CUPS 
+2.4 is expected to include many changes including shared printers 
+reporting all required attributes/keys/values, OAuth 2.0/OpenID 
+authentication, pkg-config support, snapcraft support, "job-sheets-col" 
+and better "media-col" attribute support, TLS and X.509 improvements, 
+and some new deprecations (cups-config and Kerberos authentication). 
+Mike then reviewed the current plans for CUPS 3.0, which will be a 
+profound change in architecture to previous CUPS releases. Much work is 
+needed for this transformation to occur. Mike then <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/printer-applications-may-2021.pdf">presented on the 
+state of CUPS Printer Applications</a>, which are the successor to the 
+legacy CUPS PPD / driver architecture. Mike has been working on the 
+<a href="https://www.msweet.org/pappl/">PAPPL framework</a> for creating Printer Applications, and Till Kamppeter 
+has been using this to create the new PostScript Printer Application. 
+Till then <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/ps-printer-app-2021.pdf">presented a discussion of the details of the PostScript 
+Printer Application</a>, noting that it supports 4000 models based on PPDs from 
+Foomatic and HPLIP. The project is nearly feature complete.</p>
+
+<p>After lunch, Till <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/presentations/cups-filters-cups-snap-ipp-usb-and-more-2021.pdf">presented an overview of the status of cups-filters, 
+CUPS SNAP, IPP USB, and other projects</a>. The <a href="https://openprinting.github.io/projects/01-cups-filters/">cups-filters project</a> is 
+evolving with CUPS in many ways, including encapsulating filter binary 
+functions within discrete library functions, reducing the overhead of 
+spawning independent processes. The libppd and driverless utility 
+projects were discussed. A major effort is underway to release CUPS as a
+ Snap. Driverless scanning is also a major area of engagement by the 
+OpenPrinting Workgroup currently, and the complexities of that effort 
+were covered in detail. Implementation issues with IPP USB were also 
+discussed. Till concluded with a discussion about GUI requirements.<br>
+</p>
+
+
+
+
+<p>
+	Complete minutes are available here: <a href="https://ftp.pwg.org/pub/pwg/liaison/openprinting/minutes/OP-Summit-Minutes-20210504.htm">https://ftp.pwg.org/pub/pwg/liaison/openprinting/minutes/OP-Summit-Minutes-20210504.htm</a><br>
+</p>
+
+
+<h2>
+	Internet Printing Protocol (IPP) Workgroup 
+</h2>
+
+
+<p>
+	IPP Workgroup sessions started on the second day of the F2F event with a
+ status summary of IPP Workgroup activities currently in progress. IPP 
+Everywhere v1.1 will become mandatory starting July 1, 2021. The IPP 
+Everywhere Self Certification tools currently available are v1.0 update 5
+ and v1.1 update 2, with v1.1 update 3 hopefully available the week 
+after the F2F event.<br>
+</p>
+
+
+<p>
+	The IPP WG continued to discuss the evolution of IPP/2.0 and reviewed 
+the initial draft of Internet Printing Protocol/2.x Fourth Edition 
+(BASE). The discussion centered around the document's scope and how that
+ relates to versioning and existing standards such as 5100.12 and STD 
+92. We then shifted to discuss scoping IPP Everywhere v2.0. We agreed 
+"photo printing" is an important vertical solution that should be tested
+ as a defined feature. We also discussed whether System Service should 
+be included or not, and at what point we dedicate more energy to this, 
+noting that we should first conclude our work on NODRIVER, EPX, and PPX.<br>
+</p>
+
+
+<p>
+	On the third day, following the IDS session, we reviewed the new draft 
+of IPP Encrypted Jobs and Documents v1.0 (TRUSTNOONE), which has been 
+updated to incorporate S/MIME 4.0 (RFC 8551) and make that the primary 
+required technology. OpenPGP will be left in but its description will be
+ moved to an informative annex, making it an unofficial optional 
+technology for TRUSTNOONE. Mike will announce it for more broad review 
+once the new draft has been created. 
+</p>
+
+
+<p>
+	We then had a Cloud Printing and Scanning BoF to generally discuss open
+ next directions for INFRA and other PWG specifications to support these
+ use cases for both 2D and 3D printing. We agreed that we needed to more
+ clearly define the set of use cases for some of these general domains. 
+Smith pointed out the OAuth 2.0 Device Authorization Grant and we agreed
+ we should incorporate that into the range of options for registering a 
+new IPP Proxy with a Cloud Print solution. We discussed some of the 
+challenges with printing directly to a printer that is advertised via a 
+cloud, and deferred discussion of IPP Scan enhancements until there are 
+more examples of it being implemented in the field. We finished off the 
+day by starting a review of the latest IPP Enterprise Printing 
+Extensions v2.0. A number of changes were suggested.<br>
+</p>
+
+
+<p>
+	On the last day, we began with a 3D Scanning and Production BoF, where 
+we discussed file formats and their applicability to different important
+ 3D scanning use cases, including acquiring point cloud data about an 
+existing object and scanning a produced part for quality control. The 
+E57 format is common for laser / LIDAR scanners but not used much for 
+scanning smaller objects or for scanners that use cameras. The group 
+speculatively agreed 3MF would be a good file format for 3D scanning 
+that should satisfy both use cases.<br>
+</p>
+
+
+<p>
+	After a break, we began a review of the latest draft of IPP Driverless 
+Printing Extensions v2.0 (NODRIVER), which contains a resolution for the
+ "print-quality" enhancements. Smith decided that Mike's proposal to 
+encode this as an extension to "job-presets-supported" had some 
+advantages over his own proposal. The group had a long discussion about 
+the "print-processing-attributes-supported" attribute, which was 
+basically the same as the earlier proposed 
+"print-quality-hints-supported" attribute with a simplified definition 
+and a new name. The discussion was productive and allowed the group to 
+realize the value of some of the content present in earlier drafts that 
+was removed. We then briefly reviewed the new draft of IPP Production 
+Printing Extensions (PPX) which added the "job- phone-number", 
+"job-phone-number-default", "job-phone-number-supported", "job- 
+recipient-name", "job-recipient-name-default", and 
+"job-recipient-name-supported" attributes that were removed from EPX. We
+ concluded with Next Steps.<br>
+</p>
+
+
+Complete minutes are available here: <a href="https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20210505.pdf">https://ftp.pwg.org/pub/pwg/ipp/minutes/ippv2-f2f-minutes-20210505.pdf</a> <br>
+
+
+<h2>
+	Imaging Device Security (IDS) Workgroup 
+</h2>
+
+
+<p>
+	The Imaging Device Security session was held at the start of the third 
+day. Al started by presenting the current status of the HCD iTC and its 
+efforts to develop HCD cPP v1.0 and HCD SD v1.0. Additional comments had
+ been submitted against the 2nd internal drafts of the HCD cPP and HCD 
+SD to implement the recommendations of the Network Subgroup. The HCD iTC
+ has spent the past few weeks completing the Security Problem Definition
+ (SPD) and gathering feedback. A new Essential Security Requirements 
+(ESR) document requirement, “The HCD shall verify the hardware-anchored 
+integrity of firmware/software, including initial boot, operating 
+system, and applications”, was added at the request of the HCD iTC. The 
+HCD iTC formed a Hardware-anchored Integrity Verification subgroup to 
+address this requirement. That subgroup developed a Secure Boot SFR
+ (FPT_SBT_EXT) that addresses this ESR requirement and the subgroup will recommend 
+to the full HCD iTC that it be added to the HCD cPP. The HCD iTC is now 
+evaluating several SFRs including the NTP SFR, updates to the 
+FPT_KYP_EXT Protection of Key and Key Material SFR from JBMIA, and 
+feedback from the ITSCC on the ESR requirement “The HCD shall generate 
+audit data, and be capable of sending it to a trusted external IT entity
+ and store it in the HCD”. Al also discussed the deferred areas that the
+ HCD iTC needs to engage on, and presented a proposal for a revised 
+schedule, which puts completion in March 2022. He concluded the 
+discussion about the HCD iTC with some thoughts on lessons learned over 
+the last 14 months. 
+</p>
+
+
+<p>
+	Al then reviewed the results of a discussion in a previous IDS 
+Workgroup meeting with two members of the Massachusetts Department of 
+Transportation (MASS DOT). One highlight of the discussion was that the 
+MASS DOT members noticed that even when public interfaces are specified 
+and in place for a long time, even if they are not correctly specified, 
+they are very difficult to get changed because printer owners are 
+concerned about unknown consequences to customers if configurations are 
+changed. This is something that was new to many of us at the IDS meeting
+ but is pretty well known to the IPP Workgroup. 
+</p>
+
+
+<p>
+	Ira then covered the latest HCD Security Guidelines status. An updated 
+draft was not published in time to be reviewed at this meeting, but 
+Smith provided updates to the Wi-Fi content in Section 4 and Ira changed
+ much of the guidance in Section 4 as a result. Ira plans to add some 
+material on IPP to Section 4 as well. Ira says he plans to have a 
+full-content update sometime in Q3 2021. The meeting concluded with Ira 
+summarizing current standards development efforts in the Trusted 
+Computing Group (TCG) and the Internet Engineering Task Force (IETF) 
+that pertain to the IDS domain.<br>
+</p>
+
+
+<p>
+	Complete minutes are available here:&nbsp;<a href="https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20210506.pdf">https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20210506.pdf</a>&nbsp; 
+</p>
+
+
+<p>
+</p>
+
+
+<h2>
+	Next PWG Face-to-Face Meeting 
+</h2>
+
+
+<p>
+	The next PWG Face-to-Face meeting will be held August 17-19, 2021 via Webex teleconference. Be sure to <a href="https://www.pwg.org/mailman/listinfo/pwg-announce" target="_blank">subscribe to the pwg-announce@pwg.org mailing list</a> to receive announcements about upcoming events and event changes or check the <a href="http://www.pwg.org/chair/meeting-info/meetings.html" target="_blank"> PWG Meetings page</a> for updates on plans for upcoming meetings. 
+</p>
+
+
+
+
+ 
+summarizing current standards development efforts in the Trusted 
+Computing Group (TCG) and the Internet Engineering Task Force (IETF) 
+that pertain to the IDS domain.<br>
+
+
+
+<p>
+	Complete minutes are available here:&nbsp;<a href="https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20210506.pdf">https://ftp.pwg.org/pub/pwg/ids/minutes/ids-f2f-minutes-20210506.pdf</a>&nbsp; 
+</p>
+
+
+<p>
+</p>
+
+
+<h2>
+	Next PWG Face-to-Face Meeting 
+</h2>
+
+
+<p>
+	The next PWG Face-to-Face meeting will be held August 17-19, 2021 via Webex teleconference. Be sure to <a href="https://www.pwg.org/mailman/listinfo/pwg-announce" target="_blank">subscribe to the pwg-announce@pwg.org mailing list</a> to receive announcements about upcoming events and event changes or check the <a href="http://www.pwg.org/chair/meeting-info/meetings.html" target="_blank"> PWG Meetings page</a> for updates on plans for upcoming meetings. 
+</p>
+
+
+
+
+</body></html>
