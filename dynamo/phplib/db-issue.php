@@ -311,7 +311,7 @@ class issue
     // Attachements and discussion...
     if ($this->id > 0)
     {
-      print("<h2>Discussion</h2>\n");
+      print("<div class=\"form-group\"><h2>Discussion</h2>\n");
 
       if ($LOGIN_ID != 0)
       {
@@ -344,6 +344,8 @@ class issue
 	     ."<p>$contents</p>\n");
       }
     }
+
+    print("</div>\n");
 
     if ($LOGIN_ID > 0)
       html_form_end();
