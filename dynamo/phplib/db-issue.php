@@ -203,7 +203,7 @@ class issue
     if ($LOGIN_ID != 0)
       html_form_start("$PHP_SELF?U$this->id$options");
     else
-      print("<div class=\"container\">\n");
+      print("<div class=\"container\"><form class=\"form-horizontal\">\n");
 
     if ($this->id > 0)
     {
@@ -241,7 +241,15 @@ class issue
 
     // document_id
     html_form_field_start("document_id", "Document", $this->document_id_valid);
-    document_select("document_id", $this->document_id, "-- Choose --");
+    if ($LOGIN_ID > 0)
+    {
+      document_select("document_id", $this->document_id, "-- Choose --");
+    }
+    else
+    {
+      $document = new document($this->document_id);
+      print($document->display_name());
+    }
     html_form_field_end();
 
     // status
@@ -267,7 +275,10 @@ class issue
 
     // title
     html_form_field_start("title", "Summary", $this->title_valid);
-    html_form_text("title", "Short description of issue.", $this->title);
+    if ($LOGIN_ID != 0)
+      html_form_text("title", "Short description of issue.", $this->title);
+    else
+      print(htmlspecialchars($this->title));
     html_form_field_end();
 
     if ($this->id == 0)
@@ -337,7 +348,7 @@ class issue
     if ($LOGIN_ID > 0)
       html_form_end();
     else
-      print("</div>\n");
+      print("</form></div>\n");
   }
 
 
