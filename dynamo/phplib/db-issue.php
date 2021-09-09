@@ -294,7 +294,8 @@ class issue
     html_form_field_end();
 
     // Submit
-    html_form_buttons(array("SUBMIT" => "+$action"));
+    if ($LOGIN_ID > 0)
+      html_form_buttons(array("SUBMIT" => "+$action"));
 
     // Attachements and discussion...
     if ($this->id > 0)

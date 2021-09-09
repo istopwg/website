@@ -17,8 +17,9 @@ include_once "phplib/db-issue.php";
 //
 // B         = Batch update selected Issues
 // L         = List all issues
+// L#        = View issue #
 // U         = Post new issue
-// U#        = Modify/view issue #
+// U#        = Modify issue #
 //
 // Options:
 //
@@ -57,9 +58,6 @@ if ($argc)
     site_footer();
     exit();
   }
-
-  if ($op == 'L' && $id > 0)
-    $op = 'U';
 
   for ($i = 1; $i < $argc; $i ++)
   {
@@ -182,145 +180,172 @@ switch ($op)
       break;
 
   case 'L' : // List issue(s)
-      site_header("Issues");
-
-      if ($LOGIN_ID != 0)
-        print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
-      else
-	print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$html_login_url?PAGE=" .
-	      urlencode("$PHP_SELF?U$options") . "\">Login to Create Issue</a></p>\n");
-
-      html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
-      html_form_search("SEARCH", "Search Issues", $search);
-      html_form_button("SUBMIT", "-Search Issues");
-      print("<br>\n");
-      html_form_select("FPRIORITY", $ISSUE_PRIORITY_LIST, "", $priority);
-      html_form_select("FSTATUS", $ISSUE_STATUS_LIST, "", $status);
-
-      if ($LOGIN_ID != 0)
+      if ($id != 0)
       {
-	print("<select name='FEMAIL'>");
-	print("<option value='0'>Show: All Issues</option>");
-	print("<option value='1'");
-	if ($femail)
-	  print(" selected");
-	print(">Show: My Issues</option>");
-	print("</select>");
-      }
-      else
-        print("Show: All&nbsp;Issues");
+        $issue = new issue($id);
 
-      print("&nbsp;in&nbsp;");
-      document_select("FDOCUMENTID", $document_id, "All Documents");
-
-      html_form_end();
-
-      $matches = issue_search($search, "-status -priority id", $priority, $status, $document_id, $femail);
-      $count   = sizeof($matches);
-
-      if ($count == 0)
-      {
-	print("<p>No issues found.</p>\n");
-
-	if (($priority || $status) && $search != "")
+	if ($issue->id != $id)
 	{
-	  $htmlsearch = htmlspecialchars($search, ENT_QUOTES);
-	  print("<p><a href='$PHP_SELF?L+S0+Q" . urlencode($search)
-	       ."'>Search for \"<i>$htmlsearch</i>\" in all issues...</a></p>\n");
+	  site_header("Issue #$id");
+
+	  print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+
+	  html_show_error("Issue #$id was not found.");
+
+	  site_footer();
+	  exit();
 	}
 
-	site_footer();
-	exit();
+        site_header("Issue #$id: $issue->title");
+
+	print("<p><a class=\"btn btn-default\" href=\"$PHP_SELF?L$options\"><span class=\"glyphicon glyphicon-arrow-left\"></span> Return to List</a></p>\n");
+
+	$issue->form("", $options);
       }
-
-      if ($index >= $count)
-	$index = $count - ($count % $LOGIN_PAGEMAX);
-      if ($index < 0)
-	$index = 0;
-
-      $start = $index + 1;
-      $end   = $index + $LOGIN_PAGEMAX;
-      if ($end > $count)
-	$end = $count;
-
-      $prev = $index - $LOGIN_PAGEMAX;
-      if ($prev < 0)
-	$prev = 0;
-      $next = $index + $LOGIN_PAGEMAX;
-
-      if ($LOGIN_IS_ADMIN)
-	html_form_start("$PHP_SELF?B$options", TRUE);
-
-      html_paginate($index, $count, $LOGIN_PAGEMAX,
-                    "$PHP_SELF?L+P$priority+S$status+E$femail+I",
-                    "+Z$document_id+Q" . urlencode($search));
-
-      $columns  = array("Id", "Priority", "Status", "Summary", "Last Updated");
-      $colcount = sizeof($columns) - 2;
-
-      html_start_table($columns);
-
-      for ($i = $index; $i < $end; $i ++)
+      else
       {
-	$issue  = new issue($matches[$i]);
-	$date   = html_date($issue->modify_date);
-	$title  = htmlspecialchars($issue->title, ENT_QUOTES);
-	$tabbr  = html_abbreviate($issue->title, 80);
-	$prtext = $ISSUE_PRIORITY_SHORT[$issue->priority];
-	$sttext = $ISSUE_STATUS_SHORT[$issue->status];
-	$link   = "<a href='$PHP_SELF?U$issue->id$options' title='Issue #$issue->id: $title'>";
+	site_header("Issues");
 
-	print("<tr><td nowrap>");
-	if ($LOGIN_IS_ADMIN)
-	  html_form_checkbox("ID_$issue->id");
-	print("$link$issue->id</a></td>"
-	     ."<td align=\"center\">$link$prtext</a></td>"
-	     ."<td align=\"center\">$link$sttext</a></td>"
-	     ."<td width=\"66%\">$link$tabbr</a></td>"
-	     ."<td align=\"center\" nowrap>$link$date</a></td>"
-	     ."</tr>\n");
+	if ($LOGIN_ID != 0)
+	  print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$PHP_SELF?U$options\">Create Issue</a></p>\n");
+	else
+	  print("<p align=\"right\"><a class=\"btn btn-primary\" href=\"$html_login_url?PAGE=" .
+		urlencode("$PHP_SELF?U$options") . "\">Login to Create Issue</a></p>\n");
 
-	if ($issue->status <= ISSUE_STATUS_ACTIVE)
+	html_form_start("$PHP_SELF?L", TRUE, FALSE, TRUE);
+	html_form_search("SEARCH", "Search Issues", $search);
+	html_form_button("SUBMIT", "-Search Issues");
+	print("<br>\n");
+	html_form_select("FPRIORITY", $ISSUE_PRIORITY_LIST, "", $priority);
+	html_form_select("FSTATUS", $ISSUE_STATUS_LIST, "", $status);
+
+	if ($LOGIN_ID != 0)
 	{
-	  $textresult = comment_search("issue_$issue->id");
-	  if (($count = sizeof($textresult)) > 0)
-	  {
-	    $comment  = new comment($textresult[$count - 1]);
-	    $name     = user_name($comment->create_id);
-	    $contents = html_text($comment->contents, TRUE);
+	  print("<select name='FEMAIL'>");
+	  print("<option value='0'>Show: All Issues</option>");
+	  print("<option value='1'");
+	  if ($femail)
+	    print(" selected");
+	  print(">Show: My Issues</option>");
+	  print("</select>");
+	}
+	else
+	  print("Show: All&nbsp;Issues");
 
-	    print("<tr><td colspan=\"2\">&nbsp;</td><td colspan=\"$colcount\">$name: <tt>$contents</tt></td></tr>\n");
+	print("&nbsp;in&nbsp;");
+	document_select("FDOCUMENTID", $document_id, "All Documents");
+
+	html_form_end();
+
+	$matches = issue_search($search, "-status -priority id", $priority, $status, $document_id, $femail);
+	$count   = sizeof($matches);
+
+	if ($count == 0)
+	{
+	  print("<p>No issues found.</p>\n");
+
+	  if (($priority || $status) && $search != "")
+	  {
+	    $htmlsearch = htmlspecialchars($search, ENT_QUOTES);
+	    print("<p><a href='$PHP_SELF?L+S0+Q" . urlencode($search)
+		 ."'>Search for \"<i>$htmlsearch</i>\" in all issues...</a></p>\n");
+	  }
+
+	  site_footer();
+	  exit();
+	}
+
+	if ($index >= $count)
+	  $index = $count - ($count % $LOGIN_PAGEMAX);
+	if ($index < 0)
+	  $index = 0;
+
+	$start = $index + 1;
+	$end   = $index + $LOGIN_PAGEMAX;
+	if ($end > $count)
+	  $end = $count;
+
+	$prev = $index - $LOGIN_PAGEMAX;
+	if ($prev < 0)
+	  $prev = 0;
+	$next = $index + $LOGIN_PAGEMAX;
+
+	if ($LOGIN_IS_ADMIN)
+	  html_form_start("$PHP_SELF?B$options", TRUE);
+
+	html_paginate($index, $count, $LOGIN_PAGEMAX,
+		      "$PHP_SELF?L+P$priority+S$status+E$femail+I",
+		      "+Z$document_id+Q" . urlencode($search));
+
+	$columns  = array("Id", "Priority", "Status", "Summary", "Last Updated");
+	$colcount = sizeof($columns) - 2;
+
+	html_start_table($columns);
+
+	for ($i = $index; $i < $end; $i ++)
+	{
+	  $issue  = new issue($matches[$i]);
+	  $date   = html_date($issue->modify_date);
+	  $title  = htmlspecialchars($issue->title, ENT_QUOTES);
+	  $tabbr  = html_abbreviate($issue->title, 80);
+	  $prtext = $ISSUE_PRIORITY_SHORT[$issue->priority];
+	  $sttext = $ISSUE_STATUS_SHORT[$issue->status];
+	  if ($LOGIN_ID != 0)
+	    $link = "<a href='$PHP_SELF?U$issue->id$options' title='Issue #$issue->id: $title'>";
+	  else
+	    $link = "<a href='$PHP_SELF?L$issue->id$options' title='Issue #$issue->id: $title'>";
+
+	  print("<tr><td nowrap>");
+	  if ($LOGIN_IS_ADMIN)
+	    html_form_checkbox("ID_$issue->id");
+	  print("$link$issue->id</a></td>"
+	       ."<td align=\"center\">$link$prtext</a></td>"
+	       ."<td align=\"center\">$link$sttext</a></td>"
+	       ."<td width=\"66%\">$link$tabbr</a></td>"
+	       ."<td align=\"center\" nowrap>$link$date</a></td>"
+	       ."</tr>\n");
+
+	  if ($issue->status <= ISSUE_STATUS_ACTIVE)
+	  {
+	    $textresult = comment_search("issue_$issue->id");
+	    if (($count = sizeof($textresult)) > 0)
+	    {
+	      $comment  = new comment($textresult[$count - 1]);
+	      $name     = user_name($comment->create_id);
+	      $contents = html_text($comment->contents, TRUE);
+
+	      print("<tr><td colspan=\"2\">&nbsp;</td><td colspan=\"$colcount\">$name: <tt>$contents</tt></td></tr>\n");
+	    }
 	  }
 	}
+
+	html_end_table();
+
+	if ($LOGIN_IS_ADMIN)
+	{
+	  print("<p align=\"center\">");
+	  html_form_select("status",
+			   array(ISSUE_STATUS_PENDING => "Status: Pending",
+				 ISSUE_STATUS_ACTIVE => "Status: Active",
+				 ISSUE_STATUS_RESOLVED => "Status: Resolved",
+				 ISSUE_STATUS_UNRESOLVED => "Status: Unresolved"),
+			   "Status: No Change", 0);
+	  html_form_select("priority",
+			   array(ISSUE_PRIORITY_CRITICAL => "Priority: Critical",
+				 ISSUE_PRIORITY_HIGH => "Priority: High",
+				 ISSUE_PRIORITY_MODERATE => "Priority: Moderate",
+				 ISSUE_PRIORITY_LOW => "Priority: Low",
+				 ISSUE_PRIORITY_RFE => "Priority: Enhancement"),
+			   "Priority: No Change", 0);
+	  user_select("assigned_id", 0, USER_SELECT_MEMBER | USER_SELECT_EDITOR, "No Change", "Assigned To: ");
+	  html_form_end(array("SUBMIT" => "--Modify Selected Issues"));
+	  print("</p>");
+	}
+
+	html_paginate($index, $count, $LOGIN_PAGEMAX,
+		      "$PHP_SELF?L+P$priority+S$status+E$femail+I",
+		      "+Q" . urlencode($search));
       }
-
-      html_end_table();
-
-      if ($LOGIN_IS_ADMIN)
-      {
-	print("<p align=\"center\">");
-        html_form_select("status",
-                         array(ISSUE_STATUS_PENDING => "Status: Pending",
-                               ISSUE_STATUS_ACTIVE => "Status: Active",
-                               ISSUE_STATUS_RESOLVED => "Status: Resolved",
-                               ISSUE_STATUS_UNRESOLVED => "Status: Unresolved"),
-                         "Status: No Change", 0);
-        html_form_select("priority",
-                         array(ISSUE_PRIORITY_CRITICAL => "Priority: Critical",
-                               ISSUE_PRIORITY_HIGH => "Priority: High",
-                               ISSUE_PRIORITY_MODERATE => "Priority: Moderate",
-                               ISSUE_PRIORITY_LOW => "Priority: Low",
-                               ISSUE_PRIORITY_RFE => "Priority: Enhancement"),
-                         "Priority: No Change", 0);
-	user_select("assigned_id", 0, USER_SELECT_MEMBER | USER_SELECT_EDITOR, "No Change", "Assigned To: ");
-        html_form_end(array("SUBMIT" => "--Modify Selected Issues"));
-        print("</p>");
-      }
-
-      html_paginate($index, $count, $LOGIN_PAGEMAX,
-                    "$PHP_SELF?L+P$priority+S$status+E$femail+I",
-                    "+Q" . urlencode($search));
-
       site_footer();
       break;
 
