@@ -387,13 +387,13 @@ class document
       $this->contents = trim($_POST["contents"]);
 
     if (array_key_exists("editable_url", $_POST))
-      $this->editable_url = str_replace("ftp://ftp.pwg.org/", "http://ftp.pwg.org/", trim($_POST["editable_url"]));
+      $this->editable_url = str_replace("ftp://ftp.pwg.org/", "https://ftp.pwg.org/", trim($_POST["editable_url"]));
 
     if (array_key_exists("clean_url", $_POST))
-      $this->clean_url = str_replace("ftp://ftp.pwg.org/", "http://ftp.pwg.org/", trim($_POST["clean_url"]));
+      $this->clean_url = str_replace("ftp://ftp.pwg.org/", "https://ftp.pwg.org/", trim($_POST["clean_url"]));
 
     if (array_key_exists("redline_url", $_POST))
-      $this->redline_url = str_replace("ftp://ftp.pwg.org/", "http://ftp.pwg.org/", trim($_POST["redline_url"]));
+      $this->redline_url = str_replace("ftp://ftp.pwg.org/", "https://ftp.pwg.org/", trim($_POST["redline_url"]));
 
     if (array_key_exists("workgroup_id", $_POST))
       $this->workgroup_id = (int)$_POST["workgroup_id"];
@@ -583,7 +583,7 @@ class document
 
     $url = "ftp://$FTP_USER:$FTP_PASSWORD@ftp.pwg.org$path";
     if (copy($tmp_name, $url))
-      return ("http://ftp.pwg.org$path");
+      return ("https://ftp.pwg.org$path");
 
     if ($temp = error_get_last())
       $error = $temp["message"];
@@ -647,7 +647,7 @@ class document
     else
       $this->contents_valid = TRUE;
 
-    if ($this->editable_url != "" && !preg_match("/^http:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->editable_url))
+    if ($this->editable_url != "" && !preg_match("/^https:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->editable_url))
     {
       $this->editable_url_valid = FALSE;
       $valid = FALSE;
@@ -655,7 +655,7 @@ class document
     else
       $this->editable_url_valid = TRUE;
 
-    if ($this->clean_url != "" && !preg_match("/^http:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->clean_url))
+    if ($this->clean_url != "" && !preg_match("/^https:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->clean_url))
     {
       $this->clean_url_valid = FALSE;
       $valid = FALSE;
@@ -663,7 +663,7 @@ class document
     else
       $this->clean_url_valid = TRUE;
 
-    if ($this->redline_url != "" && !preg_match("/^http:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->redline_url))
+    if ($this->redline_url != "" && !preg_match("/^https:\\/\\/ftp\\.pwg\\.org\\/pub\\/pwg\\//", $this->redline_url))
     {
       $this->redline_url_valid = FALSE;
       $valid = FALSE;
