@@ -32,14 +32,76 @@
 	border-bottom-left-radius: 4px;
       }
     </style>
+    <script type="text/javascript">
+function copy_keyword(name) {
+  navigator.clipboard.writeText(document.getElementById(name).innerHTML);
+}
+    </script>
     <div class="row">
       <div class="col-lg-12">
         <p>This page provides simple tools for generating valid keyword values for different attributes.</p>
-        <h2>Media Size Names</h2>
+
+        <h2>Generic Type2 Keywords</h2>
+        <p>Generic type2 keyword values follow the naming guidance from <a href="https://datatracker.ietf.org/doc/html/rfc8011#section-7.3" target="_blank">section 7.3 of RFC 8011</a>. Keyword values consist of numbers, letters, "-", "_", and ".". Vendor extensions should start with an "smiNNN-" prefix, where "NNN" is the SMI Private Enterprise Number (PEN).</p>
         <script type="text/javascript">
-function copy_media_size_keyword() {
-  navigator.clipboard.writeText(document.getElementById("media_size_keyword").innerHTML);
+function make_generic_keyword() {
+  let generic_prefix = document.forms["generic_form"]["generic_prefix"].value;
+  let generic_name = document.forms["generic_form"]["generic_name"].value;
+
+  if (generic_name.match(/^[-.0-9a-z]+$/) == null) {
+    generic_name = "error";
+    document.forms["generic_form"]["generic_name"].style.color = "red";
+  } else {
+    document.forms["generic_form"]["generic_name"].style.color = "inherit";
+  }
+
+  document.getElementById("generic_keyword").innerHTML = generic_prefix + generic_name;
 }
+        </script>
+        <form id="generic_form">
+          <table>
+            <tbody>
+              <tr><td>Prefix:</td><td>Name:</td></tr>
+              <tr><td style="padding-right: 1em;">
+		<select name="generic_prefix" onChange="make_generic_keyword(); return false;">
+		  <option value="">None</option>
+		  <option value="custom-">Custom</option>
+		  <option value="smi63-">Apple</option>
+		  <option value="smi2435-">Brother</option>
+		  <option value="smi1602-">Canon</option>
+		  <option value="smi1248-">EPSON</option>
+		  <option value="smi297-">FUJIFILM</option>
+		  <option value="smi11129-">Google</option>
+		  <option value="smi11-">HP</option>
+		  <option value="smi343-">Intel</option>
+		  <option value="smi18334-">Konica Minolta</option>
+		  <option value="smi1347-">Kyocera Document Solutions Inc.</option>
+		  <option value="smi55357-">Lakeside Robotics</option>
+		  <option value="smi641-">Lexmark</option>
+		  <option value="smi311-">Microsoft</option>
+		  <option value="smi20459-">Oki Electric Industry Co., Ltd</option>
+		  <option value="smi1449-">Qualcomm</option>
+		  <option value="smi367-">Ricoh</option>
+		  <option value="smi774-">Synaptics</option>
+		  <option value="smi186-">Toshiba</option>
+		  <option value="smi253-">Xerox</option>
+		  <option value="smiNNNN-">Other</option>
+		</select>
+	      </td><td>
+		<input style="width: 15em;" type="text" name="generic_name" placeholder="name (letters, numbers, dash)" pattern="^[-.0-9a-z]+$" onChange="make_generic_keyword(); return false;" onKeyUp="make_generic_keyword();">
+	      </td></tr>
+	    </tbody>
+	  </table>
+        </form>
+        <div class="pwg-example">
+	  <div class="pwg-clipboard"><button type="button" class="pwg-clipboard" title="" data-original-title="Copy to clipboard" onClick="copy_keyword('generic_keyword');">Copy</button></div>
+	  <figure class="highlight"><pre id="generic_keyword">PREFIX-NAME</pre></figure>
+        </div>
+
+        <h2>Media Size Names</h2>
+        <p>PWG media size names are defined in section 5 of <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf#page=20" target="_blank">PWG 5101.1-2013: Media Standardized Names 2.0 (MSN2)</a>. The name portion provides a textual description of the media size. It is normally derived from the Legacy or Alias name associated with the media size. The size-name can consist of multiple parts, with each part separated by a hyphen (0x2D).</p>
+        <p>Photo media sizes typically start with a "photo-" prefix. Disc sizes use "width" as the inner diameter and "length" as the outer diameter.</p>
+        <script type="text/javascript">
 function make_media_size_keyword() {
   let media_class = document.forms["media_size_form"]["media_class"].value;
   let media_name = document.forms["media_size_form"]["media_name"].value;
@@ -70,7 +132,7 @@ function make_media_size_keyword() {
             <tbody>
               <tr><td>Class:</td><td>Name:</td><td>Dimensions:</td></tr>
               <tr><td style="padding-right: 1em;">
-		<select name="media_class" onChange="make_media_size_keyword(); return false;"><option value="">Other</option><option value="na">North America</option><option value="iso">ISO</option><option value="jis">JIS</option><option value="jpn">Japan</option><option value="prc">China</option><option value="roc">Taiwan</option></select>
+		<select name="media_class" onChange="make_media_size_keyword(); return false;"><option value="">Other</option><option value="custom">Custom</option><option value="disc">CD/DVD/Bluray Disc</option><option value="roll">Roll</option><option value="asme">ASME</option><option value="na">North America</option><option value="iso">ISO</option><option value="jis">JIS</option><option value="jpn">Japan</option><option value="prc">China</option><option value="roc">Taiwan</option></select>
 	      </td><td style="padding-right: 1em;">
 		<input style="width: 15em;" type="text" name="media_name" placeholder="name (letters, numbers, dash)" pattern="^[-.0-9a-z]+$" onChange="make_media_size_keyword(); return false;" onKeyUp="make_media_size_keyword();">
 	      </td><td>
@@ -82,9 +144,228 @@ function make_media_size_keyword() {
 	  </table>
         </form>
         <div class="pwg-example">
-	  <div class="pwg-clipboard"><button type="button" class="pwg-clipboard" title="" data-original-title="Copy to clipboard" onClick="copy_media_size_keyword();">Copy</button></div>
+	  <div class="pwg-clipboard"><button type="button" class="pwg-clipboard" title="" data-original-title="Copy to clipboard" onClick="copy_keyword('media_size_keyword');">Copy</button></div>
 	  <figure class="highlight"><pre id="media_size_keyword">CLASS-NAME_SIZE-NAME_WIDTHxHEIGHTin/mm</pre></figure>
         </div>
+
+        <h2>Media Type Names</h2>
+        <p>PWG media type names are defined in section 3 of <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf#page=10" target="_blank">PWG 5101.1-2013: Media Standardized Names 2.0 (MSN2)</a>. The name portion provides a textual description of the media size. The form below uses the preferred "smiNNN-" prefix since the old reverse-DNS prefix ("com.example.", "jp.co.example.", etc.) was problematic since multinational corporations have multiple domains.</p>
+        <script type="text/javascript">
+function make_media_type_keyword() {
+  let type_prefix = document.forms["media_type_form"]["type_prefix"].value;
+  let type_name = document.forms["media_type_form"]["type_name"].value;
+  let type_derived_from = document.forms["media_type_form"]["type_derived_from"].value;
+
+  if (type_name.match(/^[-.0-9a-z]+$/) == null) {
+    type_name = "error";
+    document.forms["media_type_form"]["type_name"].style.color = "red";
+  } else {
+    document.forms["media_type_form"]["type_name"].style.color = "inherit";
+  }
+
+  let media_type_keyword = type_derived_from + type_prefix + type_name;
+  document.getElementById("media_type_keyword").innerHTML = media_type_keyword;
+}
+        </script>
+        <form id="media_type_form">
+          <table>
+            <tbody>
+              <tr><td>Prefix:</td><td>Name:</td><td>Derived From:</td></tr>
+              <tr><td style="padding-right: 1em;">
+		<select name="type_prefix" onChange="make_media_type_keyword(); return false;">
+		  <option value="">None</option>
+		  <option value="custom-">Custom</option>
+		  <option value="smi63-">Apple</option>
+		  <option value="smi2435-">Brother</option>
+		  <option value="smi1602-">Canon</option>
+		  <option value="smi1248-">EPSON</option>
+		  <option value="smi297-">FUJIFILM</option>
+		  <option value="smi11129-">Google</option>
+		  <option value="smi11-">HP</option>
+		  <option value="smi343-">Intel</option>
+		  <option value="smi18334-">Konica Minolta</option>
+		  <option value="smi1347-">Kyocera Document Solutions Inc.</option>
+		  <option value="smi55357-">Lakeside Robotics</option>
+		  <option value="smi641-">Lexmark</option>
+		  <option value="smi311-">Microsoft</option>
+		  <option value="smi20459-">Oki Electric Industry Co., Ltd</option>
+		  <option value="smi1449-">Qualcomm</option>
+		  <option value="smi367-">Ricoh</option>
+		  <option value="smi774-">Synaptics</option>
+		  <option value="smi186-">Toshiba</option>
+		  <option value="smi253-">Xerox</option>
+		  <option value="smiNNNN-">Other</option>
+		</select>
+	      </td><td style="padding-right: 1em;">
+		<input style="width: 15em;" type="text" name="type_name" placeholder="name (letters, numbers, dash)" pattern="^[-.0-9a-z]+$" onChange="make_media_type_keyword(); return false;" onKeyUp="make_media_type_keyword();">
+	      </td><td>
+		<select name="type_derived_from" onChange="make_media_type_keyword(); return false;">
+		  <option value="">None</option>
+		  <option value="derived-aluminum_">aluminum</option>
+		  <option value="derived-auto_">auto</option>
+		  <option value="derived-back-print-film_">back-print-film</option>
+		  <option value="derived-cardboard_">cardboard</option>
+		  <optgroup label="cardstock">
+		    <option value="derived-cardstock_">cardstock</option>
+		    <option value="derived-cardstock-coated_">cardstock-coated</option>
+		    <option value="derived-cardstock-heavyweight_">cardstock-heavyweight</option>
+		    <option value="derived-cardstock-heavyweight-coated_">cardstock-heavyweight-coated</option>
+		    <option value="derived-cardstock-lightweight_">cardstock-lightweight</option>
+		    <option value="derived-cardstock-lightweight-coated_">cardstock-lightweight-coated</option>
+		  </optgroup>
+		  <option value="derived-cd_">cd</option>
+		  <optgroup label="continuous">
+		    <option value="derived-continuous_">continuous</option>
+		    <option value="derived-continuous-long_">continuous-long</option>
+		    <option value="derived-continuous-short_">continuous-short</option>
+		  </optgroup>
+		  <option value="derived-corrugated-board_">corrugated-board</option>
+		  <optgroup label="disc">
+		    <option value="derived-disc_">disc</option>
+		    <option value="derived-disc-glossy_">disc-glossy</option>
+		    <option value="derived-disc-high-gloss_">disc-high-gloss</option>
+		    <option value="derived-disc-matte_">disc-matte</option>
+		    <option value="derived-disc-satin_">disc-satin</option>
+		    <option value="derived-disc-semi-gloss_">disc-semi-gloss</option>
+		  </optgroup>
+		  <option value="derived-double-wall_">double-wall</option>
+		  <option value="derived-dry-film_">dry-film</option>
+		  <option value="derived-dvd_">dvd</option>
+		  <option value="derived-embossing-foil_">embossing-foil</option>
+		  <option value="derived-end-board_">end-board</option>
+		  <optgroup label="envelope">
+		    <option value="derived-envelope_">envelope</option>
+		    <option value="derived-envelope-archival_">envelope-archival</option>
+		    <option value="derived-envelope-bond_">envelope-bond</option>
+		    <option value="derived-envelope-coated_">envelope-coated</option>
+		    <option value="derived-envelope-cotton_">envelope-cotton</option>
+		    <option value="derived-envelope-fine_">envelope-fine</option>
+		    <option value="derived-envelope-heavyweight_">envelope-heavyweight</option>
+		    <option value="derived-envelope-inkjet_">envelope-inkjet</option>
+		    <option value="derived-envelope-lightweight_">envelope-lightweight</option>
+		    <option value="derived-envelope-plain_">envelope-plain</option>
+		    <option value="derived-envelope-preprinted_">envelope-preprinted</option>
+		    <option value="derived-envelope-window_">envelope-window</option>
+		  </optgroup>
+		  <optgroup label="fabric">
+		    <option value="derived-fabric_">fabric</option>
+		    <option value="derived-fabric-archival_">fabric-archival</option>
+		    <option value="derived-fabric-glossy_">fabric-glossy</option>
+		    <option value="derived-fabric-high-gloss_">fabric-high-gloss</option>
+		    <option value="derived-fabric-matte_">fabric-matte</option>
+		    <option value="derived-fabric-semi-gloss_">fabric-semi-gloss</option>
+		    <option value="derived-fabric-waterproof_">fabric-waterproof</option>
+		  </optgroup>
+		  <option value="derived-film_">film</option>
+		  <option value="derived-flexo-base_">flexo-base</option>
+		  <option value="derived-flexo-photo-polymer_">flexo-photo-polymer</option>
+		  <option value="derived-flute_">flute</option>
+		  <option value="derived-foil_">foil</option>
+		  <option value="derived-full-cut-tabs_">full-cut-tabs</option>
+		  <optgroup label="glass">
+		    <option value="derived-glass_">glass</option>
+		    <option value="derived-glass-colored_">glass-colored</option>
+		    <option value="derived-glass-opaque_">glass-opaque</option>
+		    <option value="derived-glass-surfaced_">glass-surfaced</option>
+		    <option value="derived-glass-textured_">glass-textured</option>
+		  </optgroup>
+		  <option value="derived-gravure-cylinder_">gravure-cylinder</option>
+		  <option value="derived-image-setter-paper_">image-setter-paper</option>
+		  <option value="derived-imaging-cylinder_">imaging-cylinder</option>
+		  <optgroup label="labels">
+		    <option value="derived-labels_">labels</option>
+		    <option value="derived-labels-colored_">labels-colored</option>
+		    <option value="derived-labels-continuous_">labels-continuous</option>
+		    <option value="derived-labels-glossy_">labels-glossy</option>
+		    <option value="derived-labels-heavyweight_">labels-heavyweight</option>
+		    <option value="derived-labels-high-gloss_">labels-high-gloss</option>
+		    <option value="derived-labels-inkjet_">labels-inkjet</option>
+		    <option value="derived-labels-lightweight_">labels-lightweight</option>
+		    <option value="derived-labels-matte_">labels-matte</option>
+		    <option value="derived-labels-permanent_">labels-permanent</option>
+		    <option value="derived-labels-satin_">labels-satin</option>
+		    <option value="derived-labels-security_">labels-security</option>
+		    <option value="derived-labels-semi-gloss_">labels-semi-gloss</option>
+		  </optgroup>
+		  <option value="derived-laminating-foil_">laminating-foil</option>
+		  <option value="derived-letterhead_">letterhead</option>
+		  <optgroup label="metal">
+		    <option value="derived-metal_">metal</option>
+		    <option value="derived-metal-glossy_">metal-glossy</option>
+		    <option value="derived-metal-high-gloss_">metal-high-gloss</option>
+		    <option value="derived-metal-matte_">metal-matte</option>
+		    <option value="derived-metal-satin_">metal-satin</option>
+		    <option value="derived-metal-semi-gloss_">metal-semi-gloss</option>
+		  </optgroup>
+		  <option value="derived-mounting-tape_">mounting-tape</option>
+		  <option value="derived-multi-layer_">multi-layer</option>
+		  <option value="derived-multi-part-form_">multi-part-form</option>
+		  <option value="derived-other_">other</option>
+		  <option value="derived-paper_">paper</option>
+		  <optgroup label="photographic">
+		    <option value="derived-photographic_">photographic</option>
+		    <option value="derived-photographic-archival_">photographic-archival</option>
+		    <option value="derived-photographic-film_">photographic-film</option>
+		    <option value="derived-photographic-glossy_">photographic-glossy</option>
+		    <option value="derived-photographic-high-gloss_">photographic-high-gloss</option>
+		    <option value="derived-photographic-matte_">photographic-matte</option>
+		    <option value="derived-photographic-satin_">photographic-satin</option>
+		    <option value="derived-photographic-semi-gloss_">photographic-semi-gloss</option>
+		  </optgroup>
+		  <optgroup label="plastic">
+		    <option value="derived-plastic_">plastic</option>
+		    <option value="derived-plastic-archival_">plastic-archival</option>
+		    <option value="derived-plastic-colored_">plastic-colored</option>
+		    <option value="derived-plastic-glossy_">plastic-glossy</option>
+		    <option value="derived-plastic-high-gloss_">plastic-high-gloss</option>
+		    <option value="derived-plastic-matte_">plastic-matte</option>
+		    <option value="derived-plastic-satin_">plastic-satin</option>
+		    <option value="derived-plastic-semi-gloss_">plastic-semi-gloss</option>
+		  </optgroup>
+		  <option value="derived-plate_">plate</option>
+		  <option value="derived-polyester_">polyester</option>
+		  <option value="derived-pre-cut-tabs_">pre-cut-tabs</option>
+		  <option value="derived-roll_">roll</option>
+		  <option value="derived-screen_">screen</option>
+		  <option value="derived-screen-paged_">screen-paged</option>
+		  <option value="derived-self-adhesive_">self-adhesive</option>
+		  <option value="derived-self-adhesive-film_">self-adhesive-film</option>
+		  <option value="derived-shrink-foil_">shrink-foil</option>
+		  <option value="derived-single-face_">single-face</option>
+		  <option value="derived-single-wall_">single-wall</option>
+		  <option value="derived-sleeve_">sleeve</option>
+		  <optgroup label="stationery">
+		    <option value="derived-stationery_">stationery</option>
+		    <option value="derived-stationery-archival_">stationery-archival</option>
+		    <option value="derived-stationery-bond_">stationery-bond</option>
+		    <option value="derived-stationery-coated_">stationery-coated</option>
+		    <option value="derived-stationery-cotton_">stationery-cotton</option>
+		    <option value="derived-stationery-fine_">stationery-fine</option>
+		    <option value="derived-stationery-heavyweight_">stationery-heavyweight</option>
+		    <option value="derived-stationery-heavyweight-coated_">stationery-heavyweight-coated</option>
+		    <option value="derived-stationery-inkjet_">stationery-inkjet</option>
+		    <option value="derived-stationery-letterhead_">stationery-letterhead</option>
+		    <option value="derived-stationery-lightweight_">stationery-lightweight</option>
+		    <option value="derived-stationery-preprinted_">stationery-preprinted</option>
+		    <option value="derived-stationery-prepunched_">stationery-prepunched</option>
+		    <option value="derived-stationery-recycled_">stationery-recycled</option>
+		  </optgroup>
+		  <option value="derived-tab-stock_">tab-stock</option>
+		  <option value="derived-tractor_">tractor</option>
+		  <option value="derived-transfer_">transfer</option>
+		  <option value="derived-transparency_">transparency</option>
+		  <option value="derived-triple-wall_">triple-wall</option>
+		  <option value="derived-wet-film_">wet-film</option>
+		</select>
+	      </td></tr>
+	    </tbody>
+	  </table>
+        </form>
+        <div class="pwg-example">
+	  <div class="pwg-clipboard"><button type="button" class="pwg-clipboard" title="" data-original-title="Copy to clipboard" onClick="copy_keyword('media_type_keyword');">Copy</button></div>
+	  <figure class="highlight"><pre id="media_type_keyword">[DERIVED-FROM_]PREFIX-NAME</pre></figure>
+        </div>
+
       </div>
     </div>
   </div></body>
