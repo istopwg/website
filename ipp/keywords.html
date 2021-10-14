@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IPP Keyword Tools</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
+  </head>
+  <body><div class="container-fluid">
+    <style>
+      .pwg-example {
+        margin: 1em 2em;
+      }
+      div.pwg-clipboard {
+        display: block;
+        position: relative;
+        float: right;
+      }
+      button.pwg-clipboard {
+	position: absolute;
+	right: 0;
+	z-index: 10;
+	display: block;
+	padding: 4px 8px;
+	font-size: 12px;
+	color: #818a91;
+	cursor: pointer;
+	background-color: transparent;
+	border: 0;
+	border-bottom-left-radius: 4px;
+      }
+    </style>
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>IPP Keyword Tools</h1>
+        <p>This page provides simple tools for generating valid keyword values for different attributes.</p>
+        <h2>Media Size Names</h2>
+        <script type="text/javascript">
+function copy_media_size_keyword() {
+  navigator.clipboard.writeText(document.getElementById("media_size_keyword").innerHTML);
+}
+function make_media_size_keyword() {
+  let media_class = document.forms["media_size_form"]["media_class"].value;
+  let media_name = document.forms["media_size_form"]["media_name"].value;
+  let media_width = document.forms["media_size_form"]["media_width"].value;
+  let media_length = document.forms["media_size_form"]["media_length"].value;
+  let media_units = document.forms["media_size_form"]["media_units"].value;
+
+  if (media_class == "") {
+    if (media_units == "in")
+      media_class = "oe";
+    else
+      media_class = "om";
+  }
+
+  if (media_name.match(/^[-.0-9a-z]+$/) == null) {
+    media_name = "error";
+    document.forms["media_size_form"]["media_name"].style.color = "red";
+  } else {
+    document.forms["media_size_form"]["media_name"].style.color = "inherit";
+  }
+
+  let media_size_keyword = media_class + "_" + media_name + "_" + media_width + "x" + media_length + media_units;
+  document.getElementById("media_size_keyword").innerHTML = media_size_keyword;
+}
+        </script>
+        <form id="media_size_form">
+          <table>
+            <tbody>
+              <tr><td>Class:</td><td>Name:</td><td>Dimensions:</td></tr>
+              <tr><td style="padding-right: 1em;">
+		<select name="media_class" onChange="make_media_size_keyword(); return false;"><option value="">Other</option><option value="na">North America</option><option value="iso">ISO</option><option value="jis">JIS</option><option value="jpn">Japan</option><option value="prc">China</option><option value="roc">Taiwan</option></select>
+	      </td><td style="padding-right: 1em;">
+		<input style="width: 15em;" type="text" name="media_name" placeholder="name (letters, numbers, dash)" pattern="^[-.0-9a-z]+$" onChange="make_media_size_keyword(); return false;" onKeyUp="make_media_size_keyword();">
+	      </td><td>
+		<input style="width: 6em;" type="number" name="media_width" placeholder="width" onChange="make_media_size_keyword(); return false;" onKeyUp="make_media_size_keyword();"> x
+		<input style="width: 6em;" type="number" name="media_length" placeholder="length" onChange="make_media_size_keyword(); return false;" onKeyUp="make_media_size_keyword();">
+		<select name="media_units" onChange="make_media_size_keyword(); return false;"><option>in</option><option>mm</option></select>
+	      </td></tr>
+	    </tbody>
+	  </table>
+        </form>
+        <div class="pwg-example">
+	  <div class="pwg-clipboard"><button type="button" class="pwg-clipboard" title="" data-original-title="Copy to clipboard" onClick="copy_media_size_keyword();">Copy</button></div>
+	  <figure class="highlight"><pre id="media_size_keyword">CLASS-NAME_SIZE-NAME_WIDTHxHEIGHTin/mm</pre></figure>
+        </div>
+      </div>
+    </div>
+  </div></body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../dynamo/resources/pwg.js"></script>
+</html>
