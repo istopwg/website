@@ -12,22 +12,18 @@
 <div class="row pwg-panel" style="height: 100%;">
   <div class="col-md-12 col-sm-12">
     <form id="search" onSubmit="event.preventDefault(); update();" style="text-align: center;">Filter:
-    <input type="search" name="q" placeholder="Make, model, etc." xxsize="40" list="qlist" autocomplete="org.pwg.ipp-everywhere" onInput="update();">
+    <input type="search" style="-webkit-appearance: auto;" name="q" placeholder="Make, model, etc." list="qlist" autocomplete="org.pwg.ipp-everywhere" onInput="update();">
     <datalist id="qlist">
-<!--      <option value="Brother"></option>
-      <option value="Canon"></option>-->
-      <option value="DesignJet"></option>
-      <option value="DeskJet"></option>
+<!--      <option value="Brother"></option>-->
+      <option value="Canon"></option>
+      <option value="DCC"></option>
 <!--      <option value="EPSON"></option>
       <option value="Fuji Xerox"></option>-->
       <option value="HP"></option>
 <!--      <option value="Konica Minolta"></option>
       <option value="Kyocera"></option>-->
-      <option value="LaserJet"></option>
       <option value="Lexmark"></option>
-      <option value="OfficeJet"></option>
-<!--      <option value="Oki Data"></option>-->
-      <option value="Photosmart"></option>
+      <option value="OKI"></option>
 <!--      <option value="Ricoh"></option>
       <option value="Toshiba"></option>
       <option value="Xerox"></option>-->
@@ -99,7 +95,12 @@ function update()
   })
   .then(function(json) {
     console.log("Got printers.json.");
-    printers = json;
+    printers = json.sort((a,b) => {
+      if (a.model < b.model)
+        return (-1);
+      else
+        return (1);
+    });
     console.log(printers);
 
     var form = document.getElementById("search");
