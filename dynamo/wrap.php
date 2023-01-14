@@ -32,6 +32,11 @@ if ($PATH_INFO == "/index.html")
   include_once "index.php";
   exit(0);
 }
+else if ($PATH_INFO == "/informational.html")
+{
+  include_once "informational.php";
+  exit(0);
+}
 else if ($PATH_INFO == "/standards.html")
 {
   include_once "standards.php";
