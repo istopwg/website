@@ -605,7 +605,7 @@ class document
 
 
     if (($this->series == 0 && $this->status >= DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
-        ($this->series != 0 && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
+        ($this->series != 0 && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_INFORMATIONAL) ||
         ($this->series != 0 && $this->series < 5100 || $this->series > 5199))
     {
       $this->series_valid = FALSE;
@@ -615,7 +615,7 @@ class document
       $this->series_valid = TRUE;
 
     if (($this->number == 0 && $this->status >= DOCUMENT_STATUS_CANDIDATE_STANDARD) ||
-        ($this->number != 0 && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_CANDIDATE_STANDARD))
+        ($this->number != 0 && $this->status > DOCUMENT_STATUS_OBSOLETE && $this->status < DOCUMENT_STATUS_INFORMATIONAL))
     {
       $this->number_valid = FALSE;
       $valid = FALSE;
