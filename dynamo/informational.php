@@ -8,7 +8,7 @@ include_once "phplib/db-document.php";
 
 site_header("Informational Documents", "", TRUE);
 
-$matches = document_search("", "number", 5199, DOCUMENT_STATUS_INFORMATIONAL);
+$matches = document_search("", "number", -1, DOCUMENT_STATUS_INFORMATIONAL, DOCUMENT_STATUS_INFORMATIONAL);
 
 foreach ($matches as $id)
 {
