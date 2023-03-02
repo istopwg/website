@@ -133,12 +133,6 @@
 	  <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippeveselfcert20-20220510-rev.pdf">Redlined</a>
 	  (Initial Draft - Last Updated May 10, 2022)</p>
 
-	  <p>IPP Job Extensions v2.1 (JOBEXT), updating PWG 5100.7-2019:
-	  <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext21-20221212.pdf">Clean</a>
-	  &middot;
-	  <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippjobext21-20221212-rev.pdf">Redlined</a>
-	  (Stable Draft - Last Updated December 12, 2022)</p>
-
 	  <p>Internet Printing Protocol/2.x Fourth Edition (BASE), updating PWG 5100.12-2015:
 	  <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippbase23-20220809.pdf">Clean</a>
 	  &middot;
@@ -170,7 +164,7 @@
           <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippppx20-20230131-5100.3.pdf">PWG 5100.3-2023</a>: Production Printing Extensions v2.0 (PPX)<br>
           <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject11-20190521-5100.5.pdf">PWG 5100.5-2019</a>: IPP Document Object v1.1<br>
           <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ipppageoverride10-20031031-5100.6.pdf">PWG 5100.6-2003</a>: IPP Page Overrides<br>
-          <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext20-20190816-5100.7.pdf">PWG 5100.7-2019</a>: IPP Job Extensions v2.0 (JOBEXT)<br>
+          <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext21-20230210-5100.7.pdf">PWG 5100.7-2023</a>: IPP Job Extensions v2.1 (JOBEXT)<br>
           <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG 5100.8-2003</a>: IPP "-actual" attributes<br>
           <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippstate10-20090731-5100.9.pdf">PWG 5100.9-2009:</a> IPP Printer State Extensions<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://ftp.pwg.org/pub/pwg/informational/pwg5100.9-abnf.txt">Collected ABNF</a><br>
@@ -240,14 +234,14 @@
 
           <h2>Best Practices <a id="bestPractices" role="button" data-toggle="popover" data-container="body" data-content="A PWG Best Practice is a document that has been approved by the Printer Working Group membership and provides expert implementation or interchange guidance."><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></h2>
 
-          <p><a href="https://ftp.pwg.org/pub/pwg/informational/bp-smpjt3d10-20170818.pdf">PWG 3D Print Job Ticket and Associated Capabilities v1.0 (PJT3D)</a> (August 18, 2017)<br>
+          <p><a href="https://ftp.pwg.org/pub/pwg/ipp/whitepaper/bp-ippmptray10-20180124.pdf">Supporting Multi-Purpose Trays</a> (January 24, 2018)</p>
+
+          <p><a href="https://ftp.pwg.org/pub/pwg/informational/bp-smpjt3d10-20170818-5199.5.pdf">PWG 5199.5-2017: PWG 3D Print Job Ticket and Associated Capabilities v1.0 (PJT3D)</a> (August 18, 2017)<br>
           &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.pwg.org/schemas/smpjt3d10/Print3DService.html">Browsable Print3D XML Schema</a></p>
 
+          <p><a href="https://ftp.pwg.org/pub/pwg/informational/bp-smjdfmap10-20170828-5199.6.pdf">PWG 5199.6-2017: Mapping CIP4 JDF to PWG Job Ticket v1.0 (JDFMAP)</a> (August 28, 2017)</p>
+
           <p><a href="https://ftp.pwg.org/pub/pwg/informational/bp-pwgsafegcode10-20190604-5199.7.pdf">PWG 5199.7-2019: PWG Safe G-Code Subset for 3D Printing v1.0</a> (June 4, 2019)</p>
-
-          <p><a href="https://ftp.pwg.org/pub/pwg/informational/bp-smjdfmap10-20170828.pdf">Mapping CIP4 JDF to PWG Job Ticket v1.0 (JDFMAP)</a> (August 28, 2017)</p>
-
-          <p><a href="https://ftp.pwg.org/pub/pwg/ipp/whitepaper/bp-ippmptray10-20180124.pdf">Supporting Multi-Purpose Trays</a> (January 24, 2018)</p>
 
           <p><a href="https://ftp.pwg.org/pub/pwg/informational/bp-ippauth10-20190816-5199.10.pdf">PWG 5199.10-2019: IPP Authentication Methods v1.0</a></p>
 
@@ -269,18 +263,18 @@
 
           <ul class="list-unstyled">
             <li>Applications:<ul>
-              <li><a href="https://michaelrsweet.github.io/rasterview">RasterView: PWG Raster File Viewer</a></li>
+              <li><a href="https://www.msweet.org/rasterview">RasterView: An Apple/CUPS/PWG Raster File Viewer</a></li>
               <li><a href="http://www.wireshark.org/">Wireshark: Network Protocol Analyzer</a></li>
             </ul></li>
 
             <li>C:<ul>
               <li>CUPS: Printing Software for Linux/UNIX
               &middot;
-              <a href="https://www.cups.org/">Apple CUPS</a>
+              <a href="https://www.cups.org/">Apple CUPS (legacy version)</a>
               &middot;
-              <a href="https://openprinting.github.io/cups/">OpenPrinting CUPS</a>
+              <a href="https://openprinting.github.io/cups/">OpenPrinting CUPS (current version)</a>
               &middot;
-              <a href="https://github.com/michaelrsweet/libcups">CUPS Library v3</a></li>
+              <a href="https://github.com/OpenPrinting/libcups">CUPS Library v3</a></li>
               <li><a href="https://istopwg.github.io/ippsample">IPP Sample Code</a></li>
               <li><a href="https://www.msweet.org/pappl/">PAPPL: Printer Application Framework</a></li>
             </ul></li>
@@ -378,7 +372,7 @@
             </ul></li>
 
             <li>Unicode:<ul>
-              <li><a href="https://www.unicode.org/versions/Unicode11.0.0/">Unicode 11.0</a></li>
+              <li><a href="https://www.unicode.org/versions/Unicode15.0.0/">Unicode 15.0</a></li>
               <li><a href="https://www.unicode.org/reports/tr15/">Unicode Normalization Forms</a></li>
             </ul></li>
 
