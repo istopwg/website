@@ -13,10 +13,14 @@ $SITE_EMAIL     = "webmaster@pwg.org";
 $SITE_HOSTNAME  = "www.pwg.org";
 $SITE_NAME      = "PWG.org";
 $SITE_REGISTER  = "registration@pwg.org";
-$SITE_SECRET    = "";		// Additional random string for SID - run "openssl rand -hex 32"
+$SITE_SECRET    = "";		// Additional random string for SID - run "openssl rand -hex 32 "
 $SITE_SHOW_BETA = FALSE;	// TRUE to show beta content
 $SITE_TIMEZONE  = "America/New_York";
 $SITE_URL       = "http://$SITE_HOSTNAME/pwg.org";
+
+// Google ReCAPTCHA keys
+$RECAPTCHA_SITEKEY = "";
+$RECAPTCHA_SECKEY  = "";
 
 // Some static database access info.
 $DB_ADMIN    = "$SITE_EMAIL";

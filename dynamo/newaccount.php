@@ -137,7 +137,9 @@ if ($usererror != "")
 
 print("<p>Please fill in the form below to register. An email will be sent "
      ."to the address you supply to confirm the registration:</p>\n");
-html_form_start($PHP_SELF);
+
+// Enable ReCAPTCHA for the form...
+html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "newaccount", TRUE);
 html_form_field_start("name", "Real Name");
 html_form_text("name", "John Doe", $name);
 html_form_field_end();

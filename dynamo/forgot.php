@@ -89,7 +89,8 @@ print("<p>If have forgotten your password, please fill in "
      ."the form below to reset your password. An email will be sent to the "
      ."address you supply with instructions:</p>\n");
 
-html_form_start($PHP_SELF);
+// Enable ReCAPTCHA for the form...
+html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "forgot", TRUE);
 html_form_field_start("email", "EMail");
 html_form_email("+email", "name@example.com", $email);
 html_form_field_end();

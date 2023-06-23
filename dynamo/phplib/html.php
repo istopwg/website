@@ -41,6 +41,7 @@ else
 }
 
 $html_is_mobile = $html_is_phone || $html_is_tablet;
+$html_recaptcha = FALSE;
 
 
 //
@@ -975,6 +976,9 @@ function html_title($title, $subtitle = "")
 function
 html_form_button($name, $label)
 {
+  global $html_recaptcha, $RECAPTCHA_SITEKEY;
+
+
   $name = htmlspecialchars($name, ENT_QUOTES);
 
   if ($label[0] == "+")
@@ -1001,7 +1005,17 @@ html_form_button($name, $label)
     $label  = htmlspecialchars($label);
   }
 
-  print("<button type=\"submit\" class=\"$bclass\" name=\"$name\">$label</button>\n");
+  if ($html_recaptcha)
+  {
+    $bclass .= " g-recaptcha";
+    $bdata  = " data-sitekey='$RECAPTCHA_SITEKEY' data-callback='onSubmit'  data-action='submit'";
+  }
+  else
+  {
+    $bdata = "";
+  }
+
+  print("<button type=\"submit\" class=\"$bclass\" name=\"$name\"$bdata>$label</button>\n");
 }
 
 
@@ -1082,7 +1096,7 @@ html_form_end($buttons = FALSE)		// I - Array of buttons
     else
     {
       print("<div class=\"form-group\"><div class=\"col-sm-10 col-sm-offset-2\">");
-      html_form_buttons($buttons);
+      html_form_buttons($buttons, $recaptcha);
       print("</div></div>\n");
     }
   }
@@ -1145,12 +1159,24 @@ function
 html_form_start($action,		// I - URL for submission
                 $inline = FALSE,	// I - Inline form?
                 $attachments = FALSE,	// I - Allow attachments?
-                $center = FALSE)	// I - Center form?
+                $center = FALSE,	// I - Center form?
+                $name = "form",		// I - Form name
+                $recaptcha = FALSE)	// I - Show a ReCAPTCHA?
 {
-  global $html_inline_form;
+  global $html_inline_form, $html_recaptcha;
 
 
   $html_inline_form = $inline;
+  $html_recaptcha   = $recaptcha;
+
+  if ($recaptcha)
+    print("<script src=\"https://www.google.com/recaptcha/api.js\"></script>\n"
+         ."<script>\n"
+         ."function onSubmit(token) {\n"
+         ."  document.getElementById(\"$name\").submit();\n"
+         ."}\n"
+         ."</script>\n");
+
   $action = htmlspecialchars($action, ENT_QUOTES);
 
   if ($inline)
@@ -1168,11 +1194,11 @@ html_form_start($action,		// I - URL for submission
     print("<div class=\"container\">\n");
   }
   if ($attachments)
-    print("<form action=\"$action\" method=\"POST\" class=\"$hclass\" "
+    print("<form id=\"$name\" action=\"$action\" method=\"POST\" class=\"$hclass\" "
          ."enctype=\"multipart/form-data\" role=\"form\">"
 	 ."<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"33554432\">");
   else
-    print("<form action=\"$action\" method=\"POST\" class=\"$hclass\" role=\"form\">");
+    print("<form id=\"$name\" action=\"$action\" method=\"POST\" class=\"$hclass\" role=\"form\">");
 
   $csrf = html_form_csrf();
   print("<input type=\"hidden\" name=\"validation\" value=\"$csrf\">");
