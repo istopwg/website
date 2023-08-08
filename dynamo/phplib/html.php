@@ -1096,7 +1096,7 @@ html_form_end($buttons = FALSE)		// I - Array of buttons
     else
     {
       print("<div class=\"form-group\"><div class=\"col-sm-10 col-sm-offset-2\">");
-      html_form_buttons($buttons, $recaptcha);
+      html_form_buttons($buttons);
       print("</div></div>\n");
     }
   }
@@ -1725,9 +1725,9 @@ html_form_validate()
     )
   );
 
-  $verify_response = json_decode(file_get_contents($url, false, stream_context_create($verify_options)), true);
+  $verify_response = json_decode(file_get_contents($verify_url, false, stream_context_create($verify_options)), true);
 
-  if (array_key_exists("success", $verify_response) && $verify_response["success"] == "true")
+  if ($verify_response && array_key_exists("success", $verify_response) && $verify_response["success"] == "true")
     return (TRUE);
   else
     return (FALSE);
