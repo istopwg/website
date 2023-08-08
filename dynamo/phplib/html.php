@@ -1679,7 +1679,7 @@ html_form_url($name,			// I - Field name
 function				// O - TRUE if OK, FALSE otherwise
 html_form_validate()
 {
-  global $LOGIN_ID, $_SERVER, $_POST, $REMOTE_ADDR, $REQUEST_METHOD, $RECAPTCHA_SITEKEY;
+  global $LOGIN_ID, $_SERVER, $_POST, $REMOTE_ADDR, $REQUEST_METHOD, $RECAPTCHA_SECKEY;
 
 
   // Validate the request method...
@@ -1714,7 +1714,7 @@ html_form_validate()
   $log = "Verifying '$recaptcha'...\n";
 
   $verify_url     = "https://www.google.com/recaptcha/api/siteverify";
-  $verify_request = array("secret" => $RECAPTCHA_SITEKEY, "response" => $recaptcha);
+  $verify_request = array("secret" => $RECAPTCHA_SECKEY, "response" => $recaptcha);
 
   if ($REMOTE_ADDR != "")
     $verify_request["remoteip"] = $REMOTE_ADDR;
