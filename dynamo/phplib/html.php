@@ -1732,7 +1732,6 @@ html_form_validate()
   $verify_response = json_decode($verify_data, true);
 
   fwrite($fp, "Verify data =\n$verify_data\n");
-  fwrite($fp, "Verify response =$verify_response\n");
   fclose($fp);
 
   if ($verify_response && array_key_exists("success", $verify_response) && $verify_response["success"] == "true")
