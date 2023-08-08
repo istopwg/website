@@ -1711,7 +1711,7 @@ html_form_validate()
   else
     return (TRUE);
 
-  $fp = fopen("/tmp/php/recaptcha.log", "a");
+  $fp = fopen("/var/tmp/recaptcha.log", "a");
   fwrite($fp, "Verifying '$recaptcha'...\n");
 
   $verify_url     = "https://www.google.com/recaptcha/api/siteverify";
