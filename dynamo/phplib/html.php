@@ -1672,18 +1672,21 @@ html_form_url($name,			// I - Field name
 
 
 //
-// 'html_form_validate()' - Validate the CSRF hash in a form submissions.
+// 'html_form_validate()' - Validate the CSRF hash and ReCAPTCHA token (if
+//                          present) in a form submission.
 //
 
 function				// O - TRUE if OK, FALSE otherwise
 html_form_validate()
 {
-  global $LOGIN_ID, $_SERVER, $_POST, $REQUEST_METHOD;
+  global $LOGIN_ID, $_SERVER, $_POST, $REMOTE_ADDR, $REQUEST_METHOD, $RECAPTCHA_SITEKEY;
 
 
+  // Validate the request method...
   if ($REQUEST_METHOD != "POST")
     return (FALSE);			// Not a POST
 
+  // Validate the CSRF value...
   if (array_key_exists("validation", $_POST))
     $validation = trim($_POST["validation"]);
   else
@@ -1697,6 +1700,36 @@ html_form_validate()
   if ($diff > 86400 || $diff < -60)
     return (FALSE);			// No more than 1 day old or 1 minute in the future
 
-  return (html_form_csrf($validation) == $validation);
+  if (html_form_csrf($validation) != $validation)
+    return (FALSE);
+
+  // Validate any ReCAPTCHA data...
+  //
+  // Original PHP code from <https://codeforgeek.com/google-recaptcha-v3-tutorial/>...
+  if (array_key_exists("g-recaptcha-response", $_POST))
+    $recaptcha = trim($_POST["g-recaptcha-response"]);
+  else
+    return (TRUE);
+
+  $verify_url     = "https://www.google.com/recaptcha/api/siteverify";
+  $verify_request = array("secret" => $RECAPTCHA_SITEKEY, "response" => $recaptcha);
+
+  if ($REMOTE_ADDR != "")
+    $verify_request["remoteip"] = $REMOTE_ADDR;
+
+  $verify_options = array(
+    "http" => array(
+      "header"  => "Content-type: application/x-www-form-urlencoded\r\n",
+      "method"  => "POST",
+      "content" => http_build_query($verify_request)
+    )
+  );
+
+  $verify_response = json_decode(file_get_contents($url, false, stream_context_create($verify_options)), true);
+
+  if (array_key_exists("success", $verify_response) && $verify_response["success"] == "true")
+    return (TRUE);
+  else
+    return (FALSE);
 }
 ?>

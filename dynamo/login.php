@@ -59,7 +59,8 @@ site_header("Login");
 if ($usererror != "")
   html_show_error($usererror);
 
-html_form_start($PHP_SELF);
+// Enable ReCAPTCHA for the form...
+html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "login", TRUE);
 html_form_hidden("PAGE", $page);
 html_form_field_start("email", "EMail");
 html_form_email("+email", "name@example.com", $email);
