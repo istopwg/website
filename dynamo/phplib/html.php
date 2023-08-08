@@ -1711,7 +1711,7 @@ html_form_validate()
   else
     return (TRUE);
 
-  $log = "Verifying '$recaptcha'...\n";
+//  $log = "Verifying '$recaptcha'...\n";
 
   $verify_url     = "https://www.google.com/recaptcha/api/siteverify";
   $verify_request = array("secret" => $RECAPTCHA_SECKEY, "response" => $recaptcha);
@@ -1730,8 +1730,8 @@ html_form_validate()
   $verify_data     = file_get_contents($verify_url, false, stream_context_create($verify_options));
   $verify_response = json_decode($verify_data, true);
 
-  $log .= "Verify data =\n$verify_data\n";
-  mail("msweet", "ReCAPTCHA verification", $log);
+//  $log .= "Verify data =\n$verify_data\n";
+//  mail("msweet", "ReCAPTCHA verification", $log);
 
   if ($verify_response && array_key_exists("success", $verify_response) && $verify_response["success"] == "true")
     return (TRUE);
