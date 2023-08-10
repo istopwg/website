@@ -139,25 +139,32 @@ function update()
       r[j++] = printer['url'];
       r[j++] = '">';
       r[j++] = printer['model'];
-      if (printer['version'] != "1.0")
-      {
+      if (printer['version'] != "1.0") {
         r[j++] = '</a>&nbsp;<span class="badge badge-secondary">';
         r[j++] = printer['version'];
         r[j++] = '</span></td><td>';
-      }
-      else
+      } else {
         r[j++] = '</a></td><td>';
+      }
       r[j++] = printer['media'];
       r[j++] = '</td><td>';
-      r[j++] = printer['color'] != 0 ? 'YES' : 'NO';
+      r[j++] = printer['color'] != '0' ? 'YES' : 'NO';
       r[j++] = '</td><td>';
-      r[j++] = printer['duplex'] != 0 ? 'YES' : 'NO';
+      r[j++] = printer['duplex'] != '0' ? 'YES' : 'NO';
       r[j++] = '</td><td>';
-      r[j++] = printer['finishings'] != 0 ? 'YES -' : 'NO';
-      r[j++] = printer['fin_fold'] != 0 ? ' Fold' : '';
-      r[j++] = printer['fin_punch'] != 0 ? ' Punch' : '';
-      r[j++] = printer['fin_staple'] != 0 ? ' Staple' : '';
-      r[j++] = printer['fin_trim'] != 0 ? ' Cut' : '';
+      if (printer['fin_fold'] != '0' || printer['fin_punch'] != '0' || printer['fin_staple'] != '0' || printer['fin_trim'] != '0') {
+	r[j++] = 'YES -';
+	if (printer['fin_fold'] != '0')
+	  r[j++] = ' Fold';
+	if (printer['fin_punch'] != '0')
+	  r[j++] = ' Punch';
+	if (printer['fin_staple'] != '0')
+	  r[j++] = ' Staple';
+	if (printer['fin_trim'] != '0')
+	  r[j++] = ' Cut';
+      } else {
+	r[j++] = 'NO';
+      }
       r[j++] = '</td><td>';
       r[j++] = printer['ipps'] != 0 ? 'YES' : 'NO';
       r[j++] = '</td></tr>';
