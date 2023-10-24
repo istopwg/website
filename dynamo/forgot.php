@@ -85,16 +85,18 @@ site_header("Forgot Password");
 if ($usererror != "")
   html_show_error($usererror);
 
-print("<p>If have forgotten your password, please fill in "
+print("<p>Sorry, password reset is temporarily disabled.</p>\n");
+
+/*print("<p>If have forgotten your password, please fill in "
      ."the form below to reset your password. An email will be sent to the "
-     ."address you supply with instructions:</p>\n");
+     ."address you supply with instructions:</p>\n");*/
 
 // Enable ReCAPTCHA for the form...
-html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "forgot", TRUE);
+/*html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "forgot", TRUE);
 html_form_field_start("email", "EMail");
 html_form_email("+email", "name@example.com", $email);
 html_form_field_end();
-html_form_end(array("SUBMIT" => "+Send Password Reset Instructions"));
+html_form_end(array("SUBMIT" => "+Send Password Reset Instructions"));*/
 
 site_footer();
 ?>

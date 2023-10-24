@@ -135,11 +135,13 @@ site_header("New Account");
 if ($usererror != "")
   html_show_error($usererror);
 
-print("<p>Please fill in the form below to register. An email will be sent "
-     ."to the address you supply to confirm the registration:</p>\n");
+print("<p>Sorry, account creation is temporarily disabled.</p>\n");
+
+/*print("<p>Please fill in the form below to register. An email will be sent "
+     ."to the address you supply to confirm the registration:</p>\n");*/
 
 // Enable ReCAPTCHA for the form...
-html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "newaccount", TRUE);
+/*html_form_start($PHP_SELF, FALSE, FALSE, FALSE, "newaccount", TRUE);
 html_form_field_start("name", "Real Name");
 html_form_text("name", "John Doe", $name);
 html_form_field_end();
@@ -152,7 +154,7 @@ html_form_field_end();
 html_form_field_start("email2", "EMail Again");
 html_form_email("email2", "name@example.com", $email);
 html_form_field_end();
-html_form_end(array("SUBMIT" => "+Request Account"));
+html_form_end(array("SUBMIT" => "+Request Account"));*/
 
 site_footer();
 ?>
