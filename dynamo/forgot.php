@@ -12,6 +12,7 @@ include_once "phplib/site.php";
 
 $usererror = "";
 
+/*
 if (html_form_validate())
 {
   if (array_key_exists("email", $_POST))
@@ -57,8 +58,7 @@ if (html_form_validate())
 		       ."    $register\n\n"
 		       ."You will then be able to access your account.\n");
 
-	mail($email, "$SITE_NAME Password Reset Request", $msg,
-	     "From: $SITE_EMAIL\r\n");
+	mail($email, "$SITE_NAME Password Reset Request", $msg, "From: $SITE_EMAIL\r\n");
 
 	print("<p>You should receive an email from $SITE_EMAIL shortly "
 	     ."with instructions on resetting your password.</p>\n");
@@ -78,6 +78,7 @@ else
 {
   $email = "";
 }
+*/
 
 // Forgot username or password form...
 site_header("Forgot Password");

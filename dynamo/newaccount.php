@@ -12,8 +12,10 @@ include_once "phplib/site.php";
 
 $usererror = "";
 
+/*
 if (html_form_validate())
 {
+  exit(1);
   if (array_key_exists("name", $_POST))
     $name = trim($_POST["name"]);
   else
@@ -128,6 +130,7 @@ else
   if ($REQUEST_METHOD == "POST")
     $usererror = "Bad form submission.";
 }
+*/
 
 // New user...
 site_header("New Account");
