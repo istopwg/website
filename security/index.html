@@ -33,13 +33,13 @@
     <div class="row pwg-panel">
       <div class="col-md-12 col-sm-12">
 	<p>Information security and privacy are not implemented once and forgotten, they are an ongoing process that is applied throughout the life of a device or service. And what works for a workgroup color laser MFP will be different from a home inkjet printer or industrial label printer. Since 1991, the PWG's goal has been to enable appropriate security and privacy processes and controls for every organization, environment, imaging device, and image service. Where appropriate, we also work with other standards organizations including the IEEE, ISO, and TCG to develop meaningful resources for developers of printing and imaging products.</p>
-	<p>Starting with ISO DPA and IEEE P2600, the PWG has defined standards and best practices for the secure and safe use of a printer, multi-function device, and/or imaging service throughout its lifecycle. In conjunction with these security-oriented documents, the PWG also has defined standards for identifying and protecting personally identifying information (PII), including best practices for obtaining explicit consent before collecting or using this information and a standard that supports printing through untrusted intermediaries.</p>
+	<p>The PWG has helped to develop <a href="https://www.iso.org/standard/24322.html">ISO/IEC 10175-3:2000 Document Printing Application (DPA)</a>, <a href="https://standards.ieee.org/ieee/2600/4165/">IEEE 2600-2008 IEEE Standard for Information Technology: Hardcopy Device and System Security (P2600)</a>, and most recently the <a href="https://hcd-itc.github.io/cPP/cPP_HCD_V1.0.pdf">HCD iTC Collaborative Protection Profile for Hardcopy Devices</a> to define standards and best practices for the secure and safe use of a Printer, Multi-Function Device (MFD), and/or Imaging Service throughout its lifecycle. The PWG has also defined standards for identifying and protecting personally identifying information (PII), including best practices for obtaining explicit consent before collecting or using this information and a standard that supports printing through untrusted intermediaries.</p>
       </div>
     </div>
     <div class="row pwg-panel pwg-alt-0">
       <div class="col-md-12 col-sm-12">
 	<h1>Security Lifecycle</h1>
-	<p>Security starts with proper engineering to current best practices and standards. Today's network products require regular, timely, and trusted firmware/software updates to address customer issues, changes to best practices and standards, and fixes for security vulnerabilities. When it is time to take a product out of service, customers need a reliable and secure means of wiping the product of any customer information so that it can be recycled and/or disposed of properly.</p>
+	<p>Security requires engineering best practices and standards. Network products require regular and trusted firmware/software updates to address customer issues, changes to best practices and standards, and fixes for security vulnerabilities. When it is time to take a product out of service, customers need a reliable and secure means of wiping the product of any customer information so that it can be recycled and/or disposed of properly.</p>
 	<p><img src="security-life-cycle.png" class="pwg-figure"></p>
       </div>
     </div>
@@ -48,13 +48,14 @@
         <h1>Basic Security Features</h1>
         <p>Printing and imaging products can adopt several basic security features:</p>
         <ul>
+          <li>Platform Integrity Verification: Secure Boot, Self-Test</li>
           <li>Process isolation and trust: <a href="https://trustedcomputinggroup.org" target="_blank">TCG</a> Trusted Platform Modules, <a href="https://www.trustedfirmware.org" target="_blank">TrustedFirmware</a>, Linux kernel security modules and code signing, virtualization and containerization solutions, etc.</li>
           <li>Network isolation and trust: <a href="trustedcomputinggroup.org" target="_blank">TCG</a> Trusted Network Communications, <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" target="_blank">IPP Shared Infrastructure Extensions</a></li>
           <li>Protection of data in transit: TLS, TOFU and/or site policies for X.509 server certificate validation</li>
-          <li>Protection of data at rest: Encrypted storage/filesystems</li>
-          <li>Confidentiality and data integrity: <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20210519.pdf" target="_blank">IPP Encrypted Jobs and Documents</a></li>
+          <li>Protection of data at rest: Encrypted storage/filesystems, <a href="https://trustedcomputinggroup.org/work-groups/storage/">TCG Self-Encrypting Drive Standads (OPAL)</a></li>
+          <li>Confidentiality and data integrity: Use of strong cryptography, <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20210519.pdf" target="_blank">IPP Encrypted Jobs and Documents v1.0 (TRUSTNOONE)</a></li>
           <li>Automatic firmware/software updates</li>
-          <li>Protected audit logging and accounting: <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ids-log10-20130401.5110.3.pdf" target="_blank">PWG Common Log Format</a>, <a href="https://ftp.pwg.org/pub/pwg/informational/bp-ippaccounting10-20210205-5199.11.pdf" target="_blank">PWG 5199.11-2021: Job Accounting with IPP v1.0</a></li>
+          <li>Protected audit logging and accounting: <a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ids-log10-20130401-5110.3.pdf" target="_blank">PWG Common Log Format</a>, <a href="https://ftp.pwg.org/pub/pwg/informational/bp-ippaccounting10-20210205-5199.11.pdf" target="_blank">PWG 5199.11-2021: Job Accounting with IPP v1.0</a></li>
           <li>Identification, authentication, and authorization: X.509 client certificates, <a href="https://ftp.pwg.org/pub/pwg/informational/bp-ippauth10-20190816-5199.10.pdf" target="_blank">IPP Authentication Methods</a></li>
         </ul>
         <p>A typical network printer supports TLS to protect data in transit, uses a self-encrypting SSD or hard disk to protect data at rest, advertises its privacy policy and configuration using the IPP Privacy Attributes, limits access to authorized users using IPP Authentication Methods, and provides audit and accounting logs using the PWG Common Log Format standard and Job Accounting with IPP best practice:</p>
@@ -63,23 +64,23 @@
     </div>
     <div class="row pwg-panel">
       <div class="col-md-12 col-sm-12">
-	<h1>Safety by Design</h1>
-	<p>...</p>
+	<h1>Reliability by Design</h1>
+	<p>Reliability comes naturally with proper design and implementation:</p>
 	<ul>
-          <li>Intent-oriented design, both for protocols and file formats - *what* you want to print, not the steps to perform on the printer to make it happen</li>
-          <li>No direct machine control, so a client can't cause a fire or mechanical damage, bypass safety interlocks, or otherwise cause harm</li>
-          <li>Other examples of intent vs. process</li>
+          <li>Intent-oriented design, both for protocols and file formats: <em>what</em> you want to print, not the steps to perform on the Printer to make it happen</li>
+          <li>No direct machine control: a client can't cause a fire or mechanical damage, bypass safety interlocks, or otherwise cause harm</li>
         </ul>
       </div>
     </div>
     <div class="row pwg-panel pwg-alt-0">
       <div class="col-md-12 col-sm-12">
 	<h1>Privacy</h1>
-	<p>...</p>
+	<p>Printing necessarily involves Personally Identifiable Information (PII) that needs to be protected:</p>
 	<ul>
-          <li>Identification of privacy data and definition of site policy - IPP Privacy Attributes</li>
-          <li>Use of privacy data, explicit consent - Job Accounting with IPP</li>
-          <li>Protection of extremely sensitive information - IPP TRUSTNOONE</li>
+          <li>Identification of privacy data and definition of site policy - <a href="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippprivacy10-20180412.pdf" target="_blank">IPP Privacy Attributes v1.0 (PRIVACY)</a>, <a href="https://www.nist.gov/privacy-framework">NIST Privacy framework</a>, and <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank">NIST SP800-53 Security and Privacy Controls for Information Systems and Organizations</a></li>
+          <li>Use of privacy data, explicit consent - <a href="https://ftp.pwg.org/pub/pwg/informational/bp-ippaccounting10-20210205-5199.11.pdf" target="_blank">PWG 5199.11-2021 Job Accounting with IPP v1.0</a></li>
+          <li>Protection of extremely sensitive information - <a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20210519.pdf" target="_blank">IPP Encrypted Jobs and Documents v1.0 (TRUSTNOONE)</a></li>
+          <li>Regulatory Compliance: <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016R0679-20160504">European Union General Data Protection Regulation (GDPR)</a>, <a href="https://www.caprivacy.org/annotated-cpra-text-with-ccpa-changes/">California Privacy Rights Act</a></li>
         </ul>
       </div>
     </div>
@@ -90,7 +91,7 @@
 	<ul>
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-idsattributes10-20130401-5110.1.pdf" target="_blank">PWG 5110.1-2013: PWG Hardcopy Device Health Assessment Attributes</a></li>
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ids-napsoh10-20130401-5110.2.pdf" target="_blank">PWG 5110.2-2013: PWG Hardcopy Device Health Assessment Network Access Protection Protocol Binding</a></li>
-	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ids-log10-20130401.5110.3.pdf" target="_blank">PWG 5110.3-2013: Common Log Format</a></li>
+	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-ids-log10-20130401-5110.3.pdf" target="_blank">PWG 5110.3-2013: Common Log Format</a></li>
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/candidates/cs-idstnc10-20151204-5110.4.pdf" target="_blank">PWG 5110.4-2015: Hardcopy Device Health Assessment Trusted Network Connect Binding (HCD-TNC)</a></li>
 	</ul>
 	<h2>Best Practices and White Papers:</h2>
@@ -99,9 +100,10 @@
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/informational/bp-ippaccounting10-20210205-5199.11.pdf" target="_blank">PWG 5199.11-2021: Job Accounting with IPP v1.0</a></li>
 	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/ids/white/tb-ids-hcd-nac-business-case-current.pdf" target="_blank">Business Case for NAC and Hardcopy Devices</a></li>
 	</ul>
-	<h2>IPP Registrations:</h2>
+	<h2>IPP Documents:</h2>
 	<ul>
-	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippprivacy10-20180412.pdf" target="_blank">IPP Privacy Attributes v1.0</a></li>
+	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippprivacy10-20180412.pdf" target="_blank">IPP Privacy Attributes v1.0 (PRIVACY)</a></li>
+	  <li role="presentation"><a href="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20210519.pdf" target="_blank">IPP Encrypted Jobs and Documents v1.0 (TRUSTNOONE)</a></li>
 	</ul>
       </div>
     </div>
