@@ -270,8 +270,8 @@ site_header($title = "",		// I - Additional document title
        ."<div id=\"pwg-body\">\n"
        ."  <div id=\"pwg-content\">\n");
 
-  if ($title != "" && $title[0] != "-")
-    print("    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
+//  if ($title != "" && $title[0] != "-")
+//    print("    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
 }
 
 
