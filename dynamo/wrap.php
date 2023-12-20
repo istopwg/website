@@ -116,6 +116,8 @@ else
 
   // Wrap the contents of the HTML file with the standard header/footer for the site.
   site_header($title, $subtitle);
+  if (stripos($contents, "<h1>") === FALSE)
+    print("    <h1 class=\"pwg-title\">$title$subtitle</h1>\n");
   print("$contents\n");
   site_footer();
 }
