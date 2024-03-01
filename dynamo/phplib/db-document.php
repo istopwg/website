@@ -694,11 +694,11 @@ class document
       $date = html_date($this->modify_date);
 
     if ($this->clean_url != "")
-      $url = htmlspecialchars($this->clean_url, ENT_QUOTES);
+      $url = htmlspecialchars(str_replace("http://", "https://", $this->clean_url), ENT_QUOTES);
     else if ($this->editable_url != "")
-      $url = htmlspecialchars($this->editable_url, ENT_QUOTES);
+      $url = htmlspecialchars(str_replace("http://", "https://", $this->editable_url), ENT_QUOTES);
     else
-      $url = htmlspecialchars($this->redline_url, ENT_QUOTES);
+      $url = htmlspecialchars(str_replace("http://", "https://", $this->redline_url), ENT_QUOTES);
 
     print("<h$level>$title <small>$date</small></h$level>\n"
 	 ."$contents\n");
