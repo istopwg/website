@@ -1,0 +1,159 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <title>IPP &mdash; SNMP Mappings</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//www.google.com/cse/style/look/default.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-3.2.0.min.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/bootstrap-theme-3.2.0.min.css">
+    <link rel="stylesheet" type="text/css" href="../dynamo/resources/pwg.css">
+  </head>
+  <body><div class="container-fluid">
+    <h1>IPP &mdash; SNMP Mappings</h1>
+    <p>Single-valued SNMP properties are typically mapped to an IPP Printer Description or Printer Status attribute with a similar name and syntax. The IPP attribute sometimes provides more information than the corresponding SNMP property - this is particularly true for the "printer-contact-col (collection)" and "printer-service-contact-col (collection)" attributes.</p>
+    <p>Multi-valued SNMP tables are typically mapped to a pair of IPP Printer Status attributes - "printer-xxx (1setOf octetString(MAX))" and "printer-xxx-description (1setOf text(MAX))" - which supply the values and localized descriptions of each object, respectively. The "printer-xxx (1setOf octetString)" values contain delimited key value pairs of the form 'NAME=VALUE;...;NAME=VALUE;' that can be parsed by the IPP Client to obtain the original SNMP properties and values. The "printer-xxx-description (1setOf text(MAX))" values contain the corresponding xxxDescription property value transcoded to the IPP request character set which is typically UTF-8. The description attribute is omitted for the input and output tray tables since localization is available separately for IPP Job Template attributes and values.</p>
+    <table class="table table-condensed table-striped standard" summary="IPP &mdash; SNMP Mappings">
+      <thead>
+        <tr>
+          <th>IPP Printer Attribute</th>
+          <th>SNMP MIB Object/Property</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc8011#section-5.4.18">charset-supported</a> (1setOf charset)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-77">prtLocalizationCharacterSet</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc8011#section-5.4.20">generated-natural-language-supported</a> (1setOf naturalLanguage)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-77">prtLocalizationTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext21-20230210-5100.7.pdf#page=58">media-col-default</a> (collection)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-71">prtInputDefaultIndex</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippjobext21-20230210-5100.7.pdf#page=58">media-col-ready</a> (1setOf collection)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-81">prtInputTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippoutputbin10-20010207-5100.2.pdf#page=5">output-bin-default</a> (type2 keyword | name(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-71">prtOutputDefaultIndex</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippstate10-20090731-5100.9.pdf#page=23">printer-alert</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-129">prtAlertTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippstate10-20090731-5100.9.pdf#page=27">printer-alert-description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-129">prtAlertDescription</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippsystem10-20191122-5100.22.pdf#page=123">printer-config-changes</a> (integer)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-68">prtGeneralConfigChanges</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippsystem10-20191122-5100.22.pdf#page=123">printer-contact-col</a> (collection)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-70">prtGeneralCurrentOperator</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt">printer-cover</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-75">prtCoverTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt">printer-cover-description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-75">prtCoverDescription</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf#page=48">printer-finisher</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3806#page-31">finDeviceTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf#page=50">printer-finisher-description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3806#page-31">finDeviceDescription</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf#page=50">printer-finisher-supplies</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3806#page-34">finSupplyTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf#page=52">printer-finisher-supplies-description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3806#page-34">finSupplyDescription</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf#page=56">printer-input-tray</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-81">prtInputTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc8011#section-5.4.4">printer-name</a> (text(127))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-68">prtGeneralPrinterName</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf#page=59">printer-output-tray</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-90">prtOutputTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf#page=45">printer-serial-number</a> (text(255))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-68">prtGeneralSerialNumber</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippsystem10-20191122-5100.22.pdf#page=123">printer-service-contact-col</a> (collection)</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-70">prtGeneralServicePerson</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf#page=45">printer-storage</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc2790#page-10">hrStorageTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf#page=46">printer-storage-description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc2790#page-10">hrStorageDescription</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf#page=62">printer-supply</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-107">prtMarkerColorantTable</a><br>
+          <a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-104">prtMarkerSupplyTable</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf#page=66">printer-supply-description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-107">prtMarkerColorantDescription</a><br>
+          <a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc3805#page-104">prtMarkerSupplyDescription</a></td>
+        </tr>
+
+
+<!--        <tr>
+          <td><a target="_blank" href="">printer-</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer--description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer-</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer--description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer-</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer--description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer-</a> (1setOf octetString(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>
+        <tr>
+          <td><a target="_blank" href="">printer--description</a> (1setOf text(MAX))</td>
+          <td><a target="_blank" href="https://datatracker.ietf.org/doc/html/rfc">prt</a></td>
+        </tr>-->
+      </tbody>
+    </table>
+  </div></body>
+</html>

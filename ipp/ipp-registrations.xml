@@ -8441,18 +8441,6 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Printer Description</collection>
-      <name>printer-cover</name>
-      <syntax>1setOf octetString(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt" type="uri">IPP20210223</xref>
-    </record>
-    <record>
-      <collection>Printer Description</collection>
-      <name>printer-cover-description</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt" type="uri">IPP20210223</xref>
-    </record>
-    <record>
-      <collection>Printer Description</collection>
       <name>printer-current-time</name>
       <syntax>dateTime|unknown</syntax>
       <xref type="rfc" data="rfc8011"/>
@@ -8516,30 +8504,6 @@ Section 5.2 Subscription Template Attributes.
       <name>printer-fax-modem-number</name>
       <syntax>1setOf uri</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfaxout10-20131115-5100.15.pdf" type="uri">PWG5100.15</xref>
-    </record>
-    <record>
-      <collection>Printer Description</collection>
-      <name>printer-finisher</name>
-      <syntax>1setOf octetString(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf" type="uri">PWG5100.1</xref>
-    </record>
-    <record>
-      <collection>Printer Description</collection>
-      <name>printer-finisher-description</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf" type="uri">PWG5100.1</xref>
-    </record>
-    <record>
-      <collection>Printer Description</collection>
-      <name>printer-finisher-supplies</name>
-      <syntax>1setOf octetString(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf" type="uri">PWG5100.1</xref>
-    </record>
-    <record>
-      <collection>Printer Description</collection>
-      <name>printer-finisher-supplies-description</name>
-      <syntax>1setOf text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippfinishings30-20220527-5100.1.pdf" type="uri">PWG5100.1</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -9387,6 +9351,18 @@ Section 5.2 Subscription Template Attributes.
       <name>printer-config-changes</name>
       <syntax>integer(0:MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippsystem10-20191122-5100.22.pdf" type="uri">PWG5100.22</xref>
+    </record>
+    <record>
+      <collection>Printer Status</collection>
+      <name>printer-cover</name>
+      <syntax>1setOf octetString(MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt" type="uri">IPP20210223</xref>
+    </record>
+    <record>
+      <collection>Printer Status</collection>
+      <name>printer-cover-description</name>
+      <syntax>1setOf text(MAX)</syntax>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-printer-cover-20210223.txt" type="uri">IPP20210223</xref>
     </record>
     <record>
       <collection>Printer Status</collection>
