@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IPP 3D Print Job Template Attributes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>IPP 3D Print Job Template Attributes</h1>
+    <table class="table table-condensed table-striped standard" summary="IPP 3D Print Job Template Attributes">
+      <thead>
+        <tr>
+          <th>Job Template Attribute</th>
+          <th>Default Attribute</th>
+          <th>Supported Attribute(s)</th>
+          <th>Reference</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>copies (integer(1:MAX))</td><td>copies-default (integer(1:MAX))</td><td>copies-supported (rangeOfInteger(1:MAX))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>finishings (1setOf type2 enum)</td><td>finishings-default (1setOf type2 enum)</td><td>finishings-supported (1setOf type2 enum)</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>job-hold-until (type2 keyword | name(MAX))</td><td>job-hold-until-default (type2 keyword | name(MAX))</td><td>job-hold-until-supported (1setOf (type2 keyword | name(MAX)))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>job-priority (integer(1:100))</td><td>job-priority-default (integer(1:100))</td><td>job-priority-supported (integer(1:100))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>job-sheets (type2 keyword | name(MAX))</td><td>job-sheets-default (type2 keyword | name(MAX))</td><td>job-sheets-supported (1setOf (type2 keyword | name(MAX)))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>media (type2 keyword | name(MAX))</td><td>media-default (no-value | type2 keyword | name(MAX))</td><td>media-supported (1setOf (type2 keyword | name(MAX)))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>multiple-document-handling (type2 keyword)</td><td>multiple-document-handling-default (type2 keyword)</td><td>multiple-document-handling-supported (1setOf (type2 keyword))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>number-up (integer(1:MAX))</td><td>number-up-default (integer(1:MAX))</td><td>number-up-supported (1setOf (integer(1:MAX) | rangeOfInteger(1:MAX)))</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>orientation-requested (type2 enum)</td><td>orientation-requested-default (no-value | type2 enum)</td><td>orientation-requested-supported (1setOf type2 enum)</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>page-ranges (1setOf rangeOfInteger(1:MAX))</td><td></td><td>page-ranges-supported (boolean)</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>print-quality (type2 enum)</td><td>print-quality-default (type2 enum)</td><td>print-quality-supported (1setOf type2 enum)</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>printer-resolution (resolution)</td><td>printer-resolution-default (resolution)</td><td>printer-resolution-supported (1setOf resolution)</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+        <tr><td>sides (type2 keyword)</td><td>sides-default (type2 keyword)</td><td>sides-supported (1setOf type2 keyword)</td><td><a href="https://datatracker.ietf.org/doc/html/rfc8011" target="_blank">RFC&nbsp;8011</a></td></tr>
+      </tbody>
+    </table>
+  </body>
+</html>
