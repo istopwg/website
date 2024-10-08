@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2024-08-21</updated>
+  <updated>2024-10-08</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011"/>
@@ -8446,13 +8446,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>printer-wifi-password</name>
       <syntax>octetString(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>printer-wifi-ssid</name>
       <syntax>name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -9297,7 +9297,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Status</collection>
       <name>printer-wifi-state</name>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <collection>Printer Status</collection>
@@ -27662,7 +27662,7 @@ IESG-designated experts.
       <value>wifi-not-configured</value>
       <attribute>printer-state-reasons</attribute>
       <syntax>type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>wrapper-added</value>
@@ -31365,49 +31365,49 @@ IESG-designated experts.
     <record>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>3</value>
       <name>off</name>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>4</value>
       <name>not-configured</name>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>5</value>
       <name>not-visible</name>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>6</value>
       <name>cannot-join</name>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>7</value>
       <name>joining</name>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <value>8</value>
       <name>on</name>
       <attribute>printer-wifi-state</attribute>
       <syntax>type2 enum</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <attribute>request-power-state</attribute>
@@ -32144,7 +32144,7 @@ after the name.
     </record>
     <record>
       <name>Get-Printer-Attributes(extension)</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf" type="uri">IPPWIFI</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf" type="uri">IPPWIFI</xref>
     </record>
     <record>
       <name>Get-Printer-Attributes(extension)</name>
@@ -32524,7 +32524,7 @@ after the name.
     </record>
     <record>
       <name>Set-Printer-Attributes(extension)</name>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippwifi10-20240102.pdf">IPPWIFI</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippwifi10-20240912.pdf">IPPWIFI</xref>
     </record>
     <record>
       <name>Set-Resource-Attributes</name>
