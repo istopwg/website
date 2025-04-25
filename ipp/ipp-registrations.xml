@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2025-03-31</updated>
+  <updated>2025-04-25</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011"/>
@@ -227,7 +227,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>document-format-ready</name>
       <syntax>1setOf mimeMediaType</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -652,19 +652,19 @@ Section 5.2 Subscription Template Attributes.
       <collection>Document Status</collection>
       <name>output-device-document-state</name>
       <syntax>type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Document Status</collection>
       <name>output-device-document-state-message</name>
       <syntax>text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Document Status</collection>
       <name>output-device-document-state-reasons</name>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Document Status</collection>
@@ -1940,7 +1940,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>document-format-ready</name>
       <syntax>1setOf mimeMediaType</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -2575,25 +2575,25 @@ Section 5.2 Subscription Template Attributes.
       <collection>Job Status</collection>
       <name>output-device-job-state</name>
       <syntax>type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>output-device-job-state-message</name>
       <syntax>text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>output-device-job-state-reasons</name>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Job Status</collection>
       <name>output-device-uuid-assigned</name>
       <syntax>uri</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Job Status</collection>
@@ -4932,7 +4932,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Operation</collection>
       <name>document-preprocessed</name>
       <syntax>boolean</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Operation</collection>
@@ -4962,13 +4962,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Operation</collection>
       <name>fetch-status-code</name>
       <syntax>type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>fetch-status-message</name>
       <syntax>text(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Operation</collection>
@@ -5420,13 +5420,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Operation</collection>
       <name>output-device-job-states</name>
       <syntax>1setOf type1 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Operation</collection>
       <name>output-device-uuid</name>
       <syntax>uri</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Operation</collection>
@@ -6075,7 +6075,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>fetch-document-attributes-supported</name>
       <syntax>1setOf keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -7679,19 +7679,19 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>oauth-authorization-scope</name>
       <syntax>1setOf name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf" type="uri">PWG5100.OAUTH</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf" type="uri">PWG5100.OAUTH</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>oauth-authorization-scope(extension)</name>
       <syntax>1setOf name(MAX) | no-value</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf">PWG5100.OAUTH</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf">PWG5100.OAUTH</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>oauth-authorization-server-uri</name>
       <syntax>uri | no-value</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf" type="uri">PWG5100.OAUTH</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf" type="uri">PWG5100.OAUTH</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -7751,7 +7751,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>output-device-uuid-supported</name>
       <syntax>1setOf uri</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -8312,6 +8312,18 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Printer Description</collection>
+      <name>printer-mode-configured</name>
+      <syntax>type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
+      <name>printer-mode-supported</name>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <collection>Printer Description</collection>
       <name>printer-more-info-manufacturer</name>
       <syntax>uri</syntax>
       <xref type="rfc" data="rfc8011"/>
@@ -8407,13 +8419,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Description</collection>
       <name>printer-static-resource-directory-uri</name>
       <syntax>uri</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
       <name>printer-static-resource-k-octets-supported</name>
       <syntax>integer(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Printer Description</collection>
@@ -9279,7 +9291,7 @@ Section 5.2 Subscription Template Attributes.
       <collection>Printer Status</collection>
       <name>printer-static-resource-k-octets-free</name>
       <syntax>integer(0:MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <collection>Printer Status</collection>
@@ -9741,13 +9753,13 @@ Section 5.2 Subscription Template Attributes.
       <collection>System Description</collection>
       <name>oauth-authorization-scope</name>
       <syntax>1setOf name(MAX) | no-value</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf">PWG5100.OAUTH</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf">PWG5100.OAUTH</xref>
     </record>
     <record>
       <collection>System Description</collection>
       <name>oauth-authorization-server-uri</name>
       <syntax>uri | no-value</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf">PWG5100.OAUTH</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf">PWG5100.OAUTH</xref>
     </record>
     <record>
       <collection>System Description</collection>
@@ -11185,7 +11197,7 @@ IESG-designated experts.
     <record>
       <attribute>document-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf">PWG5100.13</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
     </record>
     <record>
       <value>aborted-by-system</value>
@@ -11275,7 +11287,7 @@ IESG-designated experts.
       <value>document-fetchable</value>
       <attribute>document-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>document-format-error</value>
@@ -12953,7 +12965,7 @@ IESG-designated experts.
       <value>infrastructure-printer</value>
       <attribute>ipp-features-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>ipp-3d</value>
@@ -14169,7 +14181,7 @@ IESG-designated experts.
       <value>job-fetchable</value>
       <attribute>job-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>job-held-for-authorization</value>
@@ -16953,7 +16965,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c1_648x917mm</value>
@@ -16967,7 +16979,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c2_458x648mm</value>
@@ -16981,7 +16993,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c3_324x458mm</value>
@@ -16995,7 +17007,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c4_229x324mm</value>
@@ -17009,7 +17021,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c5_162x229mm</value>
@@ -17023,7 +17035,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c6_114x162mm</value>
@@ -17044,7 +17056,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c7_81x114mm</value>
@@ -17065,7 +17077,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c8_57x81mm</value>
@@ -17079,7 +17091,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c9_40x57mm</value>
@@ -17093,7 +17105,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c10_28x40mm</value>
@@ -17107,7 +17119,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_dl_110x220mm</value>
@@ -17628,6 +17640,20 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
+      <value>jpn_you1_176x120mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
+    </record>
+    <record>
+      <value>jpn_you3_148x98mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
+    </record>
+    <record>
       <value>jpn_you4_105x235mm</value>
       <type>size name</type>
       <attribute>media</attribute>
@@ -17639,35 +17665,49 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
+    </record>
+    <record>
+      <value>jpn_you5_217x95mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you6_190x98mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
+    </record>
+    <record>
+      <value>jpn_you7_165x92mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_youchou2_146x111.1mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_youchou3_235x120mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_youchou4_205x90mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>large-capacity(obsolete)</value>
@@ -18227,7 +18267,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_monarch_3.875x7.5in</value>
@@ -18241,7 +18281,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-9_3.875x8.875in</value>
@@ -18255,7 +18295,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-10_4.125x9.5in</value>
@@ -18269,7 +18309,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-11_4.5x10.375in</value>
@@ -18283,7 +18323,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-12_4.75x11in</value>
@@ -18297,7 +18337,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-14_5x11.5in</value>
@@ -18318,7 +18358,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250331.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250425.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_personal_3.625x6.5in</value>
@@ -18361,6 +18401,13 @@ IESG-designated experts.
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+    </record>
+    <record>
+      <value>oe_13x22_13x22in</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/ipp/registrations/vendor-canon-20250424.txt">CANON-20250424</xref>
     </record>
     <record>
       <value>oe_14x17_14x17in</value>
@@ -18424,6 +18471,13 @@ IESG-designated experts.
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+    </record>
+    <record>
+      <value>oe_photo-20x30_20x30in</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/ipp/registrations/vendor-canon-20250424.txt">CANON-20250424</xref>
     </record>
     <record>
       <value>oe_photo-22r_22x29.5in</value>
@@ -18606,6 +18660,13 @@ IESG-designated experts.
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+    </record>
+    <record>
+      <value>om_photo-30x90_300x900mm</value>
+      <type>size name</type>
+      <attribute>media</attribute>
+      <syntax>type2 keyword | name(MAX)</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/ipp/registrations/vendor-canon-20250424.txt">CANON-20250424</xref>
     </record>
     <record>
       <value>om_photo-35x46_350x460mm</value>
@@ -20899,37 +20960,37 @@ IESG-designated experts.
       <value>document-completed</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf" type="uri">PWG5100.5</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>document-config-changed</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf" type="uri">PWG5100.5</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>document-created</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf" type="uri">PWG5100.5</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>document-fetchable</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>document-state-changed</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf" type="uri">PWG5100.5</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>document-stopped</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf" type="uri">PWG5100.5</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>job-completed</value>
@@ -20956,7 +21017,7 @@ IESG-designated experts.
       <value>job-fetchable</value>
       <attribute>notify-events</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>job-progress</value>
@@ -22301,6 +22362,40 @@ IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ipptrans10-20131108-5100.16.pdf" type="uri">PWG5100.16</xref>
     </record>
     <record>
+      <attribute>printer-mode-configured</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <value>passthrough</value>
+      <attribute>printer-mode-configured</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <value>release-action</value>
+      <attribute>printer-mode-configured</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <value>release-printing</value>
+      <attribute>printer-mode-configured</attribute>
+      <syntax>type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <attribute>printer-mode-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
+      <value>&lt;Any "printer-mode-configured" value&gt;</value>
+      <attribute>printer-mode-supported</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
+    </record>
+    <record>
       <attribute>printer-pkcs7-repertoire-configured</attribute>
       <syntax>type2 keyword</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ipptrustnoone10-20210519.pdf">PWG5100.TRUSTNOONE</xref>
@@ -23592,7 +23687,7 @@ IESG-designated experts.
       <value>identify-printer-requested</value>
       <attribute>printer-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>imprinter-added</value>
@@ -29290,7 +29385,7 @@ IESG-designated experts.
       <value>oauth</value>
       <attribute>uri-authentication-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf" type="uri">PWG5100.OAUTH</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf" type="uri">PWG5100.OAUTH</xref>
     </record>
     <record>
       <value>requesting-user-name</value>
@@ -29354,7 +29449,7 @@ IESG-designated experts.
       <value>fetchable</value>
       <attribute>which-jobs</attribute>
       <syntax>type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>not-completed</value>
@@ -29576,7 +29671,7 @@ IESG-designated experts.
       <value>oauth</value>
       <attribute>xri-authentication-supported</attribute>
       <syntax>1setOf type2 keyword</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250331.pdf" type="uri">PWG5100.OAUTH</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippoauth10-20250411.pdf" type="uri">PWG5100.OAUTH</xref>
     </record>
     <record>
       <value>requesting-user-name</value>
@@ -29777,7 +29872,14 @@ IESG-designated experts.
     <record>
       <attribute>fetch-status-code</attribute>
       <syntax>type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
+    </record>
+    <record>
+      <value>&lt; all status code values other than 'successful-ok' &gt;</value>
+      <name/>
+      <attribute>fetch-status-code</attribute>
+      <syntax>type2 enum</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
     </record>
     <record>
       <value>&lt;Any "status-code" value other than 'successful-ok'&gt;</value>
@@ -30904,77 +31006,77 @@ IESG-designated experts.
       <name>Acknowledge-Document</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0040</value>
       <name>Acknowledge-Identify-Printer</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0041</value>
       <name>Acknowledge-Job</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0042</value>
       <name>Fetch-Document</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0043</value>
       <name>Fetch-Job</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0044</value>
       <name>Get-Output-Device-Attributes</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0045</value>
       <name>Update-Active-Jobs</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0046</value>
       <name>Deregister-Output-Device</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0047</value>
       <name>Update-Document-Status</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0048</value>
       <name>Update-Job-Status</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x0049</value>
       <name>Update-Output-Device-Attributes</name>
       <attribute>operations-supported</attribute>
       <syntax>1setOf type2 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <value>0x004A</value>
@@ -31272,7 +31374,14 @@ IESG-designated experts.
     <record>
       <attribute>output-device-job-states</attribute>
       <syntax>1setOf type1 enum</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
+    </record>
+    <record>
+      <value>&lt; all job-state values &gt;</value>
+      <name/>
+      <attribute>output-device-job-states</attribute>
+      <syntax>1setOf type1 enum</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf">PWG5100.18</xref>
     </record>
     <record>
       <value>&lt;Any "job-state" enum value &gt;</value>
@@ -32185,7 +32294,7 @@ after the name.
     </note>
     <record>
       <name>Acknowledge-Document</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Acknowledge-Encrypted-Job-Attributes</name>
@@ -32193,11 +32302,11 @@ after the name.
     </record>
     <record>
       <name>Acknowledge-Identify-Printer</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Acknowledge-Job</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Activate-Printer</name>
@@ -32361,7 +32470,7 @@ after the name.
     </record>
     <record>
       <name>Deregister-Output-Device</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Disable-All-Printers</name>
@@ -32381,7 +32490,7 @@ after the name.
     </record>
     <record>
       <name>Fetch-Document</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Fetch-Encrypted-Job-Attributes</name>
@@ -32389,7 +32498,7 @@ after the name.
     </record>
     <record>
       <name>Fetch-Job</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Get-Document-Attributes</name>
@@ -32449,7 +32558,7 @@ after the name.
     </record>
     <record>
       <name>Get-Output-Device-Attributes</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Get-Printer-Attributes</name>
@@ -32541,7 +32650,7 @@ after the name.
     </record>
     <record>
       <name>Identify-Printer</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippnodriver20-20230301-5100.13.pdf" type="uri">PWG5100.13</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Identify-Printer(extension)</name>
@@ -32881,19 +32990,19 @@ after the name.
     </record>
     <record>
       <name>Update-Active-Jobs</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Update-Document-Status</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Update-Job-Status</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Update-Output-Device-Attributes</name>
-      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippinfra10-20150619-5100.18.pdf" type="uri">PWG5100.18</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippinfra11-20250331.pdf" type="uri">PWG5100.18</xref>
     </record>
     <record>
       <name>Validate-Document</name>
