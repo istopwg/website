@@ -17133,7 +17133,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-20180329.txt" type="uri">CANON20180329</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>iso_ra0_860x1220mm</value>
@@ -18071,14 +18071,14 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>na_arch-e3_27x39in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>na_arch-e_36x48in</value>
@@ -18400,7 +18400,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_13x22_13x22in</value>
@@ -18414,63 +18414,63 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_18x22_18x22in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_a2plus_17x24in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_business-card_2x3.5in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-square-20180618.txt" type="uri">CANON20180618</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-10r_10x12in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-12r_12x15in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-14x18_14x18in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-16r_16x20in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-20r_20x24in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/ippwg-media-size-20160229.txt" type="uri">IPPWG20160229-2</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-20x30_20x30in</value>
@@ -18484,35 +18484,35 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-22x28_22x28in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-24r_24x31.5in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-24x30_24x30in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-30r_30x40in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_photo-l_3.5x5in</value>
@@ -18526,21 +18526,21 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_square-photo_4x4in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-square-20180618.txt" type="uri">CANON20180618</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>oe_square-photo_5x5in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-square-20180618.txt" type="uri">CANON20180618</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_16k_184x260mm</value>
@@ -18561,21 +18561,21 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-square-20180618.txt" type="uri">CANON20180618</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_business-card_55x91mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-square-20180618.txt" type="uri">CANON20180618</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_card_54x86mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-20180329.txt" type="uri">CANON20180329</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_dai-pa-kai_275x395mm</value>
@@ -18589,7 +18589,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-20180329.txt" type="uri">CANON20180329</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_folio-sp_215x315mm</value>
@@ -18652,14 +18652,14 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_photo-30x45_300x450mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_photo-30x90_300x900mm</value>
@@ -18673,35 +18673,35 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_photo-40x60_400x600mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_photo-50x75_500x750mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_photo-50x76_500x760mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_photo-60x90_600x900mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/hp-media-sizes-20210302.txt" type="uri">HP20210302</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_small-photo_100x150mm</value>
@@ -18715,7 +18715,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref data="https://ftp.pwg.org/pub/pwg/ipp/registrations/canon-media-square-20180618.txt" type="uri">CANON20180618</xref>
+      <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
       <value>om_wide-photo_100x200mm</value>
