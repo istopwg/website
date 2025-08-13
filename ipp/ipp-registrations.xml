@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="ipp-registrations">
   <title>Internet Printing Protocol (IPP) Registrations</title>
   <created>2002-07-15</created>
-  <updated>2025-05-29</updated>
+  <updated>2025-08-13</updated>
   <registry id="ipp-registrations-1">
     <title>Objects</title>
     <xref type="rfc" data="rfc8011"/>
@@ -481,13 +481,13 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Document Status</collection>
-      <name>insert-sheet-actual</name>
+      <name>insert-sheet-actual(deprecated)</name>
       <syntax>1setOf collection</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
       <collection>Document Status</collection>
-      <name>insert-sheet-actual</name>
+      <name>insert-sheet-actual(deprecated)</name>
       <member_attribute>&lt;Any "insert-sheet" member attribute&gt;</member_attribute>
       <syntax/>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf">PWG5100.5</xref>
@@ -992,13 +992,13 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Document Template</collection>
-      <name>insert-sheet</name>
+      <name>insert-sheet(deprecated)</name>
       <syntax>1setOf collection</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf">PWG5100.5</xref>
     </record>
     <record>
       <collection>Document Template</collection>
-      <name>insert-sheet</name>
+      <name>insert-sheet(deprecated)</name>
       <member_attribute>&lt;Any "insert-sheet" member attribute&gt;</member_attribute>
       <syntax/>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippdocobject12-20240517-5100.5.pdf">PWG5100.5</xref>
@@ -2029,13 +2029,13 @@ Section 5.2 Subscription Template Attributes.
     </record>
     <record>
       <collection>Job Status</collection>
-      <name>insert-sheet-actual</name>
+      <name>insert-sheet-actual(deprecated)</name>
       <syntax>1setOf collection</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
     </record>
     <record>
       <collection>Job Status</collection>
-      <name>insert-sheet-actual</name>
+      <name>insert-sheet-actual(deprecated)</name>
       <member_attribute>&lt;Any "insert-sheet" member attribute&gt;</member_attribute>
       <syntax/>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippactuals10-20030313-5100.8.pdf">PWG5100.8</xref>
@@ -3380,48 +3380,6 @@ Section 5.2 Subscription Template Attributes.
       <name>imposition-template</name>
       <syntax>type2 keyword | name(MAX)</syntax>
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippppx20-20230131-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <collection>Job Template</collection>
-      <name>insert-sheet</name>
-      <syntax>1setOf collection</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <collection>Job Template</collection>
-      <name>insert-sheet</name>
-      <member_attribute>insert-after-page-number</member_attribute>
-      <syntax>integer(0:MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <collection>Job Template</collection>
-      <name>insert-sheet</name>
-      <member_attribute>insert-count</member_attribute>
-      <syntax>integer(0:MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <collection>Job Template</collection>
-      <name>insert-sheet</name>
-      <member_attribute>media</member_attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="rfc" data="rfc8011"/>
-    </record>
-    <record>
-      <collection>Job Template</collection>
-      <name>insert-sheet</name>
-      <member_attribute>media-col</member_attribute>
-      <syntax>collection</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
-    </record>
-    <record>
-      <collection>Job Template</collection>
-      <name>insert-sheet</name>
-      <member_attribute>media-col</member_attribute>
-      <sub-member_attribute>&lt;Any "media-col" member attribute&gt;</sub-member_attribute>
-      <syntax/>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippprodprint10-20010212-5100.3.pdf">PWG5100.3</xref>
     </record>
     <record>
       <collection>Job Template</collection>
@@ -16965,7 +16923,7 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c1_648x917mm</value>
@@ -16975,18 +16933,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c2-long-edge_648x458mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c2-long-flap_648x458mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c2_458x648mm</value>
@@ -16996,18 +16947,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c3-long-edge_458x324mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c3-long-flap_458x324mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c3_324x458mm</value>
@@ -17017,18 +16961,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c4-long-edge_324x229mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c4-long-flap_324x229mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c4_229x324mm</value>
@@ -17038,18 +16975,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c5-long-edge_229x162mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c5-long-flap_229x162mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c5_162x229mm</value>
@@ -17059,18 +16989,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c6-long-edge_162x114mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c6-long-flap_162x114mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c6_114x162mm</value>
@@ -17087,18 +17010,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c7-long-edge_114x81mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c7-long-flap_114x81mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c7_81x114mm</value>
@@ -17115,18 +17031,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c8-long-edge_81x57mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c8-long-flap_81x57mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c8_57x81mm</value>
@@ -17136,18 +17045,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c9-long-edge_57x40mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c9-long-flap_57x40mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c9_40x57mm</value>
@@ -17157,18 +17059,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_c10-long-edge_40x28mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_c10-long-flap_40x28mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_c10_28x40mm</value>
@@ -17178,18 +17073,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>iso_dl-long-edge_220x110mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>iso_dl-long-flap_220x110mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>iso_dl_110x220mm</value>
@@ -17714,168 +17602,105 @@ IESG-designated experts.
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you1_120x176mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_you1_176x120mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you3-long-flap_148x98mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you3_98x148mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_you3_148x98mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you4-long-flap_235x105mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you4_105x235mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_you4_235x105mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you5-long-flap_217x95mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you5_95x217mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_you5_217x95mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you6-long-flap_190x98mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you6_98x190mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_you6_190x98mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you7-long-flap_165x92mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_you7_92x165mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_you7_165x92mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_youchou2-long-flap_146x111.1mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_youchou2_146x111.1mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_youchou3-long-flap_235x120mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_youchou3_235x120mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>jpn_youchou4-long-flap_205x90mm</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
-      <value>jpn_youchou4_205x90mm</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>large-capacity(obsolete)</value>
@@ -18431,18 +18256,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_monarch-long-edge_7.5x3.875in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_monarch-long-flap_7.5x3.875in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_monarch_3.875x7.5in</value>
@@ -18452,18 +18270,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_number-9-long-edge_8.875x3.875in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_number-9-long-flap_8.875x3.875in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-9_3.875x8.875in</value>
@@ -18473,18 +18284,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_number-10-long-edge_9.5x4.125in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_number-10-long-flap_9.5x4.125in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-10_4.125x9.5in</value>
@@ -18494,18 +18298,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_number-11-long-edge_10.375x4.5in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_number-11-long-flap_10.375x4.5in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-11_4.5x10.375in</value>
@@ -18515,18 +18312,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_number-12-long-edge_11x4.75in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_number-12-long-flap_11x4.75in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-12_4.75x11in</value>
@@ -18536,18 +18326,11 @@ IESG-designated experts.
       <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn21-20230915-5101.1.pdf">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_number-14-long-edge_11.5x5in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_number-14-long-flap_11.5x5in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_number-14_5x11.5in</value>
@@ -18564,18 +18347,11 @@ IESG-designated experts.
       <xref data="https://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn20-20130328-5101.1.pdf" type="uri">PWG5101.1</xref>
     </record>
     <record>
-      <value>na_personal-long-edge_6.5x3.625in</value>
-      <type>size name</type>
-      <attribute>media</attribute>
-      <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
-    </record>
-    <record>
       <value>na_personal-long-flap_6.5x3.625in</value>
       <type>size name</type>
       <attribute>media</attribute>
       <syntax>type2 keyword | name(MAX)</syntax>
-      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/wd/wd-ippenvelope10-20250529.pdf">IPPENVELOPE</xref>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/ipp/registrations/reg-ippenvelope10-20250703.pdf">IPPENVELOPE</xref>
     </record>
     <record>
       <value>na_personal_3.625x6.5in</value>
@@ -27726,6 +27502,138 @@ IESG-designated experts.
       <attribute>printer-state-reasons</attribute>
       <syntax>1setOf type2 keyword</syntax>
       <xref type="rfc" data="rfc8011"/>
+    </record>
+    <record>
+      <value>storage-added</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-almost-full</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-configuration-change</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-cover-closed</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-cover-open</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-full</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-interlock-closed</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-interlock-open</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-life-almost-over</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-life-over</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-missing</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-offline</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-over-temperature</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-power-saver</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-recoverable-failure</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-removed</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-thermistor-failure</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-turned-off</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-turned-on</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-under-temperature</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-unrecoverable-failure</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
+    </record>
+    <record>
+      <value>storage-warming-up</value>
+      <attribute>printer-state-reasons</attribute>
+      <syntax>1setOf type2 keyword</syntax>
+      <xref type="uri" data="https://ftp.pwg.org/pub/pwg/candidates/cs-ippepx20-20240315-5100.11.pdf">PWG5100.11</xref>
     </record>
     <record>
       <value>subunit-added</value>
