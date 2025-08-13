@@ -293,7 +293,7 @@ site_footer($javascript = "")
        ."  <div id=\"pwg-footer-body\">Comments are owned by the poster. All other "
        ."material is Copyright &copy; 2001-$year The Printer Working Group. "
        ."All rights reserved. IPP Everywhere, the IPP Everywhere logo, and the "
-       ."PWG logo are trademarks of the IEEE-ISTO.<br>\n"
+       ."PWG logo are trademarks of the ISTO.<br>\n"
        ."<a href=\"${html_path}about.html\">About the PWG</a> "
        ."&middot; "
        ."<a href=\"https://ieee-isto.org/privacy-policy/\">Privacy Policy</a> "
